@@ -19,7 +19,15 @@ public class Building
     int customerID;
     
     
-
+//Cunstructor used when createBuilding 
+    public Building(String street, String streetNo, int zipcode, String city)
+    {
+        this.street = street;
+        this.streetNo = streetNo;
+        this.zipcode = zipcode;
+        this.city = city;
+    }
+    
     public Building(String street, String streetNo, int zipcode, String city, int condition, int customerID)
     {
         this.street = street;
@@ -29,6 +37,8 @@ public class Building
         this.condition = condition;
         this.customerID = customerID;
     }
+
+    
 
     public int getCustomerID()
     {
