@@ -17,12 +17,10 @@ public class DM_Building
     {
         String query = "INSERT INTO "
                 + "VALUES('" + b.getStreet() + "','" + b.getStreetNo() + "','" 
-                + b.getZipcode() + "','" + b.getCondition() + "','" 
+                + b.getZipcode() + "','" 
                 + b.getCustomerID() +"');";
         
-        //kald metode i connectoren -- con.updateData(queryUpdate);
-        
+        con.updateData(query);
     }
-    
     
 }
