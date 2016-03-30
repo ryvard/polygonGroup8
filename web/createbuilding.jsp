@@ -43,11 +43,11 @@
                     <td>Adresse:</td>
                     <td><input type="text" name="street"></td>
                     <td>Husnummer:</td>
-                    <td><input type="text" name="streetNo"></td>
+                    <td><input type="text" name="streetNo" style="width:40px;"></td>
                 </tr>
                 <tr>
                     <td>Postnr:</td>
-                    <td><input type="text" name="zipcode"></td>
+                    <td><input type="text" name="zipcode" style="width: 40px;"></td>
                     <td align="right">By:</td>
                     <td><input type="text" name="city"></td>
                 </tr>
