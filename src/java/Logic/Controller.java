@@ -5,11 +5,21 @@
  */
 package Logic;
 
+import Domain.Building;
+import Domain.Facade;
+
 /**
  *
  * @author miaryvard
  */
-public class Controller
+public class Controller implements IController
 {
+    Facade facade = new Facade();
+
+    @Override
+    public void createBuilding(Building building)
+    {
+        facade.createBuilding(building);
+    }
     
 }
