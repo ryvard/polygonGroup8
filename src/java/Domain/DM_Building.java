@@ -13,7 +13,7 @@ public class DM_Building
 {
     DatabaseConnector con = new DatabaseConnector();
     
-    public void createBuilding(Building b)
+    public void createBuildingInDB(Building b)
     {
         String query = "INSERT INTO "
                 + "VALUES('" + b.getStreet() + "','" + b.getStreetNo() + "','" 
