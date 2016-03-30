@@ -12,4 +12,5 @@ package Domain;
 public class NewClass
 {
     //Hej HEJ HEJ
+    // farvel
 }
