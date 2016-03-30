@@ -11,10 +11,10 @@ package Domain;
  */
 public class Facade
 {
-    DM_Building building = new DM_Building();
+    DM_Building dm_building = new DM_Building();
     
-    public void createBuilding()
+    public void createBuilding(Building building)
     {
-        building.createBuilding(null);
+        dm_building.createBuildingInDB(building);
     }
 }
