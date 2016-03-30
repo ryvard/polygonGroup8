@@ -13,8 +13,15 @@ public class DM_Building
 {
     DatabaseConnector con = new DatabaseConnector();
     
-    public void createBuilding()
+    public void createBuilding(Building b)
     {
+        String query = "INSERT INTO "
+                + "VALUES('" + b.getStreet() + "','" + b.getStreetNo() + "','" 
+                + b.getZipcode() + "','" + b.getCondition() + "','" 
+                + b.getCustomerID() +"');";
+        
+        //kald metode i connectoren -- con.updateData(queryUpdate);
+        
     }
     
     
