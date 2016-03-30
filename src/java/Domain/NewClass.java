@@ -13,5 +13,6 @@ public class NewClass
 {
     //Hej HEJ HEJ
     // farvel
+    // jeg
     // Hej piger
 }
