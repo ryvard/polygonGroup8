@@ -51,10 +51,7 @@
                     <td align="right">By:</td>
                     <td><input type="text" name="city"></td>
                 </tr>
-                <tr>
-                    <td>Tilstand:</td>
-                    <td><input type="text" name="condition"></td>
-                </tr>
+                
             </table>
             <input type="submit" value="Opret bygning">
         </form>
