@@ -20,8 +20,10 @@ public class Controller implements IController
     @Override
     public void createBuilding(String street, String streetNo, int zipcode, String city)
     {
+        System.out.println("controller1  -   "+streetNo);
         building = new Building(street, streetNo, zipcode, city);
         facade.createBuilding(building);
+        System.out.println("controller2");
     }
     
 }
