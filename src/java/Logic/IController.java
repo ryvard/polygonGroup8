@@ -3,18 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Domain;
+package Logic;
+
+import Domain.Building;
 
 /**
  *
  * @author miaryvard
  */
-public class Facade
+public interface IController
 {
-    DM_Building dm_building = new DM_Building();
-    
-    public void createBuilding(Building building)
-    {
-        dm_building.createBuildingInDB(building);
-    }
+    /**
+     * Called when you submit your new building.
+     */
+    public void createBuilding(Building building);
 }

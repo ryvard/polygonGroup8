@@ -3,18 +3,23 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Domain;
+package Logic;
+
+import Domain.Building;
+import Domain.Facade;
 
 /**
  *
  * @author miaryvard
  */
-public class Facade
+public class Controller implements IController
 {
-    DM_Building dm_building = new DM_Building();
-    
+    Facade facade = new Facade();
+
+    @Override
     public void createBuilding(Building building)
     {
-        dm_building.createBuildingInDB(building);
+        facade.createBuilding(building);
     }
+    
 }
