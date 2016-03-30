@@ -11,7 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import Logic.Controller;
 /**
  *
  * @author emmablomsterberg
@@ -32,15 +32,19 @@ public class Servlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Servlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet Servlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            Controller con = new Controller();
+            
+            String do_this = request.getParameter("do_this");
+            
+            switch (do_this) {
+                
+                case "create":
+                    String street = request.getParameter("street");
+                    String streetNo = request.getParameter("streetNo");
+                    int zipcode = Integer.parseInt(request.getParameter("zipcode"));
+                    String city = request.getParameter("city");
+                    con.createBuilding(street, streetNo, zipcode, city);
+                    
         }
     }
 
