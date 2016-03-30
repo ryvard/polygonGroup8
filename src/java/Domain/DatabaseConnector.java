@@ -9,10 +9,8 @@ package Domain;
  *
  * @author miaryvard
  */
-public class NewClass
+public class DatabaseConnector
 {
-    // Hej HEJ HEJ
-    // farvel
-    // jeg
-    // Hej piger
+    
+    
 }
