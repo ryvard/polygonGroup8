@@ -12,4 +12,7 @@ package Domain;
 public interface IFacade
 {
     public void createBuilding(Building building);
+    
+    public void createCustomer(Customer customer);
+   
 }

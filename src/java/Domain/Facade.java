@@ -12,9 +12,15 @@ package Domain;
 public class Facade
 {
     DM_Building dm_building = new DM_Building();
+    DM_Customer dm_customer = new DM_Customer();
     
     public void createBuilding(Building building)
     {
         dm_building.createBuildingInDB(building);
+    }
+    
+    public void createCustomer(Customer customer) 
+    {
+        dm_customer.createCustomer(customer);
     }
 }
