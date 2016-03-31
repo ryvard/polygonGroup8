@@ -16,8 +16,8 @@ public class DatabaseConnector
     private DatabaseConnector() {
         
     }
-    private static DatabaseConnector dbCon_Instance;
-     public static DatabaseConnector getInstance() {
+    private static DatabaseConnector dbCon_Instance;  
+    public static DatabaseConnector getInstance() {
         if (dbCon_Instance == null) {
             
             dbCon_Instance = new DatabaseConnector(); 

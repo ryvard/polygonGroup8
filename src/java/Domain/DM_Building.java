@@ -20,7 +20,9 @@ public class DM_Building
                 + "VALUES('" + b.getStreet() + "','" + b.getStreetNo() + "','" 
                 + b.getZipcode() + "');";
         
+
        // con.updateData(query);
+
     }
     
 }
