@@ -12,4 +12,5 @@ package Domain;
 public interface IFacade
 {
     public void createBuilding(Building building);
+   
 }
