@@ -20,11 +20,12 @@ public class DatabaseConnector
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection(DB_URL, USER, PASS);
             Statement stmt = con.createStatement();
-
+            
             return stmt.executeQuery(query);
 
         } catch (Exception ex)
         {
+            
             System.out.println(ex.toString());
             return null;
 
@@ -44,7 +45,8 @@ public class DatabaseConnector
 
         } catch (Exception ex)
         {
-            System.out.println(ex.toString());
+            System.out.println("!!!!!!!!!!!!!!!! connection FAIL");
+            System.out.println("###########" +ex.toString());
         }
 
     }

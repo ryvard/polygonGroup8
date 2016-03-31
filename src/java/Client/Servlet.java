@@ -44,7 +44,7 @@ public class Servlet extends HttpServlet {
                     int zipcode = Integer.parseInt(request.getParameter("zipcode"));
                     String city = request.getParameter("city");
                     con.createBuilding(street, streetNo, zipcode, city);
-                    
+                    System.out.println("servlet");
         }
     }
     }

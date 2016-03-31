@@ -15,10 +15,10 @@ public class DM_Building
     
     public void createBuildingInDB(Building b)
     {
-        String query = "INSERT INTO "
+        System.out.println("DM_Building    -    " + b.getStreet());
+        String query = "INSERT INTO Buildings(StreetName,StreetNumb,Zipcode)"
                 + "VALUES('" + b.getStreet() + "','" + b.getStreetNo() + "','" 
-                + b.getZipcode() + "','" 
-                + b.getCustomerID() +"');";
+                + b.getZipcode() + "');";
         
         con.updateData(query);
     }
