@@ -11,7 +11,7 @@ package Domain;
  */
 public class DM_Building
 {
-    DatabaseConnector con = new DatabaseConnector();
+    //DatabaseConnector con = new DatabaseConnector();
     
     public void createBuildingInDB(Building b)
     {
@@ -20,7 +20,7 @@ public class DM_Building
                 + "VALUES('" + b.getStreet() + "','" + b.getStreetNo() + "','" 
                 + b.getZipcode() + "');";
         
-        con.updateData(query);
+       // con.updateData(query);
     }
     
 }
