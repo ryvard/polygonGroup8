@@ -38,7 +38,7 @@ public class Servlet extends HttpServlet {
             
             switch (do_this) {
                 
-                case "create":
+                case "createBuilding":
                     String street = request.getParameter("street");
                     String streetNo = request.getParameter("streetNo");
                     int zipcode = Integer.parseInt(request.getParameter("zipcode"));
