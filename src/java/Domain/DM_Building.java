@@ -11,7 +11,7 @@ package Domain;
  */
 public class DM_Building
 {
-    //DatabaseConnector con = new DatabaseConnector();
+     DatabaseConnector db_Connect = DatabaseConnector.getInstance();
     
     public void createBuildingInDB(Building b)
     {
@@ -21,7 +21,7 @@ public class DM_Building
                 + b.getZipcode() + "');";
         
 
-       // con.updateData(query);
+       db_Connect.updateData(query);
 
     }
     
