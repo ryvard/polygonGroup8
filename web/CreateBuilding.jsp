@@ -37,7 +37,7 @@
         <div>Udfyld venligst felterne nedenfor for at oprette din bygning.</div>
         <br>
         <form action="Servlet" method="POST">
-            <input type="hidden" name="do_this" value="create">
+            <input type="hidden" name="do_this" value="createBuilding">
             <table>
                 <tr>
                     <td>Adresse:</td>
