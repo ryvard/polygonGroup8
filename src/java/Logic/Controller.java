@@ -8,6 +8,7 @@ package Logic;
 import Domain.Building;
 import Domain.Customer;
 import Domain.Facade;
+import java.util.ArrayList;
 
 /**
  *
@@ -32,6 +33,15 @@ public class Controller implements IController
     public void createCustomer(String type, String streetName, String streetNo, int zipcode, String contactName, String phone, String mail) {
         customer = new Customer(type, streetName, streetNo, zipcode, contactName, phone, mail);
         facade.createCustomer(customer);
+    }
+
+   
+    @Override
+    public ArrayList<Building> getBuildingList()
+    {
+//        ArrayList<Building> building = new ArrayList();
+//        return building;
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     
