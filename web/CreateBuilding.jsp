@@ -38,7 +38,7 @@
         <br>
         <form action="Servlet" method="POST">
             <input type="hidden" name="do_this" value="createBuilding">
-            <table>
+            <table width="100%">
                 <tr>
                     <td>Adresse:</td>
                     <td><input type="text" name="street"></td>

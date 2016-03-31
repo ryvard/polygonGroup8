@@ -42,12 +42,14 @@
             <table>
                 <tr>
                     <td>Kunde type:</td>
-                <select name="checkbox">
+                </tr>
+                <tr>
+                <td><select name="checkbox">
                     <option value="Boligforening">Boligforening</option>
                     <option value="Kommune">Kommune</option>
-                </select>
-                    <td>Adresse:</td>
-                <td><input type="text" name="streetName" style="width:40px;"></td>
+                </select></td>
+                <td>Adresse:</td>
+                <td><input type="text" name="streetName"></td>
                 </tr>
                 <tr>
                     <td>Husnummer:</td>
@@ -59,9 +61,9 @@
                 </tr>
                 <tr>
                     <td>Kontakt navn:</td>
-                    <td><input type="text" name="contactName" style="width:40px;"></td>
+                    <td><input type="text" name="contactName"></td>
                     <td>Telefon nr.:</td>
-                    <td><input type="text" name="phone" style="width: 40px;"></td>
+                    <td><input type="text" name="phone" ></td>
                     <td align="right">Email:</td>
                     <td><input type="text" name="mail"></td>
                 </tr>
