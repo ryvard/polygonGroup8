@@ -6,6 +6,7 @@
 package Logic;
 
 import Domain.Building;
+import java.util.ArrayList;
 
 /**
  *
@@ -13,10 +14,18 @@ import Domain.Building;
  */
 public interface IController
 {
-    /**
+    /*
      * Called when you submit your new building.
      */
         public void createBuilding(String street, String StreetNo, int zipcode, String city);
         
+        
         public void createCustomer(String type, String streetName, String streetNo, int zipcode, String contactName, String phone, String mail);
+        
+        
+    /*
+     * Called when entering the site BuildingList.jsp 
+     * Arraylist containing all buildings.
+     */
+        public ArrayList<Building> getBuildingList(); 
 }

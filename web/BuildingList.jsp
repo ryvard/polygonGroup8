@@ -49,24 +49,18 @@
                 </tr>
 
                 <%
-                    Controller con = new Controller();
-                    //ArrayList<Building> buildings = con. Metoden der returnere listen
-                    //for (Building b : buidings)
+                    Controller cntr = new Controller();
+                    ArrayList<Building> buildings = cntr.getBuildingList();
+                    for (Building b : buildings)
                     {
                 %>
                 <tr>
-                    <%--
-                    <td><%=top.getPlayer_name()%></td>
-                    <td><%=top.getTeam_id()%></td>
-                    <td><%=top.getGoals()%></td>
-                    
-                    <td><b>BuildingID</b></td>
-                    <td><b>vej</b></td>
-                    <td><b>nr.</b></td>
-                    <td><b>post. nr.</b></td>
-                    <td><b>tilstand</b></td>
-                    <td><b>KundeID</b></td>
-                    --%>
+                    <td><%=b.getBuildingID()%></td>
+                    <td><%=b.getStreet()%></td>
+                    <td><%=b.getStreetNo()%></td>
+                    <td><%=b.getZipcode()%></td>
+                    <td><%=b.getCondition()%></td>
+                    <td><%=b.getCustomerID()%></td>
                 </tr>
                 <%
                     }

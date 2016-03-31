@@ -11,6 +11,7 @@ package Domain;
  */
 public class Building
 {
+    int buildingID;
     String street;
     String streetNo;
     String city;
@@ -28,14 +29,25 @@ public class Building
         this.city = city;
     }
     
-    public Building(String street, String streetNo, int zipcode, String city, int condition, int customerID)
+    public Building(int buildingID, String street, String streetNo, int zipcode, String city, int condition, int customerID)
     {
+        this.buildingID = buildingID;
         this.street = street;
         this.streetNo = streetNo;
         this.zipcode = zipcode;
         this.city = city;
         this.condition = condition;
         this.customerID = customerID;
+    }
+
+    public int getBuildingID()
+    {
+        return buildingID;
+    }
+
+    public void setBuildingID(int buildingID)
+    {
+        this.buildingID = buildingID;
     }
 
     
