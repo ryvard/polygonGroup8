@@ -11,4 +11,13 @@ package Domain;
  */
 public class DM_Customer {
     
+    
+    public void createCustomer(Customer cus) {
+        
+        String query = "INSERT INTO Customer(Type,StreetName,StreetNo,Zipcode,ContactName,Phone,Mail)"
+                + "VALUES('"+cus.getType()+"','"+cus.getStreetName()+"','"+cus.getStreetNo()+"'.'"
+                + cus.getZipcode()+"','"+cus.getPhone()+"','"+cus.getMail()+"');";
+             
+             
+    }
 }
