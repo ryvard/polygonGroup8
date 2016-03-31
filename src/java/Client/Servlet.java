@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import Logic.Controller;
+
 /**
  *
  * @author emmablomsterberg
@@ -33,11 +34,11 @@ public class Servlet extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             Controller con = new Controller();
-            
+
             String do_this = request.getParameter("do_this");
-            
+
             switch (do_this) {
-                
+
                 case "createBuilding":
                     String street = request.getParameter("street");
                     String streetNo = request.getParameter("streetNo");
@@ -45,8 +46,19 @@ public class Servlet extends HttpServlet {
                     String city = request.getParameter("city");
                     con.createBuilding(street, streetNo, zipcode, city);
                     System.out.println("servlet");
+
+                case "createCustomer":
+                    String type = request.getParameter("customerType");
+                    String streetNameCust = request.getParameter("streetName");
+                    String streetNoCust = request.getParameter("streetNo");
+                    int zipcodeCust = Integer.parseInt(request.getParameter("zipcode"));
+                    String contactName = request.getParameter("contactName");
+                    String phone = request.getParameter("phone");
+                    String mail = request.getParameter("mail");
+                    con.createCustomer(type, streetNameCust, streetNoCust, zipcodeCust, contactName, phone, mail);
+                    System.out.println("servlet");
+            }
         }
-    }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
