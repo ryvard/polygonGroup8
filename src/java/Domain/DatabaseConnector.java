@@ -13,6 +13,18 @@ public class DatabaseConnector
     String USER = "root";
     String PASS = "1234";
 
+    private DatabaseConnector() {
+        
+    }
+    private static DatabaseConnector dbCon_Instance;
+     public static DatabaseConnector getInstance() {
+        if (dbCon_Instance == null) {
+            
+            dbCon_Instance = new DatabaseConnector(); 
+        }
+        return dbCon_Instance; 
+    }
+     
     public ResultSet getData(String query)
     {
         try
