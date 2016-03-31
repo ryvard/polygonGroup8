@@ -13,16 +13,14 @@ public class DM_Building
 {
     DatabaseConnector con = new DatabaseConnector();
     
-    public void createBuilding(Building b)
+    public void createBuildingInDB(Building b)
     {
-        String query = "INSERT INTO "
+        System.out.println("DM_Building    -    " + b.getStreet());
+        String query = "INSERT INTO Buildings(StreetName,StreetNumb,Zipcode)"
                 + "VALUES('" + b.getStreet() + "','" + b.getStreetNo() + "','" 
-                + b.getZipcode() + "','" + b.getCondition() + "','" 
-                + b.getCustomerID() +"');";
+                + b.getZipcode() + "');";
         
-        //kald metode i connectoren -- con.updateData(queryUpdate);
-        
+        con.updateData(query);
     }
-    
     
 }

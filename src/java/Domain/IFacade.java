@@ -9,10 +9,7 @@ package Domain;
  *
  * @author miaryvard
  */
-public class NewClass
+public interface IFacade
 {
-    // Hej HEJ HEJ
-    // farvel
-    // jeg
-    // Hej piger
+    public void createBuilding(Building building);
 }
