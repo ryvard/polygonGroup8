@@ -44,7 +44,7 @@
                     <td>Kunde type:</td>
                 </tr>
                 <tr>
-                <td><select name="checkbox">
+                <td><select name="customerType">
                     <option value="Boligforening">Boligforening</option>
                     <option value="Kommune">Kommune</option>
                 </select></td>
