@@ -11,13 +11,15 @@ package Domain;
  */
 public class DM_Customer {
     
+    DatabaseConnector db_Connect = DatabaseConnector.getInstance();
     
     public void createCustomer(Customer cus) {
         
         String query = "INSERT INTO Customer(Type,StreetName,StreetNo,Zipcode,ContactName,Phone,Mail)"
                 + "VALUES('"+cus.getType()+"','"+cus.getStreetName()+"','"+cus.getStreetNo()+"'.'"
                 + cus.getZipcode()+"','"+cus.getPhone()+"','"+cus.getMail()+"');";
-             
+        
+        db_Connect.updateData(query);
              
     }
 }
