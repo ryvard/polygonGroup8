@@ -6,6 +6,7 @@
 package Logic;
 
 import Domain.Building;
+import Domain.Customer;
 import Domain.Facade;
 
 /**
@@ -16,6 +17,7 @@ public class Controller implements IController
 {
     Facade facade = new Facade();
     Building building;
+    Customer customer;
   
     @Override
     public void createBuilding(String street, String streetNo, int zipcode, String city)
@@ -25,5 +27,12 @@ public class Controller implements IController
         facade.createBuilding(building);
         System.out.println("controller2");
     }
+
+    @Override
+    public void createCustomer(String type, String streetName, String streetNo, int zipcode, String contactName, String phone, String mail) {
+        customer = new Customer(type, streetName, streetNo, zipcode, contactName, phone, mail);
+        facade.createCustomer(customer);
+    }
+    
     
 }
