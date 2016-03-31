@@ -19,7 +19,7 @@ public class Building
     int customerID;
     
     
-//Cunstructor used when createBuilding 
+//Cunstructor used when creating a Building 
     public Building(String street, String streetNo, int zipcode, String city)
     {
         this.street = street;
