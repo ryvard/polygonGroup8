@@ -47,6 +47,7 @@ public class Controller implements IController
     @Override
     public ArrayList<Building> getBuildingList()
     {
+        System.out.println("controller");
         return facade.getBuildingList();
     }
 
