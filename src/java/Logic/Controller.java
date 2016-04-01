@@ -45,9 +45,7 @@ public class Controller implements IController
     @Override
     public ArrayList<Building> getBuildingList()
     {
-//        ArrayList<Building> building = new ArrayList();
-//        return building;
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return facade.getBuildingList();
     }
 
     
