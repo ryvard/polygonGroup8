@@ -15,7 +15,7 @@ import java.util.ArrayList;
  */
 public class DM_Building
 {
-
+// djghdfjihsjdk
     public void createBuildingInDB(Building b)
     {
         System.out.println("DM_Building    -    " + b.getStreetName());
