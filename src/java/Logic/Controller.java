@@ -29,6 +29,8 @@ public class Controller implements IController
         Building building = new Building(buildingName, streetName, streetNumb, 
                 city, zipcode, yearOfConst, squareMeters, buildingUse, custID);
         
+        System.out.println("hejhej ");
+        
         facade.createBuilding(building);
         
         System.out.println("controller2");
