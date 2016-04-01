@@ -40,11 +40,16 @@ public class Servlet extends HttpServlet {
             switch (do_this) {
 
                 case "createBuilding":
+                    String buildingName = request.getParameter("buildingName");
                     String street = request.getParameter("street");
                     String streetNo = request.getParameter("streetNo");
                     int zipcode = Integer.parseInt(request.getParameter("zipcode"));
                     String city = request.getParameter("city");
-                    con.createBuilding(street, streetNo, zipcode, city);
+                    int yearOfCon = Integer.parseInt(request.getParameter("yearOfConst"));
+                    double squareM = Double.parseDouble(request.getParameter("squareM"));
+                    String buildingUse = request.getParameter("buildingUse");
+                    int custID = Integer.parseInt("custID");
+                    con.createBuilding(buildingName,street, streetNo, city, zipcode, yearOfCon, squareM, buildingUse, custID);
                     System.out.println("servlet");
                     break;
                 case "createCustomer":
