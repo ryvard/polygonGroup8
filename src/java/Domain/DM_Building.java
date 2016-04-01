@@ -15,11 +15,16 @@ public class DM_Building
     
     public void createBuildingInDB(Building b)
     {
-        System.out.println("DM_Building    -    " + b.getStreet());
-        String query = "INSERT INTO Buildings(StreetName,StreetNumb,Zipcode)"
-                + "VALUES('" + b.getStreet() + "','" + b.getStreetNo() + "','" 
-                + b.getZipcode() + "');";
+        System.out.println("DM_Building    -    " + b.getStreetName());
+        String query = "INSERT INTO Buildings(BuildingName,StreetName,"
+                + "StreetNumb,Zipcode.YearOfConst,SquareMeters,BuildingUse) "
+                + "VALUES('"+ b.getBuildingName() + "','" + b.getStreetName() 
+                + "','" + b.getStreetNumb() + "','" + b.getZipcode() 
+                + b.getYearOfConst() + "','" + b.getSquareMeters() + "','" + b.getBuildingUse()+"');";
         
+//      DATABASE TABLE BUILDINGS
+//      BuildingID, BuildingName, StreetName, StreetNumb, Zipcode, Picture			
+//      YearOfConst, SquareMeters, BuildingUse, CustID		   
 
        db_Connect.updateData(query);
 
@@ -28,3 +33,5 @@ public class DM_Building
     
     
 }
+
+
