@@ -13,22 +13,19 @@ import java.util.ArrayList;
  *
  * @author miaryvard
  */
-public class DM_Building
-{
-    
-    public void createBuildingInDB(Building b)
-    {
+public class DM_Building {
+
+    public void createBuildingInDB(Building b) {
         System.out.println("DM_Building    -    " + b.getStreetName());
         String query = "INSERT INTO Buildings(BuildingName,StreetName,"
                 + "StreetNumb,Zipcode.YearOfConst,SquareMeters,BuildingUse) "
-                + "VALUES('"+ b.getBuildingName() + "','" + b.getStreetName() 
-                + "','" + b.getStreetNumb() + "','" + b.getZipcode() 
-                + b.getYearOfConst() + "','" + b.getSquareMeters() + "','" + b.getBuildingUse()+"');";
-        
+                + "VALUES('" + b.getBuildingName() + "','" + b.getStreetName()
+                + "','" + b.getStreetNumb() + "','" + b.getZipcode()
+                + b.getYearOfConst() + "','" + b.getSquareMeters() + "','" + b.getBuildingUse() + "');";
+
 //      DATABASE TABLE BUILDINGS
 //      BuildingID, BuildingName, StreetName, StreetNumb, Zipcode, Picture			
 //      YearOfConst, SquareMeters, BuildingUse, CustID		   
-
         DatabaseConnector db_Connect = DatabaseConnector.getInstance();
         db_Connect.updateData(query);
 
@@ -36,13 +33,12 @@ public class DM_Building
 
     public ArrayList<Building> getBuildingList() {
 
-        
         ArrayList<Building> buildings = new ArrayList();
         String query = "SELECT * FROM Buildings;";
-        
+
         DatabaseConnector db_Connect = DatabaseConnector.getInstance();
         ResultSet res = db_Connect.getData(query);
-        
+
         try {
             while (res.next()) {
                 Building building = new Building(res.getString(1), res.getString(2),
@@ -62,5 +58,3 @@ public class DM_Building
     }
 
 }
-
-
