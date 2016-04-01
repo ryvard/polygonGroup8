@@ -11,7 +11,6 @@ package Domain;
  */
 public class DM_Building
 {
-     DatabaseConnector db_Connect = DatabaseConnector.getInstance();
     
     public void createBuildingInDB(Building b)
     {
@@ -26,6 +25,7 @@ public class DM_Building
 //      BuildingID, BuildingName, StreetName, StreetNumb, Zipcode, Picture			
 //      YearOfConst, SquareMeters, BuildingUse, CustID		   
 
+     DatabaseConnector db_Connect = DatabaseConnector.getInstance();
        db_Connect.updateData(query);
 
     }

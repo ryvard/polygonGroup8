@@ -46,7 +46,7 @@ public class Servlet extends HttpServlet {
                     String city = request.getParameter("city");
                     con.createBuilding(street, streetNo, zipcode, city);
                     System.out.println("servlet");
-
+                    break;
                 case "createCustomer":
                     String type = request.getParameter("customerType");
                     String streetNameCust = request.getParameter("streetName");
