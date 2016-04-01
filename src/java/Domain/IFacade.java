@@ -5,6 +5,8 @@
  */
 package Domain;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author miaryvard
@@ -14,5 +16,7 @@ public interface IFacade
     public void createBuilding(Building building);
     
     public void createCustomer(Customer customer);
+    
+    public ArrayList<Building> getBuildingList(); 
    
 }
