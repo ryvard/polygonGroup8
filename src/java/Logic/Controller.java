@@ -20,15 +20,21 @@ public class Controller implements IController
     Building building;
 //    Customer customer;
   
+    
     @Override
-    public void createBuilding(String street, String streetNo, int zipcode, String city)
+    public void createBuilding(String buildingName, String streetName, String streetNumb, int zipcode, String city, int yearOfConst, double squareMeters, String buildingUse, int custID)
     {
-        System.out.println("controller1  -   "+streetNo);
-        building = new Building(street, streetNo, zipcode, city);
+        System.out.println("controller1  -   "+streetNumb);
+        
+        Building building = new Building(buildingName, streetName, streetNumb, 
+                city, zipcode, yearOfConst, squareMeters, buildingUse, custID);
+        
         facade.createBuilding(building);
+        
         System.out.println("controller2");
+        
     }
-
+    
     @Override
     public void createCustomer(String type, String streetName, String streetNo, int zipcode, String contactName, String phone, String mail) {
         Customer customer = new Customer(type, streetName, streetNo, zipcode, contactName, phone, mail);
@@ -43,6 +49,10 @@ public class Controller implements IController
 //        return building;
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    
+
+    
     
     
 }

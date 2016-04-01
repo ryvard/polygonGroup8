@@ -12,34 +12,62 @@ package Domain;
 public class Building
 {
     int buildingID;
-    String street;
-    String streetNo;
+    String buildingName;
+    String streetName;
+    String streetNumb;
     String city;
     int zipcode;
-    int condition;
-    int customerID;
-    
-    
-//Cunstructor used when creating a Building 
-    public Building(String street, String streetNo, int zipcode, String city)
+    //String Picture;
+    int YearOfConst;
+    double squareMeters;
+    String buildingUse;
+    int custID;
+     
+    /**
+     * Cunstructor used when creating a Building
+     */
+    public Building(String buildingName, String streetName, String streetNumb, String city, int zipcode, int YearOfConst, double squareMeters, String buildingUse, int custID)
     {
-        this.street = street;
-        this.streetNo = streetNo;
-        this.zipcode = zipcode;
+        this.buildingName = buildingName;
+        this.streetName = streetName;
+        this.streetNumb = streetNumb;
         this.city = city;
+        this.zipcode = zipcode;
+        this.YearOfConst = YearOfConst;
+        this.squareMeters = squareMeters;
+        this.buildingUse = buildingUse;
+        this.custID = custID;
     }
-    
-    public Building(int buildingID, String street, String streetNo, int zipcode, String city, int condition, int customerID)
+   
+    /**
+     * Cunstructor used for list of buildings
+     */
+    public Building(int buildingID, String buildingName, String streetName, String streetNumb, String city, int zipcode, int YearOfConst, double squareMeters, String buildingUse, int custID)
     {
         this.buildingID = buildingID;
-        this.street = street;
-        this.streetNo = streetNo;
-        this.zipcode = zipcode;
+        this.buildingName = buildingName;
+        this.streetName = streetName;
+        this.streetNumb = streetNumb;
         this.city = city;
-        this.condition = condition;
-        this.customerID = customerID;
+        this.zipcode = zipcode;
+        this.YearOfConst = YearOfConst;
+        this.squareMeters = squareMeters;
+        this.buildingUse = buildingUse;
+        this.custID = custID;
     }
 
+    
+    
+    public String getBuildingUse()
+    {
+        return buildingUse;
+    }
+
+    public void setBuildingUse(String buildingUse)
+    {
+        this.buildingUse = buildingUse;
+    }
+    
     public int getBuildingID()
     {
         return buildingID;
@@ -50,46 +78,34 @@ public class Building
         this.buildingID = buildingID;
     }
 
-    
-
-    public int getCustomerID()
+    public String getBuildingName()
     {
-        return customerID;
+        return buildingName;
     }
 
-    public void setCustomerID(int customerID)
+    public void setBuildingName(String buildingName)
     {
-        this.customerID = customerID;
+        this.buildingName = buildingName;
     }
 
-    public String getStreet()
+    public String getStreetName()
     {
-        return street;
+        return streetName;
     }
 
-    public void setStreet(String street)
+    public void setStreetName(String streetName)
     {
-        this.street = street;
+        this.streetName = streetName;
     }
 
-    public String getStreetNo()
+    public String getStreetNumb()
     {
-        return streetNo;
+        return streetNumb;
     }
 
-    public void setStreetNo(String streetNo)
+    public void setStreetNumb(String streetNumb)
     {
-        this.streetNo = streetNo;
-    }
-
-    public int getZipcode()
-    {
-        return zipcode;
-    }
-
-    public void setZipcode(int zipcode)
-    {
-        this.zipcode = zipcode;
+        this.streetNumb = streetNumb;
     }
 
     public String getCity()
@@ -102,15 +118,45 @@ public class Building
         this.city = city;
     }
 
-    public int getCondition()
+    public int getZipcode()
     {
-        return condition;
+        return zipcode;
     }
 
-    public void setCondition(int condition)
+    public void setZipcode(int zipcode)
     {
-        this.condition = condition;
+        this.zipcode = zipcode;
     }
-    
-    
+
+    public int getYearOfConst()
+    {
+        return YearOfConst;
+    }
+
+    public void setYearOfConst(int YearOfConst)
+    {
+        this.YearOfConst = YearOfConst;
+    }
+
+    public double getSquareMeters()
+    {
+        return squareMeters;
+    }
+
+    public void setSquareMeters(double squareMeters)
+    {
+        this.squareMeters = squareMeters;
+    }
+
+    public int getCustID()
+    {
+        return custID;
+    }
+
+    public void setCustID(int custID)
+    {
+        this.custID = custID;
+    }
+   
+   
 }

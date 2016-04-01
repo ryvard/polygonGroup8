@@ -11,7 +11,6 @@ package Domain;
  */
 public class DM_Customer {
     
-    DatabaseConnector db_Connect = DatabaseConnector.getInstance();
     
     public void createCustomer(Customer cus) {
         
@@ -20,7 +19,8 @@ public class DM_Customer {
                 + cus.getStreetNo() +"','" + cus.getZipcode() + "','" + cus.getContactName() + "','" + cus.getPhone() + "','" + cus.getMail() + "');";
        
         
+    DatabaseConnector db_Connect = DatabaseConnector.getInstance();
         db_Connect.updateData(query);
-             
+            
     }
 }
