@@ -18,6 +18,7 @@ public class Customer {
     String contactName;
     String phone;
     String mail;
+    // heh ehhr
   
     public Customer(String type, String streetName, String streetNo, int zipcode, String contactName, String phone, String mail) {
         
