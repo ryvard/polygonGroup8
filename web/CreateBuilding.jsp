@@ -72,7 +72,8 @@
                     <td>Hvad bruges bygning til? / Hvad har bygningen været brugt til?:</td>
                     <td><input type="text" name="buildingUse"</td>
                 </tr>
-                
+                <td>Dit kunde id:</td>
+                <td><input type="text" name="custID"</td>
             </table>
             <input type="submit" value="Opret bygning">
         </form>
