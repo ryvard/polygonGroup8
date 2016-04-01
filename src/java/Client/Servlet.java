@@ -62,6 +62,7 @@ public class Servlet extends HttpServlet {
                     String mail = request.getParameter("mail");
                     con.createCustomer(type, streetNameCust, streetNoCust, zipcodeCust, contactName, phone, mail);
                     System.out.println("servlet");
+                    break;
             }
         }
     }
