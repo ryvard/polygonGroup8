@@ -47,14 +47,14 @@ public class DM_Building {
                 buildings.add(building);
 
             }
-
+            return buildings;
+            
         } catch (SQLException ex) {
             System.out.println(ex);
 
         }
         return null;
 
-        //return buildings;
     }
 
 }
