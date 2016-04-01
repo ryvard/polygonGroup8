@@ -22,7 +22,7 @@ public class Controller implements IController
   
     
     @Override
-    public void createBuilding(String buildingName, String streetName, String streetNumb, int zipcode, String city, int yearOfConst, double squareMeters, String buildingUse, int custID)
+    public void createBuilding(String buildingName, String streetName, String streetNumb, String city, int zipcode, int yearOfConst, double squareMeters, String buildingUse, int custID)
     {
         System.out.println("controller1  -   "+streetNumb);
         
