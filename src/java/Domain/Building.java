@@ -22,17 +22,10 @@ public class Building
     double squareMeters;
     String buildingUse;
     int custID;
-    
-//Cunstructor used when creating a Building FIRST VERSION
-    public Building(String streetName, String streetNumb, int zipcode, String city)
-    {
-        this.streetName = streetName;
-        this.streetNumb = streetNumb;
-        this.zipcode = zipcode;
-        this.city = city;
-    }
-    
-   /**Cunstructor used when creating a Building SECOND VERSION*/
+     
+    /**
+     * Cunstructor used when creating a Building
+     */
     public Building(String buildingName, String streetName, String streetNumb, String city, int zipcode, int YearOfConst, double squareMeters, String buildingUse, int custID)
     {
         this.buildingName = buildingName;
@@ -46,7 +39,9 @@ public class Building
         this.custID = custID;
     }
    
-   //Cunstructor used for list of buildings
+    /**
+     * Cunstructor used for list of buildings
+     */
     public Building(int buildingID, String buildingName, String streetName, String streetNumb, String city, int zipcode, int YearOfConst, double squareMeters, String buildingUse, int custID)
     {
         this.buildingID = buildingID;
@@ -61,6 +56,8 @@ public class Building
         this.custID = custID;
     }
 
+    
+    
     public String getBuildingUse()
     {
         return buildingUse;
