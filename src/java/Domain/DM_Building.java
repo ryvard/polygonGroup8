@@ -13,9 +13,11 @@ import java.util.ArrayList;
  *
  * @author miaryvard
  */
-public class DM_Building {
+public class DM_Building
+{
 
-    public void createBuildingInDB(Building b) {
+    public void createBuildingInDB(Building b)
+    {
         System.out.println("DM_Building    -    " + b.getStreetName());
         String query = "INSERT INTO Buildings(BuildingName,StreetName,"
                 + "StreetNumb,Zipcode.YearOfConst,SquareMeters,BuildingUse) "
@@ -31,7 +33,8 @@ public class DM_Building {
 
     }
 
-    public ArrayList<Building> getBuildingList() {
+    public ArrayList<Building> getBuildingList()
+    {
 
         ArrayList<Building> buildings = new ArrayList();
         String query = "SELECT * FROM Buildings;";
@@ -39,16 +42,20 @@ public class DM_Building {
         DatabaseConnector db_Connect = DatabaseConnector.getInstance();
         ResultSet res = db_Connect.getData(query);
 
-        try {
-            while (res.next()) {
+        try
+        {
+            while (res.next())
+            {
                 Building building = new Building(res.getString(1), res.getString(2),
                         res.getString(3), res.getString(4), res.getInt(5),
                         res.getInt(6), res.getDouble(7), res.getString(8), res.getInt(9));
                 buildings.add(building);
 
             }
+            return buildings;
 
-        } catch (SQLException ex) {
+        } catch (SQLException ex)
+        {
             System.out.println(ex);
 
         }
