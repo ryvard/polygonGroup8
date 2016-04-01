@@ -37,6 +37,7 @@ public class DM_Building
 
     public ArrayList<Building> getBuildingList()
     {
+        System.out.println("DATA MAPPER  HEJ");
 
         ArrayList<Building> buildings = new ArrayList();
         String query = "SELECT * FROM Buildings;";
@@ -48,21 +49,46 @@ public class DM_Building
         {
             while (res.next())
             {
-                Building building = new Building(res.getString(1), res.getString(2),
-                        res.getString(3), res.getString(4), res.getInt(5),
-                        res.getInt(6), res.getDouble(7), res.getString(8), res.getInt(9));
+                Building building = new Building(res.getInt(1), res.getString(2), 
+                        res.getString(3), res.getString(4), getCity(res.getInt(5)), 
+                        res.getInt(5), res.getInt(6), res.getDouble(7), res.getString(8), res.getInt(9));
+                
+//                Building building = new Building(res.getString(1), res.getString(2),
+//                        res.getString(3), res.getString(4), res.getInt(5),
+//                        res.getInt(6), res.getDouble(7), res.getString(8), res.getInt(9));
+                
                 buildings.add(building);
+                
+                System.out.println("arraylist str. !!!!!!  "+buildings.size());
 
             }
             return buildings;
 
         } catch (SQLException ex)
         {
-            System.out.println(ex);
+            System.out.println("€€€€€€€€€€€€€€€%&€#   " + ex);
 
         }
         return null;
 
+    }
+    
+    public String getCity(int zip)
+    {
+        String query = "SELECT * FROM City WHERE Zipcode ='" + zip + "';";
+        
+        DatabaseConnector db_Connect = DatabaseConnector.getInstance();
+        ResultSet res = db_Connect.getData(query);
+        try{
+        String city = res.getString(2);
+        return city;
+        }
+        catch(SQLException ex)
+        {
+            System.out.println(ex);
+        }
+        return null;
+        
     }
 
 }
