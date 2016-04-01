@@ -31,6 +31,6 @@ public class Facade implements IFacade
     @Override
     public ArrayList<Building> getBuildingList()
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return dm_building.getBuildingList();
     }
 }

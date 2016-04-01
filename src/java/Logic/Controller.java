@@ -22,7 +22,7 @@ public class Controller implements IController
   
     
     @Override
-    public void createBuilding(String buildingName, String streetName, String streetNumb, int zipcode, String city, int yearOfConst, double squareMeters, String buildingUse, int custID)
+    public void createBuilding(String buildingName, String streetName, String streetNumb, String city, int zipcode, int yearOfConst, double squareMeters, String buildingUse, int custID)
     {
         System.out.println("controller1  -   "+streetNumb);
         
@@ -45,9 +45,7 @@ public class Controller implements IController
     @Override
     public ArrayList<Building> getBuildingList()
     {
-//        ArrayList<Building> building = new ArrayList();
-//        return building;
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return facade.getBuildingList();
     }
 
     
