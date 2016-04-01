@@ -51,7 +51,7 @@ public class DM_Building
             {
                 Building building = new Building(res.getInt(1), res.getString(2), 
                         res.getString(3), res.getString(4), getCity(res.getInt(5)), 
-                        res.getInt(5), res.getInt(6), res.getDouble(7), res.getString(8), res.getInt(9));
+                        res.getInt(5), res.getInt(7), res.getDouble(8), res.getString(9), res.getInt(10));
                 
 //                Building building = new Building(res.getString(1), res.getString(2),
 //                        res.getString(3), res.getString(4), res.getInt(5),

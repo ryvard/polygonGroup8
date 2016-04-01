@@ -37,7 +37,7 @@
     <body>
         <h1>Liste over alle bygninger</h1>
         
-        <table>
+        <table border="1">
             <tbody>
                 <tr>
                     <td><b>BuildingID</b></td>
@@ -51,7 +51,7 @@
                     <td><b>Kunde ID</b></td>
                 </tr>
 
-                <%--
+                
                 <%
                     Controller cntr = new Controller();
                     ArrayList<Building> buildings = cntr.getBuildingList();
@@ -72,7 +72,7 @@
                 <%
                     }
                 %>
-                --%>
+                
             </tbody>
         </table>
     </body>
