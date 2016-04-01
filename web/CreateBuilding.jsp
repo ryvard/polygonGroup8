@@ -40,6 +40,10 @@
             <input type="hidden" name="do_this" value="createBuilding">
             <table width="100%">
                 <tr>
+                    <td>Bygningsnavn:</td>
+                    <td><input type="text" name="buildingName"></td>
+                </tr>
+                <tr>
                     <td>Adresse:</td>
                     <td><input type="text" name="street"></td>
                     <td>Husnummer:</td>
@@ -50,6 +54,23 @@
                     <td><input type="text" name="zipcode" style="width: 40px;"></td>
                     <td align="right">By:</td>
                     <td><input type="text" name="city"></td>
+                </tr>
+                <tr>
+                    <td>Byggeår:</td>
+                    <td><input type="text" name="yearOfConst"</td>
+                </tr>
+                <tr>
+                    <td>Bygningsareal:</td>
+                    <td><input type="text" name="squareM"</td>
+                    
+                </tr>
+                <tr>
+                    <td>Billede:</td>
+                    <td><input type=image name="picture"></td>
+                </tr>
+                <tr>
+                    <td>Hvad bruges bygning til? / Hvad har bygningen været brugt til?:</td>
+                    <td><input type="text" name="buildingUse"</td>
                 </tr>
                 
             </table>
