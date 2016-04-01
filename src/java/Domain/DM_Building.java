@@ -61,7 +61,6 @@ public class DM_Building
         }
         return null;
 
-        //return buildings;
     }
 
 }
