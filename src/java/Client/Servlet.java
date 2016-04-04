@@ -48,7 +48,7 @@ public class Servlet extends HttpServlet {
                     int yearOfCon = Integer.parseInt(request.getParameter("yearOfConst"));
                     double squareM = Double.parseDouble(request.getParameter("squareM"));
                     String buildingUse = request.getParameter("buildingUse");
-                    int custID = Integer.parseInt("custID");
+                    int custID = Integer.parseInt(request.getParameter("custID"));
                     con.createBuilding(buildingName,street, streetNo, city, zipcode, yearOfCon, squareM, buildingUse, custID);
                     System.out.println("servlet");
                     break;
