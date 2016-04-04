@@ -29,6 +29,8 @@ public class Controller implements IController
         Building building = new Building(buildingName, streetName, streetNumb, 
                 city, zipcode, yearOfConst, squareMeters, buildingUse, custID);
         
+        System.out.println("hejhej ");
+        
         facade.createBuilding(building);
         
         System.out.println("controller2");
@@ -45,6 +47,7 @@ public class Controller implements IController
     @Override
     public ArrayList<Building> getBuildingList()
     {
+        System.out.println("controller");
         return facade.getBuildingList();
     }
 

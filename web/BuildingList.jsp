@@ -37,17 +37,21 @@
     <body>
         <h1>Liste over alle bygninger</h1>
         
-        <table>
+        <table border="1">
             <tbody>
                 <tr>
                     <td><b>BuildingID</b></td>
-                    <td><b>vej</b></td>
-                    <td><b>nr.</b></td>
-                    <td><b>post. nr.</b></td>
-                    <td><b>tilstand</b></td>
-                    <td><b>KundeID</b></td>
+                    <td><b>Navn på bygning</b></td>
+                    <td><b>Adresse</b></td>
+                    <td><b>Husnummer</b></td>
+                    <td><b>postnr</b></td>
+                    <td><b>by</b></td>
+                    <td><b>Byggeår</b></td>
+                    <td><b>Bygningen bliver/har været brugt til</b></td>
+                    <td><b>Kunde ID</b></td>
                 </tr>
 
+                
                 <%
                     Controller cntr = new Controller();
                     ArrayList<Building> buildings = cntr.getBuildingList();
@@ -56,15 +60,19 @@
                 %>
                 <tr>
                     <td><%=b.getBuildingID()%></td>
-                    <td><%=b.getStreet()%></td>
-                    <td><%=b.getStreetNo()%></td>
+                    <td><%=b.getBuildingName()%></td>
+                    <td><%=b.getStreetName()%></td>
+                    <td><%=b.getStreetNumb()%></td>
                     <td><%=b.getZipcode()%></td>
-                    <td><%=b.getCondition()%></td>
-                    <td><%=b.getCustomerID()%></td>
+                    <td><%=b.getCity()%></td>
+                    <td><%=b.getYearOfConst()%></td>
+                    <td><%=b.getBuildingUse()%></td>
+                    <td><%=b.getCustID()%></td>
                 </tr>
                 <%
                     }
                 %>
+                
             </tbody>
         </table>
     </body>
