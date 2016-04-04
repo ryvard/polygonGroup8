@@ -60,34 +60,50 @@
             </table>
 
             <table>
-                <div style="width:500px;height:100px;border:1px solid #000;">This is a rectangle!</div>
+                <div style="width:500px;height:100px;border:1px solid #000;">(Indsæt billede af bygning udefra)</div>
 
                 <tr>
-                <h2>Generel information om bygningen</h2>
+                <h4>Generel information om bygningen</h4>
                 <td>Byggeår</td>
-                <td><input type="text" name="buildYear"</td>
+                </tr>
+                <tr>
+                    <td><input type="text" name="buildYear"</td>
+                </tr>
+
+                <tr>
+                    <td>Bygningsareal i m²(hver etage tælles separat)</td>
+                </tr>
+                <tr>
+                    <td><input type="text" name="squareMeter"></td>
+                </tr>
+
+                <tr>
+                    <td>Hvad bruges bygningen til / hvad har bygningen været brugt til</td>
+                </tr>
+                <tr>
+                    <td><input type="text" name="buildingUseability" style="width: 300px;"></td>
+                </tr>
+                </table>
+                
+                <table>
+                <tr>
+                    <h4>Gennemgang af bygning udvendig</h4>
+                    </tr>
+                    
+                     <tr>
+                    <td>Tag</td>
+                    <td><input type="text" name="roof" style="width: 300px;"></td>
+                    <td align="right">Billede</td>
+                    <td><input type="checkbox" name="roofPicture" value="ON" /></td>
                 </tr>
                 
                 <tr>
-                <td>Bygningsareal i m²</td>
-                <td>(hver etage tælles separat)</td>
-                <td><input type="text" name="squareMeter" style="width:80px;"></td>
+                    <td>Ydervægge</td>
+                    <td><input type="text" name="outerwalls" style="width: 300px;"></td>
+                    <td align="right">Billede</td>
+                    <td><input type="checkbox" name="outerwallsPicture" value="ON" /></td>
                 </tr>
                 
-                <td>Postnr.:</td>
-                <td><input type="text" name="zipcode" style="width: 40px;"></td>
-                <td align="right">By:</td>
-                <td><input type="text" name="city"></td>
-
-                <tr>
-                    <td>Kontakt navn:</td>
-                    <td><input type="text" name="contactName"></td>
-                    <td>Telefon nr.:</td>
-                    <td><input type="text" name="phone" ></td>
-                    <td align="right">Email:</td>
-                    <td><input type="text" name="mail"></td>
-                </tr>
-
             </table>
             <input type="submit" value="Opret kunde">
         </form>
