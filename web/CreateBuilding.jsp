@@ -28,6 +28,7 @@
 
             table {
                 font-size: 75%;
+                
             }
 
         </style>
@@ -38,7 +39,7 @@
         <br>
         <form action="Servlet" method="POST">
             <input type="hidden" name="do_this" value="createBuilding">
-            <table width="100%">
+            <table>
                 <tr>
                     <td>Bygningsnavn:</td>
                     <td><input type="text" name="buildingName"></td>
@@ -52,8 +53,8 @@
                 <tr>
                     <td>Postnr:</td>
                     <td><input type="text" name="zipcode" style="width: 40px;"></td>
-                    <td align="right">By:</td>
-                    <td><input type="text" name="city"></td>
+                    <td>By:</td>
+                    <td><input type="text" name="city" style="width: 80px;"></td>
                 </tr>
                 <tr>
                     <td>Byggeår:</td>
@@ -61,7 +62,7 @@
                 </tr>
                 <tr>
                     <td>Bygningsareal:</td>
-                    <td><input type="text" name="squareM"</td>
+                    <td><input type="text" name="squareM"></td>
                     
                 </tr>
                 <tr>
@@ -69,7 +70,7 @@
                     <td><input type=image name="picture"></td>
                 </tr>
                 <tr>
-                    <td>Hvad bruges bygning til? / Hvad har bygningen været brugt til?:</td>
+                    <td>Hvad bruges bygning til? / <br> Hvad har bygningen været brugt til?:</td>
                     <td><input type="text" name="buildingUse"</td>
                 </tr>
                 <td>Dit kunde id:</td>

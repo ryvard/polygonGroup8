@@ -15,17 +15,17 @@ import java.util.ArrayList;
  */
 public class DM_Building
 {
-// djghdfjihsjdk
+// djghdfjihsjdkh
     public void createBuildingInDB(Building b)
     {
         System.out.println("DM_Building    -    " + b.getStreetName());
         
         String query = "INSERT INTO Buildings(BuildingName,StreetName,"
-                + "StreetNumb,Zipcode,Picture,YearOfConst,SquareMeters,BuildingUse,CustID) "
+                + "StreetNumb,Zipcode,YearOfConst,SquareMeters,BuildingUse,CustID) "
                 + "VALUES('" + b.getBuildingName() + "','" + b.getStreetName()
-                + "','" + b.getStreetNumb() + "','" + b.getZipcode() +  "','b','"
-                + b.getYearOfConst() + "','" + b.getSquareMeters() + "','" 
-                + b.getBuildingUse() + "','"+ b.getCustID()+ "');";
+                + "','" + b.getStreetNumb() + "','" + b.getZipcode() +"','"
+                + b.getYearOfConst() + "','" + b.getSquareMeters() + "','" + b.getBuildingUse() + "','"+b.getCustID()+"');";
+
 
 //      DATABASE TABLE BUILDINGS
 //      BuildingID, BuildingName, StreetName, StreetNumb, Zipcode, Picture			
