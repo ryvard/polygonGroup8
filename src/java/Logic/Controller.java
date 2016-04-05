@@ -22,12 +22,12 @@ public class Controller implements IController
   
     
     @Override
-    public void createBuilding(String buildingName, String streetName, String streetNumb, String city, int zipcode, int yearOfConst, double squareMeters, String buildingUse, int custID)
+    public void createBuilding(String buildingName, String streetName, String streetNumb, String city, int zipcode, int yearOfConst, double squareMeters, String buildingUse, int custID, int CPID)
     {
         System.out.println("controller1  -   "+streetNumb);
         
         Building building = new Building(buildingName, streetName, streetNumb, 
-                city, zipcode, yearOfConst, squareMeters, buildingUse, custID);
+                city, zipcode, yearOfConst, squareMeters, buildingUse, custID, CPID);
         
         System.out.println("hejhej ");
         
