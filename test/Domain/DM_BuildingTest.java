@@ -163,11 +163,11 @@ public class DM_BuildingTest
     {
         String buildingName = "Højhuset", streetName = "Lyngby Hovedgade", 
                 streetNumb = "80", city = "Lyngby", buildingUse = "beboelse"; 
-        int zipcode = 2800, YearOfConst = 2000,custID = 1; 
+        int zipcode = 2800, YearOfConst = 2000,custID = 1, CPID = 1; 
         double squareMeters = 200;
         
         Building b = new Building(buildingName, streetName, streetNumb, city, 
-                zipcode, YearOfConst, squareMeters, buildingUse, custID);
+                zipcode, YearOfConst, squareMeters, buildingUse, custID, CPID);
         
         return b;
     }
