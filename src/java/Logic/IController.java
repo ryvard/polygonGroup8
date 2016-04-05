@@ -20,10 +20,10 @@ public interface IController
         public void createBuilding(String buildingName, String streetName, String streetNumb, String city, int zipcode, int yearOfConst, double squareMeters, String buildingUse, int custID);
         
         
-        
         public void createCustomer(String type, String streetName, String streetNo, int zipcode, String contactName, String phone, String mail);
         
         
+        public void createReport(String reportNumber, String date, int squareMeter, String buildingUseability, String roof, String roofPicture, String outerwalls, String outerwallsPicture, Object conclusion, String reviewedBy, String collaboration, int condition);
     /*
      * Called when entering the site BuildingList.jsp 
      * Arraylist containing all buildings.
