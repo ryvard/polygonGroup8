@@ -49,6 +49,7 @@ public class Servlet extends HttpServlet {
                     double squareM = Double.parseDouble(request.getParameter("squareM"));
                     String buildingUse = request.getParameter("buildingUse");
                     int custID = Integer.parseInt(request.getParameter("custID"));
+                    // int CPID = ????  First Name, lastname, phone og mail
                     con.createBuilding(buildingName,street, streetNo, city, zipcode, yearOfCon, squareM, buildingUse, custID);
                     System.out.println("servlet");
                     break;
