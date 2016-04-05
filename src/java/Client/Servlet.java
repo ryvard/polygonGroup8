@@ -63,6 +63,23 @@ public class Servlet extends HttpServlet {
                     con.createCustomer(type, streetNameCust, streetNoCust, zipcodeCust, contactName, phone, mail);
                     System.out.println("servlet");
                     break;
+                case "createReport":
+                    String reportNumber = request.getParameter("reportNumber");
+                    String date = request.getParameter("date");
+                    int squareMeter = Integer.parseInt(request.getParameter("squareMeter"));
+                    String buildingUseability = request.getParameter("buildingUseability");
+                    String roof = request.getParameter("roof");
+                    String roofPicture = request.getParameter("roofPicture");
+                    String outerwalls = request.getParameter("outerwalls");
+                    String outerwallsPicture = request.getParameter("outerwallsPicture");
+                    String conclusion = request.getParameter("conclusion"+"i");
+                    String reviewedBy = request.getParameter("reviewedBy");
+                    String collaboration = request.getParameter("collaboration");
+                    int condition = Integer.parseInt(request.getParameter("condition"));
+                    con.createReport(reportNumber, date, squareMeter, buildingUseability, roof, roofPicture, 
+                            outerwalls, outerwallsPicture, conclusion, reviewedBy, collaboration, condition);
+                    System.out.println("servlet");
+                    break;
             }
         }
     }
