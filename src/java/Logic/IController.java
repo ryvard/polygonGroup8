@@ -17,7 +17,7 @@ public interface IController
     /*
      * Called when you submit your new building.
      */
-        public void createBuilding(String buildingName, String streetName, String streetNumb, String city, int zipcode, int yearOfConst, double squareMeters, String buildingUse, int custID);
+        public void createBuilding(String buildingName, String streetName, String streetNumb, String city, int zipcode, int yearOfConst, double squareMeters, String buildingUse, int custID, int CPID);
         
         
         public void createCustomer(String type, String streetName, String streetNo, int zipcode, String contactName, String phone, String mail);

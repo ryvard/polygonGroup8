@@ -21,12 +21,13 @@ public class Controller implements IController {
 //    Customer customer;
 
     @Override
-    public void createBuilding(String buildingName, String streetName, String streetNumb, String city, int zipcode, int yearOfConst, double squareMeters, String buildingUse, int custID) {
-        System.out.println("controller1  -   " + streetNumb);
-
-        Building building = new Building(buildingName, streetName, streetNumb,
-                city, zipcode, yearOfConst, squareMeters, buildingUse, custID);
-
+    public void createBuilding(String buildingName, String streetName, String streetNumb, String city, int zipcode, int yearOfConst, double squareMeters, String buildingUse, int custID, int CPID)
+    {
+        System.out.println("controller1  -   "+streetNumb);
+        
+        Building building = new Building(buildingName, streetName, streetNumb, 
+                city, zipcode, yearOfConst, squareMeters, buildingUse, custID, CPID);
+        
         System.out.println("hejhej ");
 
         facade.createBuilding(building);

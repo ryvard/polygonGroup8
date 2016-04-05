@@ -22,11 +22,12 @@ public class Building
     double squareMeters;
     String buildingUse;
     int custID;
+    int CPID;
      
     /**
      * Cunstructor used when creating a Building
      */
-    public Building(String buildingName, String streetName, String streetNumb, String city, int zipcode, int YearOfConst, double squareMeters, String buildingUse, int custID)
+    public Building(String buildingName, String streetName, String streetNumb, String city, int zipcode, int YearOfConst, double squareMeters, String buildingUse, int custID, int CPID)
     {
         this.buildingName = buildingName;
         this.streetName = streetName;
@@ -37,6 +38,17 @@ public class Building
         this.squareMeters = squareMeters;
         this.buildingUse = buildingUse;
         this.custID = custID;
+        this.CPID = CPID;
+    }
+
+    public int getCPID()
+    {
+        return CPID;
+    }
+
+    public void setCPID(int CPID)
+    {
+        this.CPID = CPID;
     }
    
     /**
