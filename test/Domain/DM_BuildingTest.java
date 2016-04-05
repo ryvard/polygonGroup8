@@ -152,15 +152,23 @@ public class DM_BuildingTest
         int zipcode = 2800, YearOfConst = 2000,custID = 1; 
         double squareMeters = 200;
         
-        Building building = new Building(buildingID, buildingName, streetName, 
+        Building b = new Building(buildingID, buildingName, streetName, 
                 streetNumb, city, zipcode, YearOfConst, squareMeters, 
                 buildingUse, custID);
         
-        return building;
+        return b;
     } 
 
     private Building buildingObjForTestCreate()
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String buildingName = "Højhuset", streetName = "Lyngby Hovedgade", 
+                streetNumb = "80", city = "Lyngby", buildingUse = "beboelse"; 
+        int zipcode = 2800, YearOfConst = 2000,custID = 1; 
+        double squareMeters = 200;
+        
+        Building b = new Building(buildingName, streetName, streetNumb, city, 
+                zipcode, YearOfConst, squareMeters, buildingUse, custID);
+        
+        return b;
     }
 }
