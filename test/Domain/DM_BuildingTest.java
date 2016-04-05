@@ -66,11 +66,15 @@ public class DM_BuildingTest
     {
         System.out.println("getBuildingList");
         DM_Building instance = new DM_Building();
-        ArrayList<Building> expResult = null;
-        ArrayList<Building> result = instance.getBuildingList();
-        assertEquals(expResult, result);
         
-        // OBS !!! Ikke lavet endnu
+        Building expResult = buildingObjForTest();
+        
+        ArrayList<Building> result = instance.getBuildingList();
+        
+        assertFalse(result.contains(expResult));
+        
+// OBS!Should be assertTrue if we put the same building object in the database;
+        
     }
     
     
@@ -136,4 +140,22 @@ public class DM_BuildingTest
         String result = instance.getCity(zip);
         assertEquals(expResult, result);
     }
+    
+    /**
+     * Help method to testGetBuildingList1()
+     */
+    private Building buildingObjForTest()
+    {
+        int buildingID = 1;
+        String buildingName = "Højhuset", streetName = "Lyngby Hovedgade", 
+                streetNumb = "80", city = "Lyngby", buildingUse = "beboelse"; 
+        int zipcode = 2800, YearOfConst = 2000,custID = 1; 
+        double squareMeters = 200;
+        
+        Building building = new Building(buildingID, buildingName, streetName, 
+                streetNumb, city, zipcode, YearOfConst, squareMeters, 
+                buildingUse, custID);
+        
+        return building;
+    } 
 }
