@@ -170,10 +170,10 @@
                 </tr>
 
                 <tr>
-                    <td><input style="width: 105px; font-weight: bold " type="text" value="Tilstandsgrad 0" 
+                    <td><input style="width: 105px; font-weight: bold "type="text" value="Tilstandsgrad 0" 
                                readonly="readonly"</td>
-                    <td><input style="width: 205px;"type="text" value=""></td>
-                    <td><input style="width: 185px;" type="text" value=""></td>
+                    <td><input style="width: 205px;"type="text" value="Bygningsdelen er ny og som bygget"></td>
+                    <td><input style="width: 185px;" type="text" value="Funktionen er som beskrevet"></td>
                     <td><input type="checkbox" name="conditionZero" value="ON" style="width: 100px;"></td>
                 </tr>
 
