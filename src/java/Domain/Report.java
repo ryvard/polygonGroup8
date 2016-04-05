@@ -11,13 +11,20 @@ package Domain;
  */
 public class Report
 {
-    int RepNo;
+    int repID;
+    
+    String date;
+    
+    Building building;
+    
+    
+    
     String buildingName;
     String streetName;
     String streetNumb;
     int zipcode;
     String city;
-    String date;
+    
     
     String Picture;
     
