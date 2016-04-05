@@ -75,6 +75,20 @@
                 </tr>
                 <td>Dit kunde id:</td>
                 <td><input type="text" name="custID"</td>
+                <tr>
+                    <td style="font-weight: bold;">Kontaktpersoninfo:</td>
+                </tr>
+                <tr>
+                    <td>Fornavn:</td>
+                    <td><input type="text" name="cpFirstName"</td>
+                    <td>Efternavn:</td>
+                    <td><input type="text" name="cpLastName"</td>
+                </tr>
+                <tr>
+                    <td>Tel/mobil:</td>
+                    <td><input type="text" name="cpPhone"</td>
+                    <td></td>
+                </tr>
             </table>
             <input type="submit" value="Opret bygning">
         </form>
