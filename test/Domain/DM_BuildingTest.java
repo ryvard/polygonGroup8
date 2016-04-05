@@ -51,11 +51,11 @@ public class DM_BuildingTest
     public void testCreateBuildingInDB()
     {
         System.out.println("createBuildingInDB");
-        Building b = null;
+        Building b = buildingObjForTestCreate();
         DM_Building instance = new DM_Building();
         instance.createBuildingInDB(b);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        ArrayList<Building> listExpToContain_b = instance.getBuildingList();
+        assertTrue(listExpToContain_b.contains(b));
     }
 
     /**
@@ -158,4 +158,9 @@ public class DM_BuildingTest
         
         return building;
     } 
+
+    private Building buildingObjForTestCreate()
+    {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
