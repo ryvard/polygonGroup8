@@ -11,5 +11,17 @@ package Domain;
  */
 public class DM_Report
 {
-    
+    public void createReport()
+    {
+        String query = "INSERT INTO Report()";
+                
+                
+                
+                
+//                "INSERT INTO Buildings(CustID,CPID,BuildingName,StreetName,"
+//                + "StreetNumb,Zipcode,YearOfConst,SquareMeters,BuildingUse) "
+//                + "VALUES('" + b.getCustID() + "','" + b.getCPID() + "','" + b.getBuildingName() + "','" + b.getStreetName()
+//                + "','" + b.getStreetNumb() + "','" + b.getZipcode() +"','"
+//                + b.getYearOfConst() + "','" + b.getSquareMeters() + "','" + b.getBuildingUse() + "');";
+    }
 }
