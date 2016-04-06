@@ -73,7 +73,7 @@ public class Servlet extends HttpServlet
                     System.out.println("servlet");
                     break;
                 case "Gem rapport":
-                    getServletContext().getRequestDispatcher("/Servlet").forward(request, response);
+                    getServletContext().getRequestDispatcher("index.html").forward(request, response);
 //                    String reportNumber = request.getParameter("reportNumber");
 //                    String date = request.getParameter("date");
 //                    int squareMeter = Integer.parseInt(request.getParameter("squareMeter"));
