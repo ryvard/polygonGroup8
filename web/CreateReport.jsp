@@ -141,42 +141,42 @@
                 </tr>
 
                 <tr>
-                    <td><input style="width: 75px;" type="text" name="conclusionRoom1"></td>
+                    <td><input style="width: 75px;" type="number" name="conclusionRoom1"></td>
                     <td><input style="width: 400px;"type="text" name="recommendation1"></td>		
                 </tr>
 
                 <tr>
-                    <td><input style="width: 75px;" type="text" name="conclusionRoom2"></td>
+                    <td><input style="width: 75px;" type="number" name="conclusionRoom2"></td>
                     <td><input style="width: 400px;"type="text" name="recommendation2"></td>
                 </tr>
 
                 <tr>
-                    <td><input style="width: 75px;" type="text" name="conclusionRoom3"></td>
+                    <td><input style="width: 75px;" type="number" name="conclusionRoom3"></td>
                     <td><input style="width: 400px;"type="text" name="recommendation3"></td>
                 </tr>
 
                 <tr>
-                    <td><input style="width: 75px;" type="text" name="conclusionRoom4"></td>
+                    <td><input style="width: 75px;" type="number" name="conclusionRoom4"></td>
                     <td><input style="width: 400px;"type="text" name="recommendation4"></td>
                 </tr>
 
                 <tr>
-                    <td><input style="width: 75px;" type="text" name="conclusionRoom5"></td>
+                    <td><input style="width: 75px;" type="number" name="conclusionRoom5"></td>
                     <td><input style="width: 400px;"type="text" name="recommendation5"></td>
                 </tr>
 
                 <tr>
-                    <td><input style="width: 75px;" type="text" name="conclusionRoom6"></td>
+                    <td><input style="width: 75px;" type="number" name="conclusionRoom6"></td>
                     <td><input style="width: 400px;"type="text" name="recommendation6"></td>
                 </tr>
 
                 <tr>
-                    <td><input style="width: 75px;" type="text" name="conclusionRoom7"></td>
+                    <td><input style="width: 75px;" type="number" name="conclusionRoom7"></td>
                     <td><input style="width: 400px;"type="text" name="recommendation7"></td>
                 </tr>
 
                 <tr>
-                    <td><input style="width: 75px;" type="text" name="conclusionRoom8"></td>
+                    <td><input style="width: 75px;" type="number" name="conclusionRoom8"></td>
                     <td><input style="width: 400px;"type="text" name="recommendation8"></td>
                 </tr>
             </table>
