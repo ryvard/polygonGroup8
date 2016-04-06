@@ -5,6 +5,7 @@
  */
 package Client;
 
+import Domain.ContactPerson;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -12,13 +13,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import Logic.Controller;
+import java.util.ArrayList;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author emmablomsterberg
  */
 public class Servlet extends HttpServlet {
-
+    int contactPersonSize;
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -33,11 +38,13 @@ public class Servlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
+            HttpSession session = request.getSession(true);
             Controller con = new Controller();
-
+            ArrayList<ContactPerson> cpList = (ArrayList<ContactPerson>) session.getAttribute("contactPersonList");
             String do_this = request.getParameter("do_this");
-
+            
             switch (do_this) {
+                
 
                 case "createBuilding":
                     String buildingName = request.getParameter("buildingName");
@@ -50,9 +57,7 @@ public class Servlet extends HttpServlet {
                     String buildingUse = request.getParameter("buildingUse");
                     int custID = Integer.parseInt(request.getParameter("custID"));
                     // int CPID = ????  First Name, lastname, phone og mail
-                    String cpFirstName = request.getParameter("cpFirstName");
-                    String cpLastName = request.getParameter("cpLastName");
-                    con.createBuilding(buildingName,street, streetNo, city, zipcode, yearOfCon, squareM, buildingUse, custID);
+                  //  con.createBuilding(buildingName,street, streetNo, city, zipcode, yearOfCon, squareM, buildingUse, custID);
                     System.out.println("servlet");
                     break;
                 case "createCustomer":
@@ -82,6 +87,20 @@ public class Servlet extends HttpServlet {
                     con.createReport(reportNumber, date, squareMeter, buildingUseability, roof, roofPicture, 
                             outerwalls, outerwallsPicture, conclusion, reviewedBy, collaboration, condition);
                     System.out.println("servlet");
+                    break;
+                
+                case "createContactPerson":
+                    String cpFirstName = request.getParameter("cpFirstName");
+                    String cpLastName = request.getParameter("cpLastName");
+                    con.createContactPerson(cpFirstName, cpLastName);
+                    for (int i = 0; i < con.getContactPersonList().size(); i++) {
+                        
+                        cpList.add(con.getContactPersonList().get(i));
+                    }
+                    System.out.println("####"+cpList.get(1));
+                    session.setAttribute("contactPersonList", cpList);
+                    //con.getContactPersonList();
+                    forward(request, response, "/CreateBuilding.jsp");
                     break;
             }
         }
@@ -126,4 +145,9 @@ public class Servlet extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
+private void forward(HttpServletRequest req, HttpServletResponse res, String path) throws IOException, ServletException {
+        ServletContext sc = getServletContext();
+        RequestDispatcher rd = sc.getRequestDispatcher(path);
+        rd.forward(req, res);
+    }
 }
