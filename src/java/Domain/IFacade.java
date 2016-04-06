@@ -18,5 +18,7 @@ public interface IFacade
     public void createCustomer(Customer customer);
     
     public ArrayList<Building> getBuildingList(); 
+    
+    public void createContactPerson(ContactPerson contactPerson); 
    
 }
