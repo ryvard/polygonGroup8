@@ -52,9 +52,6 @@
                 <td></td>
                 <td><h1>Bygningsgennemgang</h1></td>
 
-
-                <input type="hidden" name="do_this" value="createReport">
-
                 <tr>
                     <td>Navn på bygning</td>
                     <td><input type="text" name="buildningName"></td>
