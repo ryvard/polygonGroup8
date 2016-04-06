@@ -4,6 +4,9 @@
     Author     : emmablomsterberg
 --%>
 
+<%@page import="Domain.ContactPerson"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="Logic.Controller"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -35,8 +38,54 @@
     </head>
     <body>
         <h1>Opret din bygning</h1>
-        <div>Udfyld venligst felterne nedenfor for at oprette din bygning.</div>
         <br>
+        <% Controller con = new Controller();
+        ArrayList<ContactPerson> cpList =
+        (ArrayList<ContactPerson>)session.getAttribute("contactPersonList");
+           // ArrayList<ContactPerson> contactList = new ArrayList(); 
+            
+        %>
+        <div>Udfyld venligst felterne nedenfor for at oprette en kontaktperson, hvis dette ikke er allerede gjort</div>
+        <form action="Servlet" method="GET">
+            <input type="hidden" name="do_this" value="createContactPerson">
+        <table cellpadding="3">
+                <tr>
+                    <td colspan="2" style="font-weight: bold;">Kontaktperson information:</td>
+                </tr>
+                <tr>
+                    <td>Fornavn:</td>
+                    
+                    <td><input type="text" name="cpFirstName"</td>
+                    <td>Efternavn:</td>
+                    <td><input type="text" name="cpLastName"</td>
+                </tr>
+                <tr>
+                    <td>Tel/mobil:</td>
+                    <td><input type="text" name="cpPhone"</td>
+                    <td>E-mail:</td>
+                    <td><input type="text" name="cpEmail"</td>
+                </tr>
+            </table>
+            <input type="submit" value="Opret kontaktperson">
+            </form>
+        <br>
+        
+        <% 
+            if(cpList != null && cpList.size() > 0 ) {
+            int index = cpList.size()-1;  
+            ContactPerson conP = cpList.get(index);
+            
+        %>
+        <table>
+            <tr>
+                <td>Du har nu oprettet en kontaktperson. Dit kontakpersonnummer er:</td>
+                <td><%=conP.getCPID() %></td>
+        </tr>
+        </table>
+        <% }
+
+%>
+        <div>Udfyld venligst felterne nedenfor for at oprette din bygning.</div>
         <form action="Servlet" method="POST">
             <input type="hidden" name="do_this" value="createBuilding">
             <table cellpadding="3">
@@ -74,23 +123,6 @@
                 </tr>
                 <td>Dit kunde id:</td>
                 <td><input type="text" name="custID"</td>
-            </table>
-            <table cellpadding="3">
-                <tr>
-                    <td colspan="2" style="font-weight: bold;">Kontaktperson information:</td>
-                </tr>
-                <tr>
-                    <td>Fornavn:</td>
-                    <td><input type="text" name="cpFirstName"</td>
-                    <td>Efternavn:</td>
-                    <td><input type="text" name="cpLastName"</td>
-                </tr>
-                <tr>
-                    <td>Tel/mobil:</td>
-                    <td><input type="text" name="cpPhone"</td>
-                    <td>E-mail:</td>
-                    <td><input type="text" name="cpEmail"</td>
-                </tr>
             </table>
             <input type="submit" value="Opret bygning">
         </form>
