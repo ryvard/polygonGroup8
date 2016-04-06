@@ -67,14 +67,14 @@ public class DM_Report
         DatabaseConnector db_Connect = DatabaseConnector.getInstance();
         db_Connect.updateData(query);
     }
-    private void insertRoom(Report r)
-    {
-        String query = "INSERT INTO  VALUES";
-        
-        
-        DatabaseConnector db_Connect = DatabaseConnector.getInstance();
-        db_Connect.updateData(query);
-    }
+//    private void insertRoom(Report r)
+//    {
+//        String query = "INSERT INTO  VALUES";
+//        
+//        
+//        DatabaseConnector db_Connect = DatabaseConnector.getInstance();
+//        db_Connect.updateData(query);
+//    }
     
     private void insertEmployee(Report r)
     {
