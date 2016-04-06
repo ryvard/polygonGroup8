@@ -19,6 +19,8 @@ public interface IFacade
     
     public ArrayList<Building> getBuildingList(); 
     
-    public void createContactPerson(ContactPerson contactPerson); 
+    public void createContactPerson(ContactPerson contactPerson);
+    
+    public ArrayList<ContactPerson> getContactPersonList();
    
 }
