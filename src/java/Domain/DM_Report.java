@@ -75,15 +75,14 @@ public class DM_Report
         DatabaseConnector db_Connect = DatabaseConnector.getInstance();
         db_Connect.updateData(query);
     }
-    private void insertCondition(Report r)
-    {
-        String query = "INSERT INTO  VALUES";
-        
-        
-        DatabaseConnector db_Connect = DatabaseConnector.getInstance();
-        db_Connect.updateData(query);
     
+    private void insertEmployee(Report r)
+    {
+        String query = "INSERT INTO Employees(EFirstName, ELastName) "
+                + "VALUES('"+ r.getEmployee().getFirstName() +"','"
+                + r.getEmployee().lastName+"')";
     }
+    
     private void getRepID(Report r)
     {
         String query = "SELECT RepID FROM Report "
