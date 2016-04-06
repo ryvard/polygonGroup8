@@ -102,7 +102,7 @@ public class Servlet extends HttpServlet
 //                    String collaboration = request.getParameter("collaboration");
 //                    int condition = Integer.parseInt(request.getParameter("condition"));
 //                    System.out.println("servlet");
-//                    break;
+                    break;
             }
         }
     }
