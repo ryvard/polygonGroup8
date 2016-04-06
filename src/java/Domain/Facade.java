@@ -40,4 +40,9 @@ public class Facade implements IFacade
     public void createContactPerson(ContactPerson contactPerson) {
         dm_cp.createContactPerson(contactPerson);
     }
+
+    @Override
+    public ArrayList<ContactPerson> getContactPersonList() {
+        return dm_cp.getContactPersonList();
+    }
 }
