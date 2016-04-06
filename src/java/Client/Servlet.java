@@ -17,7 +17,8 @@ import Logic.Controller;
  *
  * @author emmablomsterberg
  */
-public class Servlet extends HttpServlet {
+public class Servlet extends HttpServlet
+{
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -29,15 +30,18 @@ public class Servlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException
+    {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
+        try (PrintWriter out = response.getWriter())
+        {
             /* TODO output your page here. You may use following sample code. */
             Controller con = new Controller();
 
             String do_this = request.getParameter("do_this");
 
-            switch (do_this) {
+            switch (do_this)
+            {
 
                 case "createBuilding":
                     String buildingName = request.getParameter("buildingName");
@@ -50,6 +54,8 @@ public class Servlet extends HttpServlet {
                     String buildingUse = request.getParameter("buildingUse");
                     int custID = Integer.parseInt(request.getParameter("custID"));
                     // int CPID = ????  First Name, lastname, phone og mail
+                    String cpFirstName = request.getParameter("cpFirstName");
+                    String cpLastName = request.getParameter("cpLastName");
                     con.createBuilding(buildingName,street, streetNo, city, zipcode, yearOfCon, squareM, buildingUse, custID);
                     System.out.println("servlet");
                     break;
@@ -73,11 +79,15 @@ public class Servlet extends HttpServlet {
                     String roofPicture = request.getParameter("roofPicture");
                     String outerwalls = request.getParameter("outerwalls");
                     String outerwallsPicture = request.getParameter("outerwallsPicture");
-                    String conclusion = request.getParameter("conclusion"+"i");
+                    for (int i = 0; i < 10; i++)
+                    {
+                        
+                    }
+                    String conclusion = request.getParameter("conclusion" + "i");
                     String reviewedBy = request.getParameter("reviewedBy");
                     String collaboration = request.getParameter("collaboration");
                     int condition = Integer.parseInt(request.getParameter("condition"));
-                    con.createReport(reportNumber, date, squareMeter, buildingUseability, roof, roofPicture, 
+                    con.createReport(reportNumber, date, squareMeter, buildingUseability, roof, roofPicture,
                             outerwalls, outerwallsPicture, conclusion, reviewedBy, collaboration, condition);
                     System.out.println("servlet");
                     break;
@@ -96,7 +106,8 @@ public class Servlet extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException
+    {
         processRequest(request, response);
     }
 
@@ -110,7 +121,8 @@ public class Servlet extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException
+    {
         processRequest(request, response);
     }
 
@@ -120,7 +132,8 @@ public class Servlet extends HttpServlet {
      * @return a String containing servlet description
      */
     @Override
-    public String getServletInfo() {
+    public String getServletInfo()
+    {
         return "Short description";
     }// </editor-fold>
 
