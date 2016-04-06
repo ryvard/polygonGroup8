@@ -50,6 +50,8 @@ public class Servlet extends HttpServlet {
                     String buildingUse = request.getParameter("buildingUse");
                     int custID = Integer.parseInt(request.getParameter("custID"));
                     // int CPID = ????  First Name, lastname, phone og mail
+                    String cpFirstName = request.getParameter("cpFirstName");
+                    String cpLastName = request.getParameter("cpLastName");
                     con.createBuilding(buildingName,street, streetNo, city, zipcode, yearOfCon, squareM, buildingUse, custID);
                     System.out.println("servlet");
                     break;
