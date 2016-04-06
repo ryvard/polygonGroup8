@@ -89,6 +89,13 @@
                 </tr>
 
                 <tr>
+                    <td>Etage</td>
+                </tr>
+                <tr>
+                    <td><input type="number" name="qty" value="1" min="-2" max="50"</td>
+                </tr>
+
+                <tr>
                     <td>Hvad bruges bygningen til / hvad har bygningen været brugt til</td>
                 </tr>
 
@@ -139,12 +146,12 @@
                     <td><input style="width: 75px;" type="text" name="conclusionRoom2"></td>
                     <td><input style="width: 400px;"type="text" name="recommendation2"></td>
                 </tr>
-                
+
                 <tr>
                     <td><input style="width: 75px;" type="text" name="conclusionRoom3"></td>
                     <td><input style="width: 400px;"type="text" name="recommendation3"></td>
                 </tr>
-                
+
                 <tr>
                     <td><input style="width: 75px;" type="text" name="conclusionRoom4"></td>
                     <td><input style="width: 400px;"type="text" name="recommendation4"></td>
@@ -154,17 +161,17 @@
                     <td><input style="width: 75px;" type="text" name="conclusionRoom5"></td>
                     <td><input style="width: 400px;"type="text" name="recommendation5"></td>
                 </tr>
-                
+
                 <tr>
                     <td><input style="width: 75px;" type="text" name="conclusionRoom6"></td>
                     <td><input style="width: 400px;"type="text" name="recommendation6"></td>
                 </tr>
-                
+
                 <tr>
                     <td><input style="width: 75px;" type="text" name="conclusionRoom7"></td>
                     <td><input style="width: 400px;"type="text" name="recommendation7"></td>
                 </tr>
-                
+
                 <tr>
                     <td><input style="width: 75px;" type="text" name="conclusionRoom8"></td>
                     <td><input style="width: 400px;"type="text" name="recommendation8"></td>
