@@ -60,4 +60,10 @@ public class Controller implements IController {
         facade.createContactPerson(cp);
     }
 
+    @Override
+    public ArrayList<ContactPerson> getContactPersonList() {
+        return facade.getContactPersonList();
+    }
+
+
 }
