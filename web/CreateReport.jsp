@@ -81,20 +81,23 @@
                     <td><input type="text" name="buildYear"</td>
                 </tr>
 
-                <tr>
-                    <td>Bygningsareal i m²(hver etage tælles separat)</td>
-                </tr>
-                <tr>
-                    <td><input type="text" name="squareMeter"></td>
-                </tr>
 
                 <tr>
                     <td>Etage</td>
                 </tr>
                 <tr>
-                    <td><input type="number" name="qty" value="1" min="-2" max="50"</td>
+                    <td><input type="number" name="qty" value="1" min="-10" max="50"</td>
+                    <td>Etage-areal i m²</td>
+                    <td><input type="text" name="floorSquareMeter" value=""/></td>
                 </tr>
 
+                <tr>
+                    <td>Totale bygnings-areal i m²</td>
+                </tr>
+                <tr>
+                    <td><input type="text" name="squareMeter" value="" readonly="readonly"></td>
+                </tr>
+                
                 <tr>
                     <td>Hvad bruges bygningen til / hvad har bygningen været brugt til</td>
                 </tr>
