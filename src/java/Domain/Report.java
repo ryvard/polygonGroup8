@@ -25,6 +25,8 @@ public class Report
     
     Employee employee;
     
+    ContactPerson contactPerson;
+    
     int condition;
     
     
