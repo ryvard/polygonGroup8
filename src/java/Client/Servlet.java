@@ -5,6 +5,7 @@
  */
 package Client;
 
+import Domain.Conclusion;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import Logic.Controller;
+import java.util.ArrayList;
 
 /**
  *
@@ -56,7 +58,7 @@ public class Servlet extends HttpServlet
                     // int CPID = ????  First Name, lastname, phone og mail
                     String cpFirstName = request.getParameter("cpFirstName");
                     String cpLastName = request.getParameter("cpLastName");
-                    con.createBuilding(buildingName,street, streetNo, city, zipcode, yearOfCon, squareM, buildingUse, custID);
+                    con.createBuilding(buildingName, street, streetNo, city, zipcode, yearOfCon, squareM, buildingUse, custID);
                     System.out.println("servlet");
                     break;
                 case "createCustomer":
@@ -70,27 +72,37 @@ public class Servlet extends HttpServlet
                     con.createCustomer(type, streetNameCust, streetNoCust, zipcodeCust, contactName, phone, mail);
                     System.out.println("servlet");
                     break;
-                case "createReport":
-                    String reportNumber = request.getParameter("reportNumber");
-                    String date = request.getParameter("date");
-                    int squareMeter = Integer.parseInt(request.getParameter("squareMeter"));
-                    String buildingUseability = request.getParameter("buildingUseability");
-                    String roof = request.getParameter("roof");
-                    String roofPicture = request.getParameter("roofPicture");
-                    String outerwalls = request.getParameter("outerwalls");
-                    String outerwallsPicture = request.getParameter("outerwallsPicture");
-                    for (int i = 0; i < 10; i++)
-                    {
-                        
-                    }
-                    String conclusion = request.getParameter("conclusion" + "i");
-                    String reviewedBy = request.getParameter("reviewedBy");
-                    String collaboration = request.getParameter("collaboration");
-                    int condition = Integer.parseInt(request.getParameter("condition"));
-                    con.createReport(reportNumber, date, squareMeter, buildingUseability, roof, roofPicture,
-                            outerwalls, outerwallsPicture, conclusion, reviewedBy, collaboration, condition);
-                    System.out.println("servlet");
-                    break;
+                case "Gem rapport":
+                    getServletContext().getRequestDispatcher("/Servlet").forward(request, response);
+//                    String reportNumber = request.getParameter("reportNumber");
+//                    String date = request.getParameter("date");
+//                    int squareMeter = Integer.parseInt(request.getParameter("squareMeter"));
+//                    String buildingUseability = request.getParameter("buildingUseability");
+//                    String roof = request.getParameter("roof");
+//                    String roofPicture = request.getParameter("roofPicture");
+//                    String outerwalls = request.getParameter("outerwalls");
+//                    String outerwallsPicture = request.getParameter("outerwallsPicture");
+//                    
+//                    ArrayList<Conclusion> conclusions = new ArrayList();
+//                    for (int i = 0; i < 9; i++)
+//                    {
+//                        Integer room = Integer.parseInt(request.getParameter("conclusionRoom" + i));
+//                        String rec = request.getParameter("recommendation" + i);
+//                        if (room == null || rec == "" || rec == null)
+//                        {
+//                            break;
+//                        } else
+//                        {
+//                            Conclusion conclusion = new Conclusion(room, rec);
+//                            conclusions.add(conclusion);
+//                        }
+//                    }
+//                    
+//                    String reviewedBy = request.getParameter("reviewedBy");
+//                    String collaboration = request.getParameter("collaboration");
+//                    int condition = Integer.parseInt(request.getParameter("condition"));
+//                    System.out.println("servlet");
+//                    break;
             }
         }
     }
