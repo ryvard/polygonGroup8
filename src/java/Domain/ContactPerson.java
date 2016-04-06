@@ -15,20 +15,12 @@ public class ContactPerson {
     String firstName;
     String lastName;
     
-    public ContactPerson(int cpID, String cpFirstName, String cpLastName) {
+    public ContactPerson(String cpFirstName, String cpLastName) {
         
-        this.ID = cpID;
         this.firstName = cpFirstName;
         this.lastName = cpLastName;
     }
     
-    public int getCPID() {
-        return ID;
-    }
-    
-    public void setCPID(int cpID) {
-        this.ID = cpID;
-    }
     
     public String getCPFirstName() {
         return firstName;
