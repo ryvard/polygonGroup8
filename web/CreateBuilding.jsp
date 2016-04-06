@@ -39,7 +39,7 @@
         <br>
         <form action="Servlet" method="POST">
             <input type="hidden" name="do_this" value="createBuilding">
-            <table>
+            <table cellpadding="3">
                 <tr>
                     <td>Bygningsnavn:</td>
                     <td><input type="text" name="buildingName"></td>
@@ -62,8 +62,7 @@
                 </tr>
                 <tr>
                     <td>Bygningsareal:</td>
-                    <td><input type="text" name="squareM"></td>
-                    
+                    <td><input type="text" name="squareM"></td>    
                 </tr>
                 <tr>
                     <td>Billede:</td>
@@ -75,8 +74,10 @@
                 </tr>
                 <td>Dit kunde id:</td>
                 <td><input type="text" name="custID"</td>
+            </table>
+            <table cellpadding="3">
                 <tr>
-                    <td style="font-weight: bold;">Kontaktpersoninfo:</td>
+                    <td colspan="2" style="font-weight: bold;">Kontaktperson information:</td>
                 </tr>
                 <tr>
                     <td>Fornavn:</td>
@@ -87,7 +88,8 @@
                 <tr>
                     <td>Tel/mobil:</td>
                     <td><input type="text" name="cpPhone"</td>
-                    <td></td>
+                    <td>E-mail:</td>
+                    <td><input type="text" name="cpEmail"</td>
                 </tr>
             </table>
             <input type="submit" value="Opret bygning">
