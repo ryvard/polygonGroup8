@@ -35,9 +35,9 @@
     </head>
     <body>
         <%
-            if(request.getParameter("createReport")!=null)
+            if(request.getParameter("do_this")!=null&&request.getParameter("do_this").equals("Gem rapport"))
             {
-                response.sendRedirect("index.html");
+                getServletContext().getRequestDispatcher("/Servlet").forward(request, response);
             }
             %>
         <form action="CreateReport.jsp" method="GET">
@@ -150,7 +150,7 @@
             %>
              
             <input type="hidden" name="addRoom" value="<%=pages+1%>"/>
-            <input type="submit" value="Tilføj lokale" name="addRoom" />
+            <input type="submit"  name="do_this" value="Tilføj lokale" />
             
             <br>
                 <div>Konklusion</div>
@@ -282,7 +282,7 @@
                     Den bygningsansvarlige skal udlevere plantegning over bygningen inden bygningsgennemgangen kan foretages.</p>
 
 
-                <input type="submit" name="createReport" value="Gem rapport">
+                <input type="submit" name="do_this" value="Gem rapport">
                 </form>
                 </body>
                 </html>
