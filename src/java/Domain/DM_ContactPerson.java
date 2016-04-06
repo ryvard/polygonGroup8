@@ -17,7 +17,7 @@ public class DM_ContactPerson {
     
     public void createContactPerson(ContactPerson cp) {
         
-        String query = "INSERT INTO ContactPerson(CPFistName,CPLastName) VALUES('" + cp.getCPFirstName()
+        String query = "INSERT INTO ContactPerson(CPFirstName,CPLastName) VALUES('" + cp.getCPFirstName()
                 + "','" + cp.getCPLastName() + "');";
         
         DatabaseConnector db_Connect = DatabaseConnector.getInstance();
@@ -40,10 +40,10 @@ public class DM_ContactPerson {
                 ContactPerson cp = new ContactPerson(res.getInt(1), res.getString(2), res.getString(3));
                 
                 contactPerson.add(cp);
-
+                
             }
             return contactPerson;
-
+            
         } catch (SQLException ex)
         {
             System.out.println("€€€€€€€€€€€€€€€%&€#   " + ex);
