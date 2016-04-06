@@ -34,7 +34,7 @@
         </style>
     </head>
     <body>
-        <form action="Servlet" method="POST">
+        <form action="Servlet" method="GET">
             <table>
                 <tr>
                     <td align="left"><input type="text" name="reportNumber" title="Rapport nr.:" style="color:#888;" 
@@ -132,42 +132,42 @@
 
                 <tr>
                     <td><input style="width: 75px;" type="text" name="conclusionRoom1"></td>
-                    <td><input style="width: 400px;"type="text" name="recommadation1"></td>		
+                    <td><input style="width: 400px;"type="text" name="recommendation1"></td>		
                 </tr>
 
                 <tr>
                     <td><input style="width: 75px;" type="text" name="conclusionRoom2"></td>
-                    <td><input style="width: 400px;"type="text" name="recommadation2"></td>
+                    <td><input style="width: 400px;"type="text" name="recommendation2"></td>
                 </tr>
                 
                 <tr>
                     <td><input style="width: 75px;" type="text" name="conclusionRoom3"></td>
-                    <td><input style="width: 400px;"type="text" name="recommadation3"></td>
+                    <td><input style="width: 400px;"type="text" name="recommendation3"></td>
                 </tr>
                 
                 <tr>
                     <td><input style="width: 75px;" type="text" name="conclusionRoom4"></td>
-                    <td><input style="width: 400px;"type="text" name="recommadation4"></td>
+                    <td><input style="width: 400px;"type="text" name="recommendation4"></td>
                 </tr>
 
                 <tr>
                     <td><input style="width: 75px;" type="text" name="conclusionRoom5"></td>
-                    <td><input style="width: 400px;"type="text" name="recommadation5"></td>
+                    <td><input style="width: 400px;"type="text" name="recommendation5"></td>
                 </tr>
                 
                 <tr>
                     <td><input style="width: 75px;" type="text" name="conclusionRoom6"></td>
-                    <td><input style="width: 400px;"type="text" name="recommadation6"></td>
+                    <td><input style="width: 400px;"type="text" name="recommendation6"></td>
                 </tr>
                 
                 <tr>
                     <td><input style="width: 75px;" type="text" name="conclusionRoom7"></td>
-                    <td><input style="width: 400px;"type="text" name="recommadation7"></td>
+                    <td><input style="width: 400px;"type="text" name="recommendation7"></td>
                 </tr>
                 
                 <tr>
                     <td><input style="width: 75px;" type="text" name="conclusionRoom8"></td>
-                    <td><input style="width: 400px;"type="text" name="recommadation8"></td>
+                    <td><input style="width: 400px;"type="text" name="recommendation8"></td>
                 </tr>
             </table>
 
@@ -203,7 +203,7 @@
                                readonly="readonly"</td>
                     <td><input style="width: 205px;"type="text" value="Bygningsdelen er ny og som bygget"></td>
                     <td><input style="width: 185px;" type="text" value="Funktionen er som beskrevet"></td>
-                    <td><input type="checkbox" name="condition0" value="ON" style="width: 100px;"></td>
+                    <td><input type="checkbox" name="condition" value="0" style="width: 100px;"></td>
                 </tr>
 
                 <tr>
@@ -211,7 +211,7 @@
                                readonly="readonly"</td>
                     <td><input style="width: 205px;"type="text" value=""></td>
                     <td><input style="width: 185px;" type="text" value=""></td>
-                    <td><input type="checkbox" name="condition1" value="ON" style="width: 100px;"></td>
+                    <td><input type="checkbox" name="condition" value="1" style="width: 100px;"></td>
                 </tr>
 
                 <tr>
@@ -219,7 +219,7 @@
                                readonly="readonly"</td>
                     <td><input style="width: 205px;"type="text" value=""></td>
                     <td><input style="width: 185px;" type="text" value=""></td>
-                    <td><input type="checkbox" name="condition2" value="ON" style="width: 100px;"></td>
+                    <td><input type="checkbox" name="condition" value="2" style="width: 100px;"></td>
                 </tr>
 
                 <tr>
@@ -227,7 +227,7 @@
                                readonly="readonly"</td>
                     <td><input style="width: 205px;"type="text" value=""></td>
                     <td><input style="width: 185px;" type="text" value=""></td>
-                    <td><input type="checkbox" name="condition3" value="ON" style="width: 100px;"></td>
+                    <td><input type="checkbox" name="condition" value="3" style="width: 100px;"></td>
                 </tr>
             </table>
 

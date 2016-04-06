@@ -5,29 +5,63 @@
  */
 package Domain;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author miaryvard
  */
 public class Report
 {
-    int RepNo;
-    String buildingName;
-    String streetName;
-    String streetNumb;
-    int zipcode;
-    String city;
+    int repID;
+    
     String date;
     
-    String Picture;
-    
-    int YearOfConst;
-    double squareMeters;
-    String buildingUse;
-    
-    //damages 
+    Building building;
     
     
-    int custID;
+    /*
+    String roofNote;
+    String outerWallNote;
+    ArrayList<Conclusion> conclusions;
+    */
+
+    public Report(int repID, String date, Building building)
+    {
+        this.repID = repID;
+        this.date = date;
+        this.building = building;
+    }
+
+    public int getRepID()
+    {
+        return repID;
+    }
+
+    public void setRepID(int repID)
+    {
+        this.repID = repID;
+    }
+
+    public String getDate()
+    {
+        return date;
+    }
+
+    public void setDate(String date)
+    {
+        this.date = date;
+    }
+
+    public Building getBuilding()
+    {
+        return building;
+    }
+
+    public void setBuilding(Building building)
+    {
+        this.building = building;
+    }
+   
     
 }
