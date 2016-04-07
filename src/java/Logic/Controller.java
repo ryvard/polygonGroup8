@@ -54,6 +54,7 @@ public class Controller implements IController {
 
     }
 
+
     @Override
     public int createContactPerson(String cpFirstName, String cpLastName) {
         ContactPerson cp = new ContactPerson(cpFirstName, cpLastName);
@@ -64,6 +65,5 @@ public class Controller implements IController {
     public ArrayList<ContactPerson> getContactPersonList() {
         return facade.getContactPersonList();
     }
-
 
 }

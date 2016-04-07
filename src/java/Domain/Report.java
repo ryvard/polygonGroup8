@@ -28,6 +28,16 @@ public class Report
     ContactPerson contactPerson;
     
     int condition;
+
+    public int getCondition()
+    {
+        return condition;
+    }
+
+    public void setCondition(int condition)
+    {
+        this.condition = condition;
+    }
     
     
     

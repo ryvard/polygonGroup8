@@ -32,7 +32,6 @@ public class Facade implements IFacade
     @Override
     public ArrayList<Building> getBuildingList()
     {
-        System.out.println("facade");
         return dm_building.getBuildingList();
     }
 
