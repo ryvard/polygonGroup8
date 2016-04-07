@@ -19,18 +19,40 @@ public class Report
     
     Building building;
     
+   
+    
+    ArrayList<Conclusion> conclusions;
+    
+    Employee employee;
+    
+    ContactPerson contactPerson;
+    
+    int condition;
+    
+    
     
     /*
     String roofNote;
     String outerWallNote;
-    ArrayList<Conclusion> conclusions;
+    
     */
 
-    public Report(int repID, String date, Building building)
+    public Report(int repID, String date, Building building, Employee employee)
     {
         this.repID = repID;
         this.date = date;
         this.building = building;
+        this.employee = employee;
+    }
+
+    public Employee getEmployee()
+    {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee)
+    {
+        this.employee = employee;
     }
 
     public int getRepID()

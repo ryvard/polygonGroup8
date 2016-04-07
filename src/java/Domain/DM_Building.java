@@ -20,7 +20,7 @@ public class DM_Building
     {
         System.out.println("DM_Building    -    " + b.getStreetName());
         
-        String query = "INSERT INTO Buildings(CustID,CPID,BuildingName,StreetName,"
+        String query = "INSERT INTO buildings(CustID,CPID,BuildingName,StreetName,"
                 + "StreetNumb,Zipcode,YearOfConst,SquareMeters,BuildingUse) "
                 + "VALUES('" + b.getCustID() + "','" + b.getCPID() + "','" + b.getBuildingName() + "','" + b.getStreetName()
                 + "','" + b.getStreetNumb() + "','" + b.getZipcode() +"','"
@@ -51,7 +51,7 @@ public class DM_Building
         System.out.println("DATA MAPPER  HEJ");
 
         ArrayList<Building> buildings = new ArrayList();
-        String query = "SELECT * FROM Buildings;";
+        String query = "SELECT * FROM buildings;";
 
         DatabaseConnector db_Connect = DatabaseConnector.getInstance();
         ResultSet res = db_Connect.getData(query);
@@ -67,7 +67,7 @@ public class DM_Building
                 
                 buildings.add(building);
                 
-                System.out.println("arraylist str. !!!!!!  "+buildings.size());
+                System.out.println("-------------------arraylist str. !!!!!!  "+buildings.size());
 
             }
             return buildings;

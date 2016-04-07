@@ -55,7 +55,14 @@ public class DM_BuildingTest
         DM_Building instance = new DM_Building();
         instance.createBuildingInDB(b);
         ArrayList<Building> listExpToContain_b = instance.getBuildingList();
-        assertTrue(listExpToContain_b.contains(b));
+        
+        
+        Building a = listExpToContain_b.get(0);
+        
+//        assertTrue(listExpToContain_b.contains(b));
+        
+        
+        assertEquals(b.getBuildingID(), a.getBuildingID());
     }
 
     /**

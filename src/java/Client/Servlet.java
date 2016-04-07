@@ -5,7 +5,7 @@
  */
 package Client;
 
-import Domain.ContactPerson;
+import Domain.Conclusion;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -14,16 +14,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import Logic.Controller;
 import java.util.ArrayList;
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletContext;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author emmablomsterberg
  */
-public class Servlet extends HttpServlet {
-    int contactPersonSize;
+public class Servlet extends HttpServlet
+{
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -34,17 +32,19 @@ public class Servlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException
+    {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
+        try (PrintWriter out = response.getWriter())
+        {
             /* TODO output your page here. You may use following sample code. */
             HttpSession session = request.getSession();
             Controller con = new Controller();
             ArrayList<ContactPerson> cpList = (ArrayList<ContactPerson>) session.getAttribute("contactPersonList");
             String do_this = request.getParameter("do_this");
-            
-            switch (do_this) {
-                
+
+            switch (do_this)
+            {
 
                 case "createBuilding":
                     String buildingName = request.getParameter("buildingName");
@@ -57,7 +57,9 @@ public class Servlet extends HttpServlet {
                     String buildingUse = request.getParameter("buildingUse");
                     int custID = Integer.parseInt(request.getParameter("custID"));
                     // int CPID = ????  First Name, lastname, phone og mail
-                  //  con.createBuilding(buildingName,street, streetNo, city, zipcode, yearOfCon, squareM, buildingUse, custID);
+                    String cpFirstName = request.getParameter("cpFirstName");
+                    String cpLastName = request.getParameter("cpLastName");
+                    con.createBuilding(buildingName, street, streetNo, city, zipcode, yearOfCon, squareM, buildingUse, custID);
                     System.out.println("servlet");
                     break;
                 case "createCustomer":
@@ -71,38 +73,36 @@ public class Servlet extends HttpServlet {
                     con.createCustomer(type, streetNameCust, streetNoCust, zipcodeCust, contactName, phone, mail);
                     System.out.println("servlet");
                     break;
-                case "createReport":
-                    String reportNumber = request.getParameter("reportNumber");
-                    String date = request.getParameter("date");
-                    int squareMeter = Integer.parseInt(request.getParameter("squareMeter"));
-                    String buildingUseability = request.getParameter("buildingUseability");
-                    String roof = request.getParameter("roof");
-                    String roofPicture = request.getParameter("roofPicture");
-                    String outerwalls = request.getParameter("outerwalls");
-                    String outerwallsPicture = request.getParameter("outerwallsPicture");
-                    String conclusion = request.getParameter("conclusion"+"i");
-                    String reviewedBy = request.getParameter("reviewedBy");
-                    String collaboration = request.getParameter("collaboration");
-                    int condition = Integer.parseInt(request.getParameter("condition"));
-                    con.createReport(reportNumber, date, squareMeter, buildingUseability, roof, roofPicture, 
-                            outerwalls, outerwallsPicture, conclusion, reviewedBy, collaboration, condition);
-                    System.out.println("servlet");
-                    break;
-                
-                case "createContactPerson":
-                    
-                    String cpFirstName = request.getParameter("cpFirstName");
-                    String cpLastName = request.getParameter("cpLastName");
-                    con.createContactPerson(cpFirstName, cpLastName);
-                    
-                    for (int i = 0; i < con.getContactPersonList().size(); i++) {
-                        
-                        cpList.add(con.getContactPersonList().get(i));
-                    }
-                    System.out.println("cpList" + cpList.toString());
-                    session.setAttribute("contactPersonList", cpList);
-//                    //con.getContactPersonList();
-                    forward(request, response, "/CreateBuilding.jsp");
+                case "Gem rapport":
+                    getServletContext().getRequestDispatcher("index.html").forward(request, response);
+//                    String reportNumber = request.getParameter("reportNumber");
+//                    String date = request.getParameter("date");
+//                    int squareMeter = Integer.parseInt(request.getParameter("squareMeter"));
+//                    String buildingUseability = request.getParameter("buildingUseability");
+//                    String roof = request.getParameter("roof");
+//                    String roofPicture = request.getParameter("roofPicture");
+//                    String outerwalls = request.getParameter("outerwalls");
+//                    String outerwallsPicture = request.getParameter("outerwallsPicture");
+//                    
+//                    ArrayList<Conclusion> conclusions = new ArrayList();
+//                    for (int i = 0; i < 9; i++)
+//                    {
+//                        Integer room = Integer.parseInt(request.getParameter("conclusionRoom" + i));
+//                        String rec = request.getParameter("recommendation" + i);
+//                        if (room == null || rec == "" || rec == null)
+//                        {
+//                            break;
+//                        } else
+//                        {
+//                            Conclusion conclusion = new Conclusion(room, rec);
+//                            conclusions.add(conclusion);
+//                        }
+//                    }
+//                    
+//                    String reviewedBy = request.getParameter("reviewedBy");
+//                    String collaboration = request.getParameter("collaboration");
+//                    int condition = Integer.parseInt(request.getParameter("condition"));
+//                    System.out.println("servlet");
                     break;
             }
         }
@@ -119,7 +119,8 @@ public class Servlet extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException
+    {
         processRequest(request, response);
     }
 
@@ -133,7 +134,8 @@ public class Servlet extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException
+    {
         processRequest(request, response);
     }
 
@@ -143,7 +145,8 @@ public class Servlet extends HttpServlet {
      * @return a String containing servlet description
      */
     @Override
-    public String getServletInfo() {
+    public String getServletInfo()
+    {
         return "Short description";
     }// </editor-fold>
 
