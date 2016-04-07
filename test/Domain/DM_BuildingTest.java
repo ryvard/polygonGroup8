@@ -149,19 +149,19 @@ public class DM_BuildingTest
     }
     
     /**
-     * Help method to testGetBuildingList1()
+     * Help methods to testGetBuildingList1()  
      */
     private Building buildingObjForTest()
     {
         int buildingID = 1;
         String buildingName = "Højhuset", streetName = "Lyngby Hovedgade", 
                 streetNumb = "80", city = "Lyngby", buildingUse = "beboelse"; 
-        int zipcode = 2800, YearOfConst = 2000,custID = 1; 
+        int zipcode = 2800, YearOfConst = 2000,custID = 1, CPID = 1; 
         double squareMeters = 200;
         
         Building b = new Building(buildingID, buildingName, streetName, 
                 streetNumb, city, zipcode, YearOfConst, squareMeters, 
-                buildingUse, custID);
+                buildingUse, custID, CPID);
         
         return b;
     } 
