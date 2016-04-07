@@ -9,18 +9,25 @@ package Domain;
  *
  * @author emmablomsterberg
  */
-public class DM_Customer {
-    
-    
-    public void createCustomer(Customer cus) {
-        
+public class DM_Customer
+{
+
+    public void createCustomer(Customer cus)
+    {
+        insertCity(cus.getZipcode(), cus.get);
+
         String query = "INSERT INTO Customers(CustName, CustType,StreetName,StreetNumb,Zipcode)"
-                + "VALUES('"+cus.getCustName()+"','"+ cus.getType() + "','" + cus.getStreetName() + "','" 
-                + cus.getStreetNo() +"','" + cus.getZipcode()+"');";
-       
-        
+                + "VALUES('" + cus.getCustName() + "','" + cus.getType() + "','" + cus.getStreetName() + "','"
+                + cus.getStreetNo() + "','" + cus.getZipcode() + "');";
+
         DatabaseConnector db_Connect = DatabaseConnector.getInstance();
         db_Connect.updateData(query);
-            
+    }
+
+    private void insertCity(String city, int zip)
+    {
+        String query = "INSERT INTO City(Zipcode,city) VALUES('" + zip + "','" + city + "');";
+        DatabaseConnector db_Connect = DatabaseConnector.getInstance();
+        db_Connect.updateData(query);
     }
 }

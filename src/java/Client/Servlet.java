@@ -62,6 +62,7 @@ public class Servlet extends HttpServlet
                     System.out.println("servlet");
                     break;
                 case "createCustomer":
+                    String name = request.getParameter("custName");
                     String type = request.getParameter("customerType");
                     String streetNameCust = request.getParameter("streetName");
                     String streetNoCust = request.getParameter("streetNo");
@@ -69,8 +70,11 @@ public class Servlet extends HttpServlet
                     String contactName = request.getParameter("contactName");
                     String phone = request.getParameter("phone");
                     String mail = request.getParameter("mail");
-                    con.createCustomer(type, streetNameCust, streetNoCust, zipcodeCust, contactName, phone, mail);
+                    
+                    con.createCustomer(name, type, streetNameCust, streetNoCust, zipcodeCust, contactName, phone, mail);
+                    
                     System.out.println("servlet");
+                    
                     break;
                 case "Gem rapport":
                     getServletContext().getRequestDispatcher("index.html").forward(request, response);

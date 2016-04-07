@@ -29,4 +29,6 @@ public interface IController
      * Arraylist containing all buildings.
      */
         public ArrayList<Building> getBuildingList(); 
+        
+        public String getCity(int zip);
 }

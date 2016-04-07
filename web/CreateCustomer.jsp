@@ -34,6 +34,7 @@
         </style>
     </head>
     <body>
+        
         <h1>Opret kunde</h1>
         <div>Udfyld venligst felterne nedenfor for at oprette dig som kunde.</div>
         <br>
@@ -41,13 +42,17 @@
             <input type="hidden" name="do_this" value="createCustomer">
             <table>
                 <tr>
+                    <td>Kunde navn:</td>
+                    <td><input type="text" name="custName" style="width:40px;"></td>
+                </tr>
+                
+                <tr>
                     <td>Kunde type:</td>
+                    <td><select name="customerType">
+                        <option value="Boligforening">Boligforening</option>
+                        <option value="Kommune">Kommune</option></select></td>
                 </tr>
                 <tr>
-                <td><select name="customerType">
-                    <option value="Boligforening">Boligforening</option>
-                    <option value="Kommune">Kommune</option>
-                </select></td>
                 <td>Adresse:</td>
                 <td><input type="text" name="streetName"></td>
                 </tr>
