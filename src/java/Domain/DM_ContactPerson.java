@@ -17,11 +17,16 @@ public class DM_ContactPerson {
     
     public void createContactPerson(ContactPerson cp) {
         
+        try {
+        
         String query = "INSERT INTO ContactPerson(CPFirstName,CPLastName) VALUES('" + cp.getCPFirstName()
                 + "','" + cp.getCPLastName() + "');";
         
         DatabaseConnector db_Connect = DatabaseConnector.getInstance();
         db_Connect.updateData(query);
+        } catch(Exception e) {
+            System.out.println("FEJL" + e);
+        }
     }
     
     public ArrayList<ContactPerson> getContactPersonList() {
