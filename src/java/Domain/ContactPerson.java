@@ -11,24 +11,18 @@ package Domain;
  */
 public class ContactPerson {
     
-    int ID;
+    int cpID;
     String firstName;
     String lastName;
     
-    public ContactPerson(int cpID, String cpFirstName, String cpLastName) {
+    /* Contructor for creating contactperson */
+    
+    public ContactPerson(String cpFirstName, String cpLastName) {
         
-        this.ID = cpID;
         this.firstName = cpFirstName;
         this.lastName = cpLastName;
     }
     
-    public int getCPID() {
-        return ID;
-    }
-    
-    public void setCPID(int cpID) {
-        this.ID = cpID;
-    }
     
     public String getCPFirstName() {
         return firstName;
@@ -45,4 +39,21 @@ public class ContactPerson {
     public void setCPLastName(String cpLastName) {
         this.lastName = cpLastName;
     }
+    
+    /* Constructor for displaying contactperson */
+    
+    public ContactPerson(int cpID, String cpFirstName, String cpLastName) {
+        this.cpID = cpID;
+        this.firstName = cpFirstName;
+        this.lastName = cpLastName;
+    }
+    
+    public int getCPID() {
+        return cpID;
+    }
+    
+    public void setCPID(int cpID) {
+        this.cpID = cpID;
+    }
+    
 }

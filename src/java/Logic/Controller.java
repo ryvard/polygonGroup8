@@ -6,6 +6,7 @@
 package Logic;
 
 import Domain.Building;
+import Domain.ContactPerson;
 import Domain.Customer;
 import Domain.Facade;
 import java.util.ArrayList;
@@ -51,6 +52,18 @@ public class Controller implements IController {
     @Override
     public void createReport(String reportNumber, String date, int squareMeter, String buildingUseability, String roof, String roofPicture, String outerwalls, String outerwallsPicture, Object conclusion, String reviewedBy, String collaboration, int condition) {
 
+    }
+
+
+    @Override
+    public int createContactPerson(String cpFirstName, String cpLastName) {
+        ContactPerson cp = new ContactPerson(cpFirstName, cpLastName);
+        return facade.createContactPerson(cp);
+    }
+
+    @Override
+    public ArrayList<ContactPerson> getContactPersonList() {
+        return facade.getContactPersonList();
     }
 
 }

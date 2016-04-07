@@ -6,6 +6,7 @@
 package Client;
 
 import Domain.Conclusion;
+import Domain.ContactPerson;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -14,6 +15,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import Logic.Controller;
 import java.util.ArrayList;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -38,10 +42,12 @@ public class Servlet extends HttpServlet
         try (PrintWriter out = response.getWriter())
         {
             /* TODO output your page here. You may use following sample code. */
+           
             Controller con = new Controller();
-
+            
             String do_this = request.getParameter("do_this");
-
+          
+    
             switch (do_this)
             {
 
@@ -55,13 +61,13 @@ public class Servlet extends HttpServlet
                     double squareM = Double.parseDouble(request.getParameter("squareM"));
                     String buildingUse = request.getParameter("buildingUse");
                     int custID = Integer.parseInt(request.getParameter("custID"));
-                    // int CPID = ????  First Name, lastname, phone og mail
-                    String cpFirstName = request.getParameter("cpFirstName");
-                    String cpLastName = request.getParameter("cpLastName");
-                    con.createBuilding(buildingName, street, streetNo, city, zipcode, yearOfCon, squareM, buildingUse, custID);
+                    int CPID = Integer.parseInt(request.getParameter("CPID"));
+// int CPID = ????  First Name, lastname, phone og mail
+                    con.createBuilding(buildingName, street, streetNo, city, zipcode, yearOfCon, squareM, buildingUse, custID, CPID);
                     System.out.println("servlet");
                     break;
                 case "createCustomer":
+                    String name = request.getParameter("custName");
                     String type = request.getParameter("customerType");
                     String streetNameCust = request.getParameter("streetName");
                     String streetNoCust = request.getParameter("streetNo");
@@ -69,8 +75,10 @@ public class Servlet extends HttpServlet
                     String contactName = request.getParameter("contactName");
                     String phone = request.getParameter("phone");
                     String mail = request.getParameter("mail");
-                    con.createCustomer(type, streetNameCust, streetNoCust, zipcodeCust, contactName, phone, mail);
+                    
+                    con.createCustomer(name, type, streetNameCust, streetNoCust, zipcodeCust, contactName, phone, mail);                  
                     System.out.println("servlet");
+                    
                     break;
                 case "Gem rapport":
                     getServletContext().getRequestDispatcher("index.html").forward(request, response);
@@ -103,6 +111,14 @@ public class Servlet extends HttpServlet
 //                    int condition = Integer.parseInt(request.getParameter("condition"));
 //                    System.out.println("servlet");
                     break;
+                    
+                case "createContactPerson":
+                    String cpFirstName = request.getParameter("cpFirstName");
+                    String cpLastName = request.getParameter("cpLastName");
+                    int cpID = con.createContactPerson(cpFirstName, cpLastName);
+                    request.setAttribute("cpID", cpID);
+                    forward(request, response, "/CreateBuilding.jsp");
+                    break;   
             }
         }
     }
@@ -149,4 +165,9 @@ public class Servlet extends HttpServlet
         return "Short description";
     }// </editor-fold>
 
+private void forward(HttpServletRequest req, HttpServletResponse res, String path) throws IOException, ServletException {
+        ServletContext sc = getServletContext();
+        RequestDispatcher rd = sc.getRequestDispatcher(path);
+        rd.forward(req, res);
+    }
 }

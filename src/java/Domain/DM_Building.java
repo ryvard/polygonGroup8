@@ -48,16 +48,15 @@ public class DM_Building
 
     public ArrayList<Building> getBuildingList()
     {
-        System.out.println("DATA MAPPER  HEJ");
-
         ArrayList<Building> buildings = new ArrayList();
-        String query = "SELECT * FROM buildings;";
+        String query = "SELECT * FROM buildings natural join Zipcodes;";
 
         DatabaseConnector db_Connect = DatabaseConnector.getInstance();
         ResultSet res = db_Connect.getData(query);
 
         try
         {
+            // Lav natural join til Zipcodes og hent city der fremfor ekstra metode
             while (res.next())
             {
                 Building building = new Building(res.getInt(1), res.getString(4), 

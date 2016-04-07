@@ -9,18 +9,16 @@ package Domain;
  *
  * @author emmablomsterberg
  */
-public class DM_Customer {
-    
-    
-    public void createCustomer(Customer cus) {
-        
+public class DM_Customer
+{
+
+    public void createCustomer(Customer cus)
+    {
         String query = "INSERT INTO Customers(CustName, CustType,StreetName,StreetNumb,Zipcode)"
-                + "VALUES('"+cus.getCustName()+"','"+ cus.getType() + "','" + cus.getStreetName() + "','" 
-                + cus.getStreetNo() +"','" + cus.getZipcode()+"');";
-       
-        
+                + "VALUES('" + cus.getCustName() + "','" + cus.getType() + "','" + cus.getStreetName() + "','"
+                + cus.getStreetNo() + "','" + cus.getZipcode() + "');";
+
         DatabaseConnector db_Connect = DatabaseConnector.getInstance();
         db_Connect.updateData(query);
-            
     }
 }

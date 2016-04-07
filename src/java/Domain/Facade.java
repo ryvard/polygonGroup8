@@ -15,6 +15,7 @@ public class Facade implements IFacade
 {
     DM_Building dm_building = new DM_Building();
     DM_Customer dm_customer = new DM_Customer();
+    DM_ContactPerson dm_cp = new DM_ContactPerson();
     
     @Override
     public void createBuilding(Building building)
@@ -31,7 +32,16 @@ public class Facade implements IFacade
     @Override
     public ArrayList<Building> getBuildingList()
     {
-        System.out.println("facade");
         return dm_building.getBuildingList();
+    }
+
+    @Override
+    public int createContactPerson(ContactPerson contactPerson) {
+        return dm_cp.createContactPerson(contactPerson);
+    }
+
+    @Override
+    public ArrayList<ContactPerson> getContactPersonList() {
+        return dm_cp.getContactPersonList();
     }
 }
