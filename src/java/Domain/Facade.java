@@ -37,8 +37,8 @@ public class Facade implements IFacade
     }
 
     @Override
-    public void createContactPerson(ContactPerson contactPerson) {
-        dm_cp.createContactPerson(contactPerson);
+    public int createContactPerson(ContactPerson contactPerson) {
+        return dm_cp.createContactPerson(contactPerson);
     }
 
     @Override

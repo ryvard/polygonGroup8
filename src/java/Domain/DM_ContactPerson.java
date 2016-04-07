@@ -15,7 +15,7 @@ import java.util.ArrayList;
  */
 public class DM_ContactPerson {
     
-    public void createContactPerson(ContactPerson cp) {
+    public int createContactPerson(ContactPerson cp) {
         
         try {
         
@@ -24,9 +24,14 @@ public class DM_ContactPerson {
         
         DatabaseConnector db_Connect = DatabaseConnector.getInstance();
         db_Connect.updateData(query);
+        
         } catch(Exception e) {
             System.out.println("FEJL" + e);
         }
+        
+        int cpID = getCPID(cp.getCPFirstName(), cp.getCPLastName());
+        
+        return cpID;
     }
     
     public ArrayList<ContactPerson> getContactPersonList() {
@@ -55,5 +60,24 @@ public class DM_ContactPerson {
 
         }
         return null;
+    }
+    
+    private int getCPID(String firstName, String lastName) {
+        
+        String query = "SELECT CPID FROM PolygonGroup8.ContactPerson WHERE CPFirstName ='"+ firstName+"' AND CPLastName='"+ lastName + "';";
+        
+        DatabaseConnector db_Connect = DatabaseConnector.getInstance();
+        ResultSet res = db_Connect.getData(query);
+        try {
+            res.next();
+            int cpID = res.getInt("CPID");
+            
+        return cpID;
+        
+        } catch(SQLException ex) {
+            System.out.println("FEJL GetCPID " + ex);
+        }
+        return 0;
+        
     }
 }

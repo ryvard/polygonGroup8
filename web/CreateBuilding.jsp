@@ -53,12 +53,14 @@
                     <td>Efternavn:</td>
                     <td><input type="text" name="cpLastName"</td>
                 </tr>
+                <%--
                 <tr>
                     <td>Tel/mobil:</td>
                     <td><input type="text" name="cpPhone"</td>
                     <td>E-mail:</td>
                     <td><input type="text" name="cpEmail"</td>
                 </tr>
+                --%>
             </table>
             <input type="submit" value="Opret kontaktperson">
             </form>
@@ -66,9 +68,10 @@
         <table>
             <tr>
                 <td>Du har nu oprettet en kontaktperson. Dit kontakpersonnummer er:</td>
-                <td></td>
+                <td style="font-weight: bold"><%= request.getAttribute("cpID")==null?" ":request.getAttribute("cpID") %></td>
         </tr>
-        </table>
+        </table> 
+        <br>
         <div>Udfyld venligst felterne nedenfor for at oprette din bygning.</div>
         <form action="Servlet" method="POST">
             <input type="hidden" name="do_this" value="createBuilding">
@@ -105,8 +108,14 @@
                     <td>Hvad bruges bygning til? / <br> Hvad har bygningen været brugt til?:</td>
                     <td><input type="text" name="buildingUse"</td>
                 </tr>
+                <tr>
                 <td>Dit kunde id:</td>
                 <td><input type="text" name="custID"</td>
+                </tr>
+                <tr>
+                    <td>Dit kontaktperson id:</td>
+                    <td><input type="text" name="CPID"</td>
+                </tr>
             </table>
             <input type="submit" value="Opret bygning">
         </form>

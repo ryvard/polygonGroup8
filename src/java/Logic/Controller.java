@@ -55,9 +55,9 @@ public class Controller implements IController {
     }
 
     @Override
-    public void createContactPerson(String cpFirstName, String cpLastName) {
+    public int createContactPerson(String cpFirstName, String cpLastName) {
         ContactPerson cp = new ContactPerson(cpFirstName, cpLastName);
-        facade.createContactPerson(cp);
+        return facade.createContactPerson(cp);
     }
 
     @Override
