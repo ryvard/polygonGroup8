@@ -34,8 +34,8 @@ public class DM_Report
     
     private void insertReview(Report r)
     {
-        String query = "INSERT INTO(RoomID, RepID, Part, Note)  "
-                + "VALUES('" ++ "','" + getRepID(r)+ "','" ++ "','" ++"')";
+//        String query = "INSERT INTO(RoomID, RepID, Part, Note)  "
+//                + "VALUES('" ++ "','" + getRepID(r)+ "','" ++ "','" ++"')";
         
         
         DatabaseConnector db_Connect = DatabaseConnector.getInstance();
