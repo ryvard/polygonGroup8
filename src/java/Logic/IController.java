@@ -30,5 +30,5 @@ public interface IController
      */
         public ArrayList<Building> getBuildingList(); 
         
-        public String getCity(int zip);
+        
 }

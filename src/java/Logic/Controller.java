@@ -53,10 +53,5 @@ public class Controller implements IController {
 
     }
 
-    @Override
-    public String getCity(int zip)
-    {
-        facade.getCity(zip);
-    }
 
 }

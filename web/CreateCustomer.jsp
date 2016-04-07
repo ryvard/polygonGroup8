@@ -64,15 +64,6 @@
                     <td align="right">By:</td>
                     <td><input type="text" name="city"></td>
                 </tr>
-                <tr>
-                    <td>Kontakt navn:</td>
-                    <td><input type="text" name="contactName"></td>
-                    <td>Telefon nr.:</td>
-                    <td><input type="text" name="phone" ></td>
-                    <td align="right">Email:</td>
-                    <td><input type="text" name="mail"></td>
-                </tr>
-
             </table>
             <input type="submit" value="Opret kunde">
         </form>

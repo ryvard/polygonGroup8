@@ -34,10 +34,4 @@ public class Facade implements IFacade
         System.out.println("facade");
         return dm_building.getBuildingList();
     }
-
-    @Override
-    public String getCity(int zipcode)
-    {
-        dm_building.getCity(zipcode);
-    }
 }
