@@ -39,12 +39,6 @@
     <body>
         <h1>Opret din bygning</h1>
         <br>
-        <% Controller con = new Controller();
-        ArrayList<ContactPerson> cpList =
-        (ArrayList<ContactPerson>)session.getAttribute("contactPersonList");
-           // ArrayList<ContactPerson> contactList = new ArrayList(); 
-            
-        %>
         <div>Udfyld venligst felterne nedenfor for at oprette en kontaktperson, hvis dette ikke er allerede gjort</div>
         <form action="Servlet" method="GET">
             <input type="hidden" name="do_this" value="createContactPerson">
@@ -69,22 +63,12 @@
             <input type="submit" value="Opret kontaktperson">
             </form>
         <br>
-        
-        <% 
-            if(cpList != null && cpList.size() > 0 ) {
-            int index = cpList.size()-1;  
-            ContactPerson conP = cpList.get(index);
-            
-        %>
         <table>
             <tr>
                 <td>Du har nu oprettet en kontaktperson. Dit kontakpersonnummer er:</td>
-                <td><%=conP.getCPID() %></td>
+                <td></td>
         </tr>
         </table>
-        <% }
-
-%>
         <div>Udfyld venligst felterne nedenfor for at oprette din bygning.</div>
         <form action="Servlet" method="POST">
             <input type="hidden" name="do_this" value="createBuilding">
