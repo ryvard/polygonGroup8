@@ -11,25 +11,11 @@ package Domain;
  */
 public class DM_Report
 {
-    public void createReportInDB_1(Report r)
+    public void createReportInDB(Report r)
     {
         insertDataInReportTable(r);
-//                "INSERT INTO Buildings(CustID,CPID,BuildingName,StreetName,"
-//                + "StreetNumb,Zipcode,YearOfConst,SquareMeters,BuildingUse) "
-//                + "VALUES('" + b.getCustID() + "','" + b.getCPID() + "','" + b.getBuildingName() + "','" + b.getStreetName()
-//                + "','" + b.getStreetNumb() + "','" + b.getZipcode() +"','"
-//                + b.getYearOfConst() + "','" + b.getSquareMeters() + "','" + b.getBuildingUse() + "');";
     }
     
-    public void createReportInDB_2(Report r)
-    {
-        insertDataInReportTable(r);
-//                "INSERT INTO Buildings(CustID,CPID,BuildingName,StreetName,"
-//                + "StreetNumb,Zipcode,YearOfConst,SquareMeters,BuildingUse) "
-//                + "VALUES('" + b.getCustID() + "','" + b.getCPID() + "','" + b.getBuildingName() + "','" + b.getStreetName()
-//                + "','" + b.getStreetNumb() + "','" + b.getZipcode() +"','"
-//                + b.getYearOfConst() + "','" + b.getSquareMeters() + "','" + b.getBuildingUse() + "');";
-    }
     
     private void insertDataInReportTable(Report r)
     {
@@ -42,24 +28,7 @@ public class DM_Report
         db_Connect.updateData(query);
     }
     
-    private void insertReview(Report r)
-    {
-        String query = "INSERT INTO(RoomID, RepID, Part, Note)  "
-                + "VALUES('" ++ "','" + getRepID(r)+ "','" ++ "','" ++"')";
-        
-        
-        DatabaseConnector db_Connect = DatabaseConnector.getInstance();
-        db_Connect.updateData(query);
-    }
     
-    private void insertConclution(Report r)
-    {
-        String query = "INSERT INTO  VALUES";
-        
-        
-        DatabaseConnector db_Connect = DatabaseConnector.getInstance();
-        db_Connect.updateData(query);
-    }
     
     private void insertDamage(Report r)
     {
@@ -69,22 +38,35 @@ public class DM_Report
         DatabaseConnector db_Connect = DatabaseConnector.getInstance();
         db_Connect.updateData(query);
     }
-    private void insertMoistScan(Report r)
+    private void insertReview(Report r)
     {
-        String query = "INSERT INTO  VALUES";
+        String query = "INSERT INTO(RoomID, RepID, Part, Note)  "
+                + "VALUES()";
         
         
         DatabaseConnector db_Connect = DatabaseConnector.getInstance();
         db_Connect.updateData(query);
     }
-//    private void insertRoom(Report r)
-//    {
-//        String query = "INSERT INTO  VALUES";
-//        
-//        
-//        DatabaseConnector db_Connect = DatabaseConnector.getInstance();
-//        db_Connect.updateData(query);
-//    }
+    private void insertMoistScan(Report r)
+    {
+        String query = "INSERT INTO MoistScan(RoomID,RepID,MSComplete) "
+                + "VALUES()";
+        
+        
+        DatabaseConnector db_Connect = DatabaseConnector.getInstance();
+        db_Connect.updateData(query);
+    }
+    private void insertConclusion(Report r)
+    {
+        String query = "INSERT INTO Conclusion(RepID, RoomID, Recomendation) VALUES";
+        
+        
+        DatabaseConnector db_Connect = DatabaseConnector.getInstance();
+        db_Connect.updateData(query);
+    }
+    
+    
+    
     
     private void insertEmployee(Report r)
     {
