@@ -40,21 +40,10 @@ public class Building
         this.custID = custID;
         this.CPID = CPID;
     }
-
-    public int getCPID()
-    {
-        return CPID;
-    }
-
-    public void setCPID(int CPID)
-    {
-        this.CPID = CPID;
-    }
-   
     /**
      * Cunstructor used for list of buildings
      */
-    public Building(int buildingID, String buildingName, String streetName, String streetNumb, String city, int zipcode, int YearOfConst, double squareMeters, String buildingUse, int custID)
+    public Building(int buildingID, String buildingName, String streetName, String streetNumb, String city, int zipcode, int YearOfConst, double squareMeters, String buildingUse, int custID, int CPID)
     {
         this.buildingID = buildingID;
         this.buildingName = buildingName;
@@ -66,9 +55,18 @@ public class Building
         this.squareMeters = squareMeters;
         this.buildingUse = buildingUse;
         this.custID = custID;
+        this.CPID = CPID;
     }
 
-    
+     public int getCPID()
+    {
+        return CPID;
+    }
+
+    public void setCPID(int CPID)
+    {
+        this.CPID = CPID;
+    }
     
     public String getBuildingUse()
     {
