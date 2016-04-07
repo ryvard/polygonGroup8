@@ -6,6 +6,7 @@
 package Logic;
 
 import Domain.Building;
+import Domain.ContactPerson;
 import Domain.Customer;
 import Domain.Facade;
 import java.util.ArrayList;
@@ -53,5 +54,16 @@ public class Controller implements IController {
 
     }
 
+
+    @Override
+    public int createContactPerson(String cpFirstName, String cpLastName) {
+        ContactPerson cp = new ContactPerson(cpFirstName, cpLastName);
+        return facade.createContactPerson(cp);
+    }
+
+    @Override
+    public ArrayList<ContactPerson> getContactPersonList() {
+        return facade.getContactPersonList();
+    }
 
 }

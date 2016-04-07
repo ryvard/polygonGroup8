@@ -6,6 +6,7 @@
 package Logic;
 
 import Domain.Building;
+import Domain.ContactPerson;
 import java.util.ArrayList;
 
 /**
@@ -30,5 +31,10 @@ public interface IController
      */
         public ArrayList<Building> getBuildingList(); 
         
+        public int createContactPerson(String cpFirstName, String cpLastName);
+        
+        public ArrayList<ContactPerson> getContactPersonList();
+        
+       
         
 }

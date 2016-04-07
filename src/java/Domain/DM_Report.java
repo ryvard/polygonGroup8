@@ -28,8 +28,6 @@ public class DM_Report
         db_Connect.updateData(query);
     }
     
-    
-    
     private void insertDamage(Report r)
     {
         String query = "INSERT INTO  VALUES";
@@ -64,10 +62,7 @@ public class DM_Report
         DatabaseConnector db_Connect = DatabaseConnector.getInstance();
         db_Connect.updateData(query);
     }
-    
-    
-    
-    
+      
     private void insertEmployee(Report r)
     {
         String query = "INSERT INTO Employees(EFirstName, ELastName) "
