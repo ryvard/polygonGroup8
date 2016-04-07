@@ -11,9 +11,9 @@ package Domain;
  */
 public class DM_Report
 {
-    public void createReportInDB(Report r)
+    public void createReportInDB_1(Report r)
     {
-        insertDataInReportTable();
+        insertDataInReportTable(r);
 //                "INSERT INTO Buildings(CustID,CPID,BuildingName,StreetName,"
 //                + "StreetNumb,Zipcode,YearOfConst,SquareMeters,BuildingUse) "
 //                + "VALUES('" + b.getCustID() + "','" + b.getCPID() + "','" + b.getBuildingName() + "','" + b.getStreetName()
@@ -21,11 +21,22 @@ public class DM_Report
 //                + b.getYearOfConst() + "','" + b.getSquareMeters() + "','" + b.getBuildingUse() + "');";
     }
     
-    private void insertDataInReportTable()
+    public void createReportInDB_2(Report r)
+    {
+        insertDataInReportTable(r);
+//                "INSERT INTO Buildings(CustID,CPID,BuildingName,StreetName,"
+//                + "StreetNumb,Zipcode,YearOfConst,SquareMeters,BuildingUse) "
+//                + "VALUES('" + b.getCustID() + "','" + b.getCPID() + "','" + b.getBuildingName() + "','" + b.getStreetName()
+//                + "','" + b.getStreetNumb() + "','" + b.getZipcode() +"','"
+//                + b.getYearOfConst() + "','" + b.getSquareMeters() + "','" + b.getBuildingUse() + "');";
+    }
+    
+    private void insertDataInReportTable(Report r)
     {
         String query = "INSERT INTO Report(BuildingID, EID, RDate, BCondition)"
-                + "VALUES('" +r.getBuilding().getBuildingID()+ "','" + !!EID!! 
-        +"','" + r.getDate() + "','" + !!Condition!! + "')";
+                + "VALUES('"+ r.getBuilding().getBuildingID()+"','"
+                + r.getEmployee().geteID() +"','" + r.getDate() +"','"
+                + r.getCondition() +"')";
         
         DatabaseConnector db_Connect = DatabaseConnector.getInstance();
         db_Connect.updateData(query);
