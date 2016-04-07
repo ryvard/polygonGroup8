@@ -9,7 +9,7 @@ import java.sql.Statement;
 
 public class DatabaseConnector
 {
-    private String DB_URL = "jdbc:mysql://localhost:3306/PolygonGroup8";
+    private String DB_URL = "jdbc:mysql://127.0.0.1:3306/PolygonGroup8";
     private String USER = "root";
     private String PASS = "1234";
 
