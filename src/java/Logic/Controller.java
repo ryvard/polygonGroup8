@@ -37,8 +37,8 @@ public class Controller implements IController {
     }
 
     @Override
-    public void createCustomer(String type, String streetName, String streetNo, int zipcode, String contactName, String phone, String mail) {
-        Customer customer = new Customer(type, streetName, streetNo, zipcode, contactName, phone, mail);
+    public void createCustomer(String name, String type, String streetName, String streetNo, int zipcode, String contactName, String phone, String mail) {
+        Customer customer = new Customer(name, type, streetName, streetNo, zipcode, contactName, phone, mail);
         facade.createCustomer(customer);
     }
 

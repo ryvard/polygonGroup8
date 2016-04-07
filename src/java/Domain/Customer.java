@@ -11,6 +11,7 @@ package Domain;
  */
 public class Customer {
     
+    String custName;
     String type;
     String streetName;
     String streetNo;
@@ -19,9 +20,10 @@ public class Customer {
     String phone;
     String mail;
     // heh ehhr
-  
-    public Customer(String type, String streetName, String streetNo, int zipcode, String contactName, String phone, String mail) {
-        
+
+    public Customer(String custName, String type, String streetName, String streetNo, int zipcode, String contactName, String phone, String mail)
+    {
+        this.custName = custName;
         this.type = type;
         this.streetName = streetName;
         this.streetNo = streetNo;
@@ -29,8 +31,18 @@ public class Customer {
         this.contactName = contactName;
         this.phone = phone;
         this.mail = mail;
-        
     }
+
+    public String getCustName()
+    {
+        return custName;
+    }
+
+    public void setCustName(String custName)
+    {
+        this.custName = custName;
+    }
+     
     
     public String getType() {
         return type;

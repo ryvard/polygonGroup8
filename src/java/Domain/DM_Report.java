@@ -14,7 +14,6 @@ public class DM_Report
     public void createReportInDB(Report r)
     {
         insertDataInReportTable();
-                
 //                "INSERT INTO Buildings(CustID,CPID,BuildingName,StreetName,"
 //                + "StreetNumb,Zipcode,YearOfConst,SquareMeters,BuildingUse) "
 //                + "VALUES('" + b.getCustID() + "','" + b.getCPID() + "','" + b.getBuildingName() + "','" + b.getStreetName()
