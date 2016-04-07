@@ -38,7 +38,7 @@ public class Servlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            HttpSession session = request.getSession(true);
+            HttpSession session = request.getSession();
             Controller con = new Controller();
             ArrayList<ContactPerson> cpList = (ArrayList<ContactPerson>) session.getAttribute("contactPersonList");
             String do_this = request.getParameter("do_this");
@@ -90,16 +90,18 @@ public class Servlet extends HttpServlet {
                     break;
                 
                 case "createContactPerson":
+                    
                     String cpFirstName = request.getParameter("cpFirstName");
                     String cpLastName = request.getParameter("cpLastName");
                     con.createContactPerson(cpFirstName, cpLastName);
+                    
                     for (int i = 0; i < con.getContactPersonList().size(); i++) {
                         
                         cpList.add(con.getContactPersonList().get(i));
                     }
-                    System.out.println("####"+cpList.get(1));
+                    System.out.println("cpList" + cpList.toString());
                     session.setAttribute("contactPersonList", cpList);
-                    //con.getContactPersonList();
+//                    //con.getContactPersonList();
                     forward(request, response, "/CreateBuilding.jsp");
                     break;
             }
