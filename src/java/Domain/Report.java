@@ -19,7 +19,8 @@ public class Report
     
     Building building;
     
-   
+    
+    ArrayList<ReviewOf> reviewOf;
     
     ArrayList<Conclusion> conclusions;
     

@@ -48,21 +48,38 @@ public class DM_BuildingTest
      * Test of createBuildingInDB method, of class DM_Building.
      */
     @Test
-    public void testCreateBuildingInDB()
+    public void testCreateBuildingInDB1()
     {
-        System.out.println("createBuildingInDB");
-        Building b = buildingObjForTestCreate();
         DM_Building instance = new DM_Building();
+        Building b = buildingObjForTestCreate();
         instance.createBuildingInDB(b);
-        ArrayList<Building> listExpToContain_b = instance.getBuildingList();
+        ArrayList<Building> list = instance.getBuildingList();
+        
+        int result = list.get(list.size()-1).getCustID();
+        int expResult = b.getCustID();
         
         
-        Building a = listExpToContain_b.get(0);
+        assertTrue(expResult==result);
+       
+    }
+    @Test
+    public void testCreateBuildingInDB2()
+    {
+        DM_Building instance = new DM_Building();
+        Building expB = buildingObjForTestCreate();
+        instance.createBuildingInDB(expB);
+        ArrayList<Building> list = instance.getBuildingList();
+        String expResult = expB.getBuildingName();
         
-//        assertTrue(listExpToContain_b.contains(b));
+        int i = (list.size())-1;
+        Building b = list.get(i);
+        String result = b.getBuildingName();
+       
+        
+        //assertTrue(list_b.contains(b));
         
         
-        assertEquals(b.getBuildingID(), a.getBuildingID());
+        assertEquals(expResult,result);
     }
 
     /**
@@ -71,7 +88,6 @@ public class DM_BuildingTest
     @Test
     public void testGetBuildingList1()
     {
-        System.out.println("getBuildingList");
         DM_Building instance = new DM_Building();
         
         Building expResult = buildingObjForTest();
@@ -88,36 +104,21 @@ public class DM_BuildingTest
     @Test
     public void testGetBuildingList2()
     {
-        System.out.println("getBuildingList - isEmpty");
         DM_Building instance = new DM_Building();    
         ArrayList<Building> result = instance.getBuildingList();
         
-        assertTrue(result.isEmpty());
+        assertFalse(result.isEmpty());
     }
     
-    @Test
-    public void testGetBuildingList3()
-    {
-        System.out.println("getBuildingList - size");
-        DM_Building instance = new DM_Building();
-        
-        int expSize = 0;
-        
-        ArrayList<Building> result = instance.getBuildingList();
-        int resultSize = result.size();
-        assertEquals(expSize, resultSize);
-    }
-
     /**
      * Test of getCity method, of class DM_Building.
      */
     @Test
     public void testGetCity1()
     {
-        System.out.println("getCity");
         DM_Building instance = new DM_Building();
         int zip = 2800;
-        String expResult = "Lyngby";
+        String expResult = "Kongens Lyngby";
         String result = instance.getCity(zip);
         assertEquals(expResult, result);
     }
@@ -127,10 +128,9 @@ public class DM_BuildingTest
     @Test
     public void testGetCity2()
     {
-        System.out.println("getCity");
         DM_Building instance = new DM_Building();
         int zip = 3450;
-        String expResult = "Allerød";
+        String expResult = "Aller¯d";
         String result = instance.getCity(zip);
         assertEquals(expResult, result);
     }
@@ -140,7 +140,6 @@ public class DM_BuildingTest
     @Test
     public void testGetCity3()
     {
-        System.out.println("getCity - wrong input test");
         DM_Building instance = new DM_Building();
         int zip = 345;
         String expResult = null;
@@ -149,26 +148,26 @@ public class DM_BuildingTest
     }
     
     /**
-     * Help method to testGetBuildingList1()
+     * Help methods to testGetBuildingList1()  
      */
     private Building buildingObjForTest()
     {
         int buildingID = 1;
         String buildingName = "Højhuset", streetName = "Lyngby Hovedgade", 
                 streetNumb = "80", city = "Lyngby", buildingUse = "beboelse"; 
-        int zipcode = 2800, YearOfConst = 2000,custID = 1; 
+        int zipcode = 2800, YearOfConst = 2000,custID = 1, CPID = 1; 
         double squareMeters = 200;
         
         Building b = new Building(buildingID, buildingName, streetName, 
                 streetNumb, city, zipcode, YearOfConst, squareMeters, 
-                buildingUse, custID);
+                buildingUse, custID, CPID);
         
         return b;
     } 
 
     private Building buildingObjForTestCreate()
     {
-        String buildingName = "Højhuset", streetName = "Lyngby Hovedgade", 
+        String buildingName = "Højhuset34", streetName = "Lyngby Hovedgade", 
                 streetNumb = "80", city = "Lyngby", buildingUse = "beboelse"; 
         int zipcode = 2800, YearOfConst = 2000,custID = 1, CPID = 1; 
         double squareMeters = 200;

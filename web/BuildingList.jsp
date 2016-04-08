@@ -49,6 +49,7 @@
                     <td><b>Byggeår</b></td>
                     <td><b>Bygningen bliver/har været brugt til</b></td>
                     <td><b>Kunde ID</b></td>
+                    <td><b>Kontakt person ID</b></td>
                 </tr>
 
                 
@@ -68,6 +69,7 @@
                     <td><%=b.getYearOfConst()%></td>
                     <td><%=b.getBuildingUse()%></td>
                     <td><%=b.getCustID()%></td>
+                    <td><%=b.getCPID()%></td>
                 </tr>
                 <%
                     }
