@@ -54,7 +54,7 @@
 
                 <tr>
                     <td>Navn på bygning</td>
-                    <td><input type="text" name="buildningName"></td>
+                    <td><input type="text" name="buildningName" value="<%=session.getAttribute("bName")%>"/></td>
                     <td>Dato</td>
                     <td> <input type="text" name="date"</td>
                 </tr>

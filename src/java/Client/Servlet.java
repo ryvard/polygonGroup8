@@ -5,6 +5,7 @@
  */
 package Client;
 
+
 import Domain.Conclusion;
 import Domain.ContactPerson;
 import java.io.IOException;
@@ -80,11 +81,14 @@ public class Servlet extends HttpServlet
 
                     break;
 
-                case "CreateBuilding_BuildingID":
+                case "createBuilding_BuildingID":
                     int buildingID = Integer.parseInt(request.getParameter("buildingID"));
-
-                    con.getBuildingFromID(buildingID);
-                    //session.setAttribute("buildingID", buildingID);
+                    System.out.println("servlet: ");
+                    String bName = "hej";//con.getBuildingFromID(buildingID).getBuildingName();
+                    
+                    System.out.println("servlet: " + buildingID + " name: " +bName );        
+                    session.setAttribute("bName", bName);
+                    
                     break;
 
                 case "Tilføj lokale":
