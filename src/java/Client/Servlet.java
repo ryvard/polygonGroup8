@@ -84,7 +84,7 @@ public class Servlet extends HttpServlet
                 case "CreateBuilding_BuildingID":
                     int buildingID = Integer.parseInt(request.getParameter("buildingID"));
                     
-                    con.getBuildingFromBuildingID(buildingID);
+                    //con.getBuildingFromBuildingID(buildingID);
                     
                     
                     //session.setAttribute("buildingID", buildingID);
