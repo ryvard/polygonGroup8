@@ -42,7 +42,7 @@ public class Servlet extends HttpServlet
         try (PrintWriter out = response.getWriter())
         {
             /* TODO output your page here. You may use following sample code. */
-           
+            HttpSession session = request.getSession(true);
             Controller con = new Controller();
             
             String do_this = request.getParameter("do_this");
@@ -79,6 +79,15 @@ public class Servlet extends HttpServlet
                     con.createCustomer(name, type, streetNameCust, streetNoCust, zipcodeCust, contactName, phone, mail);                  
                     System.out.println("servlet");
                     
+                    break;
+                    
+                case "CreateBuilding_BuildingID":
+                    int buildingID = Integer.parseInt(request.getParameter("buildingID"));
+                    
+                    con.getBuildingFromBuildingID(buildingID);
+                    
+                    
+                    //session.setAttribute("buildingID", buildingID);
                     break;
                 case "Gem rapport":
                     getServletContext().getRequestDispatcher("index.html").forward(request, response);
@@ -118,7 +127,9 @@ public class Servlet extends HttpServlet
                     int cpID = con.createContactPerson(cpFirstName, cpLastName);
                     request.setAttribute("cpID", cpID);
                     forward(request, response, "/CreateBuilding.jsp");
-                    break;   
+                    break;  
+                    
+                
             }
         }
     }
