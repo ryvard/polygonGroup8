@@ -46,9 +46,9 @@ public class DM_ContactPersonTest {
         System.out.println("createContactPerson");
         ContactPerson cp = new ContactPerson("Lasse","Blomsterberg");
         DM_ContactPerson instance = new DM_ContactPerson();
-        int result = instance.createContactPerson(cp);
         int index = instance.getContactPersonList().size()-1;
         int expResult = instance.getContactPersonList().get(index).getCPID();
+        int result = instance.createContactPerson(cp);
         assertEquals(expResult, result);
        
         
@@ -66,7 +66,10 @@ public class DM_ContactPersonTest {
         ArrayList<ContactPerson> expList = new ArrayList();
         expList.add(cp);
         ArrayList<ContactPerson> expResult = expList;
-        ArrayList<ContactPerson> result = instance.getContactPersonList();
+        int index = instance.getContactPersonList().size()-1;
+        ArrayList<ContactPerson> test = new ArrayList();
+        test.add(instance.getContactPersonList().get(index));
+        ArrayList<ContactPerson> result =  test;
         assertEquals(expResult, result);
         
     }
