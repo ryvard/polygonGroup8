@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Opret kunde</title>
+        <title>Opret rapport</title>
         <style>
             h1 {
 

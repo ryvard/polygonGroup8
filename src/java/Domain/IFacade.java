@@ -22,5 +22,7 @@ public interface IFacade
     public int createContactPerson(ContactPerson contactPerson);
     
     public ArrayList<ContactPerson> getContactPersonList();
+    
+    public Building getBuildingFromID(int buildingID);
    
 }

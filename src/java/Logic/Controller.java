@@ -66,4 +66,10 @@ public class Controller implements IController {
         return facade.getContactPersonList();
     }
 
+    @Override
+    public Building getBuildingFromID(int buildingID)
+    {
+        return facade.getBuildingFromID(buildingID);
+    }
+
 }

@@ -44,10 +44,9 @@ public class Servlet extends HttpServlet
             /* TODO output your page here. You may use following sample code. */
             HttpSession session = request.getSession(true);
             Controller con = new Controller();
-            
+
             String do_this = request.getParameter("do_this");
-          
-    
+
             switch (do_this)
             {
 
@@ -75,20 +74,21 @@ public class Servlet extends HttpServlet
                     String contactName = request.getParameter("contactName");
                     String phone = request.getParameter("phone");
                     String mail = request.getParameter("mail");
-                    
-                    con.createCustomer(name, type, streetNameCust, streetNoCust, zipcodeCust, contactName, phone, mail);                  
+
+                    con.createCustomer(name, type, streetNameCust, streetNoCust, zipcodeCust, contactName, phone, mail);
                     System.out.println("servlet");
-                    
+
                     break;
-                    
+
                 case "CreateBuilding_BuildingID":
                     int buildingID = Integer.parseInt(request.getParameter("buildingID"));
-                    
-                    //con.getBuildingFromBuildingID(buildingID);
-                    
-                    
+
+                    con.getBuildingFromID(buildingID);
                     //session.setAttribute("buildingID", buildingID);
                     break;
+
+                case "Tilføj lokale":
+
                 case "Gem rapport":
                     getServletContext().getRequestDispatcher("index.html").forward(request, response);
 //                    String reportNumber = request.getParameter("reportNumber");
@@ -120,16 +120,15 @@ public class Servlet extends HttpServlet
 //                    int condition = Integer.parseInt(request.getParameter("condition"));
 //                    System.out.println("servlet");
                     break;
-                    
+
                 case "createContactPerson":
                     String cpFirstName = request.getParameter("cpFirstName");
                     String cpLastName = request.getParameter("cpLastName");
                     int cpID = con.createContactPerson(cpFirstName, cpLastName);
                     request.setAttribute("cpID", cpID);
                     forward(request, response, "/CreateBuilding.jsp");
-                    break;  
-                    
-                
+                    break;
+
             }
         }
     }
@@ -176,7 +175,8 @@ public class Servlet extends HttpServlet
         return "Short description";
     }// </editor-fold>
 
-private void forward(HttpServletRequest req, HttpServletResponse res, String path) throws IOException, ServletException {
+    private void forward(HttpServletRequest req, HttpServletResponse res, String path) throws IOException, ServletException
+    {
         ServletContext sc = getServletContext();
         RequestDispatcher rd = sc.getRequestDispatcher(path);
         rd.forward(req, res);

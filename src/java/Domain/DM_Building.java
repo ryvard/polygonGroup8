@@ -76,4 +76,22 @@ public class DM_Building
         }
         return null;
     }
+    
+    public Building getBuildingFromID(int BuildingID)
+    {
+        String query = "SELECT * FROM Buildings WHERE BuildingID ='"+ BuildingID +"';";
+        DatabaseConnector db_Connect = DatabaseConnector.getInstance();
+        ResultSet res = db_Connect.getData(query);
+        try
+        {
+            res.next();
+            Building building = new Building(res.getInt(1), res.getString(4), res.getString(5), res.getString(6), getCity(res.getInt(7)), res.getInt(7),res.getInt(8), res.getDouble(9), res.getString(10), res.getInt(2), res.getInt(3));
+            return building;
+        }
+        catch(SQLException ex)
+        {
+            System.out.println("getBuildingFromID" + ex);
+        }
+        return null;
+    }
 }

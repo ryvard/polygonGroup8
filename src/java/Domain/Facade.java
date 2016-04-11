@@ -44,4 +44,10 @@ public class Facade implements IFacade
     public ArrayList<ContactPerson> getContactPersonList() {
         return dm_cp.getContactPersonList();
     }
+
+    @Override
+    public Building getBuildingFromID(int buildingID)
+    {
+        return dm_building.getBuildingFromID(buildingID);
+    }
 }
