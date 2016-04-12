@@ -86,7 +86,6 @@ public class Servlet extends HttpServlet
                     int ID = Integer.parseInt(request.getParameter("buildingID"));
                     
                     String bName = con.getBuildingFromID(ID).getBuildingName();
-                    //session.setAttribute("bName", bName);
                     session.setAttribute("bName", bName);
                     
                     String bStreet = con.getBuildingFromID(ID).getStreetName();
