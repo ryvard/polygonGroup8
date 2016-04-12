@@ -61,6 +61,7 @@ public class Servlet extends HttpServlet
                     String buildingUse = request.getParameter("buildingUse");
                     int custID = Integer.parseInt(request.getParameter("custID"));
                     int CPID = Integer.parseInt(request.getParameter("CPID"));
+                    
 // int CPID = ????  First Name, lastname, phone og mail
                     con.createBuilding(buildingName, street, streetNo, city, zipcode, yearOfCon, squareM, buildingUse, custID, CPID);
                     System.out.println("servlet");
@@ -84,7 +85,6 @@ public class Servlet extends HttpServlet
                     int ID = Integer.parseInt(request.getParameter("buildingID"));
 
                     String bName = con.getBuildingFromID(ID).getBuildingName();
-                    //session.setAttribute("bName", bName);
                     session.setAttribute("bName", bName);
 
                     String bStreet = con.getBuildingFromID(ID).getStreetName();
