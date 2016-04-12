@@ -35,7 +35,7 @@
     </head>
     <body>
         <h1>Indtast bygningsID</h1>
-        <form action="CreateReport.jsp" method="GET">
+        <form action="Servlet" method="GET">
             Bygnings-ID: 
             <input type='number' name='buildingID'/>
             <input type="hidden" name="do_this" value="createBuilding_BuildingID">

@@ -77,18 +77,40 @@ public class Servlet extends HttpServlet
                     String mail = request.getParameter("mail");
 
                     con.createCustomer(name, type, streetNameCust, streetNoCust, zipcodeCust, contactName, phone, mail);
-                    System.out.println("servlet");
+                    System.out.println("%%%%%%€##€##€€€€€ dsf servlet");
 
                     break;
 
                 case "createBuilding_BuildingID":
-                    int buildingID = Integer.parseInt(request.getParameter("buildingID"));
-                    System.out.println("servlet: ");
-                    String bName = "hej";//con.getBuildingFromID(buildingID).getBuildingName();
                     
-                    System.out.println("servlet: " + buildingID + " name: " +bName );        
+                    int ID = Integer.parseInt(request.getParameter("buildingID"));
+                    
+                    String bName = con.getBuildingFromID(ID).getBuildingName();
+                    //session.setAttribute("bName", bName);
                     session.setAttribute("bName", bName);
                     
+                    String bStreet = con.getBuildingFromID(ID).getStreetName();
+                    session.setAttribute("bStreet", bStreet);
+                    
+                    String bStreetNumb = con.getBuildingFromID(ID).getStreetNumb();
+                    session.setAttribute("bStreetNumb", bStreetNumb);
+                    
+                    String bCity = con.getBuildingFromID(ID).getCity();
+                    session.setAttribute("bCity", bCity);
+                    
+                    int bZip = con.getBuildingFromID(ID).getZipcode();
+                    session.setAttribute("bZip", bZip);
+                    
+                    int bYearOfConst = con.getBuildingFromID(ID).getYearOfConst();
+                    session.setAttribute("bYearOfConst", bYearOfConst);
+                    
+                    double bSquareMeter = con.getBuildingFromID(ID).getSquareMeters();
+                    session.setAttribute("bSquareMeter", bSquareMeter);
+                    
+                    String bUse = con.getBuildingFromID(ID).getBuildingUse();
+                    session.setAttribute("bUse", bUse);
+                            
+                    forward(request, response,"/CreateReport.jsp");
                     break;
 
                 case "Tilføj lokale":
