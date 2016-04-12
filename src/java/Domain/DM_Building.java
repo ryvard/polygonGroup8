@@ -43,6 +43,7 @@ public class DM_Building
 
         try
         {
+            System.out.println("res er forskellig fra null: "+(res !=null));
             while (res.next())
             {
                 Building building = new Building(res.getInt(1), res.getString(4), 
