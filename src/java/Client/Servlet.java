@@ -111,36 +111,36 @@ public class Servlet extends HttpServlet
                     forward(request, response, "/CreateReport.jsp");
                     break;
 
-                /*case "ViewReport":
+                /*ase "ViewReport":
                     int repID = Integer.parseInt(request.getParameter("repID"));
                     session.setAttribute("reportNumber", repID);
 
                     String rBName
-                            = //Metodekald her
+                            = Metodekald her
                             session.setAttribute("rBName", rBName);
 
                     int rDate
-                            = //Metodekald her
+                            = Metodekald her
                             session.setAttribute("rDate", rDate);
 
                     String rStreet
-                            = //Metodekald her
+                            = Metodekald her
                             session.setAttribute("rStreet", rStreet);
                     
                     String rStreetNumb
-                            = //Metodekald her
+                            = Metodekald her
                             session.setAttribute("rStreetNumb", rStreetNumb);
                     
                     String rCity
-                            = //Metodekald her
+                            = Metodekald her
                             session.setAttribute("rCity", rCity);
                     
                     int rZip
-                            = //Metodekald her
+                            = Metodekald her
                             session.setAttribute("rZip", rZip);
                     
                     int rBuildyear
-                            = //Metodekald her
+                            = Metodekald her
                             session.setAttribute("rBuildyear", rBuildyear);
                     
                     
