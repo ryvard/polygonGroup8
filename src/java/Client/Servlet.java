@@ -111,7 +111,7 @@ public class Servlet extends HttpServlet
                     forward(request, response, "/CreateReport.jsp");
                     break;
 
-                /*ase "ViewReport":
+                /*case "ViewReport":
                     int repID = Integer.parseInt(request.getParameter("repID"));
                     session.setAttribute("reportNumber", repID);
 
@@ -143,7 +143,8 @@ public class Servlet extends HttpServlet
                             = Metodekald her
                             session.setAttribute("rBuildyear", rBuildyear);
                     
-                    
+                    int rSquareMeter = 
+                    session.setAttribute("rBuildyear", rBuildyear);
 
                     forward(request, response, "/ViewReport.jsp");
                     break;*/
