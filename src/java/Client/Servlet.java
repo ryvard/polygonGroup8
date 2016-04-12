@@ -66,6 +66,7 @@ public class Servlet extends HttpServlet
                     con.createBuilding(buildingName, street, streetNo, city, zipcode, yearOfCon, squareM, buildingUse, custID, CPID);
                     System.out.println("servlet");
                     break;
+
                 case "createCustomer":
                     String name = request.getParameter("custName");
                     String type = request.getParameter("customerType");
@@ -77,15 +78,51 @@ public class Servlet extends HttpServlet
                     String mail = request.getParameter("mail");
 
                     con.createCustomer(name, type, streetNameCust, streetNoCust, zipcodeCust, contactName, phone, mail);
-                    System.out.println("servlet");
-
+                    System.out.println("%%%%%%€##€##€€€€€ dsf servlet");
                     break;
 
-                case "CreateBuilding_BuildingID":
-                    int buildingID = Integer.parseInt(request.getParameter("buildingID"));
+                case "createBuilding_BuildingID":
+                    int ID = Integer.parseInt(request.getParameter("buildingID"));
 
-                    con.getBuildingFromID(buildingID);
-                    //session.setAttribute("buildingID", buildingID);
+                    String bName = con.getBuildingFromID(ID).getBuildingName();
+                    //session.setAttribute("bName", bName);
+                    session.setAttribute("bName", bName);
+
+                    String bStreet = con.getBuildingFromID(ID).getStreetName();
+                    session.setAttribute("bStreet", bStreet);
+
+                    String bStreetNumb = con.getBuildingFromID(ID).getStreetNumb();
+                    session.setAttribute("bStreetNumb", bStreetNumb);
+
+                    String bCity = con.getBuildingFromID(ID).getCity();
+                    session.setAttribute("bCity", bCity);
+
+                    int bZip = con.getBuildingFromID(ID).getZipcode();
+                    session.setAttribute("bZip", bZip);
+
+                    int bYearOfConst = con.getBuildingFromID(ID).getYearOfConst();
+                    session.setAttribute("bYearOfConst", bYearOfConst);
+
+                    double bSquareMeter = con.getBuildingFromID(ID).getSquareMeters();
+                    session.setAttribute("bSquareMeter", bSquareMeter);
+
+                    String bUse = con.getBuildingFromID(ID).getBuildingUse();
+                    session.setAttribute("bUse", bUse);
+
+                    forward(request, response, "/CreateReport.jsp");
+                    break;
+
+                case "ViewReport":
+                    int repID = Integer.parseInt(request.getParameter("repID"));
+
+                    String rBName = con.getBuildingFromID(repID).getBuildingName();
+                    //session.setAttribute("bName", bName);
+                    session.setAttribute("rBName", rBName);
+
+                    String rStreet = con.getBuildingFromID(repID).getStreetName();
+                    session.setAttribute("rStreet", rStreet);
+
+                    forward(request, response, "/ViewReport.jsp");
                     break;
 
                 case "Tilføj lokale":

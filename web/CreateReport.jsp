@@ -53,21 +53,36 @@
                 <td><h1>Bygningsgennemgang</h1></td>
 
                 <tr>
+                    
                     <td>Navn på bygning</td>
-                    <td><input type="text" name="buildningName"></td>
+                    <td><input type="text" name="buildningName" readonly="readonly"
+                               value="<%=request.getParameter("buildingName")==null?session.getAttribute("bName"):request.getParameter("buildingName")%>"/></td>
                     <td>Dato</td>
-                    <td> <input type="text" name="date"</td>
+                    <td> <input type="text" name="date" value="<%=request.getParameter("date")==null?"":request.getParameter("date")%>"</td>
                 </tr>
 
                 <tr>
                     <td>Adresse</td>
-                    <td><input type="text" name="adress"></td>
+                    <td><input type="text" name="adress" readonly="readonly"
+                               value="<%=request.getParameter("adress")==null?session.getAttribute("bStreet"):request.getParameter("adress")%>"></td>
+                </tr>
+                <tr>
+                    <td>vej nr.</td>
+                    <td><input type="text" name="streetNumb" readonly="readonly"
+                               value="<%=request.getParameter("streetNumb")==null?session.getAttribute("bStreetNumb"):request.getParameter("streetNumb")%>" </td>
                 </tr>
 
                 <tr>
-                    <td>Postnr./By</td>
-                    <td> <input type="text" name="zipCity"</td>
+                    <td>By</td>
+                    <td> <input type="text" name="city" readonly="readonly"
+                                value="<%=request.getParameter("city")==null?session.getAttribute("bCity"):request.getParameter("city")%>"/></td>
                 </tr>
+                <tr>
+                    <td>Post nr.</td>
+                    <td> <input type="text" name="zip" readonly="readonly"
+                                value="<%=request.getParameter("zip")==null?session.getAttribute("bZip"):request.getParameter("zip")%>"/></td>
+                </tr>
+
 
             </table>
             <br> 
@@ -81,7 +96,8 @@
                 <td>Byggeår</td>
                 </tr>
                 <tr>
-                    <td><input type="text" name="buildYear"</td>
+                    <td><input type="text" name="buildYear" readonly="readonly"
+                               value="<%=request.getParameter("buildYear")==null?session.getAttribute("bYearOfConst"):request.getParameter("buildYear")%>"/></td>
                 </tr>
 
 
@@ -98,7 +114,8 @@
                     <td>Totale bygnings-areal i m²</td>
                 </tr>
                 <tr>
-                    <td><input type="text" name="squareMeter" value="" readonly="readonly"></td>
+                    <td><input type="text" name="squareMeter" readonly="readonly"
+                               value="<%=request.getParameter("squareMeter")==null?session.getAttribute("bSquareMeter"):request.getParameter("squareMeter")%>"/></td>
                 </tr>
 
                 <tr>
@@ -106,7 +123,8 @@
                 </tr>
 
                 <tr>
-                    <td><input type="text" name="buildingUseability" style="width: 300px;"></td>
+                    <td><input type="text" name="bUse" readonly="readonly" style="width: 300px;"
+                               value="<%=request.getParameter("bUse")==null?session.getAttribute("bUse"):request.getParameter("bUse")%>"/></td>
                 </tr>
             </table>
 
@@ -119,14 +137,16 @@
 
                 <tr>
                     <td>Tag</td>
-                    <td><input type="text" name="roof" style="width: 300px;"></td>
+                    <td><input type="text" name="roof" style="width: 300px;"
+                               value="<%=request.getParameter("roof")==null?"":request.getParameter("roof")%>"/></td>
                     <td align="right">Billede</td>
                     <td><input type="checkbox" name="roofPicture" value="ON" /></td>
                 </tr>
 
                 <tr>
                     <td>Ydervægge</td>
-                    <td><input type="text" name="outerwalls" style="width: 300px;"></td>
+                    <td><input type="text" name="outerwalls" style="width: 300px;"
+                               <%=request.getParameter("outerwalls")==null?"":request.getParameter("outerwalls")%>/></td>
                     <td align="right">Billede</td>
                     <td><input type="checkbox" name="outerwallsPicture" value="ON" /></td>
                 </tr>

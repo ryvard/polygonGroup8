@@ -1,7 +1,7 @@
 <%-- 
-    Document   : CreateReport1
-    Created on : 11-04-2016, 10:12:10
-    Author     : miaryvard
+    Document   : ViewReport1
+    Created on : 12-04-2016, 11:57:51
+    Author     : Lasse
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Indsæt bygnings ID</title>
+        <title>Indsæt Rapport ID</title>
         <style>
             h1 {
 
@@ -34,12 +34,13 @@
         </style>
     </head>
     <body>
-        <h1>Indtast bygningsID</h1>
+        <h1>Indtast rapport ID</h1>
         <form action="Servlet" method="GET">
-            Bygnings-ID: 
-            <input type='number' name='buildingID'/>
-            <input type="hidden" name="do_this" value="createBuilding_BuildingID">
+            Rapport ID: 
+            <input type='number' name='repID'/>
+            <input type="hidden" name="do_this" value="viewReport">
             <input type="submit" value="OK" />
         </form>
     </body>
 </html>
+
