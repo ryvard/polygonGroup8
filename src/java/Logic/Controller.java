@@ -9,6 +9,7 @@ import Domain.Building;
 import Domain.ContactPerson;
 import Domain.Customer;
 import Domain.Facade;
+import Domain.Report;
 import java.util.ArrayList;
 
 /**
@@ -70,6 +71,12 @@ public class Controller implements IController {
     public Building getBuildingFromID(int buildingID)
     {
         return facade.getBuildingFromID(buildingID);
+    }
+    
+    @Override
+    public Report viewReport()
+    {
+        return null;
     }
 
 }

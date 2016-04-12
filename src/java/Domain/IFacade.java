@@ -24,5 +24,7 @@ public interface IFacade
     public ArrayList<ContactPerson> getContactPersonList();
     
     public Building getBuildingFromID(int buildingID);
+    
+    public Report viewReport();
    
 }

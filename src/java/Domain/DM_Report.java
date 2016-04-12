@@ -5,6 +5,10 @@
  */
 package Domain;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
 /**
  *
  * @author miaryvard
@@ -78,6 +82,33 @@ public class DM_Report
         
         DatabaseConnector db_Connect = DatabaseConnector.getInstance();
         db_Connect.updateData(query);
+    }
+    
+    public ArrayList<Report> viewReport()
+    {
+        ArrayList<Report> reports = new ArrayList();
+        String query = "SELECT * FROM report;";
+
+        DatabaseConnector db_Connect = DatabaseConnector.getInstance();
+        ResultSet res = db_Connect.getData(query);
+
+        try
+        {
+            System.out.println("res er forskellig fra null: "+(res !=null));
+            while (res.next())
+            {
+                //Report report = new Report(res.getInt(1), res.getString(4), 
+                //        res.getString(5), res.getString(6), (res.getInt(7)), 
+                //        res.getInt(7), res.getInt(8), res.getDouble(9), 
+                //        res.getString(10), res.getInt(2), res.getInt(3));
+                //reports.add(report);
+            }
+            return reports;
+        } catch (SQLException ex)
+        {
+            System.out.println("viewReport - " + ex);
+        }
+        return null;
     }
     
 }

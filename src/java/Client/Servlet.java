@@ -111,18 +111,42 @@ public class Servlet extends HttpServlet
                     forward(request, response, "/CreateReport.jsp");
                     break;
 
-                case "ViewReport":
+                /*case "ViewReport":
                     int repID = Integer.parseInt(request.getParameter("repID"));
+                    session.setAttribute("reportNumber", repID);
 
-                    String rBName = con.getBuildingFromID(repID).getBuildingName();
-                    //session.setAttribute("bName", bName);
-                    session.setAttribute("rBName", rBName);
+                    String rBName
+                            = //Metodekald her
+                            session.setAttribute("rBName", rBName);
 
-                    String rStreet = con.getBuildingFromID(repID).getStreetName();
-                    session.setAttribute("rStreet", rStreet);
+                    int rDate
+                            = //Metodekald her
+                            session.setAttribute("rDate", rDate);
+
+                    String rStreet
+                            = //Metodekald her
+                            session.setAttribute("rStreet", rStreet);
+                    
+                    String rStreetNumb
+                            = //Metodekald her
+                            session.setAttribute("rStreetNumb", rStreetNumb);
+                    
+                    String rCity
+                            = //Metodekald her
+                            session.setAttribute("rCity", rCity);
+                    
+                    int rZip
+                            = //Metodekald her
+                            session.setAttribute("rZip", rZip);
+                    
+                    int rBuildyear
+                            = //Metodekald her
+                            session.setAttribute("rBuildyear", rBuildyear);
+                    
+                    
 
                     forward(request, response, "/ViewReport.jsp");
-                    break;
+                    break;*/
 
                 case "Tilføj lokale":
 

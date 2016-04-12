@@ -50,4 +50,10 @@ public class Facade implements IFacade
     {
         return dm_building.getBuildingFromID(buildingID);
     }
+    
+    @Override
+    public Report viewReport()
+    {
+        return null;
+    }
 }
