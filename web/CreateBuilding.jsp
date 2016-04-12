@@ -37,11 +37,14 @@
         </style>
     </head>
     <body>
+        
         <h1>Opret din bygning</h1>
         <br>
         <div>Udfyld venligst felterne nedenfor for at oprette en kontaktperson, hvis dette ikke er allerede gjort</div>
         <form action="Servlet" method="GET">
+            
             <input type="hidden" name="do_this" value="createContactPerson">
+
         <table cellpadding="3">
                 <tr>
                     <td colspan="2" style="font-weight: bold;">Kontaktperson information:</td>
@@ -73,8 +76,15 @@
         </table> 
         <br>
         <div>Udfyld venligst felterne nedenfor for at oprette din bygning.</div>
-        <form action="Servlet" method="POST">
-            <input type="hidden" name="do_this" value="createBuilding">
+        <form action="CreateBuilding.jsp" method="GET">
+                                <%
+            if(request.getParameter("do_this")!=null&&request.getParameter("do_this").equals("createBuilding"))
+            {
+                getServletContext().getRequestDispatcher("/Servlet").forward(request, response);
+            }
+            %>
+           
+           
             <table cellpadding="3">
                 <tr>
                     <td>Bygningsnavn:</td>
@@ -96,7 +106,30 @@
                     <td>Byggeår:</td>
                     <td><input type="text" name="yearOfConst"</td>
                 </tr>
+            </table>
+              <%
+                int floor = request.getParameter("addFloor")==null?1:Integer.parseInt(request.getParameter("addFloor"));
+                
+                for (int i = 0; i < floor; i++)
+                {
+            %>
+            <table>
                 <tr>
+                    <td>Etage</td>
+                <td><input type="number" name="floorNumber" value="<%=request.getParameter("squareM"+i)==null?"":request.getParameter("floor"+i)%>" min="-10" max="50"></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><input type="text" name="<%="squareM"+i%>" value="<%=request.getParameter("squareM"+i)==null?"":request.getParameter("floor"+i)%>" /></td>
+                </tr>
+                
+            </table>
+            <%
+                    }
+            %>
+             
+            <input type="hidden" name="addFloor" value="<%=floor+1%>"/>
+            <input type="submit"  name="do_this" value="Tilføj etage" />
+            <table>
                     <td>Bygningsareal:</td>
                     <td><input type="text" name="squareM"></td>    
                 </tr>
@@ -117,6 +150,7 @@
                     <td><input type="text" name="CPID"</td>
                 </tr>
             </table>
+             <input type="hidden" name="do_this" value="createBuilding">
             <input type="submit" value="Opret bygning">
         </form>
     </body>

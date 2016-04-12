@@ -61,6 +61,7 @@ public class Servlet extends HttpServlet
                     String buildingUse = request.getParameter("buildingUse");
                     int custID = Integer.parseInt(request.getParameter("custID"));
                     int CPID = Integer.parseInt(request.getParameter("CPID"));
+                    
 // int CPID = ????  First Name, lastname, phone og mail
                     con.createBuilding(buildingName, street, streetNo, city, zipcode, yearOfCon, squareM, buildingUse, custID, CPID);
                     System.out.println("servlet");
