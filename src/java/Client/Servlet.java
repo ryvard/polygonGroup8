@@ -18,12 +18,14 @@ import Logic.Controller;
 import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author emmablomsterberg
  */
+@WebServlet()
 public class Servlet extends HttpServlet
 {
 
@@ -104,6 +106,7 @@ public class Servlet extends HttpServlet
 
                 case "createBuilding_BuildingID":
                     int ID = Integer.parseInt(request.getParameter("buildingID"));
+                    session.setAttribute("ID", ID);
 
                     String bName = con.getBuildingFromID(ID).getBuildingName();
                     session.setAttribute("bName", bName);
@@ -132,6 +135,51 @@ public class Servlet extends HttpServlet
                     forward(request, response, "/CreateReport.jsp");
                     break;
 
+                
+
+                case "Tilføj lokale":
+
+                case "Gem rapport":
+                    System.out.println("hejhej servlet");
+                    getServletContext().getRequestDispatcher("/index.html").forward(request, response);
+                    
+                    int buildingID = Integer.parseInt(request.getParameter("buildingID"));
+                    //int eID = ;
+                    String rDate = request.getParameter("date");
+                    String bCondition = request.getParameter("condition");
+                    System.out.println("condition: "+ bCondition);
+                    
+//                    String reportNumber = request.getParameter("reportNumber");
+//                    String date = request.getParameter("date");
+//                    int squareMeter = Integer.parseInt(request.getParameter("squareMeter"));
+//                    String buildingUseability = request.getParameter("buildingUseability");
+//                    String roof = request.getParameter("roof");
+//                    String roofPicture = request.getParameter("roofPicture");
+//                    String outerwalls = request.getParameter("outerwalls");
+//                    String outerwallsPicture = request.getParameter("outerwallsPicture");
+//                    
+//                    ArrayList<Conclusion> conclusions = new ArrayList();
+//                    for (int i = 0; i < 9; i++)
+//                    {
+//                        Integer room = Integer.parseInt(request.getParameter("conclusionRoom" + i));
+//                        String rec = request.getParameter("recommendation" + i);
+//                        if (room == null || rec == "" || rec == null)
+//                        {
+//                            break;
+//                        } else
+//                        {
+//                            Conclusion conclusion = new Conclusion(room, rec);
+//                            conclusions.add(conclusion);
+//                        }
+//                    }
+//                    
+//                    String reviewedBy = request.getParameter("reviewedBy");
+//                    String collaboration = request.getParameter("collaboration");
+//                    int condition = Integer.parseInt(request.getParameter("condition"));
+//                    System.out.println("servlet");
+                    break;
+                    
+                    
                      /*
                 case "ViewReport":
                     int repID = Integer.parseInt(request.getParameter("repID"));
@@ -180,46 +228,24 @@ public class Servlet extends HttpServlet
                     String rOuterwalls
                             = //Metodekald her
                             session.setAttribute("rOuterwalls", rOuterwalls);
+                    
+                    String rReviewedBy
+                            = //Metodekald her
+                            session.setAttribute("rReviewedBy", rReviewedBy);
+                    
+                    String rCollaboration
+                            = //Metodekald her
+                            session.setAttribute("rCollaboration", rCollaboration);
+                    
+                    String rTilstandsgrad
+                            = //Metodekald her
+                            session.setAttribute("rTilstandsgrad", rTilstandsgrad);
 
                     //Hvordan gør vi med flere lokaler?
                     //Hvordan gør vi med konklusioner og anbefalinger?
                     forward(request, response, "/ViewReport.jsp");
                     break;
                       */
-
-                case "Tilføj lokale":
-
-                case "Gem rapport":
-                    getServletContext().getRequestDispatcher("index.html").forward(request, response);
-//                    String reportNumber = request.getParameter("reportNumber");
-//                    String date = request.getParameter("date");
-//                    int squareMeter = Integer.parseInt(request.getParameter("squareMeter"));
-//                    String buildingUseability = request.getParameter("buildingUseability");
-//                    String roof = request.getParameter("roof");
-//                    String roofPicture = request.getParameter("roofPicture");
-//                    String outerwalls = request.getParameter("outerwalls");
-//                    String outerwallsPicture = request.getParameter("outerwallsPicture");
-//                    
-//                    ArrayList<Conclusion> conclusions = new ArrayList();
-//                    for (int i = 0; i < 9; i++)
-//                    {
-//                        Integer room = Integer.parseInt(request.getParameter("conclusionRoom" + i));
-//                        String rec = request.getParameter("recommendation" + i);
-//                        if (room == null || rec == "" || rec == null)
-//                        {
-//                            break;
-//                        } else
-//                        {
-//                            Conclusion conclusion = new Conclusion(room, rec);
-//                            conclusions.add(conclusion);
-//                        }
-//                    }
-//                    
-//                    String reviewedBy = request.getParameter("reviewedBy");
-//                    String collaboration = request.getParameter("collaboration");
-//                    int condition = Integer.parseInt(request.getParameter("condition"));
-//                    System.out.println("servlet");
-                    break;
 
                 case "createContactPerson":
                     String cpFirstName = request.getParameter("cpFirstName");

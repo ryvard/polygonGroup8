@@ -11,7 +11,6 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <!-- hej hej -->
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Opret rapport</title>
         <style>
@@ -34,6 +33,10 @@
             table {
                 font-size: 75%;
             }
+            th
+            {
+                width: 200px;
+            }
             td
             {
                 width: 125px;
@@ -48,6 +51,7 @@
         </style>
     </head>
     <body>
+        <input type="hidden" name="buildingID" value="<%=session.getAttribute("ID")%>"/>
         <%
             if (request.getParameter("do_this") != null && request.getParameter("do_this").equals("Gem rapport"))
             {
@@ -57,8 +61,8 @@
         <form action="CreateReport.jsp" method="GET">
             <table>
                 <tr>
-                    <td align="left"><input type="text" name="reportNumber" title="Rapport nr.:" style="color:#888;" 
-                                            value="Rapport nr.:" onfocus="inputFocus(this)" onblur="inputBlur(this)"> </td>
+                    <td align="left"><input type="text" name="reportNumber" placeholder="Raport nr." 
+                                            value="Rapport nr.:"/> </td>
                 </tr>
             </table>
 
@@ -105,7 +109,7 @@
                 <div style="width:500px;height:100px;border:1px solid #000;">(Indsæt billede af bygning udefra)</div>
                 <br>
                 <tr>
-                <div>Generel information om bygningen</div>
+                <h2>Generel information om bygningen</h2>
                 <br> 
                 <td>Byggeår</td>
                 </tr>
@@ -145,7 +149,7 @@
             <table>
                 <tr>
                 <br>
-                <div>Gennemgang af bygning udvendig</div>
+                <h2>Gennemgang af bygning udvendig</h2>
                 <br>
                 </tr>
 
@@ -156,6 +160,7 @@
                     <td align="right">Billede</td>
                     <td><input type="file"/></td>
                     <td><input type="checkbox" name="roofPicture" value="ON" /></td>
+                    
                     
                 </tr>
 
@@ -189,7 +194,7 @@
                                     </table>
                                     <br>
                                     <table cellpadding="5">
-                                        <tr><td colspan="2"><h2>Skade og reperation</h2></td></tr>
+                                        <tr><td colspan="2"><h2>Skade og reparation</h2></td></tr>
                                         <tr>
                                             <td>Har der været skade i lokalet?</td>
                                             <td><select name="<%="damageInRoom" + i%>" 
@@ -217,7 +222,7 @@
                                                        value="<%=request.getParameter("what" + i) == null ? "" : request.getParameter("what" + i)%>" /></td>
                                         </tr>
                                         <tr>
-                                            <td>Hvad er repereret</td>
+                                            <td>Hvad er repareret</td>
                                             <td><input type="text" name="<%="repaired" + i%>"style="width: 400px;"
                                                        value="<%=request.getParameter("repaired" + i) == null ? "" : request.getParameter("repaired" + i)%>" /></td>
                                         </tr>
@@ -270,16 +275,14 @@
                                                        value="<%=request.getParameter("doorNote" + i) == null ? "" : request.getParameter("doorNote" + i)%>"/></td>
                                         </tr>
                                         <tr>
-                                            <td><input type="text" name="<%="otherPart1" + i%>" style="color:#888;"
-                                                       value="<%=request.getParameter("otherPart1" + i) == null ? "Andet:" : request.getParameter("otherPart1" + i)%>"
-                                                       onfocus="inputFocus(this)" onblur="inputBlur(this)"/></td>
+                                            <td><input type="text" name="<%="otherPart1" + i%>" placeholder="Andet"
+                                                       value="<%=request.getParameter("otherPart1" + i) == null ? "" : request.getParameter("otherPart1" + i)%>"/></td>
                                             <td><input type="text" name="<%="otherNote1" + i%>" style="width: 400px;"
                                                        value="<%=request.getParameter("otherNote1" + i) == null ? "" : request.getParameter("otherNote1" + i)%>"/></td>
                                         </tr>
                                         <tr>
-                                            <td><input type="text" name="<%="otherPart2" + i%>" style="color:#888;"
-                                                       value="<%=request.getParameter("otherPart2" + i) == null ? "Andet:" : request.getParameter("otherPart2" + i)%>"
-                                                       onfocus="inputFocus(this)" onblur="inputBlur(this)"/></td>
+                                            <td><input type="text" name="<%="otherPart2" + i%>" placeholder="Andet"
+                                                       value="<%=request.getParameter("otherPart2" + i) == null ? "" : request.getParameter("otherPart2" + i)%>"/></td>
                                             <td><input type="text" name="<%="otherNote2" + i%>" style="width: 400px;"
                                                        value="<%=request.getParameter("otherNote2" + i) == null ? "" : request.getParameter("otherNote2" + i)%>"/></td>
                                         </tr>
@@ -327,92 +330,43 @@
                                     <input type="submit"  name="do_this" value="Tilføj lokale" />
 
                                     <br><br>
+                                    
+                                    <p>Bygningsgennemgangen er foretaget af <input type="text" name="reviewedBy">, Polygon<br>
+                                        i samarbejde med <input type="text" name="collaborator">(bygningsansvarlig).</p>
 
-                                    <table>
-                                        <br>
-                                        <tr>
-                                            <td>Bygningsgennemgangen er foretaget af</td>
-                                            <td><input type="text" name="reviewedBy"></td>
-                                            <td>, Polygon</td>
-                                        </tr>
-                                        <tr>
-                                            <td>i samarbejde med</td>
-                                            <td><input type="text" name="collaboration"></td>
-                                            <td> (bygningsansvarlig).</td>
-                                        </tr>
-                                    </table>
+                                    <br><br>
 
-                                    <br>
-                                    <table style="border: 1px solid black; border-collapse: collapse;">
+                                    <h2>Bygningen er kategoriseret som</h2>
+                                    <table style="border: 1px solid black; " padding="5">
                                         <tr>
-                                            <th style="text-align: left; border: 1px solid black">Tilstand</th>
-                                            <th style="text-align: left; border: 1px solid black">Beskrivelse af bygningen</th>
-                                            <th style="text-align: left; border: 1px solid black">Funktion af bygningen</th>
-                                            <th style="text-align: left; border: 1px solid black">Tilstandsgrad</th>
-                                        </tr>
-                                    <%
-                                        Controller cntr = new Controller();
-                                        ArrayList<Condition> conditions = cntr.getConditions();
-                                        int i = 0;
-                                        for (Condition c : conditions)
-                                        {
-                                    %>
+                                            <th style="text-align: center; border: 1px solid black; width:auto ;">Tilstand</th>
+                                            <th style="text-align: center; border: 1px solid black">Beskrivelse af bygningen</th>
+                                            <th style="text-align: center; border: 1px solid black">Funktion af bygningen</th>
+                                            <th style="text-align: center; border: 1px solid black; width:25px;">Tilstandsgrad</th>
+                                        </tr> 
+
+
+                                        <%
+                                            Controller cntr = new Controller();
+                                            ArrayList<Condition> conditions = cntr.getConditions();
+                                            int i = 0;
+                                            for (Condition c : conditions)
+                                            {
+                                        %>
                                         <tr>
-                                            
-                                            <td><%=c.getCondition()%></td>
+
+                                            <td style="text-align: center;"><%="Tilstandsgrad "+c.getCondition()%></td>
                                             <td><%=c.getDescription()%></td>
                                             <td><%=c.getFunction()%></td>
-                                            <td><input type="radio" name="condition" value="<%=i%>"/></td>
+                                            <td style="text-align: center;"><input type="radio" name="condition" value="<%=i%>"/></td>
                                         </tr>
-                                    <%
-                                            i++;
-                                        }
-                                    %>
+                                        <%
+                                                i++;
+                                            }
+                                        %>
                                     </table>
 
-
-                                    <br>
-
-                                    <div>Bygningen er kategoriseret som</div>
-
-                                    <table ">
-                                        <br>
-                                        <tr>
-                                            
-                                        </tr>
-
-                                        <tr>
-                                            <td><input style="width: 105px; font-weight: bold "type="text" value="Tilstandsgrad 0" 
-                                                       readonly="readonly"</td>
-                                            <td><input style="width: 205px;"type="text" value="Bygningsdelen er ny og som bygget"></td>
-                                            <td><input style="width: 185px;" type="text" value="Funktionen er som beskrevet"></td>
-                                            <td><input type="checkbox" name="condition" value="0" style="width: 100px;"></td>
-                                        </tr>
-
-                                        <tr>
-                                            <td><input style="width: 105px; font-weight: bold " type="text" value="Tilstandsgrad 1" 
-                                                       readonly="readonly"</td>
-                                            <td><input style="width: 205px;"type="text" value=""></td>
-                                            <td><input style="width: 185px;" type="text" value=""></td>
-                                            <td><input type="checkbox" name="condition" value="1" style="width: 100px;"></td>
-                                        </tr>
-
-                                        <tr>
-                                            <td><input style="width: 105px; font-weight: bold " type="text" value="Tilstandsgrad 2" 
-                                                       readonly="readonly"</td>
-                                            <td><input style="width: 205px;"type="text" value=""></td>
-                                            <td><input style="width: 185px;" type="text" value=""></td>
-                                            <td><input type="checkbox" name="condition" value="2" style="width: 100px;"></td>
-                                        </tr>
-
-                                        <tr>
-                                            <td><input style="width: 105px; font-weight: bold " type="text" value="Tilstandsgrad 3" 
-                                                       readonly="readonly"</td>
-                                            <td><input style="width: 205px;"type="text" value=""></td>
-                                            <td><input style="width: 185px;" type="text" value=""></td>
-                                            <td><input type="checkbox" name="condition" value="3" style="width: 100px;"></td>
-                                        </tr>
-                                    </table>
+                                    <br><br>
 
                                     <p style="font-size: 70%;">
                                         Denne rapport og bygningsgennegang er lavet for at klarlægge umiddelbare

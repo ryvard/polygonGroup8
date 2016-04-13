@@ -47,7 +47,6 @@ public class DM_Report
         String query = "INSERT INTO(RoomID, RepID, Part, Note)  "
                 + "VALUES()";
         
-        
         DatabaseConnector db_Connect = DatabaseConnector.getInstance();
         db_Connect.updateData(query);
     }
@@ -126,8 +125,8 @@ public class DM_Report
             {
                 Condition condition = new Condition(res.getInt(1), res.getString(2), res.getString(3));
                 conditions.add(condition);
-                return conditions;
             }
+            return conditions;
         } catch (SQLException ex)
         {
             System.out.println("getCondition sql ex: " + ex);
