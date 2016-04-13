@@ -61,7 +61,7 @@ public class Servlet extends HttpServlet
                     String buildingUse = request.getParameter("buildingUse");
                     int custID = Integer.parseInt(request.getParameter("custID"));
                     int CPID = Integer.parseInt(request.getParameter("CPID"));
-                    
+
 // int CPID = ????  First Name, lastname, phone og mail
                     con.createBuilding(buildingName, street, streetNo, city, zipcode, yearOfCon, squareM, buildingUse, custID, CPID);
                     System.out.println("servlet");
@@ -111,43 +111,60 @@ public class Servlet extends HttpServlet
                     forward(request, response, "/CreateReport.jsp");
                     break;
 
-                /*case "ViewReport":
+                     /*
+                case "ViewReport":
                     int repID = Integer.parseInt(request.getParameter("repID"));
                     session.setAttribute("reportNumber", repID);
 
                     String rBName
-                            = Metodekald her
+                            = //Metodekald her
                             session.setAttribute("rBName", rBName);
 
                     int rDate
-                            = Metodekald her
+                            = //Metodekald her 
                             session.setAttribute("rDate", rDate);
 
                     String rStreet
-                            = Metodekald her
+                            = //Metodekald her 
                             session.setAttribute("rStreet", rStreet);
-                    
-                    String rStreetNumb
-                            = Metodekald her
-                            session.setAttribute("rStreetNumb", rStreetNumb);
-                    
-                    String rCity
-                            = Metodekald her
-                            session.setAttribute("rCity", rCity);
-                    
-                    int rZip
-                            = Metodekald her
-                            session.setAttribute("rZip", rZip);
-                    
-                    int rBuildyear
-                            = Metodekald her
-                            session.setAttribute("rBuildyear", rBuildyear);
-                    
-                    int rSquareMeter = 
-                    session.setAttribute("rBuildyear", rBuildyear);
 
+                    String rStreetNumb
+                            = //Metodekald her
+                            session.setAttribute("rStreetNumb", rStreetNumb);
+
+                    String rCity
+                            = //Metodekald her
+                            session.setAttribute("rCity", rCity);
+
+                    int rZip
+                            = //Metodekald her
+                            session.setAttribute("rZip", rZip);
+
+                    int rBuildyear
+                            = //Metodekald her
+                            session.setAttribute("rBuildyear", rBuildyear);
+
+                    int rSquareMeter
+                            = //Metodekald her
+                            session.setAttribute("rSquareMeter", rSquareMeter);
+
+                    String rUse
+                            = //Metodekald her
+                            session.setAttribute("rUse", rUse);
+
+                    String rRoof
+                            = //Metodekald her
+                            session.setAttribute("rRoof", rRoof);
+
+                    String rOuterwalls
+                            = //Metodekald her
+                            session.setAttribute("rOuterwalls", rOuterwalls);
+
+                    //Hvordan gør vi med flere lokaler?
+                    //Hvordan gør vi med konklusioner og anbefalinger?
                     forward(request, response, "/ViewReport.jsp");
-                    break;*/
+                    break;
+                      */
 
                 case "Tilføj lokale":
 
