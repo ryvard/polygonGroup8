@@ -150,7 +150,7 @@
                 <br>
                 <table cellpadding="5">
                     <tr>
-                        <td><h2>Lokale nr.<h2></td>
+                        <td><h2>Lokale nr.</h2></td>
                                     <td><input type="number" name="<%="room" + i%>" style="width: 50px;"
                                                value="<%=request.getParameter("room" + i) == null ? "" : request.getParameter("room" + i)%>" /></td>
                                     </tr>
@@ -299,12 +299,12 @@
                                         <br>
                                         <tr>
                                             <td>Bygningsgennemgangen er foretaget af</td>
-                                            <td><input type="text" name="reviewedBy" value="rReviewdBy"></td>
+                                            <td><input type="text" name="reviewedBy" value="<%=session.getAttribute("rReviewdBy")%>"></td>
                                             <td>, Polygon</td>
                                         </tr>
                                         <tr>
                                             <td>i samarbejde med</td>
-                                            <td><input type="text" name="collaboration" value="rCollaboration"></td>
+                                            <td><input type="text" name="collaboration" value="<%=session.getAttribute("rCollaboration")%>"></td>
                                             <td> (bygningsansvarlig).</td>
                                         </tr>
                                     </table>
@@ -312,6 +312,11 @@
                                     <br>
 
                                     <div>Bygningen er kategoriseret som</div>
+                                    <br>
+                                    <div>Tilstandsgrad</div>
+                                    <br>
+                                    <td><input style="width: 105px; font-weight: bold " type="text" value="<%=session.getAttribute("rTilstandsgrad")%>" 
+                                                       readonly="readonly"</td></table>
 
                                     <table style="border: 1px solid black; border-collapse: collapse;">
                                         <br>
