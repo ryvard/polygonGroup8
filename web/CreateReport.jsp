@@ -154,7 +154,9 @@
                     <td><input type="text" name="roof" style="width: 300px;"
                                value="<%=request.getParameter("roof") == null ? "" : request.getParameter("roof")%>"/></td>
                     <td align="right">Billede</td>
+                    <td><input type="file"/></td>
                     <td><input type="checkbox" name="roofPicture" value="ON" /></td>
+                    
                 </tr>
 
                 <tr>
@@ -162,7 +164,10 @@
                     <td><input type="text" name="outerwalls" style="width: 300px;"
                                <%=request.getParameter("outerwalls") == null ? "" : request.getParameter("outerwalls")%>/></td>
                     <td align="right">Billede</td>
+                    <td><input type="file"/></td>
+                    
                     <td><input type="checkbox" name="outerwallsPicture" value="ON" /></td>
+                    
                 </tr>
             </table>
 
