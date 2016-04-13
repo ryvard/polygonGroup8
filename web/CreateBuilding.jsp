@@ -130,7 +130,7 @@
             
             <table cellpadding="3">
                     <td>Bygningsareal:</td>
-                    <td><input type="text" name="squareM" value="<%=request.getParameter("squareM")==null?"":request.getParameter("squareM")%>"></td>    
+                    <td><input type="text" name="squareMTotal" value="<%=request.getParameter("squareM")==null?"":request.getParameter("squareM")%>"></td>    
                 </tr>
                 <tr>
                     <td>Billede:</td>

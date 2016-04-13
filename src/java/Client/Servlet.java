@@ -7,6 +7,7 @@ package Client;
 
 import Domain.Conclusion;
 import Domain.ContactPerson;
+import Domain.Floor;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -59,13 +60,33 @@ public class Servlet extends HttpServlet
                     int zipcode = Integer.parseInt(request.getParameter("zipcode"));
                     String city = request.getParameter("city");
                     int yearOfCon = Integer.parseInt(request.getParameter("yearOfConst"));
-                    double squareM = Double.parseDouble(request.getParameter("squareM"));
+                    double squareMTotal = Double.parseDouble(request.getParameter("squareMTotal"));
                     String buildingUse = request.getParameter("buildingUse");
                     int custID = Integer.parseInt(request.getParameter("custID"));
                     int CPID = Integer.parseInt(request.getParameter("CPID"));
-
+                    
 // int CPID = ????  First Name, lastname, phone og mail
-                    con.createBuilding(buildingName, street, streetNo, city, zipcode, yearOfCon, squareM, buildingUse, custID, CPID);
+                    con.createBuilding(buildingName, street, streetNo, city, zipcode, yearOfCon, squareMTotal, buildingUse, custID, CPID);
+                    int lastBuilding = con.getBuildingList().size()-1;
+                    int buildingID = con.getBuildingList().get(lastBuilding).getBuildingID();
+                    ArrayList<Floor> floors = new ArrayList();
+                    
+                    int floorMax = 150;
+                    int floorMin = -10;
+                    for (int i = floorMin; i < floorMax; i++) {
+                        
+                        int floor = Integer.parseInt(request.getParameter("floor" + i));
+                        double squareMFloor = Double.parseDouble(request.getParameter("squareM"+i));
+                        
+                        if (floor == 0 || squareMFloor == 0)
+                        {
+                            break;
+                        } else
+                        {
+                            Floor f = new Floor(buildingID,floor, squareMFloor);
+                            floors.add(f);
+                        }
+                    }
                     System.out.println("servlet");
                     break;
 
