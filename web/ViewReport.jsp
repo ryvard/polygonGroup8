@@ -137,7 +137,7 @@
                     <td><input type="checkbox" name="outerwallsPicture" value="ON" /></td>
                 </tr>
             </table>
-            <%--Side 2 skal vises med et for each loop hvor en side er et objekt med flere objekter i--%>
+            <%--Side 2 skal vises med et for each loop hvor én side er et objekt med flere objekter i--%>
 
             <%
                 int pages = request.getParameter("addRoom") == null ? 1 : Integer.parseInt(request.getParameter("addRoom"));
@@ -157,7 +157,7 @@
                                     </table>
                                     <br>
                                     <table cellpadding="5">
-                                        <tr><td colspan="2"><h2>Skade og reperation</h2></td></tr>
+                                        <tr><td colspan="2"><h2>Skade og reparation</h2></td></tr>
                                         <tr>
                                             <td>Har der været skade i lokalet?</td>
                                             <td><select name="damageInRoom">
@@ -184,7 +184,7 @@
                                                        value="<%=request.getParameter("what") == null ? "" : request.getParameter("what")%>" /></td>
                                         </tr>
                                         <tr>
-                                            <td>Hvad er repereret</td>
+                                            <td>Hvad er repareret</td>
                                             <td><input type="text" name="repaired" style="width: 400px;"
                                                        value="<%=request.getParameter("repaired") == null ? "" : request.getParameter("repaired")%>" /></td>
                                         </tr>
