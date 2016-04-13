@@ -11,7 +11,6 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <!-- hej hej -->
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Opret rapport</title>
         <style>
