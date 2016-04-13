@@ -184,44 +184,45 @@
                                         <tr><td colspan="2"><h2>Skade og reperation</h2></td></tr>
                                         <tr>
                                             <td>Har der været skade i lokalet?</td>
-                                            <td><select name="damageInRoom">
-                                                    <option>Nej</option>
-                                                    <option>Ja</option>
-                                                </select></td>
+                                            <td><select name="<%="damageInRoom" + i%>" 
+                                                        value="<%=request.getParameter("damageInRoom" + i) == null ? "" : request.getParameter("damageInRoom" + i)%>"/>
+                                        <option>Nej</option>
+                                        <option>Ja</option>
+                                        </select></td>
                                         </tr>
                                         <tr>
                                             <td colspan="2">Hvis ja udfyld venligst felterne nedenfor</td>
                                         </tr>
                                         <tr>
                                             <td>Hvornår</td>
-                                            <td><input type="text" name="when" style="width: 200px;"
-                                                       value="<%=request.getParameter("when") == null ? "" : request.getParameter("when")%>" /></td>
+                                            <td><input type="text" name="<%="when" + i%>" style="width: 200px;"
+                                                       value="<%=request.getParameter("when" + i) == null ? "" : request.getParameter("when" + i)%>" /></td>
                                         </tr>
                                         <tr>
                                             <td>Hvor</td>
-                                            <td><input type="text" name="where" style="width: 400px;"
-                                                       value="<%=request.getParameter("where") == null ? "" : request.getParameter("where")%>" /></td>
+                                            <td><input type="text" name="<%="where" + i%>" style="width: 400px;"
+                                                       value="<%=request.getParameter("where" + i) == null ? "" : request.getParameter("where" + i)%>" /></td>
                                         </tr>
                                         <tr>
                                             <td>Hvad er der sket</td>
-                                            <td><input type="text" name="what" style="width: 400px;"
-                                                       value="<%=request.getParameter("what") == null ? "" : request.getParameter("what")%>" /></td>
+                                            <td><input type="text" name="<%="what" + i%>" style="width: 400px;"
+                                                       value="<%=request.getParameter("what" + i) == null ? "" : request.getParameter("what" + i)%>" /></td>
                                         </tr>
                                         <tr>
                                             <td>Hvad er repereret</td>
-                                            <td><input type="text" name="repaired" style="width: 400px;"
-                                                       value="<%=request.getParameter("repaired") == null ? "" : request.getParameter("repaired")%>" /></td>
+                                            <td><input type="text" name="<%="repaired" + i%>"style="width: 400px;"
+                                                       value="<%=request.getParameter("repaired" + i) == null ? "" : request.getParameter("repaired" + i)%>" /></td>
                                         </tr>
                                         <tr>
                                             <td>Skade</td>
-                                            <td><input type="checkbox" name="damage" value="" />Fugt<br>
-                                                <input type="checkbox" name="damage" value="ON" />Råd og svamp<br>
-                                                <input type="checkbox" name="damage" value="skimmel" />Skimmel<br>
-                                                <input type="checkbox" name="damage" value="brand" />Brand<br>
+                                            <td><input type="checkbox" name="<%="damage" + i%>" value="moist" />Fugt<br>
+                                                <input type="checkbox" name="<%="damage" + i%>" value="rotAndMold" />Råd og svamp<br>
+                                                <input type="checkbox" name="<%="damage" + i%>" value="mold" />Skimmel<br>
+                                                <input type="checkbox" name="<%="damage" + i%>" value="fire" />Brand<br>
 
                                                 Anden skade:
-                                                <input type="text" name="otherDamage" style="width: 250px;"
-                                                       value="<%=request.getParameter("otherDamage") == null ? "" : request.getParameter("otherDamage")%>" />
+                                                <input type="text" name="<%="otherDamage" + i%>" style="width: 250px;"
+                                                       value="<%=request.getParameter("otherDamage" + i) == null ? "" : request.getParameter("otherDamage" + i)%>" />
                                             </td>
                                         </tr>
                                     </table>
@@ -237,42 +238,42 @@
                                         </tr>
                                         <tr>
                                             <td>Vægge</td>
-                                            <td><input type="text" name="wallNote" style="width: 400px;"
-                                                       value="<%=request.getParameter("wallNote") == null ? "" : request.getParameter("wallNote")%>"/></td>
+                                            <td><input type="text" name="<%="wallNote" + i%>" style="width: 400px;"
+                                                       value="<%=request.getParameter("wallNote" + i) == null ? "" : request.getParameter("wallNote" + i)%>"/></td>
                                         </tr>
                                         <tr>
                                             <td>Loft</td>
-                                            <td><input type="text" name="ceilingNote" style="width: 400px;"
-                                                       value="<%=request.getParameter("ceilingNote") == null ? "" : request.getParameter("ceilingNote")%>"/></td>
+                                            <td><input type="text" name="<%="ceilingNote" + i%>" style="width: 400px;"
+                                                       value="<%=request.getParameter("ceilingNote" + i) == null ? "" : request.getParameter("ceilingNote" + i)%>"/></td>
                                         </tr>
                                         <tr>
                                             <td>Gulv</td>
-                                            <td><input type="text" name="floorNote" style="width: 400px;"
-                                                       value="<%=request.getParameter("floorNote") == null ? "" : request.getParameter("floorNote")%>"/></td>
+                                            <td><input type="text" name="<%="floorNote" + i%>" style="width: 400px;"
+                                                       value="<%=request.getParameter("floorNote" + i) == null ? "" : request.getParameter("floorNote" + i)%>"/></td>
                                         </tr>
                                         <tr>
                                             <td>Vinduer</td>
-                                            <td><input type="text" name="windowNote" style="width: 400px;"
-                                                       value="<%=request.getParameter("windowNote") == null ? "" : request.getParameter("windowNote")%>"/></td>
+                                            <td><input type="text" name="<%="windowNote" + i%>" style="width: 400px;"
+                                                       value="<%=request.getParameter("windowNote" + i) == null ? "" : request.getParameter("windowNote" + i)%>"/></td>
                                         </tr>
                                         <tr>
                                             <td>Døre</td>
-                                            <td><input type="text" name="doorNote" style="width: 400px;"
-                                                       value="<%=request.getParameter("doorNote") == null ? "" : request.getParameter("doorNote")%>"/></td>
+                                            <td><input type="text" name="<%="doorNote" + i%>" style="width: 400px;"
+                                                       value="<%=request.getParameter("doorNote" + i) == null ? "" : request.getParameter("doorNote" + i)%>"/></td>
                                         </tr>
                                         <tr>
-                                            <td><input type="text" name="otherPart1" style="color:#888;"
-                                                       value="<%=request.getParameter("otherPart1") == null ? "Andet:" : request.getParameter("otherPart1")%>"
+                                            <td><input type="text" name="<%="otherPart1" + i%>" style="color:#888;"
+                                                       value="<%=request.getParameter("otherPart1" + i) == null ? "Andet:" : request.getParameter("otherPart1" + i)%>"
                                                        onfocus="inputFocus(this)" onblur="inputBlur(this)"/></td>
-                                            <td><input type="text" name="otherNote1" style="width: 400px;"
-                                                       value="<%=request.getParameter("otherNote1") == null ? "" : request.getParameter("otherNote1")%>"/></td>
+                                            <td><input type="text" name="<%="otherNote1" + i%>" style="width: 400px;"
+                                                       value="<%=request.getParameter("otherNote1" + i) == null ? "" : request.getParameter("otherNote1" + i)%>"/></td>
                                         </tr>
                                         <tr>
-                                            <td><input type="text" name="otherPart2" style="color:#888;"
-                                                       value="<%=request.getParameter("otherPart2") == null ? "Andet:" : request.getParameter("otherPart2")%>"
+                                            <td><input type="text" name="<%="otherPart2" + i%>" style="color:#888;"
+                                                       value="<%=request.getParameter("otherPart2" + i) == null ? "Andet:" : request.getParameter("otherPart2" + i)%>"
                                                        onfocus="inputFocus(this)" onblur="inputBlur(this)"/></td>
-                                            <td><input type="text" name="otherNote2" style="width: 400px;"
-                                                       value="<%=request.getParameter("otherNote2") == null ? "" : request.getParameter("otherNote2")%>"/></td>
+                                            <td><input type="text" name="<%="otherNote2" + i%>" style="width: 400px;"
+                                                       value="<%=request.getParameter("otherNote2" + i) == null ? "" : request.getParameter("otherNote2" + i)%>"/></td>
                                         </tr>
                                     </table>
                                     <br><br>
@@ -282,19 +283,19 @@
                                         </tr>
                                         <tr>
                                             <td colspan="2">Er der foretaget fugtscanning</td>
-                                            <td><select name="moistScanCompletet">
-                                                    <option>Nej</option>
-                                                    <option>Ja</option>
-                                                </select>
-                                            </td>
+                                            <td><select name="<%="moistScanCompletet" + i%>"/>
+                                        <option>Nej</option>
+                                        <option>Ja</option>
+                                        </select>
+                                        </td>
                                         </tr>
                                         <tr>
                                             <td>Fugtscaning</td>
-                                            <td><input type="text" name="moistScan" style="width: 100px"
-                                                       value="<%=request.getParameter("moistScan") == null ? "" : request.getParameter("moistScan")%>"/></td>
+                                            <td><input type="text" name="<%="moistScan" + i%>" style="width: 100px"
+                                                       value="<%=request.getParameter("moistScan" + i) == null ? "" : request.getParameter("moistScan" + i)%>"/></td>
                                             <td>Målepunkt</td>
-                                            <td><input type="text" name="measurePoint" style="width: 100px"
-                                                       value="<%=request.getParameter("measurePoint") == null ? "" : request.getParameter("measurePoint")%>"/></td>
+                                            <td><input type="text" name="<%="measurePoint" + i%>" style="width: 100px"
+                                                       value="<%=request.getParameter("measurePoint" + i) == null ? "" : request.getParameter("measurePoint" + i)%>"/></td>
                                         </tr>
                                     </table>
                                     <br><br>
@@ -304,8 +305,8 @@
                                         </tr>
                                         <tr>
                                             <td>Anbefaling</td>
-                                            <td><input type="text" name="recommendation" style="width: 400px;"
-                                                       value="<%=request.getParameter("recommentdation") == null ? "" : request.getParameter("recommendation")%>"/></td>
+                                            <td><input type="text" name="<%="recommendation" + i%>" style="width: 400px;"
+                                                       value="<%=request.getParameter("recommendation" + i) == null ? "" : request.getParameter("recommendation" + i)%>"/></td>
                                         </tr>
                                     </table>
                                     </div>
@@ -379,24 +380,19 @@
                                         </tr>
                                     </table>
 
-                                    <p style="font-size: 70%;">Denne rapport og bygningsgennegang er lavet for at klarlægge umiddelbare
-                                        visuelle problemstillinger. Vores formål er at sikre, at <br> bygningens anvendelse kan opretholdes. 
-                                        Vi udbedre ikke skader som en del af bygningesgennemgangen/rapporten. Gennemgangen <br> af bygningen
-                                        indeholder ikke fugtmålinger af hele bygningen, men vi kan foretage fugtscanninger enkelte steder i 
-                                        bygningen, hvis vi <br> finder det nødvendigt. Hvis vi finder kritiske områder i bygningen vil vi 
-                                        fremlægge anbefalinger angående yderligere tiltag så som <br> yderligere undersøgelser, reparationer
-                                        eller bygningsopdateringer.
-                                        <br>
-                                        <br>
-                                        Bemærk at vi skal have adgang til hele bygningen for at kunne udføre fuld gennemgang (dette inkluderer
-                                        adgang til tag, tagrum, <br> kælder, krybekælder eller andre aflukkede områder). Denne bygningesgennemgang
-                                        er ikke-destruktiv. Hvis der skal laves destruktive <br> indgreb, skal dette først godkendes af de 
-                                        bygningsansvarlige. Destruktive indgreb er ikke en del af denne rapport eller <br> bygningsgennemgang.
-                                        <br>
-                                        <br>
-                                        Den bygningsansvarlige skal udlevere plantegning over bygningen inden bygningsgennemgangen kan foretages.</p>
-
-
+                                    <p style="font-size: 70%;">
+                                        Denne rapport og bygningsgennegang er lavet for at klarlægge umiddelbare
+                                        visuelle problemstillinger. Vores formål er at sikre, at <br> 
+                                        bygningens anvendelse kan opretholdes. Vi udbedre ikke skader som en del af bygningesgennemgangen/rapporten. Gennemgangen <br> 
+                                        af bygningen indeholder ikke fugtmålinger af hele bygningen, men vi kan foretage fugtscanninger enkelte steder i bygningen, hvis vi <br> 
+                                        finder det nødvendigt. Hvis vi finder kritiske områder i bygningen vil vi fremlægge anbefalinger angående yderligere tiltag så som <br> 
+                                        yderligere undersøgelser, reparationer eller bygningsopdateringer. <br><br>
+                                        Bemærk at vi skal have adgang til hele bygningen for at kunne udføre fuld gennemgang (dette inkluderer adgang til tag, tagrum, <br> 
+                                        kælder, krybekælder eller andre aflukkede områder). Denne bygningesgennemgang er ikke-destruktiv. Hvis der skal laves destruktive <br> 
+                                        indgreb, skal dette først godkendes af de bygningsansvarlige. Destruktive indgreb er ikke en del af denne rapport eller <br> 
+                                        bygningsgennemgang.<br><br>
+                                        Den bygningsansvarlige skal udlevere plantegning over bygningen inden bygningsgennemgangen kan foretages.
+                                    </p>
                                     <input type="submit" name="do_this" value="Gem rapport">
                                     </form>
                                     </body>
