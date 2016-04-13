@@ -157,6 +157,7 @@
                     <td><input type="file"/></td>
                     <td><input type="checkbox" name="roofPicture" value="ON" /></td>
                     
+                    
                 </tr>
 
                 <tr>
