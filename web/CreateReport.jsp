@@ -4,6 +4,9 @@
     Author     : Lasse
 --%>
 
+<%@page import="Domain.Condition"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="Logic.Controller"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -340,16 +343,42 @@
                                     </table>
 
                                     <br>
-
-                                    <div>Bygningen er kategoriseret som</div>
-
                                     <table style="border: 1px solid black; border-collapse: collapse;">
-                                        <br>
                                         <tr>
                                             <th style="text-align: left; border: 1px solid black">Tilstand</th>
                                             <th style="text-align: left; border: 1px solid black">Beskrivelse af bygningen</th>
                                             <th style="text-align: left; border: 1px solid black">Funktion af bygningen</th>
                                             <th style="text-align: left; border: 1px solid black">Tilstandsgrad</th>
+                                        </tr>
+                                    <%
+                                        Controller cntr = new Controller();
+                                        ArrayList<Condition> conditions = cntr.getConditions();
+                                        int i = 0;
+                                        for (Condition c : conditions)
+                                        {
+                                    %>
+                                        <tr>
+                                            
+                                            <td><%=c.getCondition()%></td>
+                                            <td><%=c.getDescription()%></td>
+                                            <td><%=c.getFunction()%></td>
+                                            <td><input type="radio" name="condition" value="<%=i%>"/></td>
+                                        </tr>
+                                    <%
+                                            i++;
+                                        }
+                                    %>
+                                    </table>
+
+
+                                    <br>
+
+                                    <div>Bygningen er kategoriseret som</div>
+
+                                    <table ">
+                                        <br>
+                                        <tr>
+                                            
                                         </tr>
 
                                         <tr>

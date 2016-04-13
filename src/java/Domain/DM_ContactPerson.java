@@ -22,6 +22,7 @@ public class DM_ContactPerson {
         String query = "INSERT INTO ContactPerson(CPFirstName,CPLastName) VALUES('" + cp.getCPFirstName()
                 + "','" + cp.getCPLastName() + "');";
         
+        
         DatabaseConnector db_Connect = DatabaseConnector.getInstance();
         db_Connect.updateData(query);
         
@@ -32,6 +33,24 @@ public class DM_ContactPerson {
         int cpID = getCPID(cp.getCPFirstName(), cp.getCPLastName());
         
         return cpID;
+    }
+    
+    public void createContactPersonInfo(ContactPerson cp) {
+        try {
+            
+            String queryEmail = "INSERT INTO CPMail(CPID,CPMail) VALUES('" + getCPID(cp.getCPFirstName(),cp.getCPLastName())
+                    + "','" + cp.getEmail() +"');";
+            
+            String queryPhone = "INSERT INTO CPPhone(CPID,CPPhone) VALUES('" + getCPID(cp.getCPFirstName(), cp.getCPLastName())
+                    + "','" + cp.getPhone() +"');";
+            
+            DatabaseConnector db_Connect = DatabaseConnector.getInstance();
+            db_Connect.updateData(queryEmail);
+            db_Connect.updateData(queryPhone);
+            
+        } catch(Exception e) {
+            System.out.println("" + e);
+        }
     }
     
     public ArrayList<ContactPerson> getContactPersonList() {
@@ -80,4 +99,6 @@ public class DM_ContactPerson {
         return 0;
         
     }
+   
+    
 }
