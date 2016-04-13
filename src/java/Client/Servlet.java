@@ -215,6 +215,10 @@ public class Servlet extends HttpServlet
                     String rCollaboration
                             = //Metodekald her
                             session.setAttribute("rCollaboration", rCollaboration);
+                    
+                    String rTilstandsgrad
+                            = //Metodekald her
+                            session.setAttribute("rTilstandsgrad", rTilstandsgrad);
 
                     //Hvordan gør vi med flere lokaler?
                     //Hvordan gør vi med konklusioner og anbefalinger?
