@@ -299,12 +299,12 @@
                                         <br>
                                         <tr>
                                             <td>Bygningsgennemgangen er foretaget af</td>
-                                            <td><input type="text" name="reviewedBy"></td>
+                                            <td><input type="text" name="reviewedBy" value="rReviewdBy"></td>
                                             <td>, Polygon</td>
                                         </tr>
                                         <tr>
                                             <td>i samarbejde med</td>
-                                            <td><input type="text" name="collaboration"></td>
+                                            <td><input type="text" name="collaboration" value="rCollaboration"></td>
                                             <td> (bygningsansvarlig).</td>
                                         </tr>
                                     </table>
