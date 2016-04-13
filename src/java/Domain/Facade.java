@@ -81,4 +81,10 @@ public class Facade implements IFacade
     {
         return dm_employee.getEID(firstName, lastName);
     }
+
+    @Override
+    public Employee getEmployeeFromEID(int eID)
+    {
+        return dm_employee.getEmployeeFromEID(eID);
+    }
 }

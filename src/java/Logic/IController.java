@@ -8,6 +8,7 @@ package Logic;
 import Domain.Building;
 import Domain.Condition;
 import Domain.ContactPerson;
+import Domain.Employee;
 import Domain.Report;
 import java.util.ArrayList;
 
@@ -24,7 +25,6 @@ public interface IController
         
         
         public void createCustomer(String name, String type, String streetName, String streetNo, int zipcode, String contactName, String phone, String mail);
-        
         
         public void createReport(String reportNumber, String date, int squareMeter, String buildingUseability, String roof, String roofPicture, String outerwalls, String outerwallsPicture, Object conclusion, String reviewedBy, String collaboration, int condition);
     /*
@@ -53,4 +53,6 @@ public interface IController
         public int getCPID(String firstName, String lastName);
     
         public int getEID(String firstName, String lastName);
+        
+        public Employee getEmployeeFromEID(int eID);
 }

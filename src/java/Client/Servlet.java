@@ -8,6 +8,7 @@ package Client;
 import Domain.Conclusion;
 import Domain.ContactPerson;
 import Domain.Floor;
+import Domain.Report;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -140,24 +141,27 @@ public class Servlet extends HttpServlet
                 case "Tilføj lokale":
 
                 case "Gem rapport":
-                    System.out.println("hejhej servlet");
-                    getServletContext().getRequestDispatcher("/index.html").forward(request, response);
+                    String message = "";
                     
+                    // save in report table 
                     int rBuildingID = Integer.parseInt(request.getParameter("buildingID"));
-                    System.out.println("b ID --- "+rBuildingID);
                     
                     String eFirstName = request.getParameter("eFirstName");
                     String eLastName = request.getParameter("eLastName");
-                    int eID = ;
-                    
-                    String cpFirstName = request.getParameter("cpFirstName");
-                    String cpLastName = request.getParameter("cpLastName");
-                    int cpID = ;
+                    int eID = con.getEID(eFirstName, eLastName);
+                    if(eID==0)
+                    {   
+                        message = "Fejl i eID";
+                    }
                     
                     String rDate = request.getParameter("date");
                     
-                    String bCondition = request.getParameter("condition");
-                    System.out.println("condition: "+ bCondition);
+                    int bCondition = Integer.parseInt(request.getParameter("condition"));
+                    
+                    Report report = new Report(rDate, con.getBuildingFromID(rBuildingID), con.getEmployeeFromEID(eID), bCondition);
+                    
+                    
+                    getServletContext().getRequestDispatcher("/index.html").forward(request, response);
                     
 //                    String reportNumber = request.getParameter("reportNumber");
 //                    String date = request.getParameter("date");

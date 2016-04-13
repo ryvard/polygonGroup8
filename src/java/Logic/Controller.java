@@ -9,6 +9,7 @@ import Domain.Building;
 import Domain.Condition;
 import Domain.ContactPerson;
 import Domain.Customer;
+import Domain.Employee;
 import Domain.Facade;
 import Domain.Report;
 import java.util.ArrayList;
@@ -103,5 +104,13 @@ public class Controller implements IController {
     {
         return facade.getEID(firstName, lastName);
     }
+
+    @Override
+    public Employee getEmployeeFromEID(int eID)
+    {
+        return facade.getEmployeeFromEID(eID);
+    }
+    
+    
 
 }

@@ -30,18 +30,6 @@ public class Report
     
     int condition;
 
-    public int getCondition()
-    {
-        return condition;
-    }
-
-    public void setCondition(int condition)
-    {
-        this.condition = condition;
-    }
-    
-    
-    
     /*
     String roofNote;
     String outerWallNote;
@@ -55,6 +43,15 @@ public class Report
         this.building = building;
         this.employee = employee;
     }
+
+    public Report(String date, Building building, Employee employee, int condition)
+    {
+        this.date = date;
+        this.building = building;
+        this.employee = employee;
+        this.condition = condition;
+    }
+    
 
     public Employee getEmployee()
     {
@@ -95,6 +92,15 @@ public class Report
     {
         this.building = building;
     }
-   
+     public int getCondition()
+    {
+        return condition;
+    }
+
+    public void setCondition(int condition)
+    {
+        this.condition = condition;
+    }
+    
     
 }

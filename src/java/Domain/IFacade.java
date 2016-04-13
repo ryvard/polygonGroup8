@@ -31,7 +31,11 @@ public interface IFacade
    
     public void createContactPersonInfo(ContactPerson cp);
     
+    
+    // MIA brugt til create report
     public int getCPID(String firstName, String lastName);
     
     public int getEID(String firstName, String lastName);
+    
+    public Employee getEmployeeFromEID(int eID);
 }
