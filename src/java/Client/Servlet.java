@@ -159,6 +159,14 @@ public class Servlet extends HttpServlet
                     String rOuterwalls
                             = //Metodekald her
                             session.setAttribute("rOuterwalls", rOuterwalls);
+                    
+                    String rReviewedBy
+                            = //Metodekald her
+                            session.setAttribute("rReviewedBy", rReviewedBy);
+                    
+                    String rCollaboration
+                            = //Metodekald her
+                            session.setAttribute("rCollaboration", rCollaboration);
 
                     //Hvordan gør vi med flere lokaler?
                     //Hvordan gør vi med konklusioner og anbefalinger?
