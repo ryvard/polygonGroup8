@@ -51,7 +51,7 @@
         </style>
     </head>
     <body>
-        <input type="hidden" name="buildingID" value="<%=session.getAttribute("ID")%>"/>
+
         <%
             if (request.getParameter("do_this") != null && request.getParameter("do_this").equals("Gem rapport"))
             {
@@ -59,6 +59,7 @@
             }
         %>
         <form action="CreateReport.jsp" method="GET">
+            <input type="hidden" name="buildingID" value="<%=session.getAttribute("ID")%>"/>
             <table>
                 <tr>
                     <td align="left"><input type="text" name="reportNumber" placeholder="Raport nr." 
@@ -160,8 +161,8 @@
                     <td align="right">Billede</td>
                     <td><input type="file"/></td>
                     <td><input type="checkbox" name="roofPicture" value="ON" /></td>
-                    
-                    
+
+
                 </tr>
 
                 <tr>
@@ -170,9 +171,9 @@
                                <%=request.getParameter("outerwalls") == null ? "" : request.getParameter("outerwalls")%>/></td>
                     <td align="right">Billede</td>
                     <td><input type="file"/></td>
-                    
+
                     <td><input type="checkbox" name="outerwallsPicture" value="ON" /></td>
-                    
+
                 </tr>
             </table>
 
@@ -330,9 +331,19 @@
                                     <input type="submit"  name="do_this" value="Tilføj lokale" />
 
                                     <br><br>
-                                    
-                                    <p>Bygningsgennemgangen er foretaget af <input type="text" name="reviewedBy">, Polygon<br>
-                                        i samarbejde med <input type="text" name="collaborator">(bygningsansvarlig).</p>
+
+                                    <p>Bygningsgennemgangen er foretaget af 
+                                        <input type="text" name="eFirstName" placeholder="Fornavn"
+                                               value="<%=request.getParameter("eFirstName") == null ? "" : request.getParameter("eFirstName")%>"/>
+                                        <input type="text" name="eLastName" placeholder="Efternavn"
+                                               value="<%=request.getParameter("eLastName") == null ? "" : request.getParameter("eLastName")%>"/>
+                                        , Polygon<br>
+                                        i samarbejde med 
+                                        <input type="text" name="cpFirstName" placeholder="Fornavn"
+                                               value="<%=request.getParameter("cpFirstName") == null ? "" : request.getParameter("cpFirstName")%>"/>
+                                        <input type="text" name="CPLastName" placeholder="Efternavn"
+                                               value="<%=request.getParameter("cpLastName") == null ? "" : request.getParameter("cpLastName")%>"/>
+                                        (bygningsansvarlig).</p>
 
                                     <br><br>
 
@@ -355,7 +366,7 @@
                                         %>
                                         <tr>
 
-                                            <td style="text-align: center;"><%="Tilstandsgrad "+c.getCondition()%></td>
+                                            <td style="text-align: center;"><%="Tilstandsgrad " + c.getCondition()%></td>
                                             <td><%=c.getDescription()%></td>
                                             <td><%=c.getFunction()%></td>
                                             <td style="text-align: center;"><input type="radio" name="condition" value="<%=i%>"/></td>

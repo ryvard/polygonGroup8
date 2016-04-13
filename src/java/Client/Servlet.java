@@ -123,8 +123,18 @@ public class Servlet extends HttpServlet
                     getServletContext().getRequestDispatcher("/index.html").forward(request, response);
                     
                     int buildingID = Integer.parseInt(request.getParameter("buildingID"));
-                    //int eID = ;
+                    System.out.println("b ID --- "+buildingID);
+                    
+                    String eFirstName = request.getParameter("eFirstName");
+                    String eLastName = request.getParameter("eLastName");
+                    int eID = ;
+                    
+                    String cpFirstName = request.getParameter("cpFirstName");
+                    String cpLastName = request.getParameter("cpLastName");
+                    int cpID = ;
+                    
                     String rDate = request.getParameter("date");
+                    
                     String bCondition = request.getParameter("condition");
                     System.out.println("condition: "+ bCondition);
                     
