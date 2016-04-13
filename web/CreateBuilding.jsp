@@ -56,14 +56,14 @@
                     <td>Efternavn:</td>
                     <td><input type="text" name="cpLastName"</td>
                 </tr>
-                <%--
+                
                 <tr>
                     <td>Tel/mobil:</td>
                     <td><input type="text" name="cpPhone"</td>
                     <td>E-mail:</td>
                     <td><input type="text" name="cpEmail"</td>
                 </tr>
-                --%>
+                
             </table>
             <input type="submit" value="Opret kontaktperson">
             </form>
@@ -108,12 +108,12 @@
                 </tr>
             </table>
                <%
-                int pages = request.getParameter("addFloor")==null?1:Integer.parseInt(request.getParameter("addFloor"));
+                int floor = request.getParameter("addFloor")==null?1:Integer.parseInt(request.getParameter("addFloor"));
                 
-                for (int i = 0; i < pages; i++)
+                for (int i = 0; i < floor; i++)
                 {
             %>
-            <table>
+            <table cellpadding="3">
                 <tr>
                     <td>Etage</td>
                     <td><input type="number" name="<%="floor"+i%>" value="<%=request.getParameter("floor"+i)==null?"":request.getParameter("floor"+i)%>" min="-10" max="50" </td>
@@ -125,10 +125,10 @@
                     }
             %>
              
-            <input type="hidden" name="addFloor" value="<%=pages+1%>"/>
+            <input type="hidden" name="addFloor" value="<%=floor+1%>"/>
             <input type="submit"  name="do_this" value="Tilføj etage" />
             
-            <table>
+            <table cellpadding="3">
                     <td>Bygningsareal:</td>
                     <td><input type="text" name="squareM" value="<%=request.getParameter("squareM")==null?"":request.getParameter("squareM")%>"></td>    
                 </tr>

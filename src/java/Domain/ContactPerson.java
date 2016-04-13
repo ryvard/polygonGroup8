@@ -14,13 +14,17 @@ public class ContactPerson {
     int cpID;
     String firstName;
     String lastName;
+    String email;
+    String phone;
     
     /* Contructor for creating contactperson */
     
-    public ContactPerson(String cpFirstName, String cpLastName) {
+    public ContactPerson(String cpFirstName, String cpLastName, String email, String phone) {
         
         this.firstName = cpFirstName;
         this.lastName = cpLastName;
+        this.email = email;
+        this.phone = phone;
     }
     
     
@@ -38,6 +42,22 @@ public class ContactPerson {
     
     public void setCPLastName(String cpLastName) {
         this.lastName = cpLastName;
+    }
+    
+    public String getEmail() {
+        return email;
+    }
+    
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    
+    public String getPhone() {
+        return phone;
+    }
+    
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
     
     /* Constructor for displaying contactperson */
