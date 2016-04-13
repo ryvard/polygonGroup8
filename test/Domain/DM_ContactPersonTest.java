@@ -44,7 +44,7 @@ public class DM_ContactPersonTest {
     @Test
     public void testCreateContactPerson() {
         System.out.println("createContactPerson");
-        ContactPerson cp = new ContactPerson("Lasse","Blomsterberg");
+        ContactPerson cp = new ContactPerson("Lasse","Blomsterberg", "lh@hotmail.com", "38291019");
         DM_ContactPerson instance = new DM_ContactPerson();
         int index = instance.getContactPersonList().size()-1;
         int expResult = instance.getContactPersonList().get(index).getCPID();
@@ -61,7 +61,7 @@ public class DM_ContactPersonTest {
     public void testGetContactPersonList() {
         System.out.println("getContactPersonList");
         DM_ContactPerson instance = new DM_ContactPerson();
-        ContactPerson cp = new ContactPerson("Cecillie", "Nielsen");
+        ContactPerson cp = new ContactPerson("Cecillie", "Nielsen", "cn@hotmail.com", "328304021");
         instance.createContactPerson(cp);
         ArrayList<ContactPerson> expList = new ArrayList();
         expList.add(cp);
