@@ -51,6 +51,7 @@
         </style>
     </head>
     <body>
+        <input type="hidden" name="buildingID" value="<%=session.getAttribute("ID")%>"/>
         <%
             if (request.getParameter("do_this") != null && request.getParameter("do_this").equals("Gem rapport"))
             {
