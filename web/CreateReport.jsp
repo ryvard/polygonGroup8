@@ -218,7 +218,7 @@
                                                        value="<%=request.getParameter("what" + i) == null ? "" : request.getParameter("what" + i)%>" /></td>
                                         </tr>
                                         <tr>
-                                            <td>Hvad er repereret</td>
+                                            <td>Hvad er repareret</td>
                                             <td><input type="text" name="<%="repaired" + i%>"style="width: 400px;"
                                                        value="<%=request.getParameter("repaired" + i) == null ? "" : request.getParameter("repaired" + i)%>" /></td>
                                         </tr>
