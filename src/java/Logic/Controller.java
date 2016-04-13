@@ -58,8 +58,8 @@ public class Controller implements IController {
 
 
     @Override
-    public int createContactPerson(String cpFirstName, String cpLastName) {
-        ContactPerson cp = new ContactPerson(cpFirstName, cpLastName);
+    public int createContactPerson(String cpFirstName, String cpLastName, String email, String phone) {
+        ContactPerson cp = new ContactPerson(cpFirstName, cpLastName, email, phone);
         return facade.createContactPerson(cp);
     }
 
@@ -86,6 +86,10 @@ public class Controller implements IController {
         return facade.getConditions();
     }
     
-    
+    @Override
+    public void createContactPersonInfo(String firstName, String lastName,String mail,String phone) {
+        ContactPerson cp = new ContactPerson(firstName, lastName, mail, phone);
+        facade.createContactPersonInfo(cp);
+    }
 
 }

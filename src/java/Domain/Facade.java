@@ -63,4 +63,9 @@ public class Facade implements IFacade
     {
         return dm_report.getConditions();
     }
+    
+    @Override
+    public void createContactPersonInfo(ContactPerson cp) {
+        dm_cp.createContactPersonInfo(cp);
+    } 
 }

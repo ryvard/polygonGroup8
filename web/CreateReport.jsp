@@ -157,7 +157,10 @@
                     <td><input type="text" name="roof" style="width: 300px;"
                                value="<%=request.getParameter("roof") == null ? "" : request.getParameter("roof")%>"/></td>
                     <td align="right">Billede</td>
+                    <td><input type="file"/></td>
                     <td><input type="checkbox" name="roofPicture" value="ON" /></td>
+                    
+                    
                 </tr>
 
                 <tr>
@@ -165,7 +168,10 @@
                     <td><input type="text" name="outerwalls" style="width: 300px;"
                                <%=request.getParameter("outerwalls") == null ? "" : request.getParameter("outerwalls")%>/></td>
                     <td align="right">Billede</td>
+                    <td><input type="file"/></td>
+                    
                     <td><input type="checkbox" name="outerwallsPicture" value="ON" /></td>
+                    
                 </tr>
             </table>
 
@@ -215,7 +221,7 @@
                                                        value="<%=request.getParameter("what" + i) == null ? "" : request.getParameter("what" + i)%>" /></td>
                                         </tr>
                                         <tr>
-                                            <td>Hvad er repereret</td>
+                                            <td>Hvad er repareret</td>
                                             <td><input type="text" name="<%="repaired" + i%>"style="width: 400px;"
                                                        value="<%=request.getParameter("repaired" + i) == null ? "" : request.getParameter("repaired" + i)%>" /></td>
                                         </tr>
