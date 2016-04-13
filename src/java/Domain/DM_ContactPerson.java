@@ -81,7 +81,7 @@ public class DM_ContactPerson {
         return null;
     }
     
-    private int getCPID(String firstName, String lastName) {
+    public int getCPID(String firstName, String lastName) {
         
         String query = "SELECT CPID FROM PolygonGroup8.ContactPerson WHERE CPFirstName ='"+ firstName+"' AND CPLastName='"+ lastName + "';";
         
@@ -99,6 +99,8 @@ public class DM_ContactPerson {
         return 0;
         
     }
+    
+    
    
     
 }

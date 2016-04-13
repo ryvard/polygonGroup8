@@ -30,4 +30,8 @@ public interface IFacade
     public ArrayList<Condition> getConditions();
    
     public void createContactPersonInfo(ContactPerson cp);
+    
+    public int getCPID(String firstName, String lastName);
+    
+    public int getEID(String firstName, String lastName);
 }

@@ -92,4 +92,16 @@ public class Controller implements IController {
         facade.createContactPersonInfo(cp);
     }
 
+    @Override
+    public int getCPID(String firstName, String lastName)
+    {
+        return facade.getCPID(firstName, lastName);
+    }
+
+    @Override
+    public int getEID(String firstName, String lastName)
+    {
+        return facade.getEID(firstName, lastName);
+    }
+
 }

@@ -46,4 +46,11 @@ public interface IController
         public ArrayList<Condition> getConditions();
          
         
+        
+        /*
+        * Used when creating the report
+        */
+        public int getCPID(String firstName, String lastName);
+    
+        public int getEID(String firstName, String lastName);
 }

@@ -17,6 +17,7 @@ public class Facade implements IFacade
     DM_Customer dm_customer = new DM_Customer();
     DM_ContactPerson dm_cp = new DM_ContactPerson();
     DM_Report dm_report = new DM_Report();
+    DM_Employee dm_employee = new DM_Employee();
     
     @Override
     public void createBuilding(Building building)
@@ -68,4 +69,16 @@ public class Facade implements IFacade
     public void createContactPersonInfo(ContactPerson cp) {
         dm_cp.createContactPersonInfo(cp);
     } 
+
+    @Override
+    public int getCPID(String firstName, String lastName)
+    {
+        return dm_cp.getCPID(firstName, lastName);
+    }
+
+    @Override
+    public int getEID(String firstName, String lastName)
+    {
+        return dm_employee.getEID(firstName, lastName);
+    }
 }

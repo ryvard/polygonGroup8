@@ -143,8 +143,8 @@ public class Servlet extends HttpServlet
                     System.out.println("hejhej servlet");
                     getServletContext().getRequestDispatcher("/index.html").forward(request, response);
                     
-                    int buildingID = Integer.parseInt(request.getParameter("buildingID"));
-                    System.out.println("b ID --- "+buildingID);
+                    int rBuildingID = Integer.parseInt(request.getParameter("buildingID"));
+                    System.out.println("b ID --- "+rBuildingID);
                     
                     String eFirstName = request.getParameter("eFirstName");
                     String eLastName = request.getParameter("eLastName");
