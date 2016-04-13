@@ -29,4 +29,5 @@ public interface IFacade
     
     public ArrayList<Condition> getConditions();
    
+    public void createContactPersonInfo(ContactPerson cp);
 }

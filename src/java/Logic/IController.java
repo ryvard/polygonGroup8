@@ -35,7 +35,9 @@ public interface IController
         
         public Building getBuildingFromID(int buildingID);
         
-        public int createContactPerson(String cpFirstName, String cpLastName);
+        public int createContactPerson(String cpFirstName, String cpLastName, String mail, String phone);
+        
+        public void createContactPersonInfo(String firstName, String lastName, String mail, String phone);
         
         public ArrayList<ContactPerson> getContactPersonList();
         

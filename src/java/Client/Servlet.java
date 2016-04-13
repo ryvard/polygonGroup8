@@ -203,8 +203,11 @@ public class Servlet extends HttpServlet
                 case "createContactPerson":
                     String cpFirstName = request.getParameter("cpFirstName");
                     String cpLastName = request.getParameter("cpLastName");
-                    int cpID = con.createContactPerson(cpFirstName, cpLastName);
+                    String cpEmail = request.getParameter("cpEmail");
+                    String cpPhone = request.getParameter("cpPhone");
+                    int cpID = con.createContactPerson(cpFirstName, cpLastName, cpEmail, cpPhone);
                     request.setAttribute("cpID", cpID);
+                    con.createContactPersonInfo(cpFirstName, cpLastName, cpEmail, cpPhone);
                     forward(request, response, "/CreateBuilding.jsp");
                     break;
 
