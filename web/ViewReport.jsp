@@ -140,11 +140,11 @@
             <%--Side 2 skal vises med et for each loop hvor én side er et objekt med flere objekter i--%>
 
             <%
-                int pages = request.getParameter("addRoom") == null ? 1 : Integer.parseInt(request.getParameter("addRoom"));
-
-                for (int i = 0; i < pages; i++)
-                {
-            %>
+                    /*Controller cntr = new Controller();
+                    ArrayList<Report> reports = cntr.getReportList
+                    for (Report r : reports)
+                    {*/
+                %>
             <br>
             <div  style="width:800px;height:1000px;border:1px solid #000; margin-left: 10px">
                 <br>
@@ -152,7 +152,7 @@
                     <tr>
                         <td><h2>Lokale nr.</h2></td>
                         <td><input type="number" name="<%="room" + i%>" style="width: 50px;"
-                                   value="<%=request.getParameter("room" + i) == null ? "" : request.getParameter("room" + i)%>" /></td>
+                                   value="<%=r.getRoom%>" /></td>
                     </tr>
                 </table>
                 <br>
