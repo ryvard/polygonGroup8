@@ -329,32 +329,32 @@
                 <tr>
                     <td><input style="width: 105px; font-weight: bold "type="text" value="Tilstandsgrad 0" 
                                readonly="readonly"</td>
-                    <td><input style="width: 205px;"type="text" value="Bygningsdelen er ny og som bygget"></td>
-                    <td><input style="width: 185px;" type="text" value="Funktionen er som beskrevet"></td>
+                    <td><input style="width: 205px;"type="text" value="<%--skal hentes fra database--%>"></td>
+                    <td><input style="width: 185px;" type="text" value="<%--skal hentes fra database--%>"></td>
                     <td><input type="checkbox" name="condition" value="0" style="width: 100px;"></td>
                 </tr>
 
                 <tr>
                     <td><input style="width: 105px; font-weight: bold " type="text" value="Tilstandsgrad 1" 
                                readonly="readonly"</td>
-                    <td><input style="width: 205px;"type="text" value=""></td>
-                    <td><input style="width: 185px;" type="text" value=""></td>
+                    <td><input style="width: 205px;"type="text" value="<%--skal hentes fra database--%>"></td>
+                    <td><input style="width: 185px;" type="text" value="<%--skal hentes fra database--%>"></td>
                     <td><input type="checkbox" name="condition" value="1" style="width: 100px;"></td>
                 </tr>
 
                 <tr>
                     <td><input style="width: 105px; font-weight: bold " type="text" value="Tilstandsgrad 2" 
                                readonly="readonly"</td>
-                    <td><input style="width: 205px;"type="text" value=""></td>
-                    <td><input style="width: 185px;" type="text" value=""></td>
+                    <td><input style="width: 205px;"type="text" value="<%--skal hentes fra database--%>"></td>
+                    <td><input style="width: 185px;" type="text" value="<%--skal hentes fra database--%>"></td>
                     <td><input type="checkbox" name="condition" value="2" style="width: 100px;"></td>
                 </tr>
 
                 <tr>
                     <td><input style="width: 105px; font-weight: bold " type="text" value="Tilstandsgrad 3" 
                                readonly="readonly"</td>
-                    <td><input style="width: 205px;"type="text" value=""></td>
-                    <td><input style="width: 185px;" type="text" value=""></td>
+                    <td><input style="width: 205px;"type="text" value="<%--skal hentes fra database--%>"></td>
+                    <td><input style="width: 185px;" type="text" value="<%--skal hentes fra database--%>"></td>
                     <td><input type="checkbox" name="condition" value="3" style="width: 100px;"></td>
                 </tr>
             </table>
