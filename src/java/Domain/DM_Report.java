@@ -8,6 +8,8 @@ package Domain;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -110,5 +112,28 @@ public class DM_Report
         }
         return null;
     }
+    
+    public ArrayList<Condition> getConditions()
+    {
+        String query = "SELECT * FROM BuildCondition;";
+        
+        DatabaseConnector db_Connect = DatabaseConnector.getInstance();
+        ResultSet res = db_Connect.getData(query);
+        ArrayList<Condition> conditions = new ArrayList();
+        try
+        {
+            while(res.next())
+            {
+                Condition condition = new Condition(res.getInt(1), res.getString(2), res.getString(3));
+                conditions.add(condition);
+                return conditions;
+            }
+        } catch (SQLException ex)
+        {
+            System.out.println("getCondition sql ex: " + ex);
+        }
+        return null;
+    }
+    
     
 }

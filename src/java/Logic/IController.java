@@ -6,6 +6,7 @@
 package Logic;
 
 import Domain.Building;
+import Domain.Condition;
 import Domain.ContactPerson;
 import Domain.Report;
 import java.util.ArrayList;
@@ -39,6 +40,8 @@ public interface IController
         public ArrayList<ContactPerson> getContactPersonList();
         
         public Report viewReport();
+        
+        public ArrayList<Condition> getConditions();
          
         
 }

@@ -6,6 +6,7 @@
 package Logic;
 
 import Domain.Building;
+import Domain.Condition;
 import Domain.ContactPerson;
 import Domain.Customer;
 import Domain.Facade;
@@ -78,5 +79,13 @@ public class Controller implements IController {
     {
         return null;
     }
+
+    @Override
+    public ArrayList<Condition> getConditions()
+    {
+        return facade.getConditions();
+    }
+    
+    
 
 }

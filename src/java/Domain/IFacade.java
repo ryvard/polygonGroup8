@@ -26,5 +26,7 @@ public interface IFacade
     public Building getBuildingFromID(int buildingID);
     
     public Report viewReport();
+    
+    public ArrayList<Condition> getConditions();
    
 }

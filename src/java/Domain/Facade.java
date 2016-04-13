@@ -16,6 +16,7 @@ public class Facade implements IFacade
     DM_Building dm_building = new DM_Building();
     DM_Customer dm_customer = new DM_Customer();
     DM_ContactPerson dm_cp = new DM_ContactPerson();
+    DM_Report dm_report = new DM_Report();
     
     @Override
     public void createBuilding(Building building)
@@ -55,5 +56,11 @@ public class Facade implements IFacade
     public Report viewReport()
     {
         return null;
+    }
+
+    @Override
+    public ArrayList<Condition> getConditions()
+    {
+        return dm_report.getConditions();
     }
 }
