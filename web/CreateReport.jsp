@@ -168,7 +168,7 @@
                 <tr>
                     <td>Ydervægge</td>
                     <td><input type="text" name="outerwalls" style="width: 300px;"
-                               <%=request.getParameter("outerwalls") == null ? "" : request.getParameter("outerwalls")%>/></td>
+                               value="<%=request.getParameter("outerwalls") == null ? "" : request.getParameter("outerwalls")%>"/></td>
                     <td align="right">Billede</td>
                     <td><input type="file"/></td>
 
