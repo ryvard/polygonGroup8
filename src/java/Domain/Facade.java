@@ -93,4 +93,11 @@ public class Facade implements IFacade
     {
         dm_report.createReportInDB(r);
     }
+
+    @Override
+    public ContactPerson getCPFromCPID(int CPID)
+    {
+       return dm_cp.getCPFromCPID(CPID);
+    }
+ 
 }

@@ -40,4 +40,6 @@ public interface IFacade
     public Employee getEmployeeFromEID(int eID);
     
     public void createReportInDB(Report r);
+    
+    public ContactPerson getCPFromCPID(int CPID);
 }

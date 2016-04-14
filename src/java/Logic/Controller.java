@@ -116,6 +116,12 @@ public class Controller implements IController {
     {
         facade.createReportInDB(r);
     }
+
+    @Override
+    public ContactPerson getCPFromCPID(int CPID)
+    {
+        return facade.getCPFromCPID(CPID);
+    }
     
     
 

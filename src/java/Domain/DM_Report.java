@@ -25,6 +25,7 @@ public class DM_Report
     
     private void insertDataInReportTable(Report r)
     {
+        System.out.println("HEJ HEJ MIA");
         String query = "INSERT INTO Report(BuildingID, EID, RDate, BCondition)"
                 + "VALUES('"+ r.getBuilding().getBuildingID()+"','"
                 + r.getEmployee().geteID() +"','" + r.getDate() +"','"

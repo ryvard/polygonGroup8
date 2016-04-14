@@ -340,9 +340,9 @@
                                         , Polygon<br>
                                         i samarbejde med 
                                         <input type="text" name="cpFirstName" placeholder="Fornavn"
-                                               value="<%=request.getParameter("cpFirstName") == null ? "" : request.getParameter("cpFirstName")%>"/>
+                                               value="<%=request.getParameter("cpFirstName") == null ? session.getAttribute("cpFirstName") : request.getParameter("cpFirstName")%>"/>
                                         <input type="text" name="CPLastName" placeholder="Efternavn"
-                                               value="<%=request.getParameter("cpLastName") == null ? "" : request.getParameter("cpLastName")%>"/>
+                                               value="<%=request.getParameter("cpLastName") == null ? session.getAttribute("cpLastName") : request.getParameter("cpLastName")%>"/>
                                         (bygningsansvarlig).</p>
 
                                     <br><br>
