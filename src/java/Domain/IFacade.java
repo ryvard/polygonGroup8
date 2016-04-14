@@ -5,6 +5,7 @@
  */
 package Domain;
 
+import Logic.ReportErrorException;
 import java.util.ArrayList;
 
 /**
@@ -37,7 +38,9 @@ public interface IFacade
     
     public int getEID(String firstName, String lastName);
     
-    public Employee getEmployeeFromEID(int eID);
+    public Employee getEmployeeFromEID(int eID) throws ReportErrorException;
     
     public void createReportInDB(Report r);
+    
+    public ContactPerson getCPFromCPID(int CPID);
 }

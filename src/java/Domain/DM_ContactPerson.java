@@ -100,6 +100,24 @@ public class DM_ContactPerson {
         
     }
     
+    public ContactPerson getCPFromCPID(int cpID)
+    {
+        String query = "SELECT * FROM PolygonGroup8.ContactPerson WHERE CPID ='"+ cpID+"';";
+        
+        DatabaseConnector db_Connect = DatabaseConnector.getInstance();
+        ResultSet res = db_Connect.getData(query);
+        try {
+            res.next();
+            ContactPerson cp = new ContactPerson(res.getInt(1), res.getString(2), res.getString(3));
+            
+        return cp;
+        
+        } catch(SQLException ex) {
+            System.out.println("FEJL GetCPFromCPID " + ex);
+        }
+        return null;
+    }
+    
     
    
     

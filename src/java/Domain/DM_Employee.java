@@ -5,6 +5,7 @@
  */
 package Domain;
 
+import Logic.ReportErrorException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -35,7 +36,7 @@ public class DM_Employee
         return 0;
     }
 
-    public Employee getEmployeeFromEID(int eID)
+    public Employee getEmployeeFromEID(int eID) throws ReportErrorException
     {
         String query = "SELECT * FROM PolygonGroup8.Employees WHERE EID ='" + eID + "';";
         DatabaseConnector db_Connect = DatabaseConnector.getInstance();
@@ -46,14 +47,13 @@ public class DM_Employee
             res.next();
             System.out.println("farvel next");
             Employee employee = new Employee(res.getInt(1), res.getString(2), res.getString(3));
-
+            System.out.println("FEJL HEJ FARVEL");
             return employee;
 
         } catch (SQLException ex)
         {
-            System.out.println("FEJL getEmployeeFromEID" + ex);
+            throw new ReportErrorException("FEJL getEmployeeFromEID" + ex);
         }
-        return null;
     }
 
 }

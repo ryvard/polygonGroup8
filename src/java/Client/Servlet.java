@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import Logic.Controller;
+import Logic.ReportErrorException;
 import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -65,26 +66,27 @@ public class Servlet extends HttpServlet
                     String buildingUse = request.getParameter("buildingUse");
                     int custID = Integer.parseInt(request.getParameter("custID"));
                     int CPID = Integer.parseInt(request.getParameter("CPID"));
-                    
+
 // int CPID = ????  First Name, lastname, phone og mail
                     con.createBuilding(buildingName, street, streetNo, city, zipcode, yearOfCon, squareMTotal, buildingUse, custID, CPID);
-                    int lastBuilding = con.getBuildingList().size()-1;
+                    int lastBuilding = con.getBuildingList().size() - 1;
                     int buildingID = con.getBuildingList().get(lastBuilding).getBuildingID();
                     ArrayList<Floor> floors = new ArrayList();
-                    
+
                     int floorMax = 150;
                     int floorMin = -10;
-                    for (int i = floorMin; i < floorMax; i++) {
-                        
+                    for (int i = floorMin; i < floorMax; i++)
+                    {
+
                         int floor = Integer.parseInt(request.getParameter("floor" + i));
-                        double squareMFloor = Double.parseDouble(request.getParameter("squareM"+i));
-                        
+                        double squareMFloor = Double.parseDouble(request.getParameter("squareM" + i));
+
                         if (floor == 0 || squareMFloor == 0)
                         {
                             break;
                         } else
                         {
-                            Floor f = new Floor(buildingID,floor, squareMFloor);
+                            Floor f = new Floor(buildingID, floor, squareMFloor);
                             floors.add(f);
                         }                      
                     }
@@ -133,38 +135,53 @@ public class Servlet extends HttpServlet
                     String bUse = con.getBuildingFromID(ID).getBuildingUse();
                     session.setAttribute("bUse", bUse);
 
+                    int bCPID = con.getBuildingFromID(ID).getCPID();
+
+                    String bcpFirstName = con.getCPFromCPID(bCPID).getCPFirstName();
+                    session.setAttribute("cpFirstName", bcpFirstName);
+
+                    String bcpLastName = con.getCPFromCPID(bCPID).getCPLastName();
+                    session.setAttribute("cpLastName", bcpLastName);
+
                     forward(request, response, "/CreateReport.jsp");
                     break;
-
-                
 
                 case "Tilføj lokale":
 
                 case "Gem rapport":
-                    String message = "";
-                    
-                    // save in report table 
-                    int rBuildingID = Integer.parseInt(request.getParameter("buildingID"));
-                    
-                    String eFirstName = request.getParameter("eFirstName");
-                    String eLastName = request.getParameter("eLastName");
-                    int eID = con.getEID(eFirstName, eLastName);
-                    if(eID==0)
-                    {   
-                        message = "Fejl i eID";
+                    try
+                    {
+                        String message = "";
+
+                        // save in report table 
+                        int rBuildingID = Integer.parseInt(request.getParameter("buildingID"));
+
+                        String eFirstName = request.getParameter("eFirstName");
+                        String eLastName = request.getParameter("eLastName");
+                        int eID = con.getEID(eFirstName, eLastName);
+                        if (eID == 0)
+                        {
+                            message = "Fejl i eID";
+                        }
+
+                        String rDate = request.getParameter("date");
+
+                        int bCondition = Integer.parseInt(request.getParameter("condition"));
+
+                    // save in ReviewOf table
+                        System.out.println("Kasper was here 1");
+                        Report report = new Report(rDate, con.getBuildingFromID(rBuildingID), con.getEmployeeFromEID(eID), bCondition);
+                        System.out.println("Kasperwas here 2");
+                        con.createReportInDB(report);
+
+                        getServletContext().getRequestDispatcher("/index.html").forward(request, response);
+
+                    } catch (ReportErrorException ex)
+                    {
+                        session.setAttribute("ex", ex);
+                        getServletContext().getRequestDispatcher("/ReportError.html").forward(request, response);
                     }
-                    
-                    String rDate = request.getParameter("date");
-                    
-                    int bCondition = Integer.parseInt(request.getParameter("condition"));
-                    
-                    Report report = new Report(rDate, con.getBuildingFromID(rBuildingID), con.getEmployeeFromEID(eID), bCondition);
-                    
-                    con.createReportInDB(report);
-                    
-                    
-                    getServletContext().getRequestDispatcher("/index.html").forward(request, response);
-                    
+
 //                    String reportNumber = request.getParameter("reportNumber");
 //                    String date = request.getParameter("date");
 //                    int squareMeter = Integer.parseInt(request.getParameter("squareMeter"));
@@ -194,75 +211,73 @@ public class Servlet extends HttpServlet
 //                    int condition = Integer.parseInt(request.getParameter("condition"));
 //                    System.out.println("servlet");
                     break;
+
+                /*
+                 case "ViewReport":
+                 int repID = Integer.parseInt(request.getParameter("repID"));
+                 session.setAttribute("reportNumber", repID);
+
+                 String rBName
+                 = //Metodekald her
+                 session.setAttribute("rBName", rBName);
+
+                 int rDate
+                 = //Metodekald her 
+                 session.setAttribute("rDate", rDate);
+
+                 String rStreet
+                 = //Metodekald her 
+                 session.setAttribute("rStreet", rStreet);
+
+                 String rStreetNumb
+                 = //Metodekald her
+                 session.setAttribute("rStreetNumb", rStreetNumb);
+
+                 String rCity
+                 = //Metodekald her
+                 session.setAttribute("rCity", rCity);
+
+                 int rZip
+                 = //Metodekald her
+                 session.setAttribute("rZip", rZip);
+
+                 int rBuildyear
+                 = //Metodekald her
+                 session.setAttribute("rBuildyear", rBuildyear);
+
+                 int rSquareMeter
+                 = //Metodekald her
+                 session.setAttribute("rSquareMeter", rSquareMeter);
+
+                 String rUse
+                 = //Metodekald her
+                 session.setAttribute("rUse", rUse);
+
+                 String rRoof
+                 = //Metodekald her
+                 session.setAttribute("rRoof", rRoof);
+
+                 String rOuterwalls
+                 = //Metodekald her
+                 session.setAttribute("rOuterwalls", rOuterwalls);
                     
+                 String rReviewedBy
+                 = //Metodekald her
+                 session.setAttribute("rReviewedBy", rReviewedBy);
                     
-                     /*
-                case "ViewReport":
-                    int repID = Integer.parseInt(request.getParameter("repID"));
-                    session.setAttribute("reportNumber", repID);
-
-                    String rBName
-                            = //Metodekald her
-                            session.setAttribute("rBName", rBName);
-
-                    int rDate
-                            = //Metodekald her 
-                            session.setAttribute("rDate", rDate);
-
-                    String rStreet
-                            = //Metodekald her 
-                            session.setAttribute("rStreet", rStreet);
-
-                    String rStreetNumb
-                            = //Metodekald her
-                            session.setAttribute("rStreetNumb", rStreetNumb);
-
-                    String rCity
-                            = //Metodekald her
-                            session.setAttribute("rCity", rCity);
-
-                    int rZip
-                            = //Metodekald her
-                            session.setAttribute("rZip", rZip);
-
-                    int rBuildyear
-                            = //Metodekald her
-                            session.setAttribute("rBuildyear", rBuildyear);
-
-                    int rSquareMeter
-                            = //Metodekald her
-                            session.setAttribute("rSquareMeter", rSquareMeter);
-
-                    String rUse
-                            = //Metodekald her
-                            session.setAttribute("rUse", rUse);
-
-                    String rRoof
-                            = //Metodekald her
-                            session.setAttribute("rRoof", rRoof);
-
-                    String rOuterwalls
-                            = //Metodekald her
-                            session.setAttribute("rOuterwalls", rOuterwalls);
+                 String rCollaboration
+                 = //Metodekald her
+                 session.setAttribute("rCollaboration", rCollaboration);
                     
-                    String rReviewedBy
-                            = //Metodekald her
-                            session.setAttribute("rReviewedBy", rReviewedBy);
-                    
-                    String rCollaboration
-                            = //Metodekald her
-                            session.setAttribute("rCollaboration", rCollaboration);
-                    
-                    String rTilstandsgrad
-                            = //Metodekald her
-                            session.setAttribute("rTilstandsgrad", rTilstandsgrad);
+                 String rTilstandsgrad
+                 = //Metodekald her
+                 session.setAttribute("rTilstandsgrad", rTilstandsgrad);
 
-                    //Hvordan gør vi med flere lokaler?
-                    //Hvordan gør vi med konklusioner og anbefalinger?
-                    forward(request, response, "/ViewReport.jsp");
-                    break;
-                      */
-
+                 //Hvordan gør vi med flere lokaler?
+                 //Hvordan gør vi med konklusioner og anbefalinger?
+                 forward(request, response, "/ViewReport.jsp");
+                 break;
+                 */
                 case "createContactPerson":
                     String cpFirstName = request.getParameter("cpFirstName");
                     String cpLastName = request.getParameter("cpLastName");

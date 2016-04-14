@@ -168,7 +168,7 @@
                 <tr>
                     <td>Ydervægge</td>
                     <td><input type="text" name="outerwalls" style="width: 300px;"
-                               <%=request.getParameter("outerwalls") == null ? "" : request.getParameter("outerwalls")%>/></td>
+                               value="<%=request.getParameter("outerwalls") == null ? "" : request.getParameter("outerwalls")%>"/></td>
                     <td align="right">Billede</td>
                     <td><input type="file"/></td>
 
@@ -340,9 +340,9 @@
                                         , Polygon<br>
                                         i samarbejde med 
                                         <input type="text" name="cpFirstName" placeholder="Fornavn"
-                                               value="<%=request.getParameter("cpFirstName") == null ? "" : request.getParameter("cpFirstName")%>"/>
+                                               value="<%=request.getParameter("cpFirstName") == null ? session.getAttribute("cpFirstName") : request.getParameter("cpFirstName")%>"/>
                                         <input type="text" name="CPLastName" placeholder="Efternavn"
-                                               value="<%=request.getParameter("cpLastName") == null ? "" : request.getParameter("cpLastName")%>"/>
+                                               value="<%=request.getParameter("cpLastName") == null ? session.getAttribute("cpLastName") : request.getParameter("cpLastName")%>"/>
                                         (bygningsansvarlig).</p>
 
                                     <br><br>
