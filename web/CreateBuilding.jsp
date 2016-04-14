@@ -71,11 +71,12 @@
         <table>
             <tr>
                 <td>Du har nu oprettet en kontaktperson. Dit kontakpersonnummer er:</td>
-                <td style="font-weight: bold"><%= request.getAttribute("cpID")==null?" ":request.getAttribute("cpID") %></td>
+                <td style="font-weight: bold"><%= session.getAttribute("cpID")==null?"":session.getAttribute("cpID")%></td>
         </tr>
         </table> 
         <br>
         <div>Udfyld venligst felterne nedenfor for at oprette din bygning.</div>
+ 
         <form action="CreateBuilding.jsp" method="GET">              
             <%
             if(request.getParameter("do_this")!=null&&request.getParameter("do_this").equals("createBuilding"))
@@ -118,7 +119,11 @@
                 <tr>
                     <td>Etage</td>
                     <td><input type="number" name="<%="floor"+i%>" value="<%=request.getParameter("floor"+i)==null?"":request.getParameter("floor"+i)%>" min="-10" max="50" </td>
-                    </tr>
+
+                    
+                    
+
+                </tr>
                     <td colspan="2"><input type="text" name="<%="squareM"+i%>" value="<%=request.getParameter("squareM"+i)==null?"":request.getParameter("squareM"+i)%>" /></td>
                 
             </table>

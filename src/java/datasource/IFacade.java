@@ -11,6 +11,7 @@ import businesslogic.Building;
 import businesslogic.Customer;
 import businesslogic.ContactPerson;
 import businesslogic.Condition;
+import businesslogic.Floor;
 import businesslogic.ReportErrorException;
 import java.util.ArrayList;
 
@@ -37,6 +38,8 @@ public interface IFacade
     public ArrayList<Condition> getConditions();
    
     public void createContactPersonInfo(ContactPerson cp);
+    
+    public void createFloor(ArrayList<Floor> arrayFloor, int buildingID);
     
     
     // MIA used for create report

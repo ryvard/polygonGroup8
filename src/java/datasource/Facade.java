@@ -16,6 +16,7 @@ import businesslogic.Building;
 import businesslogic.Customer;
 import businesslogic.ContactPerson;
 import businesslogic.Condition;
+import businesslogic.Floor;
 import businesslogic.ReportErrorException;
 import java.util.ArrayList;
 
@@ -111,6 +112,11 @@ public class Facade implements IFacade
     public ContactPerson getCPFromCPID(int CPID)
     {
        return dm_cp.getCPFromCPID(CPID);
+    }
+
+    @Override
+    public void createFloor(ArrayList<Floor> arrayFloor, int buildingID) {
+         dm_building.createFloor(arrayFloor, buildingID);
     }
  
 }

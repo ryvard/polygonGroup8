@@ -20,6 +20,11 @@ public class Floor {
         this.floor = fID;
         this.squareM = squareM;
     }
+
+    public Floor(int floor, double squareM) {
+        this.floor = floor;
+        this.squareM = squareM;
+    }
     
     public int getBuildingID() {
         return buildingID;

@@ -57,39 +57,45 @@ public class Servlet extends HttpServlet
 
                 case "createBuilding":
                     String buildingName = request.getParameter("buildingName");
+          
+//                    String inputFloor = request.getParameter("floor0");
+//                    String inputSqm = request.getParameter("squareM0");
+//                    System.out.println("TEST: "+inputFloor+" sqm:"+inputSqm);
                     String street = request.getParameter("street");
                     String streetNo = request.getParameter("streetNo");
+                    System.out.println("før zipcode");
                     int zipcode = Integer.parseInt(request.getParameter("zipcode"));
+                    System.out.println("efter zipcode");
                     String city = request.getParameter("city");
                     int yearOfCon = Integer.parseInt(request.getParameter("yearOfConst"));
                     double squareMTotal = Double.parseDouble(request.getParameter("squareMTotal"));
                     String buildingUse = request.getParameter("buildingUse");
                     int custID = Integer.parseInt(request.getParameter("custID"));
                     int CPID = Integer.parseInt(request.getParameter("CPID"));
-
+                    
+                    ArrayList<Floor> arrayFloor = new ArrayList();
+                    System.out.println("før addfloor");
+                    int numberFloors = Integer.parseInt(request.getParameter("addFloor"))-1;
+                    System.out.println("før for loop");
+                    for (int i = 0; i < numberFloors; i++) {
+                        
+                        int floor = Integer.parseInt(request.getParameter("floor"+i));
+                        double squareM = Double.parseDouble(request.getParameter("squareM"+i));
+                        System.out.println("floorTEST" + floor);
+                        System.out.println("squareMTEST" + squareM);
+                        Floor f = new Floor(floor,squareM);
+                        
+                        arrayFloor.add(f);
+                        System.out.println("arrayFloor size" + arrayFloor.size());
+                    }
+                    
+                    System.out.println("efter for loop");
+                    
 // int CPID = ????  First Name, lastname, phone og mail
                     con.createBuilding(buildingName, street, streetNo, city, zipcode, yearOfCon, squareMTotal, buildingUse, custID, CPID);
-//                    int lastBuilding = con.getBuildingList().size() - 1;
-//                    int buildingID = con.getBuildingList().get(lastBuilding).getBuildingID();
-//                    ArrayList<Floor> floors = new ArrayList();
-//
-//                    int floorMax = 150;
-//                    int floorMin = -10;
-//                    for (int i = floorMin; i < floorMax; i++)
-//                    {
-//
-//                        int floor = Integer.parseInt(request.getParameter("floor" + i));
-//                        double squareMFloor = Double.parseDouble(request.getParameter("squareM" + i));
-//
-//                        if (floor == 0 || squareMFloor == 0)
-//                        {
-//                            break;
-//                        } else
-//                        {
-//                            Floor f = new Floor(buildingID, floor, squareMFloor);
-//                            floors.add(f);
-//                        }                      
-//                    }
+                    
+                    System.out.println("efter metodekald");
+                    
                     System.out.println("servlet");
                     break;
 
@@ -284,7 +290,7 @@ public class Servlet extends HttpServlet
                     String cpEmail = request.getParameter("cpEmail");
                     String cpPhone = request.getParameter("cpPhone");
                     int cpID = con.createContactPerson(cpFirstName, cpLastName, cpEmail, cpPhone);
-                    request.setAttribute("cpID", cpID);
+                    session.setAttribute("cpID", cpID);
                     con.createContactPersonInfo(cpFirstName, cpLastName, cpEmail, cpPhone);
                     forward(request, response, "/CreateBuilding.jsp");
                     break;

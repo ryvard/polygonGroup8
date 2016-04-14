@@ -126,9 +126,14 @@ public class Controller implements IController {
         return facade.getCPFromCPID(CPID);
     }
     
-    
+    @Override
+    public void createFloor(ArrayList<Floor> arrayFloor, int buildingID) {
+        facade.createFloor(arrayFloor, buildingID);
+    }
     
     //Forsøg på fejlhåndtering 
+
+    
     
     
 

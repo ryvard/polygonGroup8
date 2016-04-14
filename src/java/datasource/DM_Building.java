@@ -99,13 +99,13 @@ public class DM_Building
     }
     
     
-    public void createFloor(ArrayList<Floor> arrayFloor) {
+    public void createFloor(ArrayList<Floor> arrayFloor, int buildingID) {
         
-       ArrayList<Building> building = getBuildingList();
-        int index = building.size()-1;
+//       ArrayList<Building> building = getBuildingList();
+//        int index = building.size()-1;
         try {
         for (int i = 0; i < arrayFloor.size(); i++) {
-           String query = "INSERT INTO BFloor(BuildingID,Floor,SquareM) VALUES('"+ building.get(index).getBuildingID()
+           String query = "INSERT INTO BFloor(BuildingID,Floor,SquareM) VALUES('"+ buildingID
                 + "','" + arrayFloor.get(i).getFloor() + "','" + arrayFloor.get(i).getSquareM() + "');";
            DatabaseConnector db_Connect = DatabaseConnector.getInstance();
            db_Connect.updateData(query);

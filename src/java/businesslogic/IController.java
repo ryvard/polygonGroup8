@@ -45,7 +45,8 @@ public interface IController
         public Report viewReport();
         
         public ArrayList<Condition> getConditions();
-         
+        
+        public void createFloor(ArrayList<Floor> arrayFloor, int buildingID);
         
         
         
