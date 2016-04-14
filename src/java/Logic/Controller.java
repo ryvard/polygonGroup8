@@ -12,7 +12,10 @@ import Domain.Customer;
 import Domain.Employee;
 import Domain.Facade;
 import Domain.Report;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -106,7 +109,7 @@ public class Controller implements IController {
     }
 
     @Override
-    public Employee getEmployeeFromEID(int eID)
+    public Employee getEmployeeFromEID(int eID) throws ReportErrorException
     {
         return facade.getEmployeeFromEID(eID);
     }
@@ -122,6 +125,10 @@ public class Controller implements IController {
     {
         return facade.getCPFromCPID(CPID);
     }
+    
+    
+    
+    //Forsøg på fejlhåndtering 
     
     
 

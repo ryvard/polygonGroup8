@@ -55,7 +55,7 @@ public interface IController
     
         public int getEID(String firstName, String lastName);
         
-        public Employee getEmployeeFromEID(int eID);
+        public Employee getEmployeeFromEID(int eID) throws ReportErrorException;
         
         public void createReportInDB(Report r);
         

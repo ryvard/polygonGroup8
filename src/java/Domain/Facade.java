@@ -5,6 +5,7 @@
  */
 package Domain;
 
+import Logic.ReportErrorException;
 import java.util.ArrayList;
 
 /**
@@ -82,8 +83,9 @@ public class Facade implements IFacade
         return dm_employee.getEID(firstName, lastName);
     }
 
+    
     @Override
-    public Employee getEmployeeFromEID(int eID)
+    public Employee getEmployeeFromEID(int eID) throws ReportErrorException
     {
         return dm_employee.getEmployeeFromEID(eID);
     }
