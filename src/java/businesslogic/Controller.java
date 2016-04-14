@@ -103,7 +103,7 @@ public class Controller implements IController {
     }
 
     @Override
-    public int getEID(String firstName, String lastName)
+    public int getEID(String firstName, String lastName) throws ReportErrorException
     {
         return facade.getEID(firstName, lastName);
     }

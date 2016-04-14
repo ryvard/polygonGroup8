@@ -157,35 +157,42 @@ public class Servlet extends HttpServlet
                 case "Gem rapport":
                     try
                     {
-                        String message = "";
-
+                        
                         // save in report table 
+                        
                         int rBuildingID = Integer.parseInt(request.getParameter("buildingID"));
 
                         String eFirstName = request.getParameter("eFirstName");
                         String eLastName = request.getParameter("eLastName");
                         int eID = con.getEID(eFirstName, eLastName);
-                        if (eID == 0)
-                        {
-                            message = "Fejl i eID";
-                        }
-
+                        
                         String rDate = request.getParameter("date");
 
                         int bCondition = Integer.parseInt(request.getParameter("condition"));
-
-                    // save in ReviewOf table
+                        
+                        
+                        // save in Damage table
+                        // save in ReviewOf table
+                        // save in MoistScan table
+                        // save in Conclusion table
+                        
+                        
                         System.out.println("Kasper was here 1");
+                        
                         Report report = new Report(rDate, con.getBuildingFromID(rBuildingID), con.getEmployeeFromEID(eID), bCondition);
+                        
                         System.out.println("Kasperwas here 2");
+                        
+                        
                         con.createReportInDB(report);
 
                         getServletContext().getRequestDispatcher("/index.html").forward(request, response);
 
                     } catch (ReportErrorException ex)
                     {
-                        session.setAttribute("ex", ex);
-                        getServletContext().getRequestDispatcher("/ReportError.html").forward(request, response);
+                        request.setAttribute("ex", ex);
+                        getServletContext().getRequestDispatcher("/ReportError.jsp").forward(request, response);
+                        
                     }
 
 //                    String reportNumber = request.getParameter("reportNumber");

@@ -90,7 +90,7 @@ public class Facade implements IFacade
     }
 
     @Override
-    public int getEID(String firstName, String lastName)
+    public int getEID(String firstName, String lastName) throws ReportErrorException
     {
         return dm_employee.getEID(firstName, lastName);
     }
