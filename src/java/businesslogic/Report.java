@@ -3,8 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Domain;
+package businesslogic;
 
+import businesslogic.Building;
+import businesslogic.ContactPerson;
+import businesslogic.Conclusion;
 import java.util.ArrayList;
 
 /**

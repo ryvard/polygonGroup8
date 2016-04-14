@@ -3,15 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Logic;
+package businesslogic;
 
-import Domain.Building;
-import Domain.Condition;
-import Domain.ContactPerson;
-import Domain.Customer;
-import Domain.Employee;
-import Domain.Facade;
-import Domain.Report;
+import businesslogic.Building;
+import businesslogic.Condition;
+import businesslogic.ContactPerson;
+import businesslogic.Customer;
+import businesslogic.Employee;
+import datasource.Facade;
+import businesslogic.Report;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;

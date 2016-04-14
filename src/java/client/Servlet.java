@@ -3,20 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Client;
+package client;
 
-import Domain.Conclusion;
-import Domain.ContactPerson;
-import Domain.Floor;
-import Domain.Report;
+import businesslogic.Conclusion;
+import businesslogic.ContactPerson;
+import businesslogic.Floor;
+import businesslogic.Report;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import Logic.Controller;
-import Logic.ReportErrorException;
+import businesslogic.Controller;
+import businesslogic.ReportErrorException;
 import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -27,7 +27,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author emmablomsterberg
  */
-@WebServlet()
+@WebServlet() //name = "Servlet", urlPatterns = {"/Servlet"}
 public class Servlet extends HttpServlet
 {
 
@@ -69,27 +69,27 @@ public class Servlet extends HttpServlet
 
 // int CPID = ????  First Name, lastname, phone og mail
                     con.createBuilding(buildingName, street, streetNo, city, zipcode, yearOfCon, squareMTotal, buildingUse, custID, CPID);
-                    int lastBuilding = con.getBuildingList().size() - 1;
-                    int buildingID = con.getBuildingList().get(lastBuilding).getBuildingID();
-                    ArrayList<Floor> floors = new ArrayList();
-
-                    int floorMax = 150;
-                    int floorMin = -10;
-                    for (int i = floorMin; i < floorMax; i++)
-                    {
-
-                        int floor = Integer.parseInt(request.getParameter("floor" + i));
-                        double squareMFloor = Double.parseDouble(request.getParameter("squareM" + i));
-
-                        if (floor == 0 || squareMFloor == 0)
-                        {
-                            break;
-                        } else
-                        {
-                            Floor f = new Floor(buildingID, floor, squareMFloor);
-                            floors.add(f);
-                        }                      
-                    }
+//                    int lastBuilding = con.getBuildingList().size() - 1;
+//                    int buildingID = con.getBuildingList().get(lastBuilding).getBuildingID();
+//                    ArrayList<Floor> floors = new ArrayList();
+//
+//                    int floorMax = 150;
+//                    int floorMin = -10;
+//                    for (int i = floorMin; i < floorMax; i++)
+//                    {
+//
+//                        int floor = Integer.parseInt(request.getParameter("floor" + i));
+//                        double squareMFloor = Double.parseDouble(request.getParameter("squareM" + i));
+//
+//                        if (floor == 0 || squareMFloor == 0)
+//                        {
+//                            break;
+//                        } else
+//                        {
+//                            Floor f = new Floor(buildingID, floor, squareMFloor);
+//                            floors.add(f);
+//                        }                      
+//                    }
                     System.out.println("servlet");
                     break;
 

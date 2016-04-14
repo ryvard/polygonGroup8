@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Domain;
+package datasource;
 
+import businesslogic.Report;
+import businesslogic.Condition;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -73,13 +75,13 @@ public class DM_Report
     {
         String query = "INSERT INTO Employees(EFirstName, ELastName) "
                 + "VALUES('"+ r.getEmployee().getFirstName() +"','"
-                + r.getEmployee().lastName+"')";
+                + r.getEmployee().getLastName()+"')";
     }
     
     private void getRepID(Report r)
     {
         String query = "SELECT RepID FROM Report "
-                + "WHERE BuildingID = '" + r.getBuilding().buildingID 
+                + "WHERE BuildingID = '" + r.getBuilding().getBuildingID()
                 + "' AND RDate = '"+r.getDate()+"';";
         
         DatabaseConnector db_Connect = DatabaseConnector.getInstance();

@@ -1,5 +1,5 @@
 
-package Domain;
+package datasource;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Domain;
+package datasource;
 
-import Logic.ReportErrorException;
+import businesslogic.Employee;
+import businesslogic.ReportErrorException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 

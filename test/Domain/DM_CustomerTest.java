@@ -5,6 +5,8 @@
  */
 package Domain;
 
+import datasource.DM_Customer;
+import businesslogic.Customer;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

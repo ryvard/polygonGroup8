@@ -4,9 +4,9 @@
     Author     : emmablomsterberg
 --%>
 
-<%@page import="Domain.ContactPerson"%>
+<%@page import="businesslogic.ContactPerson"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="Logic.Controller"%>
+<%@page import="businesslogic.Controller"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -112,6 +112,7 @@
                 
                 for (int i = 0; i < floor; i++)
                 {
+                    
             %>
             <table cellpadding="3">
                 <tr>

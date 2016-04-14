@@ -4,9 +4,9 @@
     Author     : miaryvard
 --%>
 
-<%@page import="Domain.Building"%>
+<%@page import="businesslogic.Building"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="Logic.Controller"%>
+<%@page import="businesslogic.Controller"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>

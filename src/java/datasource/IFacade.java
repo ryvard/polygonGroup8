@@ -3,9 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Domain;
+package datasource;
 
-import Logic.ReportErrorException;
+import businesslogic.Employee;
+import businesslogic.Report;
+import businesslogic.Building;
+import businesslogic.Customer;
+import businesslogic.ContactPerson;
+import businesslogic.Condition;
+import businesslogic.ReportErrorException;
 import java.util.ArrayList;
 
 /**

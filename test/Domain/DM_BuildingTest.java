@@ -5,6 +5,8 @@
  */
 package Domain;
 
+import datasource.DM_Building;
+import businesslogic.Building;
 import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;

@@ -4,9 +4,9 @@
     Author     : Lasse
 --%>
 
-<%@page import="Domain.Condition"%>
+<%@page import="businesslogic.Condition"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="Logic.Controller"%>
+<%@page import="businesslogic.Controller"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>

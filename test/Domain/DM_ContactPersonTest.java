@@ -5,6 +5,8 @@
  */
 package Domain;
 
+import datasource.DM_ContactPerson;
+import businesslogic.ContactPerson;
 import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;
