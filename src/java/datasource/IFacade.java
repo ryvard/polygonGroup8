@@ -42,7 +42,7 @@ public interface IFacade
     // MIA used for create report
     public int getCPID(String firstName, String lastName);
     
-    public int getEID(String firstName, String lastName);
+    public int getEID(String firstName, String lastName) throws ReportErrorException;
     
     public Employee getEmployeeFromEID(int eID) throws ReportErrorException;
     

@@ -17,7 +17,7 @@ import java.sql.SQLException;
 public class DM_Employee
 {
 
-    public int getEID(String firstName, String lastName)
+    public int getEID(String firstName, String lastName) throws ReportErrorException
     {
         String query = "SELECT EID FROM Employees WHERE EFirstName ='" + firstName + "' AND ELastName='" + lastName + "';";
 
@@ -29,31 +29,27 @@ public class DM_Employee
             int eID = res.getInt(1);
 
             return eID;
-
         } catch (SQLException ex)
         {
-            System.out.println("FEJL GetEID " + ex);
+            throw new ReportErrorException("1FEJL getEmployeeFromEID" + ex);
         }
-        return 0;
     }
 
     public Employee getEmployeeFromEID(int eID) throws ReportErrorException
     {
         String query = "SELECT * FROM PolygonGroup8.Employees WHERE EID ='" + eID + "';";
+        
         DatabaseConnector db_Connect = DatabaseConnector.getInstance();
         ResultSet res = db_Connect.getData(query);
         try
         {
-            System.out.println("hej next");
             res.next();
-            System.out.println("farvel next");
             Employee employee = new Employee(res.getInt(1), res.getString(2), res.getString(3));
-            System.out.println("FEJL HEJ FARVEL");
+            
             return employee;
-
         } catch (SQLException ex)
         {
-            throw new ReportErrorException("FEJL getEmployeeFromEID" + ex);
+            throw new ReportErrorException("2FEJL getEmployeeFromEID" + ex);
         }
     }
 
