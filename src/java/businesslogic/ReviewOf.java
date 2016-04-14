@@ -17,6 +17,13 @@ public class ReviewOf
     String part;
     String note;
 
+    public ReviewOf(int roomID, String part, String note)
+    {
+        this.roomID = roomID;
+        this.part = part;
+        this.note = note;
+    }
+
     public ReviewOf(int ReviewID, int roomID, int repID, String part, String note)
     {
         this.ReviewID = ReviewID;

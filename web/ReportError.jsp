@@ -12,7 +12,8 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
-        <h2><%=request.getAttribute("ex")%></h2>
+        <h1>Ups prøv igen!!</h1>
+        <h2>report: <%=request.getAttribute("ReportError")%></h2>
+        <h2>number: <%=request.getAttribute("Number")%></h2>
     </body>
 </html>

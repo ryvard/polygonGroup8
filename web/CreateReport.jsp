@@ -229,10 +229,11 @@
                                         </tr>
                                         <tr>
                                             <td>Skade</td>
-                                            <td><input type="checkbox" name="<%="damage" + i%>" value="moist" />Fugt<br>
-                                                <input type="checkbox" name="<%="damage" + i%>" value="rotAndMold" />Råd og svamp<br>
-                                                <input type="checkbox" name="<%="damage" + i%>" value="mold" />Skimmel<br>
-                                                <input type="checkbox" name="<%="damage" + i%>" value="fire" />Brand<br>
+                                            
+                                            <td><input type="radio" name="<%="damage" + i%>" value="Fugt" />Fugt<br>
+                                                <input type="radio" name="<%="damage" + i%>" value="Råd og Svamp" />Råd og svamp<br>
+                                                <input type="radio" name="<%="damage" + i%>" value="Skimmel" />Skimmel<br>
+                                                <input type="radio" name="<%="damage" + i%>" value="Brand" />Brand<br>
 
                                                 Anden skade:
                                                 <input type="text" name="<%="otherDamage" + i%>" style="width: 250px;"
@@ -276,13 +277,13 @@
                                                        value="<%=request.getParameter("doorNote" + i) == null ? "" : request.getParameter("doorNote" + i)%>"/></td>
                                         </tr>
                                         <tr>
-                                            <td><input type="text" name="<%="otherPart1" + i%>" placeholder="Andet"
+                                            <td><input type="text" name="<%="otherPart1" + i%>" placeholder="Andet:"
                                                        value="<%=request.getParameter("otherPart1" + i) == null ? "" : request.getParameter("otherPart1" + i)%>"/></td>
                                             <td><input type="text" name="<%="otherNote1" + i%>" style="width: 400px;"
                                                        value="<%=request.getParameter("otherNote1" + i) == null ? "" : request.getParameter("otherNote1" + i)%>"/></td>
                                         </tr>
                                         <tr>
-                                            <td><input type="text" name="<%="otherPart2" + i%>" placeholder="Andet"
+                                            <td><input type="text" name="<%="otherPart2" + i%>" placeholder="Andet:"
                                                        value="<%=request.getParameter("otherPart2" + i) == null ? "" : request.getParameter("otherPart2" + i)%>"/></td>
                                             <td><input type="text" name="<%="otherNote2" + i%>" style="width: 400px;"
                                                        value="<%=request.getParameter("otherNote2" + i) == null ? "" : request.getParameter("otherNote2" + i)%>"/></td>
