@@ -132,6 +132,14 @@ public class Servlet extends HttpServlet
 
                     String bUse = con.getBuildingFromID(ID).getBuildingUse();
                     session.setAttribute("bUse", bUse);
+                    
+                    int bCPID = con.getBuildingFromID(ID).getCPID();
+                    
+                    String bcpFirstName = con.getCPFromCPID(bCPID).getCPFirstName();
+                    session.setAttribute("cpFirstName", bcpFirstName);
+                    
+                    String bcpLastName = con.getCPFromCPID(bCPID).getCPLastName();
+                    session.setAttribute("cpLastName", bcpLastName);
 
                     forward(request, response, "/CreateReport.jsp");
                     break;
@@ -141,6 +149,7 @@ public class Servlet extends HttpServlet
                 case "Tilføj lokale":
 
                 case "Gem rapport":
+                    
                     String message = "";
                     
                     // save in report table 
@@ -158,9 +167,16 @@ public class Servlet extends HttpServlet
                     
                     int bCondition = Integer.parseInt(request.getParameter("condition"));
                     
-                    Report report = new Report(rDate, con.getBuildingFromID(rBuildingID), con.getEmployeeFromEID(eID), bCondition);
+                    // save in ReviewOf table
                     
+                    
+                    System.out.println("Kasper was here 1");
+                    Report report = new Report(rDate, con.getBuildingFromID(rBuildingID), con.getEmployeeFromEID(eID), bCondition);
+                    System.out.println("Kasperwas here 2");
                     con.createReportInDB(report);
+                    
+                    
+                    
                     
                     
                     getServletContext().getRequestDispatcher("/index.html").forward(request, response);

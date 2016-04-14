@@ -46,7 +46,7 @@ public class DM_Employee
             res.next();
             System.out.println("farvel next");
             Employee employee = new Employee(res.getInt(1), res.getString(2), res.getString(3));
-
+            System.out.println("FEJL HEJ FARVEL");
             return employee;
 
         } catch (SQLException ex)

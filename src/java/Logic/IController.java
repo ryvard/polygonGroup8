@@ -8,6 +8,7 @@ package Logic;
 import Domain.Building;
 import Domain.Condition;
 import Domain.ContactPerson;
+import Domain.Customer;
 import Domain.Employee;
 import Domain.Report;
 import java.util.ArrayList;
@@ -57,4 +58,7 @@ public interface IController
         public Employee getEmployeeFromEID(int eID);
         
         public void createReportInDB(Report r);
+        
+        public ContactPerson getCPFromCPID(int CPID);
+
 }
