@@ -86,7 +86,7 @@ public class Servlet extends HttpServlet
                         {
                             Floor f = new Floor(buildingID,floor, squareMFloor);
                             floors.add(f);
-                        }
+                        }                      
                     }
                     System.out.println("servlet");
                     break;

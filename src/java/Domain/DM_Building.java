@@ -97,4 +97,22 @@ public class DM_Building
     }
     
     
+    public void createFloor(ArrayList<Floor> arrayFloor) {
+        
+       ArrayList<Building> building = getBuildingList();
+        int index = building.size()-1;
+        try {
+        for (int i = 0; i < arrayFloor.size(); i++) {
+           String query = "INSERT INTO BFloor(BuildingID,Floor,SquareM) VALUES('"+ building.get(index).getBuildingID()
+                + "','" + arrayFloor.get(i).getFloor() + "','" + arrayFloor.get(i).getSquareM() + "');";
+           DatabaseConnector db_Connect = DatabaseConnector.getInstance();
+           db_Connect.updateData(query);
+        }
+        
+        } catch(Exception ex) {
+            System.out.println(""  + ex);
+        }
+        
+        
+    }
 }

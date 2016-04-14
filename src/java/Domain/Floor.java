@@ -12,12 +12,12 @@ package Domain;
 public class Floor {
     
     int buildingID;
-    int floorID;
+    int floor;
     double squareM; 
     
     public Floor(int bID, int fID, double squareM) {
         this.buildingID = bID;
-        this.floorID = fID;
+        this.floor = fID;
         this.squareM = squareM;
     }
     
@@ -29,12 +29,12 @@ public class Floor {
         this.buildingID = bID;
     }
     
-    public int getFloorID() {
-        return floorID;
+    public int getFloor() {
+        return floor;
     }
     
-    public void setFloorID(int fID) {
-        this.floorID = fID;
+    public void setFloor(int fID) {
+        this.floor = fID;
     } 
     
     public double getSquareM() {
