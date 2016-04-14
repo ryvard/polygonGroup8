@@ -29,6 +29,7 @@ public class DM_Building
 
             DatabaseConnector db_Connect = DatabaseConnector.getInstance();
             db_Connect.updateData(query);
+            
         } catch (Exception ex)
         {
             System.out.println("createBuildingInDB - " + ex);
@@ -116,5 +117,24 @@ public class DM_Building
         }
         
         
+    }
+    
+    public int getBuildingIDFromDB(String buildingName, String streetName) {
+        
+        
+        String query = "SELECT BuildingID FROM PolygonGroup8.Buildings WHERE BuildingName ='"+ buildingName+"' AND StreetName='"+ streetName + "';";
+        DatabaseConnector db_Connect = DatabaseConnector.getInstance();
+        ResultSet res = db_Connect.getData(query);
+        try
+        {
+            res.next();
+            int buildingID = res.getInt(1);
+            return buildingID;
+        }
+        catch(SQLException ex)
+        {
+            System.out.println("getBuildingFromID" + ex);
+        }
+        return 0;
     }
 }

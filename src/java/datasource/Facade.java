@@ -118,5 +118,10 @@ public class Facade implements IFacade
     public void createFloor(ArrayList<Floor> arrayFloor, int buildingID) {
          dm_building.createFloor(arrayFloor, buildingID);
     }
+
+    @Override
+    public int getBuildingIDFromDB(String buildingName, String streetName) {
+        return dm_building.getBuildingIDFromDB(buildingName, streetName);
+    }
  
 }

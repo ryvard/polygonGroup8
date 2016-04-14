@@ -93,7 +93,7 @@ public class Servlet extends HttpServlet
                     
 // int CPID = ????  First Name, lastname, phone og mail
                     con.createBuilding(buildingName, street, streetNo, city, zipcode, yearOfCon, squareMTotal, buildingUse, custID, CPID);
-                    
+                    con.createFloor(arrayFloor, con.getBuildingIDFromDB(buildingName, street));
                     System.out.println("efter metodekald");
                     
                     System.out.println("servlet");

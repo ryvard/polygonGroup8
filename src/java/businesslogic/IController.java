@@ -48,6 +48,8 @@ public interface IController
         
         public void createFloor(ArrayList<Floor> arrayFloor, int buildingID);
         
+        public int getBuildingIDFromDB(String buildingName, String streetName);
+        
         
         
         //MIA  Used when creating the report

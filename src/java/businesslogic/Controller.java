@@ -133,8 +133,10 @@ public class Controller implements IController {
     
     //Forsøg på fejlhåndtering 
 
-    
-    
-    
+    @Override
+    public int getBuildingIDFromDB(String buildingName, String streetName) {
+        return facade.getBuildingIDFromDB(buildingName, streetName);
+    }
+  
 
 }

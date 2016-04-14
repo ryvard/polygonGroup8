@@ -41,6 +41,8 @@ public interface IFacade
     
     public void createFloor(ArrayList<Floor> arrayFloor, int buildingID);
     
+    public int getBuildingIDFromDB(String buildingName, String streetName);
+    
     
     // MIA used for create report
     public int getCPID(String firstName, String lastName);
