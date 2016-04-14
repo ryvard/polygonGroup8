@@ -160,6 +160,8 @@ public class Servlet extends HttpServlet
                     
                     Report report = new Report(rDate, con.getBuildingFromID(rBuildingID), con.getEmployeeFromEID(eID), bCondition);
                     
+                    con.createReportInDB(report);
+                    
                     
                     getServletContext().getRequestDispatcher("/index.html").forward(request, response);
                     

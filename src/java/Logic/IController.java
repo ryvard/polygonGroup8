@@ -47,12 +47,14 @@ public interface IController
          
         
         
-        /*
-        * Used when creating the report
-        */
+        
+        //MIA  Used when creating the report
+        
         public int getCPID(String firstName, String lastName);
     
         public int getEID(String firstName, String lastName);
         
         public Employee getEmployeeFromEID(int eID);
+        
+        public void createReportInDB(Report r);
 }

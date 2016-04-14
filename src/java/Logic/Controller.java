@@ -110,6 +110,12 @@ public class Controller implements IController {
     {
         return facade.getEmployeeFromEID(eID);
     }
+
+    @Override
+    public void createReportInDB(Report r)
+    {
+        facade.createReportInDB(r);
+    }
     
     
 

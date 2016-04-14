@@ -87,4 +87,10 @@ public class Facade implements IFacade
     {
         return dm_employee.getEmployeeFromEID(eID);
     }
+
+    @Override
+    public void createReportInDB(Report r)
+    {
+        dm_report.createReportInDB(r);
+    }
 }
