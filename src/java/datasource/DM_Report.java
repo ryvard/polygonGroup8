@@ -105,7 +105,7 @@ public class DM_Report
                 //        res.getString(5), res.getString(6), (res.getInt(7)), 
                 //        res.getInt(7), res.getInt(8), res.getDouble(9), 
                 //        res.getString(10), res.getInt(2), res.getInt(3));
-                //reports.add(report);
+                //reports.addArrayFloor(report);
             }
             return reports;
         } catch (SQLException ex)

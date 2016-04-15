@@ -21,7 +21,8 @@ import java.util.logging.Logger;
  *
  * @author miaryvard
  */
-public class Controller implements IController {
+public class Controller implements IController
+{
 
     Facade facade = new Facade();
     Building building;
@@ -30,11 +31,11 @@ public class Controller implements IController {
     @Override
     public void createBuilding(String buildingName, String streetName, String streetNumb, String city, int zipcode, int yearOfConst, double squareMeters, String buildingUse, int custID, int CPID)
     {
-        System.out.println("controller1  -   "+streetNumb);
-        
-        Building building = new Building(buildingName, streetName, streetNumb, 
+        System.out.println("controller1  -   " + streetNumb);
+
+        Building building = new Building(buildingName, streetName, streetNumb,
                 city, zipcode, yearOfConst, squareMeters, buildingUse, custID, CPID);
-        
+
         System.out.println("hejhej ");
 
         facade.createBuilding(building);
@@ -44,31 +45,35 @@ public class Controller implements IController {
     }
 
     @Override
-    public void createCustomer(String name, String type, String streetName, String streetNo, int zipcode, String contactName, String phone, String mail) {
+    public void createCustomer(String name, String type, String streetName, String streetNo, int zipcode, String contactName, String phone, String mail)
+    {
         Customer customer = new Customer(name, type, streetName, streetNo, zipcode, contactName, phone, mail);
         facade.createCustomer(customer);
     }
 
     @Override
-    public ArrayList<Building> getBuildingList() {
+    public ArrayList<Building> getBuildingList()
+    {
         System.out.println("controller");
         return facade.getBuildingList();
     }
 
     @Override
-    public void createReport(String reportNumber, String date, int squareMeter, String buildingUseability, String roof, String roofPicture, String outerwalls, String outerwallsPicture, Object conclusion, String reviewedBy, String collaboration, int condition) {
+    public void createReport(String reportNumber, String date, int squareMeter, String buildingUseability, String roof, String roofPicture, String outerwalls, String outerwallsPicture, Object conclusion, String reviewedBy, String collaboration, int condition)
+    {
 
     }
 
-
     @Override
-    public int createContactPerson(String cpFirstName, String cpLastName, String email, String phone) {
+    public int createContactPerson(String cpFirstName, String cpLastName, String email, String phone)
+    {
         ContactPerson cp = new ContactPerson(cpFirstName, cpLastName, email, phone);
         return facade.createContactPerson(cp);
     }
 
     @Override
-    public ArrayList<ContactPerson> getContactPersonList() {
+    public ArrayList<ContactPerson> getContactPersonList()
+    {
         return facade.getContactPersonList();
     }
 
@@ -77,7 +82,7 @@ public class Controller implements IController {
     {
         return facade.getBuildingFromID(buildingID);
     }
-    
+
     @Override
     public Report viewReport()
     {
@@ -89,9 +94,10 @@ public class Controller implements IController {
     {
         return facade.getConditions();
     }
-    
+
     @Override
-    public void createContactPersonInfo(String firstName, String lastName,String mail,String phone) {
+    public void createContactPersonInfo(String firstName, String lastName, String mail, String phone)
+    {
         ContactPerson cp = new ContactPerson(firstName, lastName, mail, phone);
         facade.createContactPersonInfo(cp);
     }
@@ -125,18 +131,24 @@ public class Controller implements IController {
     {
         return facade.getCPFromCPID(CPID);
     }
-    
-    @Override
-    public void createFloor(ArrayList<Floor> arrayFloor, int buildingID) {
-        facade.createFloor(arrayFloor, buildingID);
-    }
-    
-    //Forsøg på fejlhåndtering 
 
     @Override
-    public int getBuildingIDFromDB(String buildingName, String streetName) {
+    public void createFloor(ArrayList<Floor> arrayFloor, int buildingID)
+    {
+        facade.createFloor(arrayFloor, buildingID);
+    }
+
+    //Forsøg på fejlhåndtering 
+    @Override
+    public int getBuildingIDFromDB(String buildingName, String streetName)
+    {
         return facade.getBuildingIDFromDB(buildingName, streetName);
     }
-  
+
+    public void createBuilding(Building b, ArrayList<Floor> arrayFloor)
+    {
+        b.addArrayFloor(arrayFloor);
+        facade.createBuilding(b);
+    }
 
 }
