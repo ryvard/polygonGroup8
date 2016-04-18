@@ -119,13 +119,11 @@
                 <tr>
                     <td>Etage</td>
                     <td><input type="number" name="<%="floor"+i%>" value="<%=request.getParameter("floor"+i)==null?"":request.getParameter("floor"+i)%>" min="-10" max="50" </td>
-
-                    
-                    
-
                 </tr>
-                    <td colspan="2"><input type="text" name="<%="squareM"+i%>" value="<%=request.getParameter("squareM"+i)==null?"":request.getParameter("squareM"+i)%>" /></td>
-                
+                <tr>
+                    <td>Areal i m2:</td>
+                    <td colspan="2"><input type="text" name="<%="squareM"+i%>" value="<%=request.getParameter("squareM"+i)==null?"":request.getParameter("squareM"+i)%>" style="width:50px;"/></td>
+                </tr>
             </table>
             <%
                     }
