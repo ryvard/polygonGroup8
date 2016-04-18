@@ -25,7 +25,7 @@ public class Controller implements IController
 {
 
     Facade facade = new Facade();
-    Building building;
+    //Building building;
 //    Customer customer;
 
     @Override
@@ -106,10 +106,23 @@ public class Controller implements IController
     
     //--------------------------------------------------------------
     @Override
-    public void createReportInDB(Report r)
+    public void createReport(int buildingID, Report r, ArrayList<ReviewOf> outerReviews, Employee employee)
     {
-        facade.createReportInDB(r);
+        try
+        {
+            Building building = facade.getBuildingFromID(buildingID);
+            r.addBuilding(building);
+            r.addOuterReview(outerReviews);
+            employee.seteID(getEID(employee.getFirstName(),employee.getLastName()));
+            r.addEmployee(employee);
+            facade.createReport(r);
+        } catch (ReportErrorException ex)
+        {
+            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
+    
+
     
     @Override
     public int getEID(String firstName, String lastName) throws ReportErrorException
@@ -132,7 +145,7 @@ public class Controller implements IController
     }
     
     
-    //create b from custid
+    //create b from bid
     
     @Override
     public Building getBuildingFromID(int buildingID)
@@ -172,5 +185,9 @@ public class Controller implements IController
         b.addArrayFloor(arrayFloor);
         facade.createBuilding(b);
     }
+
+    
+
+    
 
 }
