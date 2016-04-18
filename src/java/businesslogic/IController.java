@@ -34,7 +34,7 @@ public interface IController
      */
         public ArrayList<Building> getBuildingList(); 
         
-        public Building getBuildingFromID(int buildingID);
+        public Building getBuildingFromID(int buildingID) throws ReportErrorException;
         
         public int createContactPerson(String cpFirstName, String cpLastName, String mail, String phone);
         
@@ -56,11 +56,7 @@ public interface IController
         
         public int getCPID(String firstName, String lastName);
     
-        public int getEID(String firstName, String lastName) throws ReportErrorException;
-        
-        public Employee getEmployeeFromEID(int eID) throws ReportErrorException;
-        
-        public void createReport(int buildingID, Report r, ArrayList<ReviewOf> outerReviews, Employee employee);
+        public void createReport(int buildingID, Report r, ArrayList<ReviewOf> outerReviews, Employee employee) throws ReportErrorException;
         
         public ContactPerson getCPFromCPID(int CPID);
 

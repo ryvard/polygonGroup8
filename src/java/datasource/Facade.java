@@ -61,7 +61,7 @@ public class Facade implements IFacade
     }
 
     @Override
-    public Building getBuildingFromID(int buildingID)
+    public Building getBuildingFromID(int buildingID) throws ReportErrorException
     {
         return dm_building.getBuildingFromID(buildingID);
     }
@@ -103,7 +103,7 @@ public class Facade implements IFacade
     }
 
     //------
-    public void createReport(Report r)
+    public void createReport(Report r) 
     {
         dm_report.createReport(r);
     }

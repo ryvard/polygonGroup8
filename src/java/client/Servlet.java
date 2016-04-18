@@ -121,6 +121,7 @@ public class Servlet extends HttpServlet
                     break;
 
                 case "createBuilding_BuildingID":
+                    try{
                     int ID = Integer.parseInt(request.getParameter("buildingID"));
                     session.setAttribute("ID", ID);
 
@@ -161,6 +162,12 @@ public class Servlet extends HttpServlet
                     */
                     
                     forward(request, response, "/CreateReport.jsp");
+                    }catch(ReportErrorException ex)
+                    {
+                        request.setAttribute("ReportError", "Report: " + ex);
+                        getServletContext().getRequestDispatcher("/ReportError.jsp").forward(request, response);   
+                    }
+                    
                     break;
                     
                 case "Gem rapport":
@@ -195,13 +202,9 @@ public class Servlet extends HttpServlet
                         
                        
                         
-                        
-                        System.out.println("€€€ Servlet før kald");        
-                        con.createReport(rBuildingID, report, outerReviews, employee);
-                        System.out.println("€€€ Servlet Efter kald"); 
-                        //Report report = new Report(rDate, con.getBuildingFromID(rBuildingID), con.getEmployeeFromEID(eID), bCondition);
-                        //con.createReportInDB(report);
-
+                        // ^ virker hertil
+                        //con.createReport(rBuildingID, report, outerReviews, employee);
+                       
                         
                         //--------Pages-----------
                         int roomPages = Integer.parseInt(request.getParameter("addRoom")) - 1;
@@ -222,6 +225,8 @@ public class Servlet extends HttpServlet
                             String repaired = request.getParameter("repaired" + i);
                             String damage = request.getParameter("damage" + i);
                             String otherDamage = request.getParameter("otherDamage" + i);
+                            
+                            
 
                             // save in ReviewOf table
                             ArrayList<ReviewOf> reviewOfList = new ArrayList();
@@ -271,19 +276,20 @@ public class Servlet extends HttpServlet
 
                         }
                         
+                        con.createReport(rBuildingID, report, outerReviews, employee);
+                        
                         getServletContext().getRequestDispatcher("/index.html").forward(request, response);
 
-                    }catch (NumberFormatException ex)
+                    }catch (ReportErrorException ex)
                     {
-                        request.setAttribute("Number", "number: " + ex);
+                        request.setAttribute("ReportError", "Report: " + ex);
+                        getServletContext().getRequestDispatcher("/ReportError.jsp").forward(request, response);
+
+                    }catch(NumberFormatException ex)
+                    {
+                        request.setAttribute("Number", "Number: " + ex);
                         getServletContext().getRequestDispatcher("/ReportError.jsp").forward(request, response);
                     }
-//                    catch (ReportErrorException ex)
-//                    {
-//                        request.setAttribute("ReportError", "Report: " + ex);
-//                        getServletContext().getRequestDispatcher("/ReportError.jsp").forward(request, response);
-//
-//                    } 
                     break;
 
                 /*

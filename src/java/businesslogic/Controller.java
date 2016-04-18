@@ -106,38 +106,19 @@ public class Controller implements IController
     
     //--------------------------------------------------------------
     @Override
-    public void createReport(int buildingID, Report r, ArrayList<ReviewOf> outerReviews, Employee employee)
+    public void createReport(int buildingID, Report r, ArrayList<ReviewOf> outerReviews, Employee employee) throws ReportErrorException
     {
-        try
-        {
-            Building building = facade.getBuildingFromID(buildingID);
+        
+            Building building = getBuildingFromID(buildingID);
             r.addBuilding(building);
             r.addOuterReview(outerReviews);
-            employee.seteID(getEID(employee.getFirstName(),employee.getLastName()));
+            employee.seteID(facade.getEID(employee.getFirstName(),employee.getLastName()));
             r.addEmployee(employee);
             facade.createReport(r);
-        } catch (ReportErrorException ex)
-        {
-            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
     }
     
-
-    
-    @Override
-    public int getEID(String firstName, String lastName) throws ReportErrorException
-    {
-        return facade.getEID(firstName, lastName);
-    }
-    
-    @Override
-    public Employee getEmployeeFromEID(int eID) throws ReportErrorException
-    {
-        return facade.getEmployeeFromEID(eID);
-    }
-    
-    
-    //ikke brugt
+//    //ikke brugt
     @Override
     public ArrayList<Condition> getConditions()
     {
@@ -148,10 +129,11 @@ public class Controller implements IController
     //create b from bid
     
     @Override
-    public Building getBuildingFromID(int buildingID)
-    {
+    public Building getBuildingFromID(int buildingID) throws ReportErrorException
+    {   
         return facade.getBuildingFromID(buildingID);
     }
+    
     @Override
     public ContactPerson getCPFromCPID(int CPID)
     {
@@ -185,6 +167,8 @@ public class Controller implements IController
         b.addArrayFloor(arrayFloor);
         facade.createBuilding(b);
     }
+
+    
 
     
 

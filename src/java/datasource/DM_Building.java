@@ -7,6 +7,7 @@ package datasource;
 
 import businesslogic.Floor;
 import businesslogic.Building;
+import businesslogic.ReportErrorException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -84,7 +85,7 @@ public class DM_Building
         return null;
     }
     
-    public Building getBuildingFromID(int BuildingID)
+    public Building getBuildingFromID(int BuildingID) throws ReportErrorException
     {
         String query = "SELECT * FROM Buildings WHERE BuildingID ='"+ BuildingID +"';";
         DatabaseConnector db_Connect = DatabaseConnector.getInstance();
@@ -97,9 +98,9 @@ public class DM_Building
         }
         catch(SQLException ex)
         {
-            System.out.println("getBuildingFromID" + ex);
+            throw new ReportErrorException("FEJL getBuildingFromID" + ex);
         }
-        return null;
+        
     }
     
     

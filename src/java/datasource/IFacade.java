@@ -31,7 +31,7 @@ public interface IFacade
     
     public ArrayList<ContactPerson> getContactPersonList();
     
-    public Building getBuildingFromID(int buildingID);
+    public Building getBuildingFromID(int buildingID) throws ReportErrorException;
     
     public Report viewReport();
     
