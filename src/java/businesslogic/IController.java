@@ -56,7 +56,7 @@ public interface IController
         
         public int getCPID(String firstName, String lastName);
     
-        public void createReport(int buildingID, Report r, ArrayList<ReviewOf> outerReviews, Employee employee) throws ReportErrorException;
+        public void createReport(int buildingID, Report r, ArrayList<ReviewOf> outerReviews, Employee employee, Damage roomDamage) throws ReportErrorException;
         
         public ContactPerson getCPFromCPID(int CPID);
 

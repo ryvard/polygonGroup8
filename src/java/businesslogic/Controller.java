@@ -106,7 +106,7 @@ public class Controller implements IController
     
     //--------------------------------------------------------------
     @Override
-    public void createReport(int buildingID, Report r, ArrayList<ReviewOf> outerReviews, Employee employee) throws ReportErrorException
+    public void createReport(int buildingID, Report r, ArrayList<ReviewOf> outerReviews, Employee employee, Damage damage) throws ReportErrorException
     {
         
             Building building = getBuildingFromID(buildingID);
@@ -114,6 +114,8 @@ public class Controller implements IController
             r.addOuterReview(outerReviews);
             employee.seteID(facade.getEID(employee.getFirstName(),employee.getLastName()));
             r.addEmployee(employee);
+            r.addDamage(damage);
+            
             facade.createReport(r);
         
     }

@@ -7,7 +7,7 @@ package businesslogic;
 
 import businesslogic.Building;
 import businesslogic.ContactPerson;
-import businesslogic.Conclusion;
+
 import java.util.ArrayList;
 
 /**
@@ -21,17 +21,20 @@ public class Report
     private String date;
     
     private Building building;
+    private int condition;
     
     private ArrayList<ReviewOf> outerReviews;
+    
     private ArrayList<ReviewOf> reviewOf;
     
-    private ArrayList<Conclusion> conclusions;
     
     private Employee employee;
     
-    private ContactPerson contactPerson;
+    private Damage damage;
     
-    private int condition;
+    //private ContactPerson contactPerson;
+    
+    
     
 
     public Report(String date, int condition)
@@ -115,6 +118,14 @@ public class Report
     public Employee getEmployee()
     {
         return employee;
+    }
+    public void addDamage(Damage damage)
+    {
+        this.damage = damage;
+    }
+    public Damage getDamage()
+    {
+        return damage;
     }
     
 }

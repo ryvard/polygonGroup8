@@ -6,7 +6,6 @@
 package client;
 
 import businesslogic.Building;
-import businesslogic.Conclusion;
 import businesslogic.ContactPerson;
 import businesslogic.Floor;
 import businesslogic.Report;
@@ -17,6 +16,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import businesslogic.Controller;
+import businesslogic.Damage;
 import businesslogic.Employee;
 import businesslogic.ReportErrorException;
 import businesslogic.ReviewOf;
@@ -226,8 +226,7 @@ public class Servlet extends HttpServlet
                             String damage = request.getParameter("damage" + i);
                             String otherDamage = request.getParameter("otherDamage" + i);
                             
-                            
-
+                            Damage rDamage = new Damage(bRoom, damageInRoom, when, where, what, repaired, damage, otherDamage);
                             // save in ReviewOf table
                             ArrayList<ReviewOf> reviewOfList = new ArrayList();
 
@@ -276,7 +275,7 @@ public class Servlet extends HttpServlet
 
                         }
                         
-                        con.createReport(rBuildingID, report, outerReviews, employee);
+                        con.createReport(rBuildingID, report, outerReviews, employee, );
                         
                         getServletContext().getRequestDispatcher("/index.html").forward(request, response);
 
