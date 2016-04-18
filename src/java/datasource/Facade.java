@@ -19,6 +19,8 @@ import businesslogic.Condition;
 import businesslogic.Floor;
 import businesslogic.ReportErrorException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -103,9 +105,10 @@ public class Facade implements IFacade
     }
 
     //------
-    public void createReport(Report r) 
+    @Override
+    public void createReport(Report r) throws ReportErrorException
     {
-        dm_report.createReport(r);
+            dm_report.createReport(r);
     }
     //-----
 
@@ -125,6 +128,7 @@ public class Facade implements IFacade
         return dm_building.getBuildingIDFromDB(buildingName, streetName);
     }
 
+    
     
  
 }

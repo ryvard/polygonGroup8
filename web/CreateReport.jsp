@@ -4,6 +4,7 @@
     Author     : Lasse
 --%>
 
+<%@page import="businesslogic.Floor"%>
 <%@page import="businesslogic.Condition"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="businesslogic.Controller"%>
@@ -188,6 +189,12 @@
                 <br>
                 <table cellpadding="5">
                     <tr>
+                        <td><h2>vælg etage</h2></td>
+
+                        <td><input type="number" name="<%="floor" + i%>" style="width: 50px;"
+                                               value="<%=request.getParameter("floor" + i) == null ? "" : request.getParameter("floor" + i)%>" /></td>
+                    </tr>
+                    <tr>
                         <td><h2>Lokale nr.<h2></td>
                                     <td><input type="number" name="<%="room" + i%>" style="width: 50px;"
                                                value="<%=request.getParameter("room" + i) == null ? "" : request.getParameter("room" + i)%>" /></td>
@@ -229,9 +236,9 @@
                                         </tr>
                                         <tr>
                                             <td>Skade</td>
-                                            
+
                                             <td><input type="radio" name="<%="damage" + i%>" value="Fugt" />Fugt<br>
-                                                <input type="radio" name="<%="damage" + i%>" value="Råd og Svamp" />Råd og svamp<br>
+                                                <input type="radio" name="<%="damage" + i%>" value="Råd og svamp" />Råd og svamp<br>
                                                 <input type="radio" name="<%="damage" + i%>" value="Skimmel" />Skimmel<br>
                                                 <input type="radio" name="<%="damage" + i%>" value="Brand" />Brand<br>
 

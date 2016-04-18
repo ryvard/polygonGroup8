@@ -22,6 +22,7 @@ import businesslogic.Employee;
 import businesslogic.MoistScan;
 import businesslogic.ReportErrorException;
 import businesslogic.ReviewOf;
+import businesslogic.Room;
 import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -163,6 +164,8 @@ public class Servlet extends HttpServlet
                     session.setAttribute("cpLastName", bcpLastName);
                     */
                     
+                    
+                    
                     forward(request, response, "/CreateReport.jsp");
                     }catch(ReportErrorException ex)
                     {
@@ -205,6 +208,7 @@ public class Servlet extends HttpServlet
                         // ^ virker hertil
                         //con.createReport(rBuildingID, report, outerReviews, employee);
                        
+                        ArrayList<Room> roomList = new ArrayList();
                         ArrayList<Damage> damageList = new ArrayList();
                         ArrayList<ReviewOf> reviewList = new ArrayList();
                         ArrayList<MoistScan> msList = new ArrayList();
@@ -217,7 +221,10 @@ public class Servlet extends HttpServlet
                         for (int i = 0; i < roomPages; i++)
                         {
                             // room number
+                            int bFloor = Integer.parseInt(request.getParameter("floor"+i));
                             int bRoom = Integer.parseInt(request.getParameter("room" + i));
+                            Room room = new Room(bFloor, bRoom);
+                            roomList.add(room);
 
                             // save in Damage table
                             String damageInRoom = request.getParameter("damageInRoom" + i);
@@ -281,7 +288,7 @@ public class Servlet extends HttpServlet
 
                         }
                         
-                        con.createReport(rBuildingID, report, outerReviews, employee, damageList, reviewList, msList, conclusionList);
+                        con.createReport(rBuildingID, report, outerReviews, employee, roomList, damageList, reviewList, msList, conclusionList);
                         
                         getServletContext().getRequestDispatcher("/index.html").forward(request, response);
 

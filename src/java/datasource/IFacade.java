@@ -51,7 +51,7 @@ public interface IFacade
     
     public Employee getEmployeeFromEID(int eID) throws ReportErrorException;
     
-    public void createReport(Report r);
+    public void createReport(Report r) throws ReportErrorException;
     
     public ContactPerson getCPFromCPID(int CPID);
 }

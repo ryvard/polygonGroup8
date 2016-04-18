@@ -101,7 +101,7 @@ public class Controller implements IController
     //--------------------------------------------------------------
     @Override
     public void createReport(int buildingID, Report r, ArrayList<ReviewOf> outerReviews, 
-            Employee employee, ArrayList<Damage> damageList, ArrayList<ReviewOf> reviewList,
+            Employee employee, ArrayList<Room> roomList, ArrayList<Damage> damageList, ArrayList<ReviewOf> reviewList,
                 ArrayList<MoistScan> msList, ArrayList<Conclusion> conclusionList) throws ReportErrorException
     {
         
@@ -110,10 +110,14 @@ public class Controller implements IController
             r.addOuterReview(outerReviews);
             employee.seteID(facade.getEID(employee.getFirstName(),employee.getLastName()));
             r.addEmployee(employee);
+            
+            r.addRoomList(roomList);
             r.addDamageList(damageList);
             r.addReviewList(reviewList);
             r.addMSList(msList);
             r.addConclusionList(conclusionList);
+            
+            
             
             facade.createReport(r);
     }

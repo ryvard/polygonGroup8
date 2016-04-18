@@ -7,6 +7,7 @@ package datasource;
 
 import businesslogic.Report;
 import businesslogic.Condition;
+import businesslogic.Damage;
 import businesslogic.ReportErrorException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -20,16 +21,31 @@ import java.util.logging.Logger;
  */
 public class DM_Report
 {
-    public void createReport(Report r)
+    public void createReport(Report r)throws ReportErrorException
     {
         try
         {
-            System.out.println("DM");
             insertDataInReportTable(r);
             
-        } catch (Exception ex)
+            //??????
+            int repID = getRepID(r);
+            r.setRepID(repID);
+            //---
+            
+            int numberOfRooms = r.getDamageList().size();
+            
+            for(int i = 0; i < numberOfRooms;i++)
+            {
+                insertRooms(r, i);
+                insertDamage(r,i);
+            }
+            
+            
+            
+            
+        } catch (ReportErrorException ex)
         {
-            System.out.println("FAIL create report " + ex);
+            throw new ReportErrorException("create report: " + ex);
         }
         
     }
@@ -41,16 +57,31 @@ public class DM_Report
         String query = "INSERT INTO Report(BuildingID, EID, RDate, BCondition)"
                 + "VALUES('"+ r.getBuilding().getBuildingID()+"','"
                 + r.getEmployee().geteID() +"','" + r.getDate() +"','"
-                + r.getCondition() +"')";
+                + r.getCondition() +"');";
         DatabaseConnector db_Connect = DatabaseConnector.getInstance();
         db_Connect.updateData(query);
         
     }
     
-    private void insertDamage(Report r)
+    private void insertRooms(Report r, int i)
     {
-        String query = "INSERT INTO  VALUES";
+        String query = "INSERT INTO Room VALUES('"+r.getRoomList().get(i).getRoom()+"','"+r.getRoomList().get(i).getFloor()+"');";
+        DatabaseConnector db_Connect = DatabaseConnector.getInstance();
+        db_Connect.updateData(query);
+    }
+    
+    private void insertDamage(Report r, int i)
+    {
+        System.out.println("hej DAMAGE :"+r.getDamageList().get(i).getbRoom()+"','"+r.getRepID()+"','"+
+                r.getDamageList().get(i).getDamageInRoom()+"','"+r.getDamageList().get(i).getWhen()+"','"+
+                r.getDamageList().get(i).getWhere()+"','"+r.getDamageList().get(i).getWhat()+"','"+
+                r.getDamageList().get(i).getRepaired()+"','"+r.getDamageList().get(i).getDamage()+"','"+r.getDamageList().get(i).getOtherDamage());
         
+        String query = "INSERT INTO Damage(RoomID, RepID, DamageInRoom, DWhen, DWhere, DWhat, Repaired, DamageType, OtherDamage) "
+                + "VALUES('"+r.getDamageList().get(i).getbRoom()+"','"+r.getRepID()+"','"+
+                r.getDamageList().get(i).getDamageInRoom()+"','"+r.getDamageList().get(i).getWhen()+"','"+
+                r.getDamageList().get(i).getWhere()+"','"+r.getDamageList().get(i).getWhat()+"','"+
+                r.getDamageList().get(i).getRepaired()+"','"+r.getDamageList().get(i).getDamage()+"','"+r.getDamageList().get(i).getOtherDamage()+"');";
         
         DatabaseConnector db_Connect = DatabaseConnector.getInstance();
         db_Connect.updateData(query);
@@ -88,14 +119,24 @@ public class DM_Report
                 + r.getEmployee().getLastName()+"')";
     }
     
-    private void getRepID(Report r)
+    private int getRepID(Report r) throws ReportErrorException
     {
         String query = "SELECT RepID FROM Report "
                 + "WHERE BuildingID = '" + r.getBuilding().getBuildingID()
                 + "' AND RDate = '"+r.getDate()+"';";
         
         DatabaseConnector db_Connect = DatabaseConnector.getInstance();
-        db_Connect.updateData(query);
+        ResultSet res = db_Connect.getData(query);
+        try
+        {
+            res.next();
+            int repID = res.getInt(1);
+
+            return repID;
+        } catch (SQLException ex)
+        {
+            throw new ReportErrorException("1FEJL get repID" + ex);
+        }
     }
     
     public ArrayList<Report> viewReport()

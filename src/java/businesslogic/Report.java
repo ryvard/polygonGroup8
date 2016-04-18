@@ -25,7 +25,7 @@ public class Report
     private ArrayList<ReviewOf> outerReviews;
     private Employee employee;
     
-    
+    private ArrayList<Room> roomList; 
     private ArrayList<Damage> damageList;
     private ArrayList<ReviewOf> reviewList;
     private ArrayList<MoistScan> msList;
@@ -161,6 +161,17 @@ public class Report
     {
         return conclusionList;
     }
+    
+    public void addRoomList(ArrayList<Room> roomList)
+    {
+        this.roomList = roomList;
+    }
+
+    public ArrayList<Room> getRoomList()
+    {
+        return roomList;
+    }
+    
     
     
     
