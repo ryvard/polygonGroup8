@@ -102,11 +102,12 @@ public class Facade implements IFacade
         return dm_employee.getEmployeeFromEID(eID);
     }
 
-    @Override
-    public void createReportInDB(Report r)
+    //------
+    public void createReport(Report r)
     {
-        dm_report.createReportInDB(r);
+        dm_report.createReport(r);
     }
+    //-----
 
     @Override
     public ContactPerson getCPFromCPID(int CPID)
@@ -123,5 +124,7 @@ public class Facade implements IFacade
     public int getBuildingIDFromDB(String buildingName, String streetName) {
         return dm_building.getBuildingIDFromDB(buildingName, streetName);
     }
+
+    
  
 }

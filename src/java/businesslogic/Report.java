@@ -22,6 +22,7 @@ public class Report
     
     private Building building;
     
+    private ArrayList<ReviewOf> outerReviews;
     private ArrayList<ReviewOf> reviewOf;
     
     private ArrayList<Conclusion> conclusions;
@@ -31,40 +32,30 @@ public class Report
     private ContactPerson contactPerson;
     
     private int condition;
-
-    /*
-    String roofNote;
-    String outerWallNote;
     
-    */
 
-    public Report(int repID, String date, Building building, Employee employee)
-    {
-        this.repID = repID;
-        this.date = date;
-        this.building = building;
-        this.employee = employee;
-    }
-
-    public Report(String date, Building building, Employee employee, int condition)
+    public Report(String date, int condition)
     {
         this.date = date;
-        this.building = building;
-        this.employee = employee;
         this.condition = condition;
     }
     
-
-    public Employee getEmployee()
-    {
-        return employee;
-    }
-
-    public void setEmployee(Employee employee)
-    {
-        this.employee = employee;
-    }
-
+//    public Report(int repID, String date, Building building, Employee employee)
+//    {
+//        this.repID = repID;
+//        this.date = date;
+//        this.building = building;
+//        this.employee = employee;
+//    }
+//
+//    public Report(String date, Building building, Employee employee, int condition)
+//    {
+//        this.date = date;
+//        this.building = building;
+//        this.employee = employee;
+//        this.condition = condition;
+//    }
+    
     public int getRepID()
     {
         return repID;
@@ -85,15 +76,7 @@ public class Report
         this.date = date;
     }
 
-    public Building getBuilding()
-    {
-        return building;
-    }
-
-    public void setBuilding(Building building)
-    {
-        this.building = building;
-    }
+    
      public int getCondition()
     {
         return condition;
@@ -104,5 +87,34 @@ public class Report
         this.condition = condition;
     }
     
+    //-------
+    public void addBuilding(Building building)
+    {
+        this.building = building;
+    }
+    public Building getBuilding()
+    {
+        return building;
+    }
+    
+    public void addOuterReview(ArrayList<ReviewOf> outerReviews)
+    {
+        this.outerReviews = outerReviews;
+    }
+    
+    public ArrayList<ReviewOf> getOuterReviews()
+    {
+        return outerReviews;
+    }
+    
+    public void addEmployee(Employee employee)
+    {
+        this.employee = employee;
+    }
+    
+    public Employee getEmployee()
+    {
+        return employee;
+    }
     
 }

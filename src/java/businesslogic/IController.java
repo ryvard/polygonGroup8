@@ -60,7 +60,7 @@ public interface IController
         
         public Employee getEmployeeFromEID(int eID) throws ReportErrorException;
         
-        public void createReportInDB(Report r);
+        public void createReport(int buildingID, Report r, ArrayList<ReviewOf> outerReviews, Employee employee);
         
         public ContactPerson getCPFromCPID(int CPID);
 

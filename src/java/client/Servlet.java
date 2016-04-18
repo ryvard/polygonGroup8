@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import businesslogic.Controller;
+import businesslogic.Employee;
 import businesslogic.ReportErrorException;
 import businesslogic.ReviewOf;
 import java.util.ArrayList;
@@ -147,6 +148,9 @@ public class Servlet extends HttpServlet
                     String bUse = con.getBuildingFromID(ID).getBuildingUse();
                     session.setAttribute("bUse", bUse);
 
+                    /* RET DET HER 
+                    //con.getBuildingFromID(ID).getCp().getCPFirstName();
+                    
                     int bCPID = con.getBuildingFromID(ID).getCPID();
 
                     String bcpFirstName = con.getCPFromCPID(bCPID).getCPFirstName();
@@ -154,31 +158,51 @@ public class Servlet extends HttpServlet
 
                     String bcpLastName = con.getCPFromCPID(bCPID).getCPLastName();
                     session.setAttribute("cpLastName", bcpLastName);
-
+                    */
+                    
                     forward(request, response, "/CreateReport.jsp");
                     break;
-
-                case "Tilføj lokale":
-
+                    
                 case "Gem rapport":
                     try
                     {
                         // save in report table 
                         int rBuildingID = Integer.parseInt(request.getParameter("buildingID"));
 
-                        //-----OPS-----
+                        
+                        
+                        // Report data
+                        String rDate = request.getParameter("date");
+                        int rCondition = Integer.parseInt(request.getParameter("condition"));
+
+                        Report report = new Report(rDate, rCondition);
+                        
+                        //Review of building outside
+                        ArrayList<ReviewOf> outerReviews = new ArrayList();
+                        
+                        ReviewOf roof = new ReviewOf("Loft",request.getParameter("roof"));
+                        outerReviews.add(roof);
+                        
+                        ReviewOf outerWalls = new ReviewOf("yder vægge",request.getParameter("outerwalls"));
+                        outerReviews.add(outerWalls);
+                        
+                        //Employee 
                         String eFirstName = request.getParameter("eFirstName");
                         String eLastName = request.getParameter("eLastName");
-                        int eID = con.getEID(eFirstName, eLastName);
-                        //---------
+                        
+                        Employee employee = new Employee(eFirstName, eLastName);
+                        //int eID = con.getEID(eFirstName, eLastName);
+                        
+                       
+                        
+                        
+                        System.out.println("€€€ Servlet før kald");        
+                        con.createReport(rBuildingID, report, outerReviews, employee);
+                        System.out.println("€€€ Servlet Efter kald"); 
+                        //Report report = new Report(rDate, con.getBuildingFromID(rBuildingID), con.getEmployeeFromEID(eID), bCondition);
+                        //con.createReportInDB(report);
 
-                        String rDate = request.getParameter("date");
-                        int bCondition = Integer.parseInt(request.getParameter("condition"));
-
-                        //Review of building outside
-                        String roof = request.getParameter("roof");
-                        String outerwalls = request.getParameter("outerwalls");
-
+                        
                         //--------Pages-----------
                         int roomPages = Integer.parseInt(request.getParameter("addRoom")) - 1;
                         System.out.println("roomPages" + roomPages);
@@ -246,26 +270,20 @@ public class Servlet extends HttpServlet
                             String recommendation = request.getParameter("recommendation");
 
                         }
-
                         
-                        Report report = new Report(rDate, con.getBuildingFromID(rBuildingID), con.getEmployeeFromEID(eID), bCondition);
-
-                        
-                        con.createReportInDB(report);
-                        
-
                         getServletContext().getRequestDispatcher("/index.html").forward(request, response);
 
-                    } catch (ReportErrorException ex)
-                    {
-                        request.setAttribute("ReportError", "Report: " + ex);
-                        getServletContext().getRequestDispatcher("/ReportError.jsp").forward(request, response);
-
-                    } catch (NumberFormatException ex)
+                    }catch (NumberFormatException ex)
                     {
                         request.setAttribute("Number", "number: " + ex);
                         getServletContext().getRequestDispatcher("/ReportError.jsp").forward(request, response);
                     }
+//                    catch (ReportErrorException ex)
+//                    {
+//                        request.setAttribute("ReportError", "Report: " + ex);
+//                        getServletContext().getRequestDispatcher("/ReportError.jsp").forward(request, response);
+//
+//                    } 
                     break;
 
                 /*

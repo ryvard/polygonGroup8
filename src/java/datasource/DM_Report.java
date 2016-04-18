@@ -7,6 +7,7 @@ package datasource;
 
 import businesslogic.Report;
 import businesslogic.Condition;
+import businesslogic.ReportErrorException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -19,9 +20,18 @@ import java.util.logging.Logger;
  */
 public class DM_Report
 {
-    public void createReportInDB(Report r)
+    public void createReport(Report r)
     {
-        insertDataInReportTable(r);
+        try
+        {
+            System.out.println("DM");
+            insertDataInReportTable(r);
+            
+        } catch (Exception ex)
+        {
+            System.out.println("FAIL create report " + ex);
+        }
+        
     }
     
     
@@ -32,9 +42,9 @@ public class DM_Report
                 + "VALUES('"+ r.getBuilding().getBuildingID()+"','"
                 + r.getEmployee().geteID() +"','" + r.getDate() +"','"
                 + r.getCondition() +"')";
-        
         DatabaseConnector db_Connect = DatabaseConnector.getInstance();
         db_Connect.updateData(query);
+        
     }
     
     private void insertDamage(Report r)
