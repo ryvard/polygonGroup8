@@ -19,18 +19,22 @@ public class Report
     private int repID;
     
     private String date;
-    
     private Building building;
     private int condition;
     
     private ArrayList<ReviewOf> outerReviews;
-    
-    private ArrayList<ReviewOf> reviewOf;
-    
-    
     private Employee employee;
     
-    private Damage damage;
+    
+    private ArrayList<Damage> damageList;
+    private ArrayList<ReviewOf> reviewList;
+    private ArrayList<MoistScan> msList;
+    private ArrayList<Conclusion> conclusionList;
+    
+    
+    
+    
+    
     
     //private ContactPerson contactPerson;
     
@@ -119,13 +123,45 @@ public class Report
     {
         return employee;
     }
-    public void addDamage(Damage damage)
+    public void addDamageList(ArrayList<Damage> damageList)
     {
-        this.damage = damage;
+        this.damageList = damageList;
     }
-    public Damage getDamage()
+    public ArrayList<Damage> getDamageList()
     {
-        return damage;
+        return damageList;
     }
+    
+    public void addReviewList(ArrayList<ReviewOf> reviewList)
+    {
+        this.reviewList = reviewList;
+    }
+
+    public ArrayList<ReviewOf> getReviewList()
+    {
+        return reviewList;
+    }
+    
+    public void addMSList(ArrayList<MoistScan> msList)
+    {
+        this.msList = msList;
+    }
+
+    public ArrayList<MoistScan> getMsList()
+    {
+        return msList;
+    }
+    
+     public void addConclusionList(ArrayList<Conclusion> conclusionList)
+    {
+        this.conclusionList = conclusionList;
+    }
+
+    public ArrayList<Conclusion> getConclusionList()
+    {
+        return conclusionList;
+    }
+    
+    
     
 }

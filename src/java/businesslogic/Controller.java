@@ -57,13 +57,7 @@ public class Controller implements IController
         System.out.println("controller");
         return facade.getBuildingList();
     }
-
-    @Override
-    public void createReport(String reportNumber, String date, int squareMeter, String buildingUseability, String roof, String roofPicture, String outerwalls, String outerwallsPicture, Object conclusion, String reviewedBy, String collaboration, int condition)
-    {
-
-    }
-
+    
     @Override
     public int createContactPerson(String cpFirstName, String cpLastName, String email, String phone)
     {
@@ -106,7 +100,9 @@ public class Controller implements IController
     
     //--------------------------------------------------------------
     @Override
-    public void createReport(int buildingID, Report r, ArrayList<ReviewOf> outerReviews, Employee employee, Damage damage) throws ReportErrorException
+    public void createReport(int buildingID, Report r, ArrayList<ReviewOf> outerReviews, 
+            Employee employee, ArrayList<Damage> damageList, ArrayList<ReviewOf> reviewList,
+                ArrayList<MoistScan> msList, ArrayList<Conclusion> conclusionList) throws ReportErrorException
     {
         
             Building building = getBuildingFromID(buildingID);
@@ -114,10 +110,12 @@ public class Controller implements IController
             r.addOuterReview(outerReviews);
             employee.seteID(facade.getEID(employee.getFirstName(),employee.getLastName()));
             r.addEmployee(employee);
-            r.addDamage(damage);
+            r.addDamageList(damageList);
+            r.addReviewList(reviewList);
+            r.addMSList(msList);
+            r.addConclusionList(conclusionList);
             
             facade.createReport(r);
-        
     }
     
 //    //ikke brugt
