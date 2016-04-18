@@ -25,6 +25,7 @@ public class Building
     String buildingUse;
     int custID;
     int CPID;
+    ArrayList<Floor> floors;
      
     /**
      * Cunstructor used when creating a Building
@@ -169,6 +170,18 @@ public class Building
     {
         this.custID = custID;
     }
+
+    void addArrayFloor(ArrayList<Floor> arrayFloor)
+    {
+        floors = arrayFloor;
+    }
+
+    public ArrayList<Floor> getFloors()
+    {
+        return floors;
+    }
+    
+    
    
   
    

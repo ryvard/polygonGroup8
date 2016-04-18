@@ -30,6 +30,9 @@ public class DM_Building
             DatabaseConnector db_Connect = DatabaseConnector.getInstance();
             db_Connect.updateData(query);
             
+            int ID = getBuildingIDFromDB(b.getBuildingName(), b.getStreetName());
+            createFloor(b.getFloors(), ID);
+            
         } catch (Exception ex)
         {
             System.out.println("createBuildingInDB - " + ex);
