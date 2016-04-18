@@ -16,22 +16,21 @@ import java.util.ArrayList;
  */
 public class Report
 {
-    int repID;
+    private int repID;
     
-    String date;
+    private String date;
     
-    Building building;
+    private Building building;
     
+    private ArrayList<ReviewOf> reviewOf;
     
-    ArrayList<ReviewOf> reviewOf;
+    private ArrayList<Conclusion> conclusions;
     
-    ArrayList<Conclusion> conclusions;
+    private Employee employee;
     
-    Employee employee;
+    private ContactPerson contactPerson;
     
-    ContactPerson contactPerson;
-    
-    int condition;
+    private int condition;
 
     /*
     String roofNote;

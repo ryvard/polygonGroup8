@@ -77,11 +77,7 @@ public class Controller implements IController
         return facade.getContactPersonList();
     }
 
-    @Override
-    public Building getBuildingFromID(int buildingID)
-    {
-        return facade.getBuildingFromID(buildingID);
-    }
+    
 
     @Override
     public Report viewReport()
@@ -89,11 +85,7 @@ public class Controller implements IController
         return null;
     }
 
-    @Override
-    public ArrayList<Condition> getConditions()
-    {
-        return facade.getConditions();
-    }
+    
 
     @Override
     public void createContactPersonInfo(String firstName, String lastName, String mail, String phone)
@@ -102,35 +94,59 @@ public class Controller implements IController
         facade.createContactPersonInfo(cp);
     }
 
+    
+    
+    // ikke brugt
     @Override
     public int getCPID(String firstName, String lastName)
     {
         return facade.getCPID(firstName, lastName);
     }
 
-    @Override
-    public int getEID(String firstName, String lastName) throws ReportErrorException
-    {
-        return facade.getEID(firstName, lastName);
-    }
-
-    @Override
-    public Employee getEmployeeFromEID(int eID) throws ReportErrorException
-    {
-        return facade.getEmployeeFromEID(eID);
-    }
-
+    
+    //--------------------------------------------------------------
     @Override
     public void createReportInDB(Report r)
     {
         facade.createReportInDB(r);
     }
-
+    
+    @Override
+    public int getEID(String firstName, String lastName) throws ReportErrorException
+    {
+        return facade.getEID(firstName, lastName);
+    }
+    
+    @Override
+    public Employee getEmployeeFromEID(int eID) throws ReportErrorException
+    {
+        return facade.getEmployeeFromEID(eID);
+    }
+    
+    
+    //ikke brugt
+    @Override
+    public ArrayList<Condition> getConditions()
+    {
+        return facade.getConditions();
+    }
+    
+    
+    //create b from custid
+    
+    @Override
+    public Building getBuildingFromID(int buildingID)
+    {
+        return facade.getBuildingFromID(buildingID);
+    }
     @Override
     public ContactPerson getCPFromCPID(int CPID)
     {
         return facade.getCPFromCPID(CPID);
     }
+    
+    //--------------------------------------------------------------
+    
 
     @Override
     public void createFloor(ArrayList<Floor> arrayFloor, int buildingID)
@@ -139,12 +155,18 @@ public class Controller implements IController
     }
 
     //Forsøg på fejlhåndtering 
+    //ikke brugt
     @Override
     public int getBuildingIDFromDB(String buildingName, String streetName)
     {
         return facade.getBuildingIDFromDB(buildingName, streetName);
     }
+    
+    
 
+    
+    
+    
     public void createBuilding(Building b, ArrayList<Floor> arrayFloor)
     {
         b.addArrayFloor(arrayFloor);
