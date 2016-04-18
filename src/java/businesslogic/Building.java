@@ -5,6 +5,8 @@
  */
 package businesslogic;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author miaryvard
@@ -168,5 +170,6 @@ public class Building
         this.custID = custID;
     }
    
+  
    
 }
