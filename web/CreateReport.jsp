@@ -325,8 +325,8 @@
                                         </tr>
                                         <tr>
                                             <td>Anbefaling</td>
-                                            <td><input type="text" name="<%="recommendation" + i%>" style="width: 400px;"
-                                                       value="<%=request.getParameter("recommendation" + i) == null ? "" : request.getParameter("recommendation" + i)%>"/></td>
+                                            <td><input type="text" name="<%="recommendation"+i%>" style="width: 400px;"
+                                                       value="<%=request.getParameter("recommendation"+i) == null ? "" : request.getParameter("recommendation" + i)%>"/></td>
                                         </tr>
                                     </table>
                                     </div>

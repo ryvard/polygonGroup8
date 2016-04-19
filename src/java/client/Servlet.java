@@ -282,7 +282,8 @@ public class Servlet extends HttpServlet
                             msList.add(ms);
                             
                             // save in Conclusion table
-                            String recommendation = request.getParameter("recommendation");
+                            String recommendation = request.getParameter("recommendation" +i);
+                            System.out.println("recommendation: "+ recommendation);
                             Conclusion conclusion = new Conclusion(bRoom, recommendation);
                             conclusionList.add(conclusion);
 
