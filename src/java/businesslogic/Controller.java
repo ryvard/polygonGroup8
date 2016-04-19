@@ -135,7 +135,11 @@ public class Controller implements IController
     @Override
     public Building getBuildingFromID(int buildingID) throws ReportErrorException
     {   
-        return facade.getBuildingFromID(buildingID);
+        ContactPerson c = facade.getCP(buildingID);
+        Building b = facade.getBuildingFromID(buildingID);
+        b.addCP(c);
+        
+        return b;
     }
     
     @Override
@@ -180,5 +184,9 @@ public ArrayList<Floor> getFloors(int BuildingID) throws ReportErrorException
         return facade.getFloors(BuildingID);
     }
     
+public int getNewRepID() throws ReportErrorException
+    {
+        return facade.getNewRepID();
+    }
 
 }

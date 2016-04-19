@@ -123,8 +123,11 @@ public class Servlet extends HttpServlet
                     System.out.println("%%%%%%€##€##€€€€€ dsf servlet");
                     break;
 
-                case "createBuilding_BuildingID":
+                case "createReport_BuildingID":
                     try{
+                    int newRepID = con.getNewRepID();
+                    session.setAttribute("newRepID", newRepID);
+                        
                     int ID = Integer.parseInt(request.getParameter("buildingID"));
                     session.setAttribute("ID", ID);
 
@@ -151,23 +154,17 @@ public class Servlet extends HttpServlet
 
                     String bUse = con.getBuildingFromID(ID).getBuildingUse();
                     session.setAttribute("bUse", bUse);
-
-                    /* RET DET HER 
-                    //con.getBuildingFromID(ID).getCp().getCPFirstName();
                     
-                    int bCPID = con.getBuildingFromID(ID).getCPID();
-
-                    String bcpFirstName = con.getCPFromCPID(bCPID).getCPFirstName();
+                    String bcpFirstName = con.getBuildingFromID(ID).getCp().getCPFirstName();
                     session.setAttribute("cpFirstName", bcpFirstName);
-
-                    String bcpLastName = con.getCPFromCPID(bCPID).getCPLastName();
+                    String bcpLastName = con.getBuildingFromID(ID).getCp().getCPLastName();
                     session.setAttribute("cpLastName", bcpLastName);
-                    */
+                    
                     ArrayList<Floor> floorList = con.getFloors(ID);
                     session.setAttribute("floorList", floorList);
                     
-                    
                     forward(request, response, "/CreateReport.jsp");
+                    
                     }catch(ReportErrorException ex)
                     {
                         request.setAttribute("ReportError", "Report: " + ex);
@@ -191,10 +188,10 @@ public class Servlet extends HttpServlet
                         //Review of building outside
                         ArrayList<ReviewOf> outerReviews = new ArrayList();
                         
-                        ReviewOf roof = new ReviewOf("Loft",request.getParameter("roof"));
+                        ReviewOf roof = new ReviewOf("Tag",request.getParameter("roof"));
                         outerReviews.add(roof);
                         
-                        ReviewOf outerWalls = new ReviewOf("yder vægge",request.getParameter("outerwalls"));
+                        ReviewOf outerWalls = new ReviewOf("Yder vægge",request.getParameter("outerwalls"));
                         outerReviews.add(outerWalls);
                         
                         //Employee 
@@ -202,13 +199,7 @@ public class Servlet extends HttpServlet
                         String eLastName = request.getParameter("eLastName");
                         
                         Employee employee = new Employee(eFirstName, eLastName);
-                        //int eID = con.getEID(eFirstName, eLastName);
                         
-                       
-                        
-                        // ^ virker hertil
-                        //con.createReport(rBuildingID, report, outerReviews, employee);
-                       
                         ArrayList<Room> roomList = new ArrayList();
                         ArrayList<Damage> damageList = new ArrayList();
                         ArrayList<ReviewOf> reviewList = new ArrayList();

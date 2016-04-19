@@ -133,5 +133,15 @@ public class Facade implements IFacade
     {
         return dm_building.getFloorListFromBuildingID(BuildingID);
     }
+    
+    public ContactPerson getCP(int BuildingID) throws ReportErrorException
+    {
+        return dm_cp.getCPFromBuildingID(BuildingID);
+    }
+    
+    public int getNewRepID() throws ReportErrorException
+    {
+        return dm_report.getNewRepID();
+    }
  
 }

@@ -132,7 +132,7 @@ public class DM_Building
         try{
         while(res.next())
         {
-            Floor floor = new Floor(res.getInt(2),res.getInt(3),res.getDouble(4));
+            Floor floor = new Floor(res.getInt(1),res.getInt(2),res.getInt(3),res.getDouble(4));
             floorList.add(floor);
         }
         return floorList;
@@ -160,4 +160,6 @@ public class DM_Building
         }
         return 0;
     }
+    
+    
 }

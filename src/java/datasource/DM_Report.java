@@ -34,6 +34,11 @@ public class DM_Report
             r.setRepID(repID);
             //---
             
+            int numberOfOuterReviews = r.getOuterReviews().size()-1;
+            for(int i = 0; i<= numberOfOuterReviews; i++)
+                insertOuterReview(r, i);
+            System.out.println("*** Efter outside review: " + numberOfOuterReviews);
+            
             int numberOfRooms = r.getRoomList().size()-1;
             for(int i = 0; i <= numberOfRooms;i++)
                 insertRooms(r, i);
@@ -79,12 +84,15 @@ public class DM_Report
         db_Connect.updateData(query);
     }
     
-//    private void insertOuterReview(Report r, int i)
-//    {
-//        String query = "INSERT INTO VALUES";
-//        DatabaseConnector db_Connect = DatabaseConnector.getInstance();
-//        db_Connect.updateData(query);
-//    }
+    private void insertOuterReview(Report r, int i)
+    {
+        String query = "INSERT INTO OuterReviewOf(RepID, Part, Note) "
+                + "VALUES('"+r.getRepID()+"','"+r.getOuterReviews().get(i).getPart()+"','"+
+                r.getOuterReviews().get(i).getNote()+"')";
+        
+        DatabaseConnector db_Connect = DatabaseConnector.getInstance();
+        db_Connect.updateData(query);
+    }
     
     private void insertRooms(Report r, int i)
     {
@@ -211,6 +219,22 @@ public class DM_Report
             System.out.println("getCondition sql ex: " + ex);
         }
         return null;
+    }
+    public int getNewRepID() throws ReportErrorException
+    {
+        String query = "SELECT COUNT(RepID) From Report";
+        
+        DatabaseConnector db_Connect = DatabaseConnector.getInstance();
+        ResultSet res = db_Connect.getData(query);
+        try
+        {
+            res.next();
+            int repID = res.getInt(1)+1;
+            return repID;
+        } catch (SQLException ex)
+        {
+            throw new ReportErrorException("getNEWRepID");
+        }
     }
     
     

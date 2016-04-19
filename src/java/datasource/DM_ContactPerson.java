@@ -6,6 +6,7 @@
 package datasource;
 
 import businesslogic.ContactPerson;
+import businesslogic.ReportErrorException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -119,6 +120,25 @@ public class DM_ContactPerson {
         return null;
     }
     
+    public ContactPerson getCPFromBuildingID(int BuildingID) throws ReportErrorException
+    {
+        String query = "SELECT CPID,CPFirstName, CPLastName "
+                + "FROM ContactPerson NATURAL JOIN Buildings "
+                + "WHERE BuildingID ='"+BuildingID+"';";
+        DatabaseConnector db_Connect = DatabaseConnector.getInstance();
+        ResultSet res = db_Connect.getData(query);
+        try {
+            res.next();
+            ContactPerson cp = new ContactPerson(res.getInt(1), res.getString(2), res.getString(3));
+            
+        return cp;
+        
+        } catch(SQLException ex) {
+            throw new ReportErrorException("get cpFrom bid"+ex);
+        }
+        
+                
+    }
     
    
     

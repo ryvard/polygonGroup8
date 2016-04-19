@@ -19,8 +19,8 @@ public class ContactPerson {
     
     /* Contructor for creating contactperson */
     
-    public ContactPerson(String cpFirstName, String cpLastName, String email, String phone) {
-        
+    public ContactPerson(String cpFirstName, String cpLastName, String email, String phone)
+    {
         this.firstName = cpFirstName;
         this.lastName = cpLastName;
         this.email = email;
