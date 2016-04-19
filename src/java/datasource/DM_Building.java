@@ -123,24 +123,24 @@ public class DM_Building
         
     }
     
-//    public ArrayList<Floor> getFloorListFromBuildingID(int buildingID) throws ReportErrorException
-//    {
-//        String query = "SELECT * FROM BFloor WHERE BuildingID ='"+buildingID+"';";
-//        DatabaseConnector db_Connect = DatabaseConnector.getInstance();
-//        ResultSet res = db_Connect.getData(query);
-//        ArrayList<Floor> floorList = new ArrayList();
-//        try{
-//        while(res.next())
-//        {
-//            Floor floor = new Floor(res.getInt(2),res.getInt(3),res.getDouble(4));
-//            floorList.add(floor);
-//        }
-//        return floorList;
-//        }catch(SQLException ex)
-//        {
-//            throw new ReportErrorException("get floorList: "+ex);
-//        }
-//    }
+    public ArrayList<Floor> getFloorListFromBuildingID(int buildingID) throws ReportErrorException
+    {
+        String query = "SELECT * FROM BFloor WHERE BuildingID ='"+buildingID+"';";
+        DatabaseConnector db_Connect = DatabaseConnector.getInstance();
+        ResultSet res = db_Connect.getData(query);
+        ArrayList<Floor> floorList = new ArrayList();
+        try{
+        while(res.next())
+        {
+            Floor floor = new Floor(res.getInt(2),res.getInt(3),res.getDouble(4));
+            floorList.add(floor);
+        }
+        return floorList;
+        }catch(SQLException ex)
+        {
+            throw new ReportErrorException("get floorList: "+ex);
+        }
+    }
     
     public int getBuildingIDFromDB(String buildingName, String streetName) {
         

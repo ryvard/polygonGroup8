@@ -129,6 +129,9 @@ public class Facade implements IFacade
     }
 
     
-    
+    public ArrayList<Floor> getFloors(int BuildingID) throws ReportErrorException
+    {
+        return dm_building.getFloorListFromBuildingID(BuildingID);
+    }
  
 }

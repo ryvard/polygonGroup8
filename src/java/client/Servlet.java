@@ -163,7 +163,8 @@ public class Servlet extends HttpServlet
                     String bcpLastName = con.getCPFromCPID(bCPID).getCPLastName();
                     session.setAttribute("cpLastName", bcpLastName);
                     */
-                    
+                    ArrayList<Floor> floorList = con.getFloors(ID);
+                    session.setAttribute("floorList", floorList);
                     
                     
                     forward(request, response, "/CreateReport.jsp");

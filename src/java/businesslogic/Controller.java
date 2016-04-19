@@ -175,7 +175,10 @@ public class Controller implements IController
     
 
     
-
+public ArrayList<Floor> getFloors(int BuildingID) throws ReportErrorException
+    {
+        return facade.getFloors(BuildingID);
+    }
     
 
 }

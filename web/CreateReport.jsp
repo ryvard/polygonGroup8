@@ -190,9 +190,20 @@
                 <table cellpadding="5">
                     <tr>
                         <td><h2>vælg etage</h2></td>
-
-                        <td><input type="number" name="<%="floor" + i%>" style="width: 50px;"
-                                               value="<%=request.getParameter("floor" + i) == null ? "" : request.getParameter("floor" + i)%>" /></td>
+                        <td>
+                            <select name="<%="floor" + i%>"
+                                   value="<%=request.getParameter("floor" + i) == null ? "" : request.getParameter("floor" + i)%>">
+                            <%
+                                ArrayList<Floor> floorList = (ArrayList<Floor>) session.getAttribute("floorList");
+                                for (Floor f : floorList)
+                                {
+                            %>
+                                <option><%=f.getFloor()%></option>
+                            <%
+                                }
+                            %>
+                            </select>
+                        </td>
                     </tr>
                     <tr>
                         <td><h2>Lokale nr.<h2></td>
@@ -325,8 +336,8 @@
                                         </tr>
                                         <tr>
                                             <td>Anbefaling</td>
-                                            <td><input type="text" name="<%="recommendation"+i%>" style="width: 400px;"
-                                                       value="<%=request.getParameter("recommendation"+i) == null ? "" : request.getParameter("recommendation" + i)%>"/></td>
+                                            <td><input type="text" name="<%="recommendation" + i%>" style="width: 400px;"
+                                                       value="<%=request.getParameter("recommendation" + i) == null ? "" : request.getParameter("recommendation" + i)%>"/></td>
                                         </tr>
                                     </table>
                                     </div>
