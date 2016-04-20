@@ -47,8 +47,6 @@
                 font-size: small;
                 color: #000;
             }
-
-
         </style>
     </head>
     <body>
@@ -59,29 +57,26 @@
                 getServletContext().getRequestDispatcher("/Servlet").forward(request, response);
             }
         %>
-        <form action="CreateReport.jsp" method="GET">
+        <form action="CreateReport.jsp" method="Post">
             <input type="hidden" name="buildingID" value="<%=session.getAttribute("ID")%>"/>
+            
             <table>
                 <tr>
                     <td>Rapport ID: <%=session.getAttribute("newRepID")%></td>
                     <td></td><td></td>
                     <td colspan="2"><input type="text" name="date" placeholder="Dato (dd-mm-yy)"
                                            value="<%=request.getParameter("date") == null ? "" : request.getParameter("date")%>"</td>
-                
                 </tr>
             </table>
-
+                
+                <h1>Bygningsgennemgang</h1>
+                
             <table>
-                <td></td>
-                <td><h1>Bygningsgennemgang</h1></td>
-
                 <tr>
-
                     <td>Navn på bygning</td>
                     <td><input type="text" name="buildningName" readonly="readonly"
                                value="<%=request.getParameter("buildingName") == null ? session.getAttribute("bName") : request.getParameter("buildingName")%>"/></td>
                 </tr>
-
                 <tr>
                     <td>Adresse</td>
                     <td><input type="text" name="adress" readonly="readonly"
@@ -92,7 +87,6 @@
                     <td><input type="text" name="streetNumb" readonly="readonly"
                                value="<%=request.getParameter("streetNumb") == null ? session.getAttribute("bStreetNumb") : request.getParameter("streetNumb")%>" </td>
                 </tr>
-
                 <tr>
                     <td>By</td>
                     <td> <input type="text" name="city" readonly="readonly"
@@ -103,15 +97,12 @@
                     <td> <input type="text" name="zip" readonly="readonly"
                                 value="<%=request.getParameter("zip") == null ? session.getAttribute("bZip") : request.getParameter("zip")%>"/></td>
                 </tr>
-
-
             </table>
+                
             <br> 
-
-
             <div style="width:500px;height:100px;border:1px solid #000;">(Indsæt billede af bygning udefra)</div>
+            
             <br>
-
             <h2>Generel information om bygningen</h2>
             <table>
                 <tr>
@@ -151,6 +142,7 @@
                     <td><input type="checkbox" name="outerwallsPicture" value="ON" /></td>
                 </tr>
             </table>
+                    
             <br>
             <h2>Gennemgang af bygning indvendig</h2>
             <%
@@ -223,19 +215,18 @@
                     </tr>
                     <tr>
                         <td>Skade</td>
-
                         <td><input type="radio" name="<%="damage" + i%>" value="Fugt" />Fugt<br>
                             <input type="radio" name="<%="damage" + i%>" value="Raad og svamp" />Råd og svamp<br>
                             <input type="radio" name="<%="damage" + i%>" value="Skimmel" />Skimmel<br>
                             <input type="radio" name="<%="damage" + i%>" value="Brand" />Brand<br>
-
                             Anden skade:
                             <input type="text" name="<%="otherDamage" + i%>" style="width: 250px;"
                                    value="<%=request.getParameter("otherDamage" + i) == null ? "" : request.getParameter("otherDamage" + i)%>" />
                         </td>
                     </tr>
                 </table>
-                <br><br>
+                        
+                <br>
                 <table cellpadding="5">
                     <tr>
                         <td colspan="2"><h2>Gennemgang af...</h2></td>
@@ -283,7 +274,7 @@
                                    value="<%=request.getParameter("otherNote2" + i) == null ? "" : request.getParameter("otherNote2" + i)%>"/></td>
                     </tr>
                 </table>
-                <br><br>
+                <br>
                 <table cellpadding="5">
                     <tr>
                         <td colspan="2"><h2>Fugtscanning</h2></td>
@@ -305,7 +296,7 @@
                                    value="<%=request.getParameter("measurePoint" + i) == null ? "" : request.getParameter("measurePoint" + i)%>"/></td>
                     </tr>
                 </table>
-                <br><br>
+                <br>
                 <table cellpadding="5">
                     <tr>
                         <td colspan="2"><h2>Konklusion</h2></td>
@@ -340,8 +331,7 @@
                        value="<%=request.getParameter("cpLastName") == null ? session.getAttribute("cpLastName") : request.getParameter("cpLastName")%>"/>
                 (bygningsansvarlig).</p>
 
-            <br><br>
-
+            <br>
             <h2>Bygningen er kategoriseret som</h2>
             <table style="border: 1px solid black; " padding="5">
                 <tr>

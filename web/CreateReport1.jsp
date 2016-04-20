@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Indsæt bygnings ID</title>
+        <title>Opret rapport</title>
         <style>
             h1 {
 
@@ -35,7 +35,7 @@
     </head>
     <body>
         <h1>Indtast bygningsID</h1>
-        <form action="Servlet" method="GET">
+        <form action="Servlet" method="Post">
             Bygnings-ID: 
             <input type='number' name='buildingID'/>
             <input type="hidden" name="do_this" value="createReport_BuildingID">
