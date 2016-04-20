@@ -11,60 +11,35 @@ package businesslogic;
  */
 public class Conclusion
 {
-    int roomID;
-    int repID;
-    String recomendation;
+    private int bRoom;
+    private String recommendation;
+
+    public Conclusion(int bRoom, String recommendation)
+    {
+        this.bRoom = bRoom;
+        this.recommendation = recommendation;
+    }
+
+    public int getbRoom()
+    {
+        return bRoom;
+    }
+
+    public void setbRoom(int bRoom)
+    {
+        this.bRoom = bRoom;
+    }
+
+    public String getRecommendation()
+    {
+        return recommendation;
+    }
+
+    public void setRecommendation(String recommendation)
+    {
+        this.recommendation = recommendation;
+    }
     
-    /**
-     * Used when we whant to get conclusions from the DB
-     */
-    public Conclusion(int roomID, String recomendation)
-    {
-        this.roomID = roomID;
-        this.recomendation = recomendation;
-    }
-    
-    /**
-     * 
-     * Used when you want to insert a conclusion into the DB
-     * @param roomID is auto generated in the database, a unic id for every conclusion
-     */
-    public Conclusion(int roomID, int repID, String recomendation)
-    {
-        this.roomID = roomID;
-        this.repID = repID;
-        this.recomendation = recomendation;
-    }
-
-    public int getRoomID()
-    {
-        return roomID;
-    }
-
-    public void setRoomID(int roomID)
-    {
-        this.roomID = roomID;
-    }
-
-    public int getRepID()
-    {
-        return repID;
-    }
-
-    public void setRepID(int repID)
-    {
-        this.repID = repID;
-    }
-
-    public String getRecomendation()
-    {
-        return recomendation;
-    }
-
-    public void setRecomendation(String recomendation)
-    {
-        this.recomendation = recomendation;
-    }
     
     
     

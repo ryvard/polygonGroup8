@@ -17,8 +17,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import businesslogic.Controller;
+import businesslogic.Damage;
+import businesslogic.Employee;
+import businesslogic.MoistScan;
 import businesslogic.ReportErrorException;
 import businesslogic.ReviewOf;
+import businesslogic.Room;
 import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -119,7 +123,11 @@ public class Servlet extends HttpServlet
                     System.out.println("%%%%%%€##€##€€€€€ dsf servlet");
                     break;
 
-                case "createBuilding_BuildingID":
+                case "createReport_BuildingID":
+                    try{
+                    int newRepID = con.getNewRepID();
+                    session.setAttribute("newRepID", newRepID);
+                        
                     int ID = Integer.parseInt(request.getParameter("buildingID"));
                     session.setAttribute("ID", ID);
 
@@ -146,49 +154,69 @@ public class Servlet extends HttpServlet
 
                     String bUse = con.getBuildingFromID(ID).getBuildingUse();
                     session.setAttribute("bUse", bUse);
-
-                    int bCPID = con.getBuildingFromID(ID).getCPID();
-
-                    String bcpFirstName = con.getCPFromCPID(bCPID).getCPFirstName();
+                    
+                    String bcpFirstName = con.getBuildingFromID(ID).getCp().getCPFirstName();
                     session.setAttribute("cpFirstName", bcpFirstName);
-
-                    String bcpLastName = con.getCPFromCPID(bCPID).getCPLastName();
+                    String bcpLastName = con.getBuildingFromID(ID).getCp().getCPLastName();
                     session.setAttribute("cpLastName", bcpLastName);
-
+                    
+                    ArrayList<Floor> floorList = con.getFloors(ID);
+                    session.setAttribute("floorList", floorList);
+                    
                     forward(request, response, "/CreateReport.jsp");
+                    
+                    }catch(ReportErrorException ex)
+                    {
+                        request.setAttribute("ReportError", "Report: " + ex);
+                        getServletContext().getRequestDispatcher("/ReportError.jsp").forward(request, response);   
+                    }
+                    
                     break;
-
-                case "Tilføj lokale":
-
+                    
                 case "Gem rapport":
                     try
                     {
                         // save in report table 
                         int rBuildingID = Integer.parseInt(request.getParameter("buildingID"));
 
-                        //-----OPS-----
+                        // Report data
+                        String rDate = request.getParameter("date");
+                        int rCondition = Integer.parseInt(request.getParameter("condition"));
+
+                        Report report = new Report(rDate, rCondition);
+                        
+                        //Review of building outside
+                        ArrayList<ReviewOf> outerReviews = new ArrayList();
+                        
+                        ReviewOf roof = new ReviewOf("Tag",request.getParameter("roof"));
+                        outerReviews.add(roof);
+                        
+                        ReviewOf outerWalls = new ReviewOf("Yder vægge",request.getParameter("outerwalls"));
+                        outerReviews.add(outerWalls);
+                        
+                        //Employee 
                         String eFirstName = request.getParameter("eFirstName");
                         String eLastName = request.getParameter("eLastName");
-                        int eID = con.getEID(eFirstName, eLastName);
-                        //---------
-
-                        String rDate = request.getParameter("date");
-                        int bCondition = Integer.parseInt(request.getParameter("condition"));
-
-                        //Review of building outside
-                        String roof = request.getParameter("roof");
-                        String outerwalls = request.getParameter("outerwalls");
-
+                        
+                        Employee employee = new Employee(eFirstName, eLastName);
+                        
+                        ArrayList<Room> roomList = new ArrayList();
+                        ArrayList<Damage> damageList = new ArrayList();
+                        ArrayList<ReviewOf> reviewList = new ArrayList();
+                        ArrayList<MoistScan> msList = new ArrayList();
+                        ArrayList<Conclusion> conclusionList = new ArrayList();
+                        
                         //--------Pages-----------
                         int roomPages = Integer.parseInt(request.getParameter("addRoom")) - 1;
                         System.out.println("roomPages" + roomPages);
-
+                        
                         for (int i = 0; i < roomPages; i++)
                         {
-                            // save room
-                            //int bFloor = ;
-
+                            // room number
+                            int bFloor = Integer.parseInt(request.getParameter("floor"+i));
                             int bRoom = Integer.parseInt(request.getParameter("room" + i));
+                            Room room = new Room(bFloor, bRoom);
+                            roomList.add(room);
 
                             // save in Damage table
                             String damageInRoom = request.getParameter("damageInRoom" + i);
@@ -198,72 +226,73 @@ public class Servlet extends HttpServlet
                             String repaired = request.getParameter("repaired" + i);
                             String damage = request.getParameter("damage" + i);
                             String otherDamage = request.getParameter("otherDamage" + i);
+                            
+                            Damage rDamage = new Damage(bRoom, damageInRoom, when, where, what, repaired, damage, otherDamage);
+                            damageList.add(rDamage);
 
                             // save in ReviewOf table
-                            ArrayList<ReviewOf> reviewOfList = new ArrayList();
-
                             String wallPart = "Vægge";
                             String wallNote = request.getParameter("wallNote" + i);
                             ReviewOf rWall = new ReviewOf(bRoom, wallPart, wallNote);
-                            reviewOfList.add(rWall);
+                            reviewList.add(rWall);
 
                             String ceilingPart = "Loft";
                             String ceilingNote = request.getParameter("ceilingNote" + i);
                             ReviewOf rCeiling = new ReviewOf(bRoom, ceilingPart, ceilingNote);
-                            reviewOfList.add(rCeiling);
+                            reviewList.add(rCeiling);
 
                             String floorPart = "Gulv";
                             String floorNote = request.getParameter("floorNote" + i);
                             ReviewOf rFloor = new ReviewOf(bRoom, floorPart, floorNote);
-                            reviewOfList.add(rFloor);
+                            reviewList.add(rFloor);
 
                             String windowPart = "Vinduer";
                             String windowNote = request.getParameter("windowNote" + i);
                             ReviewOf rWindow = new ReviewOf(bRoom, windowPart, windowNote);
-                            reviewOfList.add(rWindow);
+                            reviewList.add(rWindow);
 
                             String doorPart = "Døre";
                             String doorNote = request.getParameter("doorNote" + i);
                             ReviewOf rDoor = new ReviewOf(bRoom, doorPart, doorNote);
-                            reviewOfList.add(rDoor);
+                            reviewList.add(rDoor);
 
                             String otherPart1 = request.getParameter("otherPart1" + i);
                             String otherNote1 = request.getParameter("otherNote1" + i);
                             ReviewOf rOther1 = new ReviewOf(bRoom, otherPart1, otherNote1);
-                            reviewOfList.add(rOther1);
+                            reviewList.add(rOther1);
 
                             String otherPart2 = request.getParameter("otherPart2" + i);
                             String otherNote2 = request.getParameter("otherNote2" + i);
                             ReviewOf rOther2 = new ReviewOf(bRoom, otherPart2, otherNote2);
-                            reviewOfList.add(rOther2);
+                            reviewList.add(rOther2);
 
                             // save in MoistScan table
                             String msComplete = request.getParameter("moistScanCompletet" + i);
                             String moistScan = request.getParameter("moistScan" + i);
                             String measurePoint = request.getParameter("measurePoint" + i);
-
+                            MoistScan ms = new MoistScan(bRoom, msComplete, moistScan, measurePoint);
+                            msList.add(ms);
+                            
                             // save in Conclusion table
-                            String recommendation = request.getParameter("recommendation");
+                            String recommendation = request.getParameter("recommendation" +i);
+                            System.out.println("recommendation: "+ recommendation);
+                            Conclusion conclusion = new Conclusion(bRoom, recommendation);
+                            conclusionList.add(conclusion);
 
                         }
-
                         
-                        Report report = new Report(rDate, con.getBuildingFromID(rBuildingID), con.getEmployeeFromEID(eID), bCondition);
-
+                        con.createReport(rBuildingID, report, outerReviews, employee, roomList, damageList, reviewList, msList, conclusionList);
                         
-                        con.createReportInDB(report);
-                        
-
                         getServletContext().getRequestDispatcher("/index.html").forward(request, response);
 
-                    } catch (ReportErrorException ex)
+                    }catch (ReportErrorException ex)
                     {
                         request.setAttribute("ReportError", "Report: " + ex);
                         getServletContext().getRequestDispatcher("/ReportError.jsp").forward(request, response);
 
-                    } catch (NumberFormatException ex)
+                    }catch(NumberFormatException ex)
                     {
-                        request.setAttribute("Number", "number: " + ex);
+                        request.setAttribute("Number", "Number: " + ex);
                         getServletContext().getRequestDispatcher("/ReportError.jsp").forward(request, response);
                     }
                     break;

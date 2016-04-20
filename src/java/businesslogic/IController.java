@@ -27,14 +27,14 @@ public interface IController
         
         public void createCustomer(String name, String type, String streetName, String streetNo, int zipcode, String contactName, String phone, String mail);
         
-        public void createReport(String reportNumber, String date, int squareMeter, String buildingUseability, String roof, String roofPicture, String outerwalls, String outerwallsPicture, Object conclusion, String reviewedBy, String collaboration, int condition);
+        //public void createReport(String reportNumber, String date, int squareMeter, String buildingUseability, String roof, String roofPicture, String outerwalls, String outerwallsPicture, Object conclusion, String reviewedBy, String collaboration, int condition);
     /*
      * Called when entering the site BuildingList.jsp 
      * Arraylist containing all buildings.
      */
         public ArrayList<Building> getBuildingList(); 
         
-        public Building getBuildingFromID(int buildingID);
+        public Building getBuildingFromID(int buildingID) throws ReportErrorException;
         
         public int createContactPerson(String cpFirstName, String cpLastName, String mail, String phone);
         
@@ -56,11 +56,9 @@ public interface IController
         
         public int getCPID(String firstName, String lastName);
     
-        public int getEID(String firstName, String lastName) throws ReportErrorException;
-        
-        public Employee getEmployeeFromEID(int eID) throws ReportErrorException;
-        
-        public void createReportInDB(Report r);
+        public void createReport(int buildingID, Report r, ArrayList<ReviewOf> outerReviews, 
+                Employee employee, ArrayList<Room> roomList, ArrayList<Damage> damageList, ArrayList<ReviewOf> reviewList,
+                ArrayList<MoistScan> msList, ArrayList<Conclusion> conclusionList) throws ReportErrorException;
         
         public ContactPerson getCPFromCPID(int CPID);
 

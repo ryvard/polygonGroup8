@@ -19,6 +19,8 @@ import businesslogic.Condition;
 import businesslogic.Floor;
 import businesslogic.ReportErrorException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -61,7 +63,7 @@ public class Facade implements IFacade
     }
 
     @Override
-    public Building getBuildingFromID(int buildingID)
+    public Building getBuildingFromID(int buildingID) throws ReportErrorException
     {
         return dm_building.getBuildingFromID(buildingID);
     }
@@ -102,11 +104,13 @@ public class Facade implements IFacade
         return dm_employee.getEmployeeFromEID(eID);
     }
 
+    //------
     @Override
-    public void createReportInDB(Report r)
+    public void createReport(Report r) throws ReportErrorException
     {
-        dm_report.createReportInDB(r);
+            dm_report.createReport(r);
     }
+    //-----
 
     @Override
     public ContactPerson getCPFromCPID(int CPID)
@@ -122,6 +126,22 @@ public class Facade implements IFacade
     @Override
     public int getBuildingIDFromDB(String buildingName, String streetName) {
         return dm_building.getBuildingIDFromDB(buildingName, streetName);
+    }
+
+    
+    public ArrayList<Floor> getFloors(int BuildingID) throws ReportErrorException
+    {
+        return dm_building.getFloorListFromBuildingID(BuildingID);
+    }
+    
+    public ContactPerson getCP(int BuildingID) throws ReportErrorException
+    {
+        return dm_cp.getCPFromBuildingID(BuildingID);
+    }
+    
+    public int getNewRepID() throws ReportErrorException
+    {
+        return dm_report.getNewRepID();
     }
  
 }

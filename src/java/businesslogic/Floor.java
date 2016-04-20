@@ -11,9 +11,28 @@ package businesslogic;
  */
 public class Floor {
     
+    int floorID;
     int buildingID;
     int floor;
     double squareM; 
+
+    public Floor(int floorID, int buildingID, int floor, double squareM)
+    {
+        this.floorID = floorID;
+        this.buildingID = buildingID;
+        this.floor = floor;
+        this.squareM = squareM;
+    }
+
+    public int getFloorID()
+    {
+        return floorID;
+    }
+
+    public void setFloorID(int floorID)
+    {
+        this.floorID = floorID;
+    }
     
     public Floor(int bID, int fID, double squareM) {
         this.buildingID = bID;

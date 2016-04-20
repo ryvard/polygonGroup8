@@ -4,6 +4,7 @@
     Author     : Lasse
 --%>
 
+<%@page import="businesslogic.Floor"%>
 <%@page import="businesslogic.Condition"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="businesslogic.Controller"%>
@@ -62,8 +63,11 @@
             <input type="hidden" name="buildingID" value="<%=session.getAttribute("ID")%>"/>
             <table>
                 <tr>
-                    <td align="left"><input type="text" name="reportNumber" placeholder="Raport nr." 
-                                            value="Rapport nr.:"/> </td>
+                    <td>Rapport ID: <%=session.getAttribute("newRepID")%></td>
+                    <td></td><td></td>
+                    <td colspan="2"><input type="text" name="date" placeholder="Dato (dd-mm-yy)"
+                                           value="<%=request.getParameter("date") == null ? "" : request.getParameter("date")%>"</td>
+                
                 </tr>
             </table>
 
@@ -76,8 +80,6 @@
                     <td>Navn på bygning</td>
                     <td><input type="text" name="buildningName" readonly="readonly"
                                value="<%=request.getParameter("buildingName") == null ? session.getAttribute("bName") : request.getParameter("buildingName")%>"/></td>
-                    <td>Dato</td>
-                    <td> <input type="text" name="date" value="<%=request.getParameter("date") == null ? "" : request.getParameter("date")%>"</td>
                 </tr>
 
                 <tr>
@@ -106,54 +108,32 @@
             </table>
             <br> 
 
+
+            <div style="width:500px;height:100px;border:1px solid #000;">(Indsæt billede af bygning udefra)</div>
+            <br>
+
+            <h2>Generel information om bygningen</h2>
             <table>
-                <div style="width:500px;height:100px;border:1px solid #000;">(Indsæt billede af bygning udefra)</div>
-                <br>
                 <tr>
-                <h2>Generel information om bygningen</h2>
-                <br> 
-                <td>Byggeår</td>
-                </tr>
-                <tr>
+                    <td>Byggeår:</td>
                     <td><input type="text" name="buildYear" readonly="readonly"
                                value="<%=request.getParameter("buildYear") == null ? session.getAttribute("bYearOfConst") : request.getParameter("buildYear")%>"/></td>
                 </tr>
-
-
                 <tr>
-                    <td>Etage</td>
-                </tr>
-                <tr>
-                    <td><input type="number" name="qty" value="1" min="-10" max="50"</td>
-                    <td>Etage-areal i m²</td>
-                    <td><input type="text" name="floorSquareMeter" value=""/></td>
-                </tr>
-
-                <tr>
-                    <td>Totale bygnings-areal i m²</td>
-                </tr>
-                <tr>
+                    <td>Totale bygnings-areal i m²:</td>
                     <td><input type="text" name="squareMeter" readonly="readonly"
                                value="<%=request.getParameter("squareMeter") == null ? session.getAttribute("bSquareMeter") : request.getParameter("squareMeter")%>"/></td>
                 </tr>
-
                 <tr>
                     <td>Hvad bruges bygningen til / hvad har bygningen været brugt til</td>
-                </tr>
-
-                <tr>
                     <td><input type="text" name="bUse" readonly="readonly" style="width: 300px;"
                                value="<%=request.getParameter("bUse") == null ? session.getAttribute("bUse") : request.getParameter("bUse")%>"/></td>
                 </tr>
             </table>
 
+            <br>
+            <h2>Gennemgang af bygning udvendig</h2>
             <table>
-                <tr>
-                <br>
-                <h2>Gennemgang af bygning udvendig</h2>
-                <br>
-                </tr>
-
                 <tr>
                     <td>Tag</td>
                     <td><input type="text" name="roof" style="width: 300px;"
@@ -161,239 +141,253 @@
                     <td align="right">Billede</td>
                     <td><input type="file"/></td>
                     <td><input type="checkbox" name="roofPicture" value="ON" /></td>
-
-
                 </tr>
-
                 <tr>
                     <td>Ydervægge</td>
                     <td><input type="text" name="outerwalls" style="width: 300px;"
                                value="<%=request.getParameter("outerwalls") == null ? "" : request.getParameter("outerwalls")%>"/></td>
                     <td align="right">Billede</td>
                     <td><input type="file"/></td>
-
                     <td><input type="checkbox" name="outerwallsPicture" value="ON" /></td>
-
                 </tr>
             </table>
-
+            <br>
+            <h2>Gennemgang af bygning indvendig</h2>
             <%
                 int pages = request.getParameter("addRoom") == null ? 1 : Integer.parseInt(request.getParameter("addRoom"));
 
                 for (int i = 0; i < pages; i++)
                 {
             %>
-            <br>
-            <div  style="width:800px;height:1000px;border:1px solid #000; margin-left: 10px">
+            <div  style="width:800px;height:1100px;border:1px solid #000; margin-left: 10px">
                 <br>
                 <table cellpadding="5">
                     <tr>
-                        <td><h2>Lokale nr.<h2></td>
-                                    <td><input type="number" name="<%="room" + i%>" style="width: 50px;"
-                                               value="<%=request.getParameter("room" + i) == null ? "" : request.getParameter("room" + i)%>" /></td>
-                                    </tr>
-                                    </table>
-                                    <br>
-                                    <table cellpadding="5">
-                                        <tr><td colspan="2"><h2>Skade og reparation</h2></td></tr>
-                                        <tr>
-                                            <td>Har der været skade i lokalet?</td>
-                                            <td><select name="<%="damageInRoom" + i%>" 
-                                                        value="<%=request.getParameter("damageInRoom" + i) == null ? "" : request.getParameter("damageInRoom" + i)%>"/>
-                                        <option>Nej</option>
-                                        <option>Ja</option>
-                                        </select></td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="2">Hvis ja udfyld venligst felterne nedenfor</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Hvornår</td>
-                                            <td><input type="text" name="<%="when" + i%>" style="width: 200px;"
-                                                       value="<%=request.getParameter("when" + i) == null ? "" : request.getParameter("when" + i)%>" /></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Hvor</td>
-                                            <td><input type="text" name="<%="where" + i%>" style="width: 400px;"
-                                                       value="<%=request.getParameter("where" + i) == null ? "" : request.getParameter("where" + i)%>" /></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Hvad er der sket</td>
-                                            <td><input type="text" name="<%="what" + i%>" style="width: 400px;"
-                                                       value="<%=request.getParameter("what" + i) == null ? "" : request.getParameter("what" + i)%>" /></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Hvad er repareret</td>
-                                            <td><input type="text" name="<%="repaired" + i%>"style="width: 400px;"
-                                                       value="<%=request.getParameter("repaired" + i) == null ? "" : request.getParameter("repaired" + i)%>" /></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Skade</td>
-                                            
-                                            <td><input type="radio" name="<%="damage" + i%>" value="Fugt" />Fugt<br>
-                                                <input type="radio" name="<%="damage" + i%>" value="Råd og Svamp" />Råd og svamp<br>
-                                                <input type="radio" name="<%="damage" + i%>" value="Skimmel" />Skimmel<br>
-                                                <input type="radio" name="<%="damage" + i%>" value="Brand" />Brand<br>
+                        <td><h2>Vælg lokale</h2></td>
+                    </tr>
+                    <tr>
+                        <td>Etage:</td>
+                        <td>
+                            <select name="<%="floor" + i%>"
+                                    value="<%=request.getParameter("floor" + i) == null ? "" : request.getParameter("floor" + i)%>">
+                                <%
+                                    ArrayList<Floor> floorList = (ArrayList<Floor>) session.getAttribute("floorList");
+                                    for (Floor f : floorList)
+                                    {
+                                %>
+                                <option value="<%=f.getFloorID()%>"><%=f.getFloor()%></option>
+                                <%
+                                    }
+                                %>
+                            </select>
+                        </td>
+                        <td>Lokale nr.:</td>
+                        <td><input type="number" name="<%="room" + i%>" style="width: 50px;"
+                                   value="<%=request.getParameter("room" + i) == null ? "" : request.getParameter("room" + i)%>" /></td>
+                    </tr>
+                </table>
+                <br>
+                
+                <table cellpadding="5">
+                    <tr><td colspan="2"><h2>Skade og reparation</h2></td></tr>
+                    <tr>
+                        <td>Har der været skade i lokalet?</td>
+                        <td><select name="<%="damageInRoom" + i%>" 
+                                    value="<%=request.getParameter("damageInRoom" + i) == null ? "" : request.getParameter("damageInRoom" + i)%>"/>
+                    <option>Nej</option>
+                    <option>Ja</option>
+                    </select></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">Hvis ja udfyld venligst felterne nedenfor</td>
+                    </tr>
+                    <tr>
+                        <td>Hvornår</td>
+                        <td><input type="text" name="<%="when" + i%>" style="width: 200px;"
+                                   value="<%=request.getParameter("when" + i) == null ? "" : request.getParameter("when" + i)%>" /></td>
+                    </tr>
+                    <tr>
+                        <td>Hvor</td>
+                        <td><input type="text" name="<%="where" + i%>" style="width: 400px;"
+                                   value="<%=request.getParameter("where" + i) == null ? "" : request.getParameter("where" + i)%>" /></td>
+                    </tr>
+                    <tr>
+                        <td>Hvad er der sket</td>
+                        <td><input type="text" name="<%="what" + i%>" style="width: 400px;"
+                                   value="<%=request.getParameter("what" + i) == null ? "" : request.getParameter("what" + i)%>" /></td>
+                    </tr>
+                    <tr>
+                        <td>Hvad er repareret</td>
+                        <td><input type="text" name="<%="repaired" + i%>"style="width: 400px;"
+                                   value="<%=request.getParameter("repaired" + i) == null ? "" : request.getParameter("repaired" + i)%>" /></td>
+                    </tr>
+                    <tr>
+                        <td>Skade</td>
 
-                                                Anden skade:
-                                                <input type="text" name="<%="otherDamage" + i%>" style="width: 250px;"
-                                                       value="<%=request.getParameter("otherDamage" + i) == null ? "" : request.getParameter("otherDamage" + i)%>" />
-                                            </td>
-                                        </tr>
-                                    </table>
-                                    <br><br>
-                                    <table cellpadding="5">
-                                        <tr>
-                                            <td colspan="2"><h2>Gennemgang af...</h2></td>
-                                        </tr>
-                                        <tr>
-                                            <td></td>
-                                            <td style="text-align: center">Bemærkning</td>
-                                            <td style="text-align: center">Billede</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Vægge</td>
-                                            <td><input type="text" name="<%="wallNote" + i%>" style="width: 400px;"
-                                                       value="<%=request.getParameter("wallNote" + i) == null ? "" : request.getParameter("wallNote" + i)%>"/></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Loft</td>
-                                            <td><input type="text" name="<%="ceilingNote" + i%>" style="width: 400px;"
-                                                       value="<%=request.getParameter("ceilingNote" + i) == null ? "" : request.getParameter("ceilingNote" + i)%>"/></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Gulv</td>
-                                            <td><input type="text" name="<%="floorNote" + i%>" style="width: 400px;"
-                                                       value="<%=request.getParameter("floorNote" + i) == null ? "" : request.getParameter("floorNote" + i)%>"/></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Vinduer</td>
-                                            <td><input type="text" name="<%="windowNote" + i%>" style="width: 400px;"
-                                                       value="<%=request.getParameter("windowNote" + i) == null ? "" : request.getParameter("windowNote" + i)%>"/></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Døre</td>
-                                            <td><input type="text" name="<%="doorNote" + i%>" style="width: 400px;"
-                                                       value="<%=request.getParameter("doorNote" + i) == null ? "" : request.getParameter("doorNote" + i)%>"/></td>
-                                        </tr>
-                                        <tr>
-                                            <td><input type="text" name="<%="otherPart1" + i%>" placeholder="Andet:"
-                                                       value="<%=request.getParameter("otherPart1" + i) == null ? "" : request.getParameter("otherPart1" + i)%>"/></td>
-                                            <td><input type="text" name="<%="otherNote1" + i%>" style="width: 400px;"
-                                                       value="<%=request.getParameter("otherNote1" + i) == null ? "" : request.getParameter("otherNote1" + i)%>"/></td>
-                                        </tr>
-                                        <tr>
-                                            <td><input type="text" name="<%="otherPart2" + i%>" placeholder="Andet:"
-                                                       value="<%=request.getParameter("otherPart2" + i) == null ? "" : request.getParameter("otherPart2" + i)%>"/></td>
-                                            <td><input type="text" name="<%="otherNote2" + i%>" style="width: 400px;"
-                                                       value="<%=request.getParameter("otherNote2" + i) == null ? "" : request.getParameter("otherNote2" + i)%>"/></td>
-                                        </tr>
-                                    </table>
-                                    <br><br>
-                                    <table cellpadding="5">
-                                        <tr>
-                                            <td colspan="2"><h2>Fugtscanning</h2></td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="2">Er der foretaget fugtscanning</td>
-                                            <td><select name="<%="moistScanCompletet" + i%>"/>
-                                        <option>Nej</option>
-                                        <option>Ja</option>
-                                        </select>
-                                        </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Fugtscaning</td>
-                                            <td><input type="text" name="<%="moistScan" + i%>" style="width: 100px"
-                                                       value="<%=request.getParameter("moistScan" + i) == null ? "" : request.getParameter("moistScan" + i)%>"/></td>
-                                            <td>Målepunkt</td>
-                                            <td><input type="text" name="<%="measurePoint" + i%>" style="width: 100px"
-                                                       value="<%=request.getParameter("measurePoint" + i) == null ? "" : request.getParameter("measurePoint" + i)%>"/></td>
-                                        </tr>
-                                    </table>
-                                    <br><br>
-                                    <table cellpadding="5">
-                                        <tr>
-                                            <td colspan="2"><h2>Konklusion</h2></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Anbefaling</td>
-                                            <td><input type="text" name="<%="recommendation" + i%>" style="width: 400px;"
-                                                       value="<%=request.getParameter("recommendation" + i) == null ? "" : request.getParameter("recommendation" + i)%>"/></td>
-                                        </tr>
-                                    </table>
-                                    </div>
-                                    <br>
-                                    <%
-                                        }
-                                    %>
+                        <td><input type="radio" name="<%="damage" + i%>" value="Fugt" />Fugt<br>
+                            <input type="radio" name="<%="damage" + i%>" value="Raad og svamp" />Råd og svamp<br>
+                            <input type="radio" name="<%="damage" + i%>" value="Skimmel" />Skimmel<br>
+                            <input type="radio" name="<%="damage" + i%>" value="Brand" />Brand<br>
 
-                                    <input type="hidden" name="addRoom" value="<%=pages + 1%>"/>
-                                    <input type="submit"  name="do_this" value="Tilføj lokale" />
+                            Anden skade:
+                            <input type="text" name="<%="otherDamage" + i%>" style="width: 250px;"
+                                   value="<%=request.getParameter("otherDamage" + i) == null ? "" : request.getParameter("otherDamage" + i)%>" />
+                        </td>
+                    </tr>
+                </table>
+                <br><br>
+                <table cellpadding="5">
+                    <tr>
+                        <td colspan="2"><h2>Gennemgang af...</h2></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td style="text-align: center">Bemærkning</td>
+                        <td style="text-align: center">Billede</td>
+                    </tr>
+                    <tr>
+                        <td>Vægge</td>
+                        <td><input type="text" name="<%="wallNote" + i%>" style="width: 400px;"
+                                   value="<%=request.getParameter("wallNote" + i) == null ? "" : request.getParameter("wallNote" + i)%>"/></td>
+                    </tr>
+                    <tr>
+                        <td>Loft</td>
+                        <td><input type="text" name="<%="ceilingNote" + i%>" style="width: 400px;"
+                                   value="<%=request.getParameter("ceilingNote" + i) == null ? "" : request.getParameter("ceilingNote" + i)%>"/></td>
+                    </tr>
+                    <tr>
+                        <td>Gulv</td>
+                        <td><input type="text" name="<%="floorNote" + i%>" style="width: 400px;"
+                                   value="<%=request.getParameter("floorNote" + i) == null ? "" : request.getParameter("floorNote" + i)%>"/></td>
+                    </tr>
+                    <tr>
+                        <td>Vinduer</td>
+                        <td><input type="text" name="<%="windowNote" + i%>" style="width: 400px;"
+                                   value="<%=request.getParameter("windowNote" + i) == null ? "" : request.getParameter("windowNote" + i)%>"/></td>
+                    </tr>
+                    <tr>
+                        <td>Døre</td>
+                        <td><input type="text" name="<%="doorNote" + i%>" style="width: 400px;"
+                                   value="<%=request.getParameter("doorNote" + i) == null ? "" : request.getParameter("doorNote" + i)%>"/></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" name="<%="otherPart1" + i%>" placeholder="Andet:"
+                                   value="<%=request.getParameter("otherPart1" + i) == null ? "" : request.getParameter("otherPart1" + i)%>"/></td>
+                        <td><input type="text" name="<%="otherNote1" + i%>" style="width: 400px;"
+                                   value="<%=request.getParameter("otherNote1" + i) == null ? "" : request.getParameter("otherNote1" + i)%>"/></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" name="<%="otherPart2" + i%>" placeholder="Andet:"
+                                   value="<%=request.getParameter("otherPart2" + i) == null ? "" : request.getParameter("otherPart2" + i)%>"/></td>
+                        <td><input type="text" name="<%="otherNote2" + i%>" style="width: 400px;"
+                                   value="<%=request.getParameter("otherNote2" + i) == null ? "" : request.getParameter("otherNote2" + i)%>"/></td>
+                    </tr>
+                </table>
+                <br><br>
+                <table cellpadding="5">
+                    <tr>
+                        <td colspan="2"><h2>Fugtscanning</h2></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">Er der foretaget fugtscanning</td>
+                        <td><select name="<%="moistScanCompletet" + i%>"/>
+                    <option>Nej</option>
+                    <option>Ja</option>
+                    </select>
+                    </td>
+                    </tr>
+                    <tr>
+                        <td>Fugtscaning</td>
+                        <td><input type="text" name="<%="moistScan" + i%>" style="width: 100px"
+                                   value="<%=request.getParameter("moistScan" + i) == null ? "" : request.getParameter("moistScan" + i)%>"/></td>
+                        <td>Målepunkt</td>
+                        <td><input type="text" name="<%="measurePoint" + i%>" style="width: 100px"
+                                   value="<%=request.getParameter("measurePoint" + i) == null ? "" : request.getParameter("measurePoint" + i)%>"/></td>
+                    </tr>
+                </table>
+                <br><br>
+                <table cellpadding="5">
+                    <tr>
+                        <td colspan="2"><h2>Konklusion</h2></td>
+                    </tr>
+                    <tr>
+                        <td>Anbefaling</td>
+                        <td><input type="text" name="<%="recommendation" + i%>" style="width: 400px;"
+                                   value="<%=request.getParameter("recommendation" + i) == null ? "" : request.getParameter("recommendation" + i)%>"/></td>
+                    </tr>
+                </table>
+            </div>
+            <br>
+            <%
+                }
+            %>
 
-                                    <br><br>
+            <input type="hidden" name="addRoom" value="<%=pages + 1%>"/>
+            <input type="submit"  name="do_this" value="Tilføj lokale" />
 
-                                    <p>Bygningsgennemgangen er foretaget af 
-                                        <input type="text" name="eFirstName" placeholder="Fornavn"
-                                               value="<%=request.getParameter("eFirstName") == null ? "" : request.getParameter("eFirstName")%>"/>
-                                        <input type="text" name="eLastName" placeholder="Efternavn"
-                                               value="<%=request.getParameter("eLastName") == null ? "" : request.getParameter("eLastName")%>"/>
-                                        , Polygon<br>
-                                        i samarbejde med 
-                                        <input type="text" name="cpFirstName" placeholder="Fornavn"
-                                               value="<%=request.getParameter("cpFirstName") == null ? session.getAttribute("cpFirstName") : request.getParameter("cpFirstName")%>"/>
-                                        <input type="text" name="CPLastName" placeholder="Efternavn"
-                                               value="<%=request.getParameter("cpLastName") == null ? session.getAttribute("cpLastName") : request.getParameter("cpLastName")%>"/>
-                                        (bygningsansvarlig).</p>
+            <br><br>
 
-                                    <br><br>
+            <p>Bygningsgennemgangen er foretaget af 
+                <input type="text" name="eFirstName" placeholder="Fornavn"
+                       value="<%=request.getParameter("eFirstName") == null ? "" : request.getParameter("eFirstName")%>"/>
+                <input type="text" name="eLastName" placeholder="Efternavn"
+                       value="<%=request.getParameter("eLastName") == null ? "" : request.getParameter("eLastName")%>"/>
+                , Polygon<br>
+                i samarbejde med 
+                <input type="text" name="cpFirstName" placeholder="Fornavn"
+                       value="<%=request.getParameter("cpFirstName") == null ? session.getAttribute("cpFirstName") : request.getParameter("cpFirstName")%>"/>
+                <input type="text" name="CPLastName" placeholder="Efternavn"
+                       value="<%=request.getParameter("cpLastName") == null ? session.getAttribute("cpLastName") : request.getParameter("cpLastName")%>"/>
+                (bygningsansvarlig).</p>
 
-                                    <h2>Bygningen er kategoriseret som</h2>
-                                    <table style="border: 1px solid black; " padding="5">
-                                        <tr>
-                                            <th style="text-align: center; border: 1px solid black; width:auto ;">Tilstand</th>
-                                            <th style="text-align: center; border: 1px solid black">Beskrivelse af bygningen</th>
-                                            <th style="text-align: center; border: 1px solid black">Funktion af bygningen</th>
-                                            <th style="text-align: center; border: 1px solid black; width:25px;">Tilstandsgrad</th>
-                                        </tr> 
+            <br><br>
+
+            <h2>Bygningen er kategoriseret som</h2>
+            <table style="border: 1px solid black; " padding="5">
+                <tr>
+                    <th style="text-align: center; border: 1px solid black; width:auto ;">Tilstand</th>
+                    <th style="text-align: center; border: 1px solid black">Beskrivelse af bygningen</th>
+                    <th style="text-align: center; border: 1px solid black">Funktion af bygningen</th>
+                    <th style="text-align: center; border: 1px solid black; width:25px;">Tilstandsgrad</th>
+                </tr> 
 
 
-                                        <%
-                                            Controller cntr = new Controller();
-                                            ArrayList<Condition> conditions = cntr.getConditions();
-                                            int i = 0;
-                                            for (Condition c : conditions)
-                                            {
-                                        %>
-                                        <tr>
+                <%
+                    Controller cntr = new Controller();
+                    ArrayList<Condition> conditions = cntr.getConditions();
+                    int i = 0;
+                    for (Condition c : conditions)
+                    {
+                %>
+                <tr>
 
-                                            <td style="text-align: center;"><%="Tilstandsgrad " + c.getCondition()%></td>
-                                            <td><%=c.getDescription()%></td>
-                                            <td><%=c.getFunction()%></td>
-                                            <td style="text-align: center;"><input type="radio" name="condition" value="<%=i%>"/></td>
-                                        </tr>
-                                        <%
-                                                i++;
-                                            }
-                                        %>
-                                    </table>
+                    <td style="text-align: center;"><%="Tilstandsgrad " + c.getCondition()%></td>
+                    <td><%=c.getDescription()%></td>
+                    <td><%=c.getFunction()%></td>
+                    <td style="text-align: center;"><input type="radio" name="condition" value="<%=i%>"/></td>
+                </tr>
+                <%
+                        i++;
+                    }
+                %>
+            </table>
 
-                                    <br><br>
+            <br><br>
 
-                                    <p style="font-size: 70%;">
-                                        Denne rapport og bygningsgennegang er lavet for at klarlægge umiddelbare
-                                        visuelle problemstillinger. Vores formål er at sikre, at <br> 
-                                        bygningens anvendelse kan opretholdes. Vi udbedre ikke skader som en del af bygningesgennemgangen/rapporten. Gennemgangen <br> 
-                                        af bygningen indeholder ikke fugtmålinger af hele bygningen, men vi kan foretage fugtscanninger enkelte steder i bygningen, hvis vi <br> 
-                                        finder det nødvendigt. Hvis vi finder kritiske områder i bygningen vil vi fremlægge anbefalinger angående yderligere tiltag så som <br> 
-                                        yderligere undersøgelser, reparationer eller bygningsopdateringer. <br><br>
-                                        Bemærk at vi skal have adgang til hele bygningen for at kunne udføre fuld gennemgang (dette inkluderer adgang til tag, tagrum, <br> 
-                                        kælder, krybekælder eller andre aflukkede områder). Denne bygningesgennemgang er ikke-destruktiv. Hvis der skal laves destruktive <br> 
-                                        indgreb, skal dette først godkendes af de bygningsansvarlige. Destruktive indgreb er ikke en del af denne rapport eller <br> 
-                                        bygningsgennemgang.<br><br>
-                                        Den bygningsansvarlige skal udlevere plantegning over bygningen inden bygningsgennemgangen kan foretages.
-                                    </p>
-                                    <input type="submit" name="do_this" value="Gem rapport">
-                                    </form>
-                                    </body>
-                                    </html>
+            <p style="font-size: 70%;">
+                Denne rapport og bygningsgennegang er lavet for at klarlægge umiddelbare
+                visuelle problemstillinger. Vores formål er at sikre, at <br> 
+                bygningens anvendelse kan opretholdes. Vi udbedre ikke skader som en del af bygningesgennemgangen/rapporten. Gennemgangen <br> 
+                af bygningen indeholder ikke fugtmålinger af hele bygningen, men vi kan foretage fugtscanninger enkelte steder i bygningen, hvis vi <br> 
+                finder det nødvendigt. Hvis vi finder kritiske områder i bygningen vil vi fremlægge anbefalinger angående yderligere tiltag så som <br> 
+                yderligere undersøgelser, reparationer eller bygningsopdateringer. <br><br>
+                Bemærk at vi skal have adgang til hele bygningen for at kunne udføre fuld gennemgang (dette inkluderer adgang til tag, tagrum, <br> 
+                kælder, krybekælder eller andre aflukkede områder). Denne bygningesgennemgang er ikke-destruktiv. Hvis der skal laves destruktive <br> 
+                indgreb, skal dette først godkendes af de bygningsansvarlige. Destruktive indgreb er ikke en del af denne rapport eller <br> 
+                bygningsgennemgang.<br><br>
+                Den bygningsansvarlige skal udlevere plantegning over bygningen inden bygningsgennemgangen kan foretages.
+            </p>
+            <input type="submit" name="do_this" value="Gem rapport">
+        </form>
+    </body>
+</html>

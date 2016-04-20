@@ -13,19 +13,22 @@ import java.util.ArrayList;
  */
 public class Building
 {
-    int buildingID;
-    String buildingName;
-    String streetName;
-    String streetNumb;
-    String city;
-    int zipcode;
+    private int buildingID;
+    private String buildingName;
+    private String streetName;
+    private String streetNumb;
+    private String city;
+    private int zipcode;
     //String Picture;
-    int YearOfConst;
-    double squareMeters;
-    String buildingUse;
-    int custID;
-    int CPID;
-    ArrayList<Floor> floors;
+    private int YearOfConst;
+    private double squareMeters;
+    private String buildingUse;
+    private int custID;
+    private int CPID;
+    private ArrayList<Floor> floors;
+    private ContactPerson cp;
+
+    
      
     /**
      * Cunstructor used when creating a Building
@@ -171,7 +174,7 @@ public class Building
         this.custID = custID;
     }
 
-    void addArrayFloor(ArrayList<Floor> arrayFloor)
+    public void addArrayFloor(ArrayList<Floor> arrayFloor)
     {
         floors = arrayFloor;
     }
@@ -181,6 +184,19 @@ public class Building
         return floors;
     }
     
+    
+    
+    
+    public void addCP(ContactPerson cp)
+    {
+        this.cp = cp;
+    }
+    
+    public ContactPerson getCp()
+    {
+        return cp;
+    }
+//    
     
    
   

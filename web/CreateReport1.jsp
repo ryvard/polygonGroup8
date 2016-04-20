@@ -38,7 +38,7 @@
         <form action="Servlet" method="GET">
             Bygnings-ID: 
             <input type='number' name='buildingID'/>
-            <input type="hidden" name="do_this" value="createBuilding_BuildingID">
+            <input type="hidden" name="do_this" value="createReport_BuildingID">
             <input type="submit" value="OK" />
         </form>
     </body>

@@ -7,7 +7,7 @@ package businesslogic;
 
 import businesslogic.Building;
 import businesslogic.ContactPerson;
-import businesslogic.Conclusion;
+
 import java.util.ArrayList;
 
 /**
@@ -19,52 +19,50 @@ public class Report
     private int repID;
     
     private String date;
-    
     private Building building;
+    private int condition;
     
-    private ArrayList<ReviewOf> reviewOf;
-    
-    private ArrayList<Conclusion> conclusions;
-    
+    private ArrayList<ReviewOf> outerReviews;
     private Employee employee;
     
-    private ContactPerson contactPerson;
+    private ArrayList<Room> roomList; 
+    private ArrayList<Damage> damageList;
+    private ArrayList<ReviewOf> reviewList;
+    private ArrayList<MoistScan> msList;
+    private ArrayList<Conclusion> conclusionList;
     
-    private int condition;
-
-    /*
-    String roofNote;
-    String outerWallNote;
     
-    */
+    
+    
+    
+    
+    //private ContactPerson contactPerson;
+    
+    
+    
 
-    public Report(int repID, String date, Building building, Employee employee)
-    {
-        this.repID = repID;
-        this.date = date;
-        this.building = building;
-        this.employee = employee;
-    }
-
-    public Report(String date, Building building, Employee employee, int condition)
+    public Report(String date, int condition)
     {
         this.date = date;
-        this.building = building;
-        this.employee = employee;
         this.condition = condition;
     }
     
-
-    public Employee getEmployee()
-    {
-        return employee;
-    }
-
-    public void setEmployee(Employee employee)
-    {
-        this.employee = employee;
-    }
-
+//    public Report(int repID, String date, Building building, Employee employee)
+//    {
+//        this.repID = repID;
+//        this.date = date;
+//        this.building = building;
+//        this.employee = employee;
+//    }
+//
+//    public Report(String date, Building building, Employee employee, int condition)
+//    {
+//        this.date = date;
+//        this.building = building;
+//        this.employee = employee;
+//        this.condition = condition;
+//    }
+    
     public int getRepID()
     {
         return repID;
@@ -85,15 +83,7 @@ public class Report
         this.date = date;
     }
 
-    public Building getBuilding()
-    {
-        return building;
-    }
-
-    public void setBuilding(Building building)
-    {
-        this.building = building;
-    }
+    
      public int getCondition()
     {
         return condition;
@@ -103,6 +93,86 @@ public class Report
     {
         this.condition = condition;
     }
+    
+    //-------
+    public void addBuilding(Building building)
+    {
+        this.building = building;
+    }
+    public Building getBuilding()
+    {
+        return building;
+    }
+    
+    public void addOuterReview(ArrayList<ReviewOf> outerReviews)
+    {
+        this.outerReviews = outerReviews;
+    }
+    
+    public ArrayList<ReviewOf> getOuterReviews()
+    {
+        return outerReviews;
+    }
+    
+    public void addEmployee(Employee employee)
+    {
+        this.employee = employee;
+    }
+    
+    public Employee getEmployee()
+    {
+        return employee;
+    }
+    public void addDamageList(ArrayList<Damage> damageList)
+    {
+        this.damageList = damageList;
+    }
+    public ArrayList<Damage> getDamageList()
+    {
+        return damageList;
+    }
+    
+    public void addReviewList(ArrayList<ReviewOf> reviewList)
+    {
+        this.reviewList = reviewList;
+    }
+
+    public ArrayList<ReviewOf> getReviewList()
+    {
+        return reviewList;
+    }
+    
+    public void addMSList(ArrayList<MoistScan> msList)
+    {
+        this.msList = msList;
+    }
+
+    public ArrayList<MoistScan> getMsList()
+    {
+        return msList;
+    }
+    
+     public void addConclusionList(ArrayList<Conclusion> conclusionList)
+    {
+        this.conclusionList = conclusionList;
+    }
+
+    public ArrayList<Conclusion> getConclusionList()
+    {
+        return conclusionList;
+    }
+    
+    public void addRoomList(ArrayList<Room> roomList)
+    {
+        this.roomList = roomList;
+    }
+
+    public ArrayList<Room> getRoomList()
+    {
+        return roomList;
+    }
+    
+    
     
     
 }

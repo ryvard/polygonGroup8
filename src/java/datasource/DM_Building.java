@@ -7,6 +7,7 @@ package datasource;
 
 import businesslogic.Floor;
 import businesslogic.Building;
+import businesslogic.ReportErrorException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -84,7 +85,7 @@ public class DM_Building
         return null;
     }
     
-    public Building getBuildingFromID(int BuildingID)
+    public Building getBuildingFromID(int BuildingID) throws ReportErrorException
     {
         String query = "SELECT * FROM Buildings WHERE BuildingID ='"+ BuildingID +"';";
         DatabaseConnector db_Connect = DatabaseConnector.getInstance();
@@ -97,9 +98,9 @@ public class DM_Building
         }
         catch(SQLException ex)
         {
-            System.out.println("getBuildingFromID" + ex);
+            throw new ReportErrorException("FEJL getBuildingFromID" + ex);
         }
-        return null;
+        
     }
     
     
@@ -122,6 +123,25 @@ public class DM_Building
         
     }
     
+    public ArrayList<Floor> getFloorListFromBuildingID(int buildingID) throws ReportErrorException
+    {
+        String query = "SELECT * FROM BFloor WHERE BuildingID ='"+buildingID+"';";
+        DatabaseConnector db_Connect = DatabaseConnector.getInstance();
+        ResultSet res = db_Connect.getData(query);
+        ArrayList<Floor> floorList = new ArrayList();
+        try{
+        while(res.next())
+        {
+            Floor floor = new Floor(res.getInt(1),res.getInt(2),res.getInt(3),res.getDouble(4));
+            floorList.add(floor);
+        }
+        return floorList;
+        }catch(SQLException ex)
+        {
+            throw new ReportErrorException("get floorList: "+ex);
+        }
+    }
+    
     public int getBuildingIDFromDB(String buildingName, String streetName) {
         
         
@@ -140,4 +160,6 @@ public class DM_Building
         }
         return 0;
     }
+    
+    
 }

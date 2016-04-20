@@ -25,7 +25,7 @@ public class Controller implements IController
 {
 
     Facade facade = new Facade();
-    Building building;
+    //Building building;
 //    Customer customer;
 
     @Override
@@ -57,13 +57,7 @@ public class Controller implements IController
         System.out.println("controller");
         return facade.getBuildingList();
     }
-
-    @Override
-    public void createReport(String reportNumber, String date, int squareMeter, String buildingUseability, String roof, String roofPicture, String outerwalls, String outerwallsPicture, Object conclusion, String reviewedBy, String collaboration, int condition)
-    {
-
-    }
-
+    
     @Override
     public int createContactPerson(String cpFirstName, String cpLastName, String email, String phone)
     {
@@ -106,25 +100,29 @@ public class Controller implements IController
     
     //--------------------------------------------------------------
     @Override
-    public void createReportInDB(Report r)
+    public void createReport(int buildingID, Report r, ArrayList<ReviewOf> outerReviews, 
+            Employee employee, ArrayList<Room> roomList, ArrayList<Damage> damageList, ArrayList<ReviewOf> reviewList,
+                ArrayList<MoistScan> msList, ArrayList<Conclusion> conclusionList) throws ReportErrorException
     {
-        facade.createReportInDB(r);
+        
+            Building building = getBuildingFromID(buildingID);
+            r.addBuilding(building);
+            r.addOuterReview(outerReviews);
+            employee.seteID(facade.getEID(employee.getFirstName(),employee.getLastName()));
+            r.addEmployee(employee);
+            
+            r.addRoomList(roomList);
+            r.addDamageList(damageList);
+            r.addReviewList(reviewList);
+            r.addMSList(msList);
+            r.addConclusionList(conclusionList);
+            
+            
+            
+            facade.createReport(r);
     }
     
-    @Override
-    public int getEID(String firstName, String lastName) throws ReportErrorException
-    {
-        return facade.getEID(firstName, lastName);
-    }
-    
-    @Override
-    public Employee getEmployeeFromEID(int eID) throws ReportErrorException
-    {
-        return facade.getEmployeeFromEID(eID);
-    }
-    
-    
-    //ikke brugt
+//    //ikke brugt
     @Override
     public ArrayList<Condition> getConditions()
     {
@@ -132,13 +130,18 @@ public class Controller implements IController
     }
     
     
-    //create b from custid
+    //create b from bid
     
     @Override
-    public Building getBuildingFromID(int buildingID)
-    {
-        return facade.getBuildingFromID(buildingID);
+    public Building getBuildingFromID(int buildingID) throws ReportErrorException
+    {   
+        ContactPerson c = facade.getCP(buildingID);
+        Building b = facade.getBuildingFromID(buildingID);
+        b.addCP(c);
+        
+        return b;
     }
+    
     @Override
     public ContactPerson getCPFromCPID(int CPID)
     {
@@ -171,6 +174,19 @@ public class Controller implements IController
     {
         b.addArrayFloor(arrayFloor);
         facade.createBuilding(b);
+    }
+
+    
+
+    
+public ArrayList<Floor> getFloors(int BuildingID) throws ReportErrorException
+    {
+        return facade.getFloors(BuildingID);
+    }
+    
+public int getNewRepID() throws ReportErrorException
+    {
+        return facade.getNewRepID();
     }
 
 }
