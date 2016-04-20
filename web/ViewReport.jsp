@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Opret rapport</title>
+        <title>Vis rapport</title>
         <style>
             h1 {
 
@@ -183,6 +183,7 @@
                         <td><input type="text" name="what" style="width: 400px;"
                                    value="<%=request.getParameter("what") == null ? "" : request.getParameter("what")%>" /></td>
                     </tr>
+                    
                     <tr>
                         <td>Hvad er repareret</td>
                         <td><input type="text" name="repaired" style="width: 400px;"
