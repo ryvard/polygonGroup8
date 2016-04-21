@@ -1,4 +1,3 @@
-
 package datasource;
 
 import java.sql.Connection;
@@ -9,34 +8,38 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
 public class DatabaseConnector
 {
+
     private static final String DB_URL = "jdbc:mysql://127.0.0.1:3306/PolygonGroup8";
     private static final String USER = "root";
     private static final String PASS = "1234";
     private static Connection con;
-    private DatabaseConnector() throws SQLException {
+
+    private DatabaseConnector() throws SQLException
+    {
         try
-            {
-                Class.forName("com.mysql.jdbc.Driver");
-            } catch (ClassNotFoundException ex)
-            {
-                ex.printStackTrace();
-            }
-            con = DriverManager.getConnection(DB_URL, USER, PASS);
-    }
-    private static DatabaseConnector dbCon_Instance;  
-    public static DatabaseConnector getInstance() throws SQLException {
-        if (dbCon_Instance == null) {
-            dbCon_Instance = new DatabaseConnector(); 
-            
+        {
+            Class.forName("com.mysql.jdbc.Driver");
+        } catch (ClassNotFoundException ex)
+        {
+            ex.printStackTrace();
         }
-        return dbCon_Instance; 
+        con = DriverManager.getConnection(DB_URL, USER, PASS);
     }
+    private static DatabaseConnector dbCon_Instance;
+
+    public static DatabaseConnector getInstance() throws SQLException
+    {
+        if (dbCon_Instance == null)
+        {
+            dbCon_Instance = new DatabaseConnector();
+        }
+        return dbCon_Instance;
+    }
+
     public static Connection getConnection() throws SQLException
     {
-
         if (con == null)
         {
             try
@@ -50,39 +53,16 @@ public class DatabaseConnector
         }
         return con;
     }
-     
-    public ResultSet getData(String query)
+
+    public ResultSet getData(String query) throws SQLException
     {
-        try
-        {
-            
-            Statement stmt = con.createStatement();
-            
-            return stmt.executeQuery(query);
-
-        } catch (Exception ex)
-        {
-            System.out.println(ex.toString());
-            return null;
-
-        }
-
+        Statement stmt = con.createStatement();
+        return stmt.executeQuery(query);
     }
 
-    public void updateData(String query)
+    public void updateData(String query) throws SQLException
     {
-        try
-        {
-            
-            Statement stmt = con.createStatement();
-            
-            stmt.executeUpdate(query);
-
-        } catch (Exception ex)
-        {
-            System.out.println("!!!!!!!!!!!!!!!! connection FAIL");
-            System.out.println("###########" +ex.toString());
-        }
-
+        Statement stmt = con.createStatement();
+        stmt.executeUpdate(query);
     }
 }

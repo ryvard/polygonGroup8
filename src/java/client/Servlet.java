@@ -20,7 +20,7 @@ import businesslogic.Controller;
 import businesslogic.Damage;
 import businesslogic.Employee;
 import businesslogic.MoistScan;
-import businesslogic.ReportErrorException;
+import businesslogic.DatasourceLayerException;
 import businesslogic.ReviewOf;
 import businesslogic.Room;
 import java.util.ArrayList;
@@ -64,6 +64,7 @@ public class Servlet extends HttpServlet
             {
 
                 case "createBuilding":
+                    try{
                     String buildingName = request.getParameter("buildingName");
 
 //                    String inputFloor = request.getParameter("floor0");
@@ -103,15 +104,22 @@ public class Servlet extends HttpServlet
 // int CPID = ????  First Name, lastname, phone og mail
                     //con.createBuilding(buildingName, street, streetNo, city, zipcode, yearOfCon, squareMTotal, buildingUse, custID, CPID);
                     Building b = new Building(buildingName, street, streetNo, city, zipcode, yearOfCon, squareMTotal, buildingUse, custID, CPID);
+
                     con.createBuilding(b, arrayFloor);
 
                     //con.createFloor(arrayFloor, con.getBuildingIDFromDB(buildingName, street));
                     System.out.println("efter metodekald");
 
                     System.out.println("servlet");
+                    }catch(DatasourceLayerException ex)
+                    {
+                        //gør noget her
+                        System.out.println("********** create building failed *************");
+                    }
                     break;
 
                 case "createCustomer":
+                    try{
                     String name = request.getParameter("custName");
                     String type = request.getParameter("customerType");
                     String streetNameCust = request.getParameter("streetName");
@@ -120,9 +128,15 @@ public class Servlet extends HttpServlet
                     String contactName = request.getParameter("contactName");
                     String phone = request.getParameter("phone");
                     String mail = request.getParameter("mail");
-
+           
                     con.createCustomer(name, type, streetNameCust, streetNoCust, zipcodeCust, contactName, phone, mail);
+                
                     System.out.println("%%%%%%€##€##€€€€€ dsf servlet");
+                    }catch(DatasourceLayerException ex)
+                    {
+                        //Gør noget her
+                        System.out.println("***** Create customer FAILED ********");
+                    }
                     break;
 
                 case "createReport_BuildingID":
@@ -168,7 +182,7 @@ public class Servlet extends HttpServlet
 
                         forward(request, response, "/CreateReport.jsp");
 
-                    } catch (ReportErrorException ex)
+                    } catch (DatasourceLayerException ex)
                     {
                         request.setAttribute("ReportError", "Report: " + ex);
                         getServletContext().getRequestDispatcher("/ReportError.jsp").forward(request, response);
@@ -288,7 +302,7 @@ public class Servlet extends HttpServlet
 
                         getServletContext().getRequestDispatcher("/index.html").forward(request, response);
 
-                    } catch (ReportErrorException ex)
+                    } catch (DatasourceLayerException ex)
                     {
                         request.setAttribute("ReportError", "Report: " + ex);
                         getServletContext().getRequestDispatcher("/ReportError.jsp").forward(request, response);
@@ -348,25 +362,22 @@ public class Servlet extends HttpServlet
 
                         ArrayList<Damage> damageList = con.viewReport(repID).getDamageList();
                         session.setAttribute("damageList", damageList);
-                        
-                        
-                         String rEmployeeFirst = con.viewReport(repID).getEmployee().getFirstName();
-                         session.setAttribute("rEmployeeFirst", rEmployeeFirst);
-                         
-                         String rEmployeeLast = con.viewReport(repID).getEmployee().getLastName();
-                         session.setAttribute("rEmployeeLast", rEmployeeLast);
+
+                        String rEmployeeFirst = con.viewReport(repID).getEmployee().getFirstName();
+                        session.setAttribute("rEmployeeFirst", rEmployeeFirst);
+
+                        String rEmployeeLast = con.viewReport(repID).getEmployee().getLastName();
+                        session.setAttribute("rEmployeeLast", rEmployeeLast);
 
 //                     String rCollaboration
 //                     = //Metodekald her
 //                     session.setAttribute("rCollaboration", rCollaboration);
-
-
                         int condition = con.viewReport(repID).getCondition();
                         session.setAttribute("condition", condition);
 
                         forward(request, response, "/ViewReport.jsp");
 
-                    } catch (ReportErrorException ex)
+                    } catch (DatasourceLayerException ex)
                     {
                         Logger.getLogger(Servlet.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -394,6 +405,7 @@ public class Servlet extends HttpServlet
                     break;
 
                 case "createContactPerson":
+                    try{
                     String cpFirstName = request.getParameter("cpFirstName");
                     String cpLastName = request.getParameter("cpLastName");
                     String cpEmail = request.getParameter("cpEmail");
@@ -402,6 +414,11 @@ public class Servlet extends HttpServlet
                     session.setAttribute("cpID", cpID);
                     con.createContactPersonInfo(cpFirstName, cpLastName, cpEmail, cpPhone);
                     forward(request, response, "/CreateBuilding.jsp");
+                    }catch(DatasourceLayerException ex)
+                    {
+                        //Gør noget her
+                        System.out.println("********* create cp FAILED ***********");
+                    }
                     break;
 
             }

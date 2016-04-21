@@ -11,7 +11,7 @@ import businesslogic.Report;
 import businesslogic.Condition;
 import businesslogic.Damage;
 import businesslogic.MoistScan;
-import businesslogic.ReportErrorException;
+import businesslogic.DatasourceLayerException;
 import businesslogic.ReviewOf;
 import businesslogic.Room;
 import java.sql.ResultSet;
@@ -27,10 +27,8 @@ import java.util.logging.Logger;
 public class DM_Report
 {
 
-    public void createReport(Report r) throws ReportErrorException
+    public void createReport(Report r) throws DatasourceLayerException
     {
-        try
-        {
             System.out.println("************  Halløj DM report  **************");
             insertDataInReportTable(r);
 
@@ -80,46 +78,59 @@ public class DM_Report
                 insertConclusion(r, i);
             }
             System.out.println("*** Efter Conclusion: " + numberOfMS);
+    }
 
-        } catch (ReportErrorException ex)
+    private void insertDataInReportTable(Report r) throws DatasourceLayerException
+    {
+        try
         {
-            throw new ReportErrorException("create report: " + ex);
+            String query = "INSERT INTO Report(BuildingID, EID, RDate, BCondition)"
+                    + "VALUES('" + r.getBuilding().getBuildingID() + "','"
+                    + r.getEmployee().geteID() + "','" + r.getDate() + "','"
+                    + r.getCondition() + "');";
+            
+            DatabaseConnector db_Connect = DatabaseConnector.getInstance();
+            db_Connect.updateData(query);
+        } catch (SQLException ex)
+        {
+            throw new DatasourceLayerException("insertInReportTable"+ex);
         }
-
     }
 
-    private void insertDataInReportTable(Report r)
+    private void insertOuterReview(Report r, int i) throws DatasourceLayerException
     {
-        String query = "INSERT INTO Report(BuildingID, EID, RDate, BCondition)"
-                + "VALUES('" + r.getBuilding().getBuildingID() + "','"
-                + r.getEmployee().geteID() + "','" + r.getDate() + "','"
-                + r.getCondition() + "');";
-
-        DatabaseConnector db_Connect = DatabaseConnector.getInstance();
-        db_Connect.updateData(query);
+        try
+        {
+            String query = "INSERT INTO OuterReviewOf(RepID, Part, Note) "
+                    + "VALUES('" + r.getRepID() + "','" + r.getOuterReviews().get(i).getPart() + "','"
+                    + r.getOuterReviews().get(i).getNote() + "')";
+            
+            DatabaseConnector db_Connect = DatabaseConnector.getInstance();
+            db_Connect.updateData(query);
+        } catch (SQLException ex)
+        {
+            throw new DatasourceLayerException("insertOuterReview "+ex);
+        }
     }
 
-    private void insertOuterReview(Report r, int i)
+    private void insertRooms(Report r, int i) throws DatasourceLayerException
     {
-        String query = "INSERT INTO OuterReviewOf(RepID, Part, Note) "
-                + "VALUES('" + r.getRepID() + "','" + r.getOuterReviews().get(i).getPart() + "','"
-                + r.getOuterReviews().get(i).getNote() + "')";
-
-        DatabaseConnector db_Connect = DatabaseConnector.getInstance();
-        db_Connect.updateData(query);
+        try
+        {
+            String query = "INSERT INTO Room(Room, BFloorID) "
+                    + "VALUES('" + r.getRoomList().get(i).getRoom() + "','"
+                    + r.getRoomList().get(i).getFloor() + "');";
+            
+            DatabaseConnector db_Connect = DatabaseConnector.getInstance();
+            db_Connect.updateData(query);
+            
+        } catch (SQLException ex)
+        {
+            throw new DatasourceLayerException("insertRooms: "+ex);
+        }
     }
 
-    private void insertRooms(Report r, int i)
-    {
-        String query = "INSERT INTO Room(Room, BFloorID) "
-                + "VALUES('" + r.getRoomList().get(i).getRoom() + "','"
-                + r.getRoomList().get(i).getFloor() + "');";
-
-        DatabaseConnector db_Connect = DatabaseConnector.getInstance();
-        db_Connect.updateData(query);
-    }
-
-    private void insertDamage(Report r, int i) throws ReportErrorException
+    private void insertDamage(Report r, int i) throws DatasourceLayerException
     {
 
         try
@@ -137,38 +148,37 @@ public class DM_Report
 
             DatabaseConnector db_Connect = DatabaseConnector.getInstance();
             db_Connect.updateData(query);
-        } catch (ReportErrorException ex)
+        } catch (SQLException ex)
         {
-            throw new ReportErrorException("hejhej" + ex);
+            throw new DatasourceLayerException("Insert Damage" + ex);
         }
     }
 
-    private int getRoomID(int room, int floorID) throws ReportErrorException
+    private int getRoomID(int room, int floorID) throws DatasourceLayerException
     {
+        try
+        {
         System.out.println("room: " + room + " floor: " + floorID);
         String query = "SELECT RoomID FROM Room WHERE BFloorID = '" + floorID + "' AND Room = '" + room + "';";
 
         DatabaseConnector db_Connect = DatabaseConnector.getInstance();
         ResultSet res = db_Connect.getData(query);
 
-        try
-        {
+        
             res.next();
             int roomID = res.getInt(1);
             return roomID;
         } catch (SQLException ex)
         {
-            System.out.println("FEJL I GET ID %%%%%%%%%%");
-            throw new ReportErrorException("roomID" + ex);
+            throw new DatasourceLayerException("get roomID" + ex);
         }
     }
 
-    private void insertReview(Report r, int i) throws ReportErrorException
+    private void insertReview(Report r, int i) throws DatasourceLayerException
     {
-        String query;
         try
         {
-            query = "INSERT INTO ReviewOf(RoomID, RepID, Part, Note)"
+            String query = "INSERT INTO ReviewOf(RoomID, RepID, Part, Note)"
                     + "VALUES('" + getRoomID(r.getReviewList().get(i).getRoomID(), r.getReviewList().get(i).getFloorID()) + "','"
                     + r.getRepID() + "','" + r.getReviewList().get(i).getPart() + "','"
                     + r.getReviewList().get(i).getNote() + "');";
@@ -176,92 +186,95 @@ public class DM_Report
             DatabaseConnector db_Connect = DatabaseConnector.getInstance();
             db_Connect.updateData(query);
 
-        } catch (ReportErrorException ex)
+        } catch (DatasourceLayerException ex)
         {
-            throw new ReportErrorException("hejhej2" + ex);
+            throw new DatasourceLayerException("InsertMoist" + ex);
+        }catch (SQLException ex)
+        {
+            throw new DatasourceLayerException("hejhej2" + ex);
         }
     }
 
-    private void insertMoistScan(Report r, int i) throws ReportErrorException
-    {
-        String query;
+    private void insertMoistScan(Report r, int i) throws DatasourceLayerException
+    { 
         try
         {
-            query = "INSERT INTO MoistScan(RoomID,RepID,MSComplete, MSNote, MeasurePoint)"
+            String query = "INSERT INTO MoistScan(RoomID,RepID,MSComplete, MSNote, MeasurePoint)"
                     + "VALUES('" + getRoomID(r.getMsList().get(i).getbRoom(), r.getMsList().get(i).getbFloor()) + "','" + r.getRepID() + "','"
                     + r.getMsList().get(i).getMsComplete() + "','" + r.getMsList().get(i).getMoistScan() + "','"
                     + r.getMsList().get(i).getMeasurePoint() + "');";
 
             DatabaseConnector db_Connect = DatabaseConnector.getInstance();
             db_Connect.updateData(query);
-        } catch (ReportErrorException ex)
+        } catch (SQLException ex)
         {
-            throw new ReportErrorException("hejhej3" + ex);
+            throw new DatasourceLayerException("insertMoist " + ex);
         }
     }
 
-    private void insertConclusion(Report r, int i) throws ReportErrorException
+    private void insertConclusion(Report r, int i) throws DatasourceLayerException
     {
-        String query;
         try
         {
-            query = "INSERT INTO Conclusion(RepID, RoomID, Recommendation) "
+            String query = "INSERT INTO Conclusion(RepID, RoomID, Recommendation) "
                     + "VALUES('" + r.getRepID() + "','" + getRoomID(r.getConclusionList().get(i).getbRoom(), r.getConclusionList().get(i).getbFloor()) + "','"
                     + r.getConclusionList().get(i).getRecommendation() + "');";
             DatabaseConnector db_Connect = DatabaseConnector.getInstance();
             db_Connect.updateData(query);
-        } catch (ReportErrorException ex)
+        }  catch (SQLException ex)
         {
-            throw new ReportErrorException("hejhej4" + ex);
+            throw new DatasourceLayerException("insertConclusion " + ex);
         }
     }
 
-    private int getRepID(Report r) throws ReportErrorException
+    private int getRepID(Report r) throws DatasourceLayerException
     {
+        try
+        {
         String query = "SELECT RepID FROM Report "
                 + "WHERE BuildingID = '" + r.getBuilding().getBuildingID()
                 + "' AND RDate = '" + r.getDate() + "';";
 
         DatabaseConnector db_Connect = DatabaseConnector.getInstance();
         ResultSet res = db_Connect.getData(query);
-        try
-        {
+        
             res.next();
             int repID = res.getInt(1);
 
             return repID;
         } catch (SQLException ex)
         {
-            throw new ReportErrorException("1FEJL get repID" + ex);
+            throw new DatasourceLayerException("get repID" + ex);
         }
     }
 
-    public int getNewRepID() throws ReportErrorException
+    public int getNewRepID() throws DatasourceLayerException
     {
+        try
+        {
         String query = "SELECT COUNT(RepID) From Report";
 
         DatabaseConnector db_Connect = DatabaseConnector.getInstance();
         ResultSet res = db_Connect.getData(query);
-        try
-        {
+        
             res.next();
             int repID = res.getInt(1) + 1;
             return repID;
         } catch (SQLException ex)
         {
-            throw new ReportErrorException("getNEWRepID");
+            throw new DatasourceLayerException("getNEWRepID"+ex);
         }
     }
 
-    public ArrayList<Condition> getConditions()
+    public ArrayList<Condition> getConditions() throws DatasourceLayerException
     {
+        try
+        {
         String query = "SELECT * FROM BuildCondition;";
 
         DatabaseConnector db_Connect = DatabaseConnector.getInstance();
         ResultSet res = db_Connect.getData(query);
         ArrayList<Condition> conditions = new ArrayList();
-        try
-        {
             while (res.next())
             {
                 Condition condition = new Condition(res.getInt(1), res.getString(2), res.getString(3));
@@ -270,12 +283,12 @@ public class DM_Report
             return conditions;
         } catch (SQLException ex)
         {
-            System.out.println("getCondition sql ex: " + ex);
+            throw new DatasourceLayerException("getConditions"+ex);
         }
-        return null;
+        
     }
 
-    public Report viewReport(int repID) throws ReportErrorException
+    public Report viewReport(int repID) throws DatasourceLayerException
     {
         try
         {
@@ -295,13 +308,13 @@ public class DM_Report
             ArrayList<Conclusion> conclusionList;
 
             return r;
-        } catch (ReportErrorException ex)
+        } catch (DatasourceLayerException ex)
         {
-            throw new ReportErrorException("View Report - " + ex);
+            throw new DatasourceLayerException("View Report - " + ex);
         }
     }
 
-    private Report getReportTableData(int repID) throws ReportErrorException
+    private Report getReportTableData(int repID) throws DatasourceLayerException
     {
         System.out.println("repID til get report" + repID);
         String query = "SELECT BuildingID,EID,RDate,BCondition FROM Report WHERE RepID ='" + repID + "';";
@@ -316,19 +329,20 @@ public class DM_Report
             return r;
         } catch (SQLException ex)
         {
-            throw new ReportErrorException("get report" + ex);
+            throw new DatasourceLayerException("get report" + ex);
         }
     }
 
-    private ArrayList<ReviewOf> getOuterReviewList(int repID) throws ReportErrorException
+    private ArrayList<ReviewOf> getOuterReviewList(int repID) throws DatasourceLayerException
     {
+        try
+        {
         String query = "SELECT Part,Note FROM OuterReviewOf WHERE RepID = '" + repID + "';";
 
         DatabaseConnector db_Connect = DatabaseConnector.getInstance();
         ResultSet res = db_Connect.getData(query);
         ArrayList<ReviewOf> outerReviews = new ArrayList();
-        try
-        {
+        
             while (res.next())
             {
                 ReviewOf outerReview = new ReviewOf(res.getString(1), res.getString(2));
@@ -338,20 +352,21 @@ public class DM_Report
             return outerReviews;
         } catch (SQLException ex)
         {
-            throw new ReportErrorException("get outer review" + ex);
+            throw new DatasourceLayerException("get outer review" + ex);
         }
 
     }
 
-    private ArrayList<Room> getRoomList(int repID) throws ReportErrorException
+    private ArrayList<Room> getRoomList(int repID) throws DatasourceLayerException
     {
+         try
+        {
         String query = "SELECT floor, Room FROM Report natural join Buildings "
                 + "natural join BFloor natural join Room where RepID='" + repID + "';";
         DatabaseConnector db_Connect = DatabaseConnector.getInstance();
         ResultSet res = db_Connect.getData(query);
         ArrayList<Room> rooms = new ArrayList();
-        try
-        {
+       
             while (res.next())
             {
                 Room room = new Room(res.getInt(1), res.getInt(2));
@@ -362,19 +377,20 @@ public class DM_Report
             return rooms;
         } catch (SQLException ex)
         {
-            throw new ReportErrorException("get rooms" + ex);
+            throw new DatasourceLayerException("get rooms" + ex);
         }
 
     }
 
-    private ArrayList<Damage> getDamageList(int repID) throws ReportErrorException
+    private ArrayList<Damage> getDamageList(int repID) throws DatasourceLayerException
     {
+        try
+        {
         String query = "SELECT RoomID,DamageInRoom, DWhen, DWhere, DWhat, Repaired, DamageType, OtherDamage FROM Damage where RepID='" + repID + "';";
         DatabaseConnector db_Connect = DatabaseConnector.getInstance();
         ResultSet res = db_Connect.getData(query);
         ArrayList<Damage> damageList = new ArrayList();
-        try
-        {
+        
             while (res.next())
             {
                 Damage damage = new Damage(res.getInt(1), res.getString(2), res.getString(3), res.getString(4), res.getString(5), res.getString(6), res.getString(7), res.getString(8));
@@ -385,18 +401,19 @@ public class DM_Report
             return damageList;
         } catch (SQLException ex)
         {
-            throw new ReportErrorException("get damage" + ex);
+            throw new DatasourceLayerException("get damage" + ex);
         }
     }
 
-    private ArrayList<ReviewOf> getReviewList(int repID) throws ReportErrorException
+    private ArrayList<ReviewOf> getReviewList(int repID) throws DatasourceLayerException
     {
+        try
+        {
         String query = "SELECT Part, Note FROM ReviewOf WHERE RepID ='" + repID + "';";
         DatabaseConnector db_Connect = DatabaseConnector.getInstance();
         ResultSet res = db_Connect.getData(query);
         ArrayList<ReviewOf> reviewList = new ArrayList();
-        try
-        {
+        
             while (res.next())
             {
                 ReviewOf review = new ReviewOf(res.getString(1), res.getString(2));
@@ -406,10 +423,10 @@ public class DM_Report
             return reviewList;
         } catch (SQLException ex)
         {
-            throw new ReportErrorException("get review" + ex);
+            throw new DatasourceLayerException("get review" + ex);
         }
     }
-//    private ArrayList<MoistScan> getMSList(int repID) throws ReportErrorException
+//    private ArrayList<MoistScan> getMSList(int repID) throws DatasourceLayerException
 //    {
 //        String query = "SELECT  WHERE RepID ='"+repID+"';";
 //        DatabaseConnector db_Connect = DatabaseConnector.getInstance();
@@ -427,36 +444,36 @@ public class DM_Report
 //            return reviewList;
 //        } catch (SQLException ex)
 //        {
-//            throw new ReportErrorException("get review" + ex);
+//            throw new DatasourceLayerException("get review" + ex);
 //        }
 //    }
 
-    public ArrayList<Report> viewReport1()
-    {
-        ArrayList<Report> reports = new ArrayList();
-        String query = "SELECT * FROM report;";
-
-        DatabaseConnector db_Connect = DatabaseConnector.getInstance();
-        ResultSet res = db_Connect.getData(query);
-
-        try
-        {
-            System.out.println("res er forskellig fra null: " + (res != null));
-            while (res.next())
-            {
-                //Report report = new Report(res.getInt(1), res.getString(4), 
-                //        res.getString(5), res.getString(6), (res.getInt(7)), 
-                //        res.getInt(7), res.getInt(8), res.getDouble(9), 
-                //        res.getString(10), res.getInt(2), res.getInt(3));
-                //reports.addArrayFloor(report);
-            }
-            return reports;
-        } catch (SQLException ex)
-        {
-            System.out.println("viewReport - " + ex);
-        }
-        return null;
-    }
+//    public ArrayList<Report> viewReport1()
+//    {
+//        try
+//        {
+//        ArrayList<Report> reports = new ArrayList();
+//        String query = "SELECT * FROM report;";
+//
+//        DatabaseConnector db_Connect = DatabaseConnector.getInstance();
+//        ResultSet res = db_Connect.getData(query);
+//
+//        
+//            System.out.println("res er forskellig fra null: " + (res != null));
+//            while (res.next())
+//            {
+//                //Report report = new Report(res.getInt(1), res.getString(4), 
+//                //        res.getString(5), res.getString(6), (res.getInt(7)), 
+//                //        res.getInt(7), res.getInt(8), res.getDouble(9), 
+//                //        res.getString(10), res.getInt(2), res.getInt(3));
+//                //reports.addArrayFloor(report);
+//            }
+//            return reports;
+//        } catch (SQLException ex)
+//        {
+//            throws new DatasourceLayerException("");
+//        }
+//    }
 
     //--------------------------------------------------
 //    private void insertEmployee(Report r)

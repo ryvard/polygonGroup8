@@ -6,7 +6,7 @@
 package datasource;
 
 import businesslogic.ContactPerson;
-import businesslogic.ReportErrorException;
+import businesslogic.DatasourceLayerException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -15,131 +15,138 @@ import java.util.ArrayList;
  *
  * @author emmablomsterberg
  */
-public class DM_ContactPerson {
-    
-    public int createContactPerson(ContactPerson cp) {
-        
-        try {
-        
-        String query = "INSERT INTO ContactPerson(CPFirstName,CPLastName) VALUES('" + cp.getCPFirstName()
-                + "','" + cp.getCPLastName() + "');";
-        
-        
-        DatabaseConnector db_Connect = DatabaseConnector.getInstance();
-        db_Connect.updateData(query);
-        
-        } catch(Exception e) {
-            System.out.println("FEJL" + e);
-        }
-        
-        int cpID = getCPID(cp.getCPFirstName(), cp.getCPLastName());
-        
-        return cpID;
-    }
-    
-    public void createContactPersonInfo(ContactPerson cp) {
-        try {
-            
-            String queryEmail = "INSERT INTO CPMail(CPID,CPMail) VALUES('" + getCPID(cp.getCPFirstName(),cp.getCPLastName())
-                    + "','" + cp.getEmail() +"');";
-            
-            String queryPhone = "INSERT INTO CPPhone(CPID,CPPhone) VALUES('" + getCPID(cp.getCPFirstName(), cp.getCPLastName())
-                    + "','" + cp.getPhone() +"');";
-            
-            DatabaseConnector db_Connect = DatabaseConnector.getInstance();
-            db_Connect.updateData(queryEmail);
-            db_Connect.updateData(queryPhone);
-            
-        } catch(Exception e) {
-            System.out.println("" + e);
-        }
-    }
-    
-    public ArrayList<ContactPerson> getContactPersonList() {
-        
-        ArrayList<ContactPerson> contactPerson = new ArrayList();
-        
-        String query = "SELECT * FROM ContactPerson;";
-        
-        DatabaseConnector db_Connect = DatabaseConnector.getInstance();
-        ResultSet res = db_Connect.getData(query);
+public class DM_ContactPerson
+{
+
+    public int createContactPerson(ContactPerson cp) throws DatasourceLayerException
+    {
 
         try
         {
+
+            String query = "INSERT INTO ContactPerson(CPFirstName,CPLastName) VALUES('" + cp.getCPFirstName()
+                    + "','" + cp.getCPLastName() + "');";
+
+            DatabaseConnector db_Connect = DatabaseConnector.getInstance();
+            db_Connect.updateData(query);
+
+            int cpID = getCPID(cp.getCPFirstName(), cp.getCPLastName());
+
+            return cpID;
+        } catch (SQLException ex)
+        {
+            throw new DatasourceLayerException("create CP" + ex);
+        }
+    }
+
+    public void createContactPersonInfo(ContactPerson cp) throws DatasourceLayerException
+    {
+        try
+        {
+
+            String queryEmail = "INSERT INTO CPMail(CPID,CPMail) VALUES('" + getCPID(cp.getCPFirstName(), cp.getCPLastName())
+                    + "','" + cp.getEmail() + "');";
+
+            String queryPhone = "INSERT INTO CPPhone(CPID,CPPhone) VALUES('" + getCPID(cp.getCPFirstName(), cp.getCPLastName())
+                    + "','" + cp.getPhone() + "');";
+
+            DatabaseConnector db_Connect = DatabaseConnector.getInstance();
+            db_Connect.updateData(queryEmail);
+            db_Connect.updateData(queryPhone);
+
+        } catch (SQLException ex)
+        {
+            throw new DatasourceLayerException("create CP info" + ex);
+        }
+    }
+
+    public ArrayList<ContactPerson> getContactPersonList() throws DatasourceLayerException
+    {
+        try
+        {
+            ArrayList<ContactPerson> contactPerson = new ArrayList();
+
+            String query = "SELECT * FROM ContactPerson;";
+
+            DatabaseConnector db_Connect = DatabaseConnector.getInstance();
+            ResultSet res = db_Connect.getData(query);
+
             while (res.next())
             {
                 ContactPerson cp = new ContactPerson(res.getInt(1), res.getString(2), res.getString(3));
-                
+
                 contactPerson.add(cp);
-                
+
             }
             return contactPerson;
-            
+
         } catch (SQLException ex)
         {
-            System.out.println("€€€€€€€€€€€€€€€%&€#   " + ex);
-
+            throw new DatasourceLayerException("get CP list: " + ex);
         }
-        return null;
     }
-    
-    public int getCPID(String firstName, String lastName) {
-        
-        String query = "SELECT CPID FROM PolygonGroup8.ContactPerson WHERE CPFirstName ='"+ firstName+"' AND CPLastName='"+ lastName + "';";
-        
-        DatabaseConnector db_Connect = DatabaseConnector.getInstance();
-        ResultSet res = db_Connect.getData(query);
-        try {
+
+    public int getCPID(String firstName, String lastName) throws DatasourceLayerException
+    {
+        try
+        {
+            String query = "SELECT CPID FROM PolygonGroup8.ContactPerson WHERE CPFirstName ='" + firstName + "' AND CPLastName='" + lastName + "';";
+
+            DatabaseConnector db_Connect = DatabaseConnector.getInstance();
+            ResultSet res = db_Connect.getData(query);
+
             res.next();
             int cpID = res.getInt("CPID");
-            
-        return cpID;
-        
-        } catch(SQLException ex) {
-            System.out.println("FEJL GetCPID " + ex);
+
+            return cpID;
+
+        } catch (SQLException ex)
+        {
+            throw new DatasourceLayerException("get CPID: " + ex);
         }
-        return 0;
-        
+
     }
-    
-    public ContactPerson getCPFromCPID(int cpID)
+
+    public ContactPerson getCPFromCPID(int cpID) throws DatasourceLayerException
     {
-        String query = "SELECT * FROM PolygonGroup8.ContactPerson WHERE CPID ='"+ cpID+"';";
-        
-        DatabaseConnector db_Connect = DatabaseConnector.getInstance();
-        ResultSet res = db_Connect.getData(query);
-        try {
+        try
+        {
+            String query = "SELECT * FROM PolygonGroup8.ContactPerson WHERE CPID ='" + cpID + "';";
+
+            DatabaseConnector db_Connect = DatabaseConnector.getInstance();
+            ResultSet res = db_Connect.getData(query);
+
             res.next();
             ContactPerson cp = new ContactPerson(res.getInt(1), res.getString(2), res.getString(3));
-            
-        return cp;
-        
-        } catch(SQLException ex) {
-            System.out.println("FEJL GetCPFromCPID " + ex);
+
+            return cp;
+
+        } catch (SQLException ex)
+        {
+            throw new DatasourceLayerException("get CP from cpid: " + ex);
         }
-        return null;
+        
     }
-    
-    public ContactPerson getCPFromBuildingID(int BuildingID) throws ReportErrorException
+
+    public ContactPerson getCPFromBuildingID(int BuildingID) throws DatasourceLayerException
     {
+        try{
         String query = "SELECT CPID,CPFirstName, CPLastName "
                 + "FROM ContactPerson NATURAL JOIN Buildings "
-                + "WHERE BuildingID ='"+BuildingID+"';";
+                + "WHERE BuildingID ='" + BuildingID + "';";
         DatabaseConnector db_Connect = DatabaseConnector.getInstance();
         ResultSet res = db_Connect.getData(query);
-        try {
+        
             res.next();
             ContactPerson cp = new ContactPerson(res.getInt(1), res.getString(2), res.getString(3));
-            
-        return cp;
-        
-        } catch(SQLException ex) {
-            throw new ReportErrorException("get cpFrom bid"+ex);
+
+            return cp;
+
+        } catch (SQLException ex)
+        {
+            throw new DatasourceLayerException("get cpFrom bid" + ex);
         }
-        
-                
+
     }
-    
-   
-    
+
 }

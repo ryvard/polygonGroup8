@@ -7,7 +7,7 @@ package datasource;
 
 import businesslogic.Floor;
 import businesslogic.Building;
-import businesslogic.ReportErrorException;
+import businesslogic.DatasourceLayerException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -18,7 +18,8 @@ import java.util.ArrayList;
  */
 public class DM_Building
 {
-    public void createBuildingInDB(Building b)
+
+    public void createBuildingInDB(Building b) throws DatasourceLayerException
     {
         try
         {
@@ -30,136 +31,138 @@ public class DM_Building
 
             DatabaseConnector db_Connect = DatabaseConnector.getInstance();
             db_Connect.updateData(query);
-            
+
             int ID = getBuildingIDFromDB(b.getBuildingName(), b.getStreetName());
             createFloor(b.getFloors(), ID);
-            
-        } catch (Exception ex)
+
+        } catch (SQLException ex)
         {
-            System.out.println("createBuildingInDB - " + ex);
+            throw new DatasourceLayerException("create building: " + ex);
         }
     }
 
-    public ArrayList<Building> getBuildingList()
+    public ArrayList<Building> getBuildingList() throws DatasourceLayerException
     {
-        ArrayList<Building> buildings = new ArrayList();
-        String query = "SELECT * FROM buildings;";
-
-        DatabaseConnector db_Connect = DatabaseConnector.getInstance();
-        ResultSet res = db_Connect.getData(query);
-
         try
         {
-            System.out.println("res er forskellig fra null: "+(res !=null));
+            ArrayList<Building> buildings = new ArrayList();
+            String query = "SELECT * FROM buildings;";
+
+            DatabaseConnector db_Connect = DatabaseConnector.getInstance();
+            ResultSet res = db_Connect.getData(query);
+
+            System.out.println("res er forskellig fra null: " + (res != null));
             while (res.next())
             {
-                Building building = new Building(res.getInt(1), res.getString(4), 
-                        res.getString(5), res.getString(6), getCity(res.getInt(7)), 
-                        res.getInt(7), res.getInt(8), res.getDouble(9), 
+                Building building = new Building(res.getInt(1), res.getString(4),
+                        res.getString(5), res.getString(6), getCity(res.getInt(7)),
+                        res.getInt(7), res.getInt(8), res.getDouble(9),
                         res.getString(10), res.getInt(2), res.getInt(3));
                 buildings.add(building);
             }
             return buildings;
         } catch (SQLException ex)
         {
-            System.out.println("getBuildingList - " + ex);
+            throw new DatasourceLayerException("get building list: " + ex);
         }
-        return null;
+
     }
 
-    public String getCity(int zip)
+    public String getCity(int zip) throws DatasourceLayerException
     {
-        String query = "SELECT * FROM Zipcodes WHERE Zipcode ='" + zip + "';";
-
-        DatabaseConnector db_Connect = DatabaseConnector.getInstance();
-        ResultSet res = db_Connect.getData(query);
         try
         {
+            String query = "SELECT * FROM Zipcodes WHERE Zipcode ='" + zip + "';";
+
+            DatabaseConnector db_Connect = DatabaseConnector.getInstance();
+            ResultSet res = db_Connect.getData(query);
+
             res.next();
             String city = res.getString(2);
             return city;
         } catch (SQLException ex)
         {
-            System.out.println("city - " + ex);
+            throw new DatasourceLayerException("get city " + ex);
         }
-        return null;
+
     }
-    
-    public Building getBuildingFromID(int BuildingID) throws ReportErrorException
+
+    public Building getBuildingFromID(int BuildingID) throws DatasourceLayerException
     {
-        String query = "SELECT * FROM Buildings WHERE BuildingID ='"+ BuildingID +"';";
-        DatabaseConnector db_Connect = DatabaseConnector.getInstance();
-        ResultSet res = db_Connect.getData(query);
         try
         {
+            String query = "SELECT * FROM Buildings WHERE BuildingID ='" + BuildingID + "';";
+            DatabaseConnector db_Connect = DatabaseConnector.getInstance();
+            ResultSet res = db_Connect.getData(query);
+
             res.next();
-            Building building = new Building(res.getInt(1), res.getString(4), res.getString(5), res.getString(6), getCity(res.getInt(7)), res.getInt(7),res.getInt(8), res.getDouble(9), res.getString(10), res.getInt(2), res.getInt(3));
+            Building building = new Building(res.getInt(1), res.getString(4), res.getString(5), res.getString(6), getCity(res.getInt(7)), res.getInt(7), res.getInt(8), res.getDouble(9), res.getString(10), res.getInt(2), res.getInt(3));
             return building;
-        }
-        catch(SQLException ex)
+        } catch (SQLException ex)
         {
-            throw new ReportErrorException("FEJL getBuildingFromID" + ex);
+            throw new DatasourceLayerException("FEJL getBuildingFromID" + ex);
         }
-        
+
     }
-    
-    
-    public void createFloor(ArrayList<Floor> arrayFloor, int buildingID) {
-        
+
+    public void createFloor(ArrayList<Floor> arrayFloor, int buildingID) throws DatasourceLayerException
+    {
+
 //       ArrayList<Building> building = getBuildingList();
 //        int index = building.size()-1;
-        try {
-        for (int i = 0; i < arrayFloor.size(); i++) {
-           String query = "INSERT INTO BFloor(BuildingID,Floor,SquareM) VALUES('"+ buildingID
-                + "','" + arrayFloor.get(i).getFloor() + "','" + arrayFloor.get(i).getSquareM() + "');";
-           DatabaseConnector db_Connect = DatabaseConnector.getInstance();
-           db_Connect.updateData(query);
-        }
-        
-        } catch(Exception ex) {
-            System.out.println(""  + ex);
-        }
-        
-        
-    }
-    
-    public ArrayList<Floor> getFloorListFromBuildingID(int buildingID) throws ReportErrorException
-    {
-        String query = "SELECT * FROM BFloor WHERE BuildingID ='"+buildingID+"';";
-        DatabaseConnector db_Connect = DatabaseConnector.getInstance();
-        ResultSet res = db_Connect.getData(query);
-        ArrayList<Floor> floorList = new ArrayList();
-        try{
-        while(res.next())
-        {
-            Floor floor = new Floor(res.getInt(1),res.getInt(2),res.getInt(3),res.getDouble(4));
-            floorList.add(floor);
-        }
-        return floorList;
-        }catch(SQLException ex)
-        {
-            throw new ReportErrorException("get floorList: "+ex);
-        }
-    }
-    
-    public int getBuildingIDFromDB(String buildingName, String streetName) {
-        
-        
-        String query = "SELECT BuildingID FROM PolygonGroup8.Buildings WHERE BuildingName ='"+ buildingName+"' AND StreetName='"+ streetName + "';";
-        DatabaseConnector db_Connect = DatabaseConnector.getInstance();
-        ResultSet res = db_Connect.getData(query);
         try
         {
+            for (int i = 0; i < arrayFloor.size(); i++)
+            {
+                String query = "INSERT INTO BFloor(BuildingID,Floor,SquareM) VALUES('" + buildingID
+                        + "','" + arrayFloor.get(i).getFloor() + "','" + arrayFloor.get(i).getSquareM() + "');";
+                DatabaseConnector db_Connect = DatabaseConnector.getInstance();
+                db_Connect.updateData(query);
+            }
+
+        } catch (SQLException ex)
+        {
+            throw new DatasourceLayerException("create floor: " + ex);
+        }
+
+    }
+
+    public ArrayList<Floor> getFloorListFromBuildingID(int buildingID) throws DatasourceLayerException
+    {
+        try
+        {
+            String query = "SELECT * FROM BFloor WHERE BuildingID ='" + buildingID + "';";
+            DatabaseConnector db_Connect = DatabaseConnector.getInstance();
+            ResultSet res = db_Connect.getData(query);
+            ArrayList<Floor> floorList = new ArrayList();
+
+            while (res.next())
+            {
+                Floor floor = new Floor(res.getInt(1), res.getInt(2), res.getInt(3), res.getDouble(4));
+                floorList.add(floor);
+            }
+            return floorList;
+        } catch (SQLException ex)
+        {
+            throw new DatasourceLayerException("get floorList: " + ex);
+        }
+    }
+
+    public int getBuildingIDFromDB(String buildingName, String streetName) throws DatasourceLayerException
+    {
+        try
+        {
+            String query = "SELECT BuildingID FROM PolygonGroup8.Buildings WHERE BuildingName ='" + buildingName + "' AND StreetName='" + streetName + "';";
+            DatabaseConnector db_Connect = DatabaseConnector.getInstance();
+            ResultSet res = db_Connect.getData(query);
+
             res.next();
             int buildingID = res.getInt(1);
             return buildingID;
-        }
-        catch(SQLException ex)
+        } catch (SQLException ex)
         {
-            System.out.println("getBuildingFromID" + ex);
+            throw new DatasourceLayerException("get building id: " + ex);
         }
-        return 0;
     }
-    
-    
+
 }
