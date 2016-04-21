@@ -42,7 +42,6 @@ public interface IController
         
         public ArrayList<ContactPerson> getContactPersonList();
         
-        public Report viewReport();
         
         public ArrayList<Condition> getConditions();
         
@@ -61,5 +60,7 @@ public interface IController
                 ArrayList<MoistScan> msList, ArrayList<Conclusion> conclusionList) throws ReportErrorException;
         
         public ContactPerson getCPFromCPID(int CPID);
+        
+        public Report viewReport(int repID) throws ReportErrorException;
 
 }

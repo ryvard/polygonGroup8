@@ -33,8 +33,6 @@ public interface IFacade
     
     public Building getBuildingFromID(int buildingID) throws ReportErrorException;
     
-    public Report viewReport();
-    
     public ArrayList<Condition> getConditions();
    
     public void createContactPersonInfo(ContactPerson cp);
@@ -54,4 +52,13 @@ public interface IFacade
     public void createReport(Report r) throws ReportErrorException;
     
     public ContactPerson getCPFromCPID(int CPID);
+    
+    public ArrayList<Floor> getFloors(int BuildingID) throws ReportErrorException;
+    
+    public ContactPerson getCP(int BuildingID) throws ReportErrorException;
+    
+    public int getNewRepID() throws ReportErrorException;
+    
+    public Report viewReport(int repID) throws ReportErrorException;
+    
 }

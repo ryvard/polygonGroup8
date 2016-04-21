@@ -13,6 +13,7 @@ public class ReviewOf
 {
     int ReviewID;
     int roomID;
+    int floorID;
     int repID;
     String part;
     String note;
@@ -24,11 +25,22 @@ public class ReviewOf
     }
     
     
-    public ReviewOf(int roomID, String part, String note)
+    public ReviewOf(int roomID, int floorID, String part, String note)
     {
         this.roomID = roomID;
+        this.floorID = floorID;
         this.part = part;
         this.note = note;
+    }
+
+    public int getFloorID()
+    {
+        return floorID;
+    }
+
+    public void setFloorID(int floorID)
+    {
+        this.floorID = floorID;
     }
 
     public ReviewOf(int ReviewID, int roomID, int repID, String part, String note)

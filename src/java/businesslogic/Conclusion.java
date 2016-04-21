@@ -12,11 +12,23 @@ package businesslogic;
 public class Conclusion
 {
     private int bRoom;
+    private int bFloor;
+
+    public int getbFloor()
+    {
+        return bFloor;
+    }
+
+    public void setbFloor(int bFloor)
+    {
+        this.bFloor = bFloor;
+    }
     private String recommendation;
 
-    public Conclusion(int bRoom, String recommendation)
+    public Conclusion(int bRoom,int bFloor, String recommendation)
     {
         this.bRoom = bRoom;
+        this.bFloor = bFloor;
         this.recommendation = recommendation;
     }
 

@@ -67,13 +67,6 @@ public class Facade implements IFacade
     {
         return dm_building.getBuildingFromID(buildingID);
     }
-    
-    @Override
-    public Report viewReport()
-    {
-        return null;
-    }
-
     @Override
     public ArrayList<Condition> getConditions()
     {
@@ -129,19 +122,28 @@ public class Facade implements IFacade
     }
 
     
+    @Override
     public ArrayList<Floor> getFloors(int BuildingID) throws ReportErrorException
     {
         return dm_building.getFloorListFromBuildingID(BuildingID);
     }
     
+    @Override
     public ContactPerson getCP(int BuildingID) throws ReportErrorException
     {
         return dm_cp.getCPFromBuildingID(BuildingID);
     }
     
+    @Override
     public int getNewRepID() throws ReportErrorException
     {
         return dm_report.getNewRepID();
+    }
+
+    @Override
+    public Report viewReport(int repID) throws ReportErrorException
+    {
+        return dm_report.viewReport(repID);
     }
  
 }
