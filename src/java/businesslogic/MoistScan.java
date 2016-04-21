@@ -26,6 +26,15 @@ public class MoistScan
         this.measurePoint = measurePoint;
     }
 
+    public MoistScan(int bRoom, String msComplete, String moistScan, String measurePoint)
+    {
+        this.bRoom = bRoom;
+        this.msComplete = msComplete;
+        this.moistScan = moistScan;
+        this.measurePoint = measurePoint;
+    }
+    
+
     public int getbFloor()
     {
         return bFloor;
