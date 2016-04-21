@@ -351,7 +351,7 @@ public class Servlet extends HttpServlet
 
                         String rUse = con.viewReport(repID).getBuilding().getBuildingUse();
                         session.setAttribute("rUse", rUse);
-
+                        //---
                         ArrayList<ReviewOf> outerReviewList = con.viewReport(repID).getOuterReviews();
                         session.setAttribute("outerReviewList", outerReviewList);
                         System.out.println("or" + outerReviewList.size());
@@ -362,16 +362,19 @@ public class Servlet extends HttpServlet
 
                         ArrayList<Damage> damageList = con.viewReport(repID).getDamageList();
                         session.setAttribute("damageList", damageList);
-
+                        //------
                         String rEmployeeFirst = con.viewReport(repID).getEmployee().getFirstName();
                         session.setAttribute("rEmployeeFirst", rEmployeeFirst);
 
                         String rEmployeeLast = con.viewReport(repID).getEmployee().getLastName();
                         session.setAttribute("rEmployeeLast", rEmployeeLast);
 
-//                     String rCollaboration
-//                     = //Metodekald her
-//                     session.setAttribute("rCollaboration", rCollaboration);
+                        String rCpFirstName = con.viewReport(repID).getBuilding().getCp().getCPFirstName();
+                        session.setAttribute("rCpFirstName", rCpFirstName);
+                        
+                        String rCpLastName = con.viewReport(repID).getBuilding().getCp().getCPLastName();
+                        session.setAttribute("rCpLastName", rCpLastName);
+//                     
                         int condition = con.viewReport(repID).getCondition();
                         session.setAttribute("condition", condition);
 
