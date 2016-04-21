@@ -198,6 +198,10 @@ public class Servlet extends HttpServlet
 
                         // Report data
                         String rDate = request.getParameter("date");
+                        if(rDate == null||rDate.isEmpty())
+                        {
+                            throw new DatasourceLayerException("Dato er tom");
+                        }
                         int rCondition = Integer.parseInt(request.getParameter("condition"));
 
                         Report report = new Report(rDate, rCondition);

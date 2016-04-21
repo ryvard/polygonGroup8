@@ -1,5 +1,6 @@
 package datasource;
 
+import businesslogic.DatasourceLayerException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -38,7 +39,7 @@ public class DatabaseConnector
         return dbCon_Instance;
     }
 
-    public static Connection getConnection() throws SQLException
+    public static Connection getConnection() throws SQLException, DatasourceLayerException 
     {
         if (con == null)
         {
@@ -47,7 +48,8 @@ public class DatabaseConnector
                 Class.forName("com.mysql.jdbc.Driver");
             } catch (ClassNotFoundException ex)
             {
-                Logger.getLogger(DatabaseConnector.class.getName()).log(Level.SEVERE, null, ex);
+                ex.printStackTrace();
+                throw new DatasourceLayerException("PROGRAMMET VIRKER IKKE: "+ex);
             }
             con = DriverManager.getConnection(DB_URL, USER, PASS);
         }
