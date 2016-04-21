@@ -70,12 +70,13 @@
                     <td><%=b.getBuildingUse()%></td>
                     <td><%=b.getCustID()%></td>
                     <td><%=b.getCPID()%></td>
-            <form action="/ShowImageServlet" method="POST">
+            <td><form action="ImageServlet" method="POST">
                 <input type="hidden" name="buildingID" value="<%=b.getBuildingID()%>"/>
-                <td><input type="submit" name="do_this" value="Show Picture"></td>
-            </form>
+                <input type="submit" name="do_this" value="Show Picture">
+            </form></td>
         </tr>
         <%
+            
             }
         %>
 
