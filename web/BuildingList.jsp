@@ -36,7 +36,7 @@
     </head>
     <body>
         <h1>Liste over alle bygninger</h1>
-        
+
         <table border="1">
             <tbody>
                 <tr>
@@ -52,7 +52,7 @@
                     <td><b>Kontakt person ID</b></td>
                 </tr>
 
-                
+
                 <%
                     Controller cntr = new Controller();
                     ArrayList<Building> buildings = cntr.getBuildingList();
@@ -70,12 +70,17 @@
                     <td><%=b.getBuildingUse()%></td>
                     <td><%=b.getCustID()%></td>
                     <td><%=b.getCPID()%></td>
-                </tr>
-                <%
-                    }
-                %>
-                
-            </tbody>
-        </table>
-    </body>
+            <form action="/ShowImageServlet" method="POST">
+                <input type="hidden" name="buildingID" value="<%=b.getBuildingID()%>"/>
+                <td><input type="submit" name="do_this" value="Show Picture"></td>
+            </form>
+        </tr>
+        <%
+            }
+        %>
+
+    </tbody>
+</body>
+</table>
+</body>
 </html>
