@@ -21,7 +21,7 @@ public class DM_Image
 
         try
         {
-            String query = "SELECT Picture FROM Pictures WHERE BuildingID =" + buildingID + ";";
+            String query = "SELECT Picture FROM Pictures WHERE BuildingID ='" + buildingID + "';";
 
             DatabaseConnector db_Connect = DatabaseConnector.getInstance();
             ResultSet res = db_Connect.getData(query);
@@ -37,6 +37,7 @@ public class DM_Image
         {
             System.out.println("ShowPicture - " + ex);
         }
+        System.out.println("Der er intet billede din fucking super spasser MY LITTLE POOONYYYYY!!!!");
         return null;
     }
 
