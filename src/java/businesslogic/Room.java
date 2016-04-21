@@ -13,6 +13,20 @@ public class Room
 {
     int floor;
     int room;
+    int roomID;
+
+    public int getRoomID()
+    {
+        return roomID;
+    }
+
+    public Room(int floor, int room, int roomID)
+    {
+        this.floor = floor;
+        this.room = room;
+        this.roomID = roomID;
+    }
+    
 
     public Room(int floor, int room)
     {
