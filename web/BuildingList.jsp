@@ -13,39 +13,33 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Liste over bygninger</title>
-        <style>
-            h1 {
-
-                text-align: center;
-            }
-
-            div {
-
-                font-size: 75%;
-            }
-
-            body {
-
-                font-family: verdana;
-            }
-
-            table {
-                font-size: 75%;
-            }
-        </style>
+        <link rel="stylesheet" href="basicStyle.css">
     </head>
     <body>
+        <ul1> 
+        <li><a href="http://www.polygon.dk/">Polygon</a></li>
+        <li><a href="Login.jsp"> Polygon login side</a></li>
+        <li><a href="BuildingList.jsp">Se bygninger</a></li>
+        <li><a href="CreateBuilding.jsp">Opret din bygning</a></li>
+        <li><a href="CreateReport1.jsp">Opret rapport</a></li>
+        <li><a href="ViewReport.jsp">Se rapport</a></li>
+    </ul1>
+
+    <ul2>
+        <li2 style="float:left;"> <img src="images.png" alt="Polygon" style="width: 200px; padding-left: 20px;"></li2>
+        <li2 style="float:right; padding-right: 30px;"> <img src="logo-sunde-bygninger-property.png" alt="SundeBygninger" style="width: 200px; padding-left: 20px;"></li2>
+    </ul2>
         <h1>Liste over alle bygninger</h1>
 
-        <table border="1">
+        <table align="center"">
             <tbody>
                 <tr>
                     <td><b>BuildingID</b></td>
                     <td><b>Navn på bygning</b></td>
                     <td><b>Adresse</b></td>
                     <td><b>Husnummer</b></td>
-                    <td><b>postnr</b></td>
-                    <td><b>by</b></td>
+                    <td><b>Postnr</b></td>
+                    <td><b>By</b></td>
                     <td><b>Byggeår</b></td>
                     <td><b>Bygningen bliver/har været brugt til</b></td>
                     <td><b>Kunde ID</b></td>
@@ -81,6 +75,13 @@
         %>
 
     </tbody>
+    <div style="font-weight: normal">
+        Rypevang 5, DK-3450 Allerød, Danmark 
+        <br>
+        48140555
+        <br>
+        info@polygon.dk www.polygon.dk
+    </div>
 </body>
 </table>
 </body>
