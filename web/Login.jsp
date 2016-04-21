@@ -10,94 +10,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Login</title>
-        <style>
-            
-            body {
-                margin: 0;
-                font-family: helvetica; 
-                font-size: 75%;
-                color:#63686c;
-                padding-top: 200px;
-               
-            }
-            
-            table {
-                
-                padding: 25px;
-                background-color: #f3f3f3;
-                border-radius: 10px;
-            }
-            
-            ul1 {
-                position: fixed;
-                top: 0;
-                width: 100%;
-                list-style-type: none;
-                display: block;
-                margin: 0;
-                padding: 0;
-                width: 100%;
-                background-color: #00a0de;
-                overflow: hidden;
-                border-style: solid;
-                border: whitesmoke;
-            }
-            
-            ul2 {
-                position: fixed;
-                top: 55px;
-                width: 100%;
-                list-style-type: none;
-                display: block;
-                margin: 0;
-                padding: 0;
-                width: 100%;
-                background-color: white;
-                overflow: hidden;
-                border-style: solid;
-                border: whitesmoke;
-                
-            }
-            
-            li2 {
-                background-color: white;
-                display: block;
-            }
-          
-            li a {
-                color: #ffffff; 
-                font-size: 15px;
-                font-weight: lighter;
-                text-decoration:none;
-                float:right;
-                padding: 15px;
-                background-color: #00a0de;
-                display:block;
-                border-width:1px 1px 1px 0;
-                border-style: solid;
-                border: whitesmoke;
-                
-            }
-            
-            li a:hover {
-                background-color: #c3e0f9;
-                
-            }
-            
-            div {
-                padding: 30px;
-                font-weight: bold;
-                float: right;
-                color: whitesmoke;
-                position: fixed;
-                bottom: 0;
-                width: 100%;
-                background-color: #00a0de;
-                
-            }
-            
-            
-        </style>
+        <link rel="stylesheet" href="basicStyle.css">
     </head>
     <body>
         
@@ -112,12 +25,10 @@
         <li2 style="float:right; padding-right: 30px;"> <img src="logo-sunde-bygninger-property.png" alt="SundeBygninger" style="width: 200px; padding-left: 20px;"></li2>
     </ul2>
        
- 
+    <h1>Login</h1>
         <form action="Servlet" method="POST">
             <table align="center">
-                <tr>
-                    <td style="text-align: center; font-size: 150%;" colspan="2">Login</td>
-                </tr>
+                
                 <br>
                 <tr>
                     <td>Brugernavn</td>

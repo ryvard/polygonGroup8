@@ -144,7 +144,9 @@
             }
         %>
 <br>
-        
+<p>Bygningsgennemgangen er foretaget af <%=session.getAttribute("rEmployeeFirst")%> <%=session.getAttribute("rEmployeeLast")%>, Polygon<br>
+    i samarbejde med <%=session.getAttribute("rCpFirstName")%> <%=session.getAttribute("rCpLastName")%>(bygningsansvarlig).</p>
+
         <h2>Denne bygning er kategoriseret som tilstandsgrad: <%=session.getAttribute("condition")%></h2>
         <table style="border: 1px solid black; " padding="5">
             <tr>
