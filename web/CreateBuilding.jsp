@@ -37,7 +37,7 @@
             
             <input type="hidden" name="do_this" value="createContactPerson">
                
-        <table align="center" cellpadding="3">
+        <table align="center" cellpadding="3" style="margin-bottom: 200px;">
             <tr>
                 <td colspan="4" style="text-align: center; padding-bottom: 20px;">Udfyld venligst felterne nedenfor for at oprette en kontaktperson, hvis dette ikke er allerede gjort</td>
             </tr>
