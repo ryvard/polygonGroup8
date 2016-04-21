@@ -30,11 +30,13 @@
         <h1>Indtast BygningsID</h1>
         <table align="center">
         <form action="Servlet" method="GET">
+            <tr>
             <td>Bygnings-ID:</td> 
             <td><input type='number' name='buildingID'></td>
 
             <input type="hidden" name="do_this" value="createReport_BuildingID">
             <td><input type="submit" value="OK"></td>
+            </tr>
         </form>
             </table>
     </body>
