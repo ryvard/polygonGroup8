@@ -23,6 +23,8 @@ import businesslogic.MoistScan;
 import businesslogic.DatasourceLayerException;
 import businesslogic.ReviewOf;
 import businesslogic.Room;
+import datasource.DM_Image;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -64,54 +66,55 @@ public class Servlet extends HttpServlet
             {
 
                 case "createBuilding":
-                    try{
-                    String buildingName = request.getParameter("buildingName");
+                    try
+                    {
+                        String buildingName = request.getParameter("buildingName");
 
 //                    String inputFloor = request.getParameter("floor0");
 //                    String inputSqm = request.getParameter("squareM0");
 //                    System.out.println("TEST: "+inputFloor+" sqm:"+inputSqm);
-                    String street = request.getParameter("street");
-                    String streetNo = request.getParameter("streetNo");
-                    System.out.println("før zipcode");
-                    int zipcode = Integer.parseInt(request.getParameter("zipcode"));
-                    System.out.println("efter zipcode");
-                    String city = request.getParameter("city");
-                    int yearOfCon = Integer.parseInt(request.getParameter("yearOfConst"));
-                    double squareMTotal = Double.parseDouble(request.getParameter("squareMTotal"));
-                    String buildingUse = request.getParameter("buildingUse");
-                    int custID = Integer.parseInt(request.getParameter("custID"));
-                    int CPID = Integer.parseInt(request.getParameter("CPID"));
+                        String street = request.getParameter("street");
+                        String streetNo = request.getParameter("streetNo");
+                        System.out.println("før zipcode");
+                        int zipcode = Integer.parseInt(request.getParameter("zipcode"));
+                        System.out.println("efter zipcode");
+                        String city = request.getParameter("city");
+                        int yearOfCon = Integer.parseInt(request.getParameter("yearOfConst"));
+                        double squareMTotal = Double.parseDouble(request.getParameter("squareMTotal"));
+                        String buildingUse = request.getParameter("buildingUse");
+                        int custID = Integer.parseInt(request.getParameter("custID"));
+                        int CPID = Integer.parseInt(request.getParameter("CPID"));
 
-                    ArrayList<Floor> arrayFloor = new ArrayList();
-                    System.out.println("før addfloor");
-                    int numberFloors = Integer.parseInt(request.getParameter("addFloor")) - 1;
-                    System.out.println("før for loop");
-                    for (int i = 0; i < numberFloors; i++)
-                    {
+                        ArrayList<Floor> arrayFloor = new ArrayList();
+                        System.out.println("før addfloor");
+                        int numberFloors = Integer.parseInt(request.getParameter("addFloor")) - 1;
+                        System.out.println("før for loop");
+                        for (int i = 0; i < numberFloors; i++)
+                        {
 
-                        int floor = Integer.parseInt(request.getParameter("floor" + i));
-                        double squareM = Double.parseDouble(request.getParameter("squareM" + i));
-                        System.out.println("floorTEST" + floor);
-                        System.out.println("squareMTEST" + squareM);
-                        Floor f = new Floor(floor, squareM);
+                            int floor = Integer.parseInt(request.getParameter("floor" + i));
+                            double squareM = Double.parseDouble(request.getParameter("squareM" + i));
+                            System.out.println("floorTEST" + floor);
+                            System.out.println("squareMTEST" + squareM);
+                            Floor f = new Floor(floor, squareM);
 
-                        arrayFloor.add(f);
-                        System.out.println("arrayFloor size" + arrayFloor.size());
-                    }
+                            arrayFloor.add(f);
+                            System.out.println("arrayFloor size" + arrayFloor.size());
+                        }
 
-                    System.out.println("efter for loop");
+                        System.out.println("efter for loop");
 
 // int CPID = ????  First Name, lastname, phone og mail
-                    //con.createBuilding(buildingName, street, streetNo, city, zipcode, yearOfCon, squareMTotal, buildingUse, custID, CPID);
-                    Building b = new Building(buildingName, street, streetNo, city, zipcode, yearOfCon, squareMTotal, buildingUse, custID, CPID);
+                        //con.createBuilding(buildingName, street, streetNo, city, zipcode, yearOfCon, squareMTotal, buildingUse, custID, CPID);
+                        Building b = new Building(buildingName, street, streetNo, city, zipcode, yearOfCon, squareMTotal, buildingUse, custID, CPID);
 
-                    con.createBuilding(b, arrayFloor);
+                        con.createBuilding(b, arrayFloor);
 
-                    //con.createFloor(arrayFloor, con.getBuildingIDFromDB(buildingName, street));
-                    System.out.println("efter metodekald");
+                        //con.createFloor(arrayFloor, con.getBuildingIDFromDB(buildingName, street));
+                        System.out.println("efter metodekald");
 
-                    System.out.println("servlet");
-                    }catch(DatasourceLayerException ex)
+                        System.out.println("servlet");
+                    } catch (DatasourceLayerException ex)
                     {
                         //gør noget her
                         System.out.println("********** create building failed *************");
@@ -119,20 +122,21 @@ public class Servlet extends HttpServlet
                     break;
 
                 case "createCustomer":
-                    try{
-                    String name = request.getParameter("custName");
-                    String type = request.getParameter("customerType");
-                    String streetNameCust = request.getParameter("streetName");
-                    String streetNoCust = request.getParameter("streetNo");
-                    int zipcodeCust = Integer.parseInt(request.getParameter("zipcode"));
-                    String contactName = request.getParameter("contactName");
-                    String phone = request.getParameter("phone");
-                    String mail = request.getParameter("mail");
-           
-                    con.createCustomer(name, type, streetNameCust, streetNoCust, zipcodeCust, contactName, phone, mail);
-                
-                    System.out.println("%%%%%%€##€##€€€€€ dsf servlet");
-                    }catch(DatasourceLayerException ex)
+                    try
+                    {
+                        String name = request.getParameter("custName");
+                        String type = request.getParameter("customerType");
+                        String streetNameCust = request.getParameter("streetName");
+                        String streetNoCust = request.getParameter("streetNo");
+                        int zipcodeCust = Integer.parseInt(request.getParameter("zipcode"));
+                        String contactName = request.getParameter("contactName");
+                        String phone = request.getParameter("phone");
+                        String mail = request.getParameter("mail");
+
+                        con.createCustomer(name, type, streetNameCust, streetNoCust, zipcodeCust, contactName, phone, mail);
+
+                        System.out.println("%%%%%%€##€##€€€€€ dsf servlet");
+                    } catch (DatasourceLayerException ex)
                     {
                         //Gør noget her
                         System.out.println("***** Create customer FAILED ********");
@@ -362,11 +366,10 @@ public class Servlet extends HttpServlet
 
                         ArrayList<Damage> damageList = con.viewReport(repID).getDamageList();
                         session.setAttribute("damageList", damageList);
-                        
+
                         ArrayList<ReviewOf> reviewList;
                         ArrayList<MoistScan> msList;
-                        
-                        
+
                         //------
                         String rEmployeeFirst = con.viewReport(repID).getEmployee().getFirstName();
                         session.setAttribute("rEmployeeFirst", rEmployeeFirst);
@@ -376,7 +379,7 @@ public class Servlet extends HttpServlet
 
                         String rCpFirstName = con.viewReport(repID).getBuilding().getCp().getCPFirstName();
                         session.setAttribute("rCpFirstName", rCpFirstName);
-                        
+
                         String rCpLastName = con.viewReport(repID).getBuilding().getCp().getCPLastName();
                         session.setAttribute("rCpLastName", rCpLastName);
 //                     
@@ -413,20 +416,27 @@ public class Servlet extends HttpServlet
                     break;
 
                 case "createContactPerson":
-                    try{
-                    String cpFirstName = request.getParameter("cpFirstName");
-                    String cpLastName = request.getParameter("cpLastName");
-                    String cpEmail = request.getParameter("cpEmail");
-                    String cpPhone = request.getParameter("cpPhone");
-                    int cpID = con.createContactPerson(cpFirstName, cpLastName, cpEmail, cpPhone);
-                    session.setAttribute("cpID", cpID);
-                    con.createContactPersonInfo(cpFirstName, cpLastName, cpEmail, cpPhone);
-                    forward(request, response, "/CreateBuilding.jsp");
-                    }catch(DatasourceLayerException ex)
+                    try
+                    {
+                        String cpFirstName = request.getParameter("cpFirstName");
+                        String cpLastName = request.getParameter("cpLastName");
+                        String cpEmail = request.getParameter("cpEmail");
+                        String cpPhone = request.getParameter("cpPhone");
+                        int cpID = con.createContactPerson(cpFirstName, cpLastName, cpEmail, cpPhone);
+                        session.setAttribute("cpID", cpID);
+                        con.createContactPersonInfo(cpFirstName, cpLastName, cpEmail, cpPhone);
+                        forward(request, response, "/CreateBuilding.jsp");
+                    } catch (DatasourceLayerException ex)
                     {
                         //Gør noget her
                         System.out.println("********* create cp FAILED ***********");
                     }
+                    break;
+
+                case "Show Pictures":
+                    DM_Image imageMapper = new DM_Image();
+                    int buildingID = Integer.parseInt(request.getParameter("buildingID"));
+                    InputStream is = imageMapper.getImageAsStream(buildingID);
                     break;
 
             }
