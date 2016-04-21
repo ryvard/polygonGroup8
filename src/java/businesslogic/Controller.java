@@ -169,6 +169,8 @@ public class Controller implements IController
     {
         Report r = facade.viewReport(repID);
         Building b = facade.getBuildingFromID(r.getBuildingID());
+        ContactPerson c = facade.getCPFromCPID(b.getCPID());
+        b.addCP(c);
         r.addBuilding(b);
         Employee e = facade.getEmployeeFromEID(r.geteID());
         r.addEmployee(e);

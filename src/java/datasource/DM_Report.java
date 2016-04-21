@@ -302,6 +302,8 @@ public class DM_Report
 
             ArrayList<Damage> damageList = getDamageList(repID);
             r.addDamageList(damageList);
+            
+            ArrayList<ReviewOf> reviewList;
 
             ArrayList<MoistScan> msList;
 
@@ -426,54 +428,28 @@ public class DM_Report
             throw new DatasourceLayerException("get review" + ex);
         }
     }
-//    private ArrayList<MoistScan> getMSList(int repID) throws DatasourceLayerException
-//    {
-//        String query = "SELECT  WHERE RepID ='"+repID+"';";
-//        DatabaseConnector db_Connect = DatabaseConnector.getInstance();
-//        ResultSet res = db_Connect.getData(query);
-//        ArrayList<MoistScan> msList = new ArrayList();
-//        try
-//        {
-//            while (res.next())
-//            {
-//                MoistScan ms = new MoistScan(res.getInt(1), query, query, query)
-//                ReviewOf review = new ReviewOf(res.getString(1),res.getString(2));
-//                reviewList.add(review);
-//            }
-//
-//            return reviewList;
-//        } catch (SQLException ex)
-//        {
-//            throw new DatasourceLayerException("get review" + ex);
-//        }
-//    }
+    private ArrayList<MoistScan> getMSList(int repID) throws DatasourceLayerException
+    {
+        try
+        {
+        String query = "SELECT  WHERE RepID ='"+repID+"';";
+        DatabaseConnector db_Connect = DatabaseConnector.getInstance();
+        ResultSet res = db_Connect.getData(query);
+        ArrayList<MoistScan> msList = new ArrayList();
+        
+            while (res.next())
+            {
+                //MoistScan ms = new MoistScan(repID, repID, query, query, query);
+                
+                //msList.add(ms);
+            }
 
-//    public ArrayList<Report> viewReport1()
-//    {
-//        try
-//        {
-//        ArrayList<Report> reports = new ArrayList();
-//        String query = "SELECT * FROM report;";
-//
-//        DatabaseConnector db_Connect = DatabaseConnector.getInstance();
-//        ResultSet res = db_Connect.getData(query);
-//
-//        
-//            System.out.println("res er forskellig fra null: " + (res != null));
-//            while (res.next())
-//            {
-//                //Report report = new Report(res.getInt(1), res.getString(4), 
-//                //        res.getString(5), res.getString(6), (res.getInt(7)), 
-//                //        res.getInt(7), res.getInt(8), res.getDouble(9), 
-//                //        res.getString(10), res.getInt(2), res.getInt(3));
-//                //reports.addArrayFloor(report);
-//            }
-//            return reports;
-//        } catch (SQLException ex)
-//        {
-//            throws new DatasourceLayerException("");
-//        }
-//    }
+            return msList;
+        } catch (SQLException ex)
+        {
+            throw new DatasourceLayerException("get review" + ex);
+        }
+    }
 
     //--------------------------------------------------
 //    private void insertEmployee(Report r)

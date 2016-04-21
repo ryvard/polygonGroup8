@@ -38,7 +38,7 @@
             }
             td
             {
-                width: 125px;
+                width: 200px;
             }
             div {
                 width: 300px;
@@ -51,14 +51,53 @@
     </head>
     <body>
         <h1>hejhej</h1>
-        <table>
+        <table border="1">
             <tr>
                 <td>Rapport ID: <%=session.getAttribute("repID")%></td>
                 <td>Dato: <%=session.getAttribute("rDate")%></td>
             </tr>
         </table>
+        <h2>Bygnings gennemgang</h2>    
+        <table border="1">
+            <tr>
+                <td>
+                    <b>navn på bygning</b>
+                </td>
+                <td>
+                    <%=session.getAttribute("rBName")%>
+                </td>
+            </tr>
+            <tr>
+                <td><b>Adresse</b></td>
+                <td><%=session.getAttribute("rStreet")%></td>
+                <td><%=session.getAttribute("rStreetNumb")%></td>
+            </tr>
+            <tr>
+                <td><b>Postnr./By</b></td>
+                <td><%=session.getAttribute("rZip")%></td> 
+                <td><%=session.getAttribute("rCity")%></td>
+            </tr>
+        </table>
+            <h2>General information om bygningen</h2>
+            <table border="1">
+            <tr>
+                <td><b>Byggeår</b></td>
+                <td><%=session.getAttribute("rBuildYear")%></td>
+            </tr>
+            <tr>
+                <td><b>Bygningsareal i m2</b></td>
+                <td><%=session.getAttribute("rSquareMeter")%></td>
+            </tr>
+            <tr>
+                <td><b>Hvad bruges bygningen til/ hvad har bygningen været brugt til?</b></td>
+                <td><%=session.getAttribute("rUse")%></td>
+                
+            </tr>
+        </table >
+
+
         <h2>Bygning udvendig</h2>
-        <table>
+        <table Border="1">
             <%
                 ArrayList<ReviewOf> outerReviewList = (ArrayList<ReviewOf>) session.getAttribute("outerReviewList");
                 for (ReviewOf review : outerReviewList)
@@ -86,7 +125,54 @@
             <p>Floor: <%=room.getFloor()%> Room: <%=room.getRoom()%></p>
             <br>
 
-            <table>
+            <table border="1">
+                <%
+                    ArrayList<Damage> damageList = (ArrayList<Damage>) session.getAttribute("damageList");
+                    System.out.println("damge size: " + damageList.size());
+                    System.out.println("room.getroom :" + room.getRoom());
+                    for (Damage d : damageList)
+                    {
+
+                        System.out.println("d.getroom :" + d.getbRoom());
+
+
+                %>
+
+                <tr>
+                    <td>Skade i lokale:</td>
+                    <td><%=d.getDamageInRoom()%></td>
+                </tr>
+                <tr>
+                    <td>Hvornår:</td>
+                    <td><%=d.getWhen()%></td>
+                </tr>
+                <tr>
+                    <td>Hvor:</td>
+                    <td><%=d.getWhere()%></td>
+                </tr>
+                <tr>
+                    <td>Hvad:</td>
+                    <td><%=d.getWhat()%></td>
+                </tr>
+                <tr>
+                    <td>Hvad er repereret:</td>
+                    <td><%=d.getRepaired()%></td>
+                </tr>
+                <tr>
+                    <td>Skade type:</td>
+                    <td><%=d.getDamage()%></td>
+                </tr>
+                <tr>
+                    <td>Hvad:</td>
+                    <td><%=d.getOtherDamage()%></td>
+                </tr>
+                <%
+
+                    }
+                %>
+            </table>
+            
+            <table border="1">
                 <%
                     ArrayList<Damage> damageList = (ArrayList<Damage>) session.getAttribute("damageList");
                     System.out.println("damge size: " + damageList.size());
@@ -143,8 +229,10 @@
         <%
             }
         %>
-<br>
-        
+        <br>
+        <p>Bygningsgennemgangen er foretaget af <%=session.getAttribute("rEmployeeFirst")%> <%=session.getAttribute("rEmployeeLast")%>, Polygon<br>
+            i samarbejde med <%=session.getAttribute("rCpFirstName")%> <%=session.getAttribute("rCpLastName")%>(bygningsansvarlig).</p>
+
         <h2>Denne bygning er kategoriseret som tilstandsgrad: <%=session.getAttribute("condition")%></h2>
         <table style="border: 1px solid black; " padding="5">
             <tr>
