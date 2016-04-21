@@ -17,7 +17,7 @@ import businesslogic.Customer;
 import businesslogic.ContactPerson;
 import businesslogic.Condition;
 import businesslogic.Floor;
-import businesslogic.ReportErrorException;
+import businesslogic.DatasourceLayerException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -28,120 +28,127 @@ import java.util.logging.Logger;
  */
 public class Facade implements IFacade
 {
+
     DM_Building dm_building = new DM_Building();
     DM_Customer dm_customer = new DM_Customer();
     DM_ContactPerson dm_cp = new DM_ContactPerson();
     DM_Report dm_report = new DM_Report();
     DM_Employee dm_employee = new DM_Employee();
-    
+
     @Override
-    public void createBuilding(Building building)
+    public void createBuilding(Building building)throws DatasourceLayerException
     {
         dm_building.createBuildingInDB(building);
     }
-    
+
     @Override
-    public void createCustomer(Customer customer) 
+    public void createCustomer(Customer customer)throws DatasourceLayerException
     {
         dm_customer.createCustomer(customer);
     }
 
     @Override
-    public ArrayList<Building> getBuildingList()
+    public ArrayList<Building> getBuildingList()throws DatasourceLayerException
     {
         return dm_building.getBuildingList();
     }
 
     @Override
-    public int createContactPerson(ContactPerson contactPerson) {
+    public int createContactPerson(ContactPerson contactPerson)throws DatasourceLayerException
+    {
         return dm_cp.createContactPerson(contactPerson);
     }
 
     @Override
-    public ArrayList<ContactPerson> getContactPersonList() {
+    public ArrayList<ContactPerson> getContactPersonList()throws DatasourceLayerException
+    {
         return dm_cp.getContactPersonList();
     }
 
     @Override
-    public Building getBuildingFromID(int buildingID) throws ReportErrorException
+    public Building getBuildingFromID(int buildingID) throws DatasourceLayerException
     {
         return dm_building.getBuildingFromID(buildingID);
     }
-    
-    @Override
-    public Report viewReport()
-    {
-        return null;
-    }
 
     @Override
-    public ArrayList<Condition> getConditions()
+    public ArrayList<Condition> getConditions()throws DatasourceLayerException
     {
         return dm_report.getConditions();
     }
-    
-    @Override
-    public void createContactPersonInfo(ContactPerson cp) {
-        dm_cp.createContactPersonInfo(cp);
-    } 
 
     @Override
-    public int getCPID(String firstName, String lastName)
+    public void createContactPersonInfo(ContactPerson cp)throws DatasourceLayerException
+    {
+        dm_cp.createContactPersonInfo(cp);
+    }
+
+    @Override
+    public int getCPID(String firstName, String lastName)throws DatasourceLayerException
     {
         return dm_cp.getCPID(firstName, lastName);
     }
 
     @Override
-    public int getEID(String firstName, String lastName) throws ReportErrorException
+    public int getEID(String firstName, String lastName) throws DatasourceLayerException
     {
         return dm_employee.getEID(firstName, lastName);
     }
 
-    
     @Override
-    public Employee getEmployeeFromEID(int eID) throws ReportErrorException
+    public Employee getEmployeeFromEID(int eID) throws DatasourceLayerException
     {
         return dm_employee.getEmployeeFromEID(eID);
     }
 
     //------
     @Override
-    public void createReport(Report r) throws ReportErrorException
+    public void createReport(Report r) throws DatasourceLayerException
     {
-            dm_report.createReport(r);
+        dm_report.createReport(r);
     }
     //-----
 
     @Override
-    public ContactPerson getCPFromCPID(int CPID)
+    public ContactPerson getCPFromCPID(int CPID) throws DatasourceLayerException
     {
-       return dm_cp.getCPFromCPID(CPID);
+        return dm_cp.getCPFromCPID(CPID);
     }
 
     @Override
-    public void createFloor(ArrayList<Floor> arrayFloor, int buildingID) {
-         dm_building.createFloor(arrayFloor, buildingID);
+    public void createFloor(ArrayList<Floor> arrayFloor, int buildingID)throws DatasourceLayerException
+    {
+        dm_building.createFloor(arrayFloor, buildingID);
     }
 
     @Override
-    public int getBuildingIDFromDB(String buildingName, String streetName) {
+    public int getBuildingIDFromDB(String buildingName, String streetName)throws DatasourceLayerException
+    {
         return dm_building.getBuildingIDFromDB(buildingName, streetName);
     }
 
-    
-    public ArrayList<Floor> getFloors(int BuildingID) throws ReportErrorException
+    @Override
+    public ArrayList<Floor> getFloors(int BuildingID) throws DatasourceLayerException
     {
         return dm_building.getFloorListFromBuildingID(BuildingID);
     }
-    
-    public ContactPerson getCP(int BuildingID) throws ReportErrorException
+
+    @Override
+    public ContactPerson getCP(int BuildingID) throws DatasourceLayerException
     {
         return dm_cp.getCPFromBuildingID(BuildingID);
     }
-    
-    public int getNewRepID() throws ReportErrorException
+
+    @Override
+    public int getNewRepID() throws DatasourceLayerException
     {
         return dm_report.getNewRepID();
     }
- 
+
+    @Override
+    public Report viewReport(int repID) throws DatasourceLayerException
+    {
+        return dm_report.viewReport(repID);
+    }
+
 }

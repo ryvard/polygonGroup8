@@ -12,16 +12,28 @@ package businesslogic;
 public class MoistScan
 {
     private int bRoom;
+    private int bFloor;
     private String msComplete;
     private String moistScan;
     private String measurePoint; 
 
-    public MoistScan(int bRoom, String msComplete, String moistScan, String measurePoint)
+    public MoistScan(int bRoom, int bFloor, String msComplete, String moistScan, String measurePoint)
     {
         this.bRoom = bRoom;
+        this.bFloor = bFloor;
         this.msComplete = msComplete;
         this.moistScan = moistScan;
         this.measurePoint = measurePoint;
+    }
+
+    public int getbFloor()
+    {
+        return bFloor;
+    }
+
+    public void setbFloor(int bFloor)
+    {
+        this.bFloor = bFloor;
     }
 
     public int getbRoom()

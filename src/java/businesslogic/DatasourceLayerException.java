@@ -9,9 +9,9 @@ package businesslogic;
  *
  * @author miaryvard
  */
-public class ReportErrorException extends Exception 
+public class DatasourceLayerException extends Exception 
 {
-    public ReportErrorException(String message)
+    public DatasourceLayerException(String message)
     {
         super(message);
     }

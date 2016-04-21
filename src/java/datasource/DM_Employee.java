@@ -6,7 +6,7 @@
 package datasource;
 
 import businesslogic.Employee;
-import businesslogic.ReportErrorException;
+import businesslogic.DatasourceLayerException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -17,39 +17,41 @@ import java.sql.SQLException;
 public class DM_Employee
 {
 
-    public int getEID(String firstName, String lastName) throws ReportErrorException
+    public int getEID(String firstName, String lastName) throws DatasourceLayerException
     {
+        try
+        {
         String query = "SELECT EID FROM Employees WHERE EFirstName ='" + firstName + "' AND ELastName='" + lastName + "';";
 
         DatabaseConnector db_Connect = DatabaseConnector.getInstance();
         ResultSet res = db_Connect.getData(query);
-        try
-        {
+        
             res.next();
             int eID = res.getInt(1);
 
             return eID;
         } catch (SQLException ex)
         {
-            throw new ReportErrorException("1FEJL getEmployeeFromEID" + ex);
+            throw new DatasourceLayerException("1FEJL getEmployeeFromEID" + ex);
         }
     }
 
-    public Employee getEmployeeFromEID(int eID) throws ReportErrorException
+    public Employee getEmployeeFromEID(int eID) throws DatasourceLayerException
     {
+        try
+        {
         String query = "SELECT * FROM PolygonGroup8.Employees WHERE EID ='" + eID + "';";
         
         DatabaseConnector db_Connect = DatabaseConnector.getInstance();
         ResultSet res = db_Connect.getData(query);
-        try
-        {
+        
             res.next();
             Employee employee = new Employee(res.getInt(1), res.getString(2), res.getString(3));
             
             return employee;
         } catch (SQLException ex)
         {
-            throw new ReportErrorException("2FEJL getEmployeeFromEID" + ex);
+            throw new DatasourceLayerException("2FEJL getEmployeeFromEID" + ex);
         }
     }
 

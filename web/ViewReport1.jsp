@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Indsæt Rapport ID</title>
+        <title>Se rapport</title>
         <style>
             h1 {
 
@@ -38,7 +38,7 @@
         <form action="Servlet" method="GET">
             Rapport ID: 
             <input type='number' name='repID'/>
-            <input type="hidden" name="do_this" value="viewReport">
+            <input type="hidden" name="do_this" value="viewReport"/>
             <input type="submit" value="OK" />
         </form>
     </body>

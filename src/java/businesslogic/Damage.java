@@ -12,6 +12,17 @@ package businesslogic;
 public class Damage
 {
     int bRoom;
+    int bFloorID;
+
+    public int getbFloorID()
+    {
+        return bFloorID;
+    }
+
+    public void setbFloorID(int bFloorID)
+    {
+        this.bFloorID = bFloorID;
+    }
     String damageInRoom;
     String when;
     String where;
@@ -20,6 +31,18 @@ public class Damage
     String damage;
     String otherDamage;
 
+    public Damage(int bRoom, int bFloorID, String damageInRoom, String when, String where, String what, String repaired, String damage, String otherDamage)
+    {
+        this.bRoom = bRoom;
+        this.bFloorID = bFloorID;
+        this.damageInRoom = damageInRoom;
+        this.when = when;
+        this.where = where;
+        this.what = what;
+        this.repaired = repaired;
+        this.damage = damage;
+        this.otherDamage = otherDamage;
+    }
     public Damage(int bRoom, String damageInRoom, String when, String where, String what, String repaired, String damage, String otherDamage)
     {
         this.bRoom = bRoom;

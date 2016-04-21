@@ -13,6 +13,7 @@
         <link rel="stylesheet" href="basicStyle.css"
     </head>
     <body>
+
         <ul1> 
         <li><a href="http://www.polygon.dk/">Polygon</a></li>
         <li><a href="Login.jsp"> Polygon login side</a></li>
@@ -31,6 +32,7 @@
         <form action="Servlet" method="GET">
             <td>Bygnings-ID:</td> 
             <td><input type='number' name='buildingID'></td>
+
             <input type="hidden" name="do_this" value="createReport_BuildingID">
             <td><input type="submit" value="OK"></td>
         </form>

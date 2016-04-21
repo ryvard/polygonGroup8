@@ -17,7 +17,8 @@ import java.util.ArrayList;
 public class Report
 {
     private int repID;
-    
+    private int BuildingID;
+    private int eID;
     private String date;
     private Building building;
     private int condition;
@@ -30,16 +31,33 @@ public class Report
     private ArrayList<ReviewOf> reviewList;
     private ArrayList<MoistScan> msList;
     private ArrayList<Conclusion> conclusionList;
+
+    public int geteID()
+    {
+        return eID;
+    }
     
     
     
-    
-    
-    
+
+    public int getBuildingID()
+    {
+        return BuildingID;
+    }
+
     //private ContactPerson contactPerson;
-    
-    
-    
+    public void setBuildingID(int BuildingID)
+    {
+        this.BuildingID = BuildingID;
+    }
+
+    public Report(int BuildingID, int eID, String date, int condition)
+    {
+        this.BuildingID = BuildingID;
+        this.eID = eID;
+        this.date = date;
+        this.condition = condition;
+    }
 
     public Report(String date, int condition)
     {

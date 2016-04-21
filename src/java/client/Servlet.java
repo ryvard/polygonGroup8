@@ -20,10 +20,12 @@ import businesslogic.Controller;
 import businesslogic.Damage;
 import businesslogic.Employee;
 import businesslogic.MoistScan;
-import businesslogic.ReportErrorException;
+import businesslogic.DatasourceLayerException;
 import businesslogic.ReviewOf;
 import businesslogic.Room;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.annotation.WebServlet;
@@ -62,6 +64,7 @@ public class Servlet extends HttpServlet
             {
 
                 case "createBuilding":
+                    try{
                     String buildingName = request.getParameter("buildingName");
 
 //                    String inputFloor = request.getParameter("floor0");
@@ -101,15 +104,22 @@ public class Servlet extends HttpServlet
 // int CPID = ????  First Name, lastname, phone og mail
                     //con.createBuilding(buildingName, street, streetNo, city, zipcode, yearOfCon, squareMTotal, buildingUse, custID, CPID);
                     Building b = new Building(buildingName, street, streetNo, city, zipcode, yearOfCon, squareMTotal, buildingUse, custID, CPID);
-                    con.createBuilding(b,arrayFloor);
-                    
+
+                    con.createBuilding(b, arrayFloor);
+
                     //con.createFloor(arrayFloor, con.getBuildingIDFromDB(buildingName, street));
                     System.out.println("efter metodekald");
 
                     System.out.println("servlet");
+                    }catch(DatasourceLayerException ex)
+                    {
+                        //gør noget her
+                        System.out.println("********** create building failed *************");
+                    }
                     break;
 
                 case "createCustomer":
+                    try{
                     String name = request.getParameter("custName");
                     String type = request.getParameter("customerType");
                     String streetNameCust = request.getParameter("streetName");
@@ -118,61 +128,68 @@ public class Servlet extends HttpServlet
                     String contactName = request.getParameter("contactName");
                     String phone = request.getParameter("phone");
                     String mail = request.getParameter("mail");
-
+           
                     con.createCustomer(name, type, streetNameCust, streetNoCust, zipcodeCust, contactName, phone, mail);
+                
                     System.out.println("%%%%%%€##€##€€€€€ dsf servlet");
+                    }catch(DatasourceLayerException ex)
+                    {
+                        //Gør noget her
+                        System.out.println("***** Create customer FAILED ********");
+                    }
                     break;
 
                 case "createReport_BuildingID":
-                    try{
-                    int newRepID = con.getNewRepID();
-                    session.setAttribute("newRepID", newRepID);
-                        
-                    int ID = Integer.parseInt(request.getParameter("buildingID"));
-                    session.setAttribute("ID", ID);
+                    try
+                    {
+                        int newRepID = con.getNewRepID();
+                        session.setAttribute("newRepID", newRepID);
 
-                    String bName = con.getBuildingFromID(ID).getBuildingName();
-                    session.setAttribute("bName", bName);
+                        int ID = Integer.parseInt(request.getParameter("buildingID"));
+                        session.setAttribute("ID", ID);
 
-                    String bStreet = con.getBuildingFromID(ID).getStreetName();
-                    session.setAttribute("bStreet", bStreet);
+                        String bName = con.getBuildingFromID(ID).getBuildingName();
+                        session.setAttribute("bName", bName);
 
-                    String bStreetNumb = con.getBuildingFromID(ID).getStreetNumb();
-                    session.setAttribute("bStreetNumb", bStreetNumb);
+                        String bStreet = con.getBuildingFromID(ID).getStreetName();
+                        session.setAttribute("bStreet", bStreet);
 
-                    String bCity = con.getBuildingFromID(ID).getCity();
-                    session.setAttribute("bCity", bCity);
+                        String bStreetNumb = con.getBuildingFromID(ID).getStreetNumb();
+                        session.setAttribute("bStreetNumb", bStreetNumb);
 
-                    int bZip = con.getBuildingFromID(ID).getZipcode();
-                    session.setAttribute("bZip", bZip);
+                        String bCity = con.getBuildingFromID(ID).getCity();
+                        session.setAttribute("bCity", bCity);
 
-                    int bYearOfConst = con.getBuildingFromID(ID).getYearOfConst();
-                    session.setAttribute("bYearOfConst", bYearOfConst);
+                        int bZip = con.getBuildingFromID(ID).getZipcode();
+                        session.setAttribute("bZip", bZip);
 
-                    double bSquareMeter = con.getBuildingFromID(ID).getSquareMeters();
-                    session.setAttribute("bSquareMeter", bSquareMeter);
+                        int bYearOfConst = con.getBuildingFromID(ID).getYearOfConst();
+                        session.setAttribute("bYearOfConst", bYearOfConst);
 
-                    String bUse = con.getBuildingFromID(ID).getBuildingUse();
-                    session.setAttribute("bUse", bUse);
-                    
-                    String bcpFirstName = con.getBuildingFromID(ID).getCp().getCPFirstName();
-                    session.setAttribute("cpFirstName", bcpFirstName);
-                    String bcpLastName = con.getBuildingFromID(ID).getCp().getCPLastName();
-                    session.setAttribute("cpLastName", bcpLastName);
-                    
-                    ArrayList<Floor> floorList = con.getFloors(ID);
-                    session.setAttribute("floorList", floorList);
-                    
-                    forward(request, response, "/CreateReport.jsp");
-                    
-                    }catch(ReportErrorException ex)
+                        double bSquareMeter = con.getBuildingFromID(ID).getSquareMeters();
+                        session.setAttribute("bSquareMeter", bSquareMeter);
+
+                        String bUse = con.getBuildingFromID(ID).getBuildingUse();
+                        session.setAttribute("bUse", bUse);
+
+                        String bcpFirstName = con.getBuildingFromID(ID).getCp().getCPFirstName();
+                        session.setAttribute("cpFirstName", bcpFirstName);
+                        String bcpLastName = con.getBuildingFromID(ID).getCp().getCPLastName();
+                        session.setAttribute("cpLastName", bcpLastName);
+
+                        ArrayList<Floor> floorList = con.getFloors(ID);
+                        session.setAttribute("floorList", floorList);
+
+                        forward(request, response, "/CreateReport.jsp");
+
+                    } catch (DatasourceLayerException ex)
                     {
                         request.setAttribute("ReportError", "Report: " + ex);
-                        getServletContext().getRequestDispatcher("/ReportError.jsp").forward(request, response);   
+                        getServletContext().getRequestDispatcher("/ReportError.jsp").forward(request, response);
                     }
-                    
+
                     break;
-                    
+
                 case "Gem rapport":
                     try
                     {
@@ -184,36 +201,36 @@ public class Servlet extends HttpServlet
                         int rCondition = Integer.parseInt(request.getParameter("condition"));
 
                         Report report = new Report(rDate, rCondition);
-                        
+
                         //Review of building outside
                         ArrayList<ReviewOf> outerReviews = new ArrayList();
-                        
-                        ReviewOf roof = new ReviewOf("Tag",request.getParameter("roof"));
+
+                        ReviewOf roof = new ReviewOf("Tag", request.getParameter("roof"));
                         outerReviews.add(roof);
-                        
-                        ReviewOf outerWalls = new ReviewOf("Yder vægge",request.getParameter("outerwalls"));
+
+                        ReviewOf outerWalls = new ReviewOf("Yder vægge", request.getParameter("outerwalls"));
                         outerReviews.add(outerWalls);
-                        
+
                         //Employee 
                         String eFirstName = request.getParameter("eFirstName");
                         String eLastName = request.getParameter("eLastName");
-                        
+
                         Employee employee = new Employee(eFirstName, eLastName);
-                        
+
                         ArrayList<Room> roomList = new ArrayList();
                         ArrayList<Damage> damageList = new ArrayList();
                         ArrayList<ReviewOf> reviewList = new ArrayList();
                         ArrayList<MoistScan> msList = new ArrayList();
                         ArrayList<Conclusion> conclusionList = new ArrayList();
-                        
+
                         //--------Pages-----------
                         int roomPages = Integer.parseInt(request.getParameter("addRoom")) - 1;
                         System.out.println("roomPages" + roomPages);
-                        
+
                         for (int i = 0; i < roomPages; i++)
                         {
                             // room number
-                            int bFloor = Integer.parseInt(request.getParameter("floor"+i));
+                            int bFloor = Integer.parseInt(request.getParameter("floor" + i));
                             int bRoom = Integer.parseInt(request.getParameter("room" + i));
                             Room room = new Room(bFloor, bRoom);
                             roomList.add(room);
@@ -226,145 +243,169 @@ public class Servlet extends HttpServlet
                             String repaired = request.getParameter("repaired" + i);
                             String damage = request.getParameter("damage" + i);
                             String otherDamage = request.getParameter("otherDamage" + i);
-                            
-                            Damage rDamage = new Damage(bRoom, damageInRoom, when, where, what, repaired, damage, otherDamage);
+
+                            Damage rDamage = new Damage(bRoom, bFloor, damageInRoom, when, where, what, repaired, damage, otherDamage);
                             damageList.add(rDamage);
 
                             // save in ReviewOf table
                             String wallPart = "Vægge";
                             String wallNote = request.getParameter("wallNote" + i);
-                            ReviewOf rWall = new ReviewOf(bRoom, wallPart, wallNote);
+                            ReviewOf rWall = new ReviewOf(bRoom, bFloor, wallPart, wallNote);
                             reviewList.add(rWall);
 
                             String ceilingPart = "Loft";
                             String ceilingNote = request.getParameter("ceilingNote" + i);
-                            ReviewOf rCeiling = new ReviewOf(bRoom, ceilingPart, ceilingNote);
+                            ReviewOf rCeiling = new ReviewOf(bRoom, bFloor, ceilingPart, ceilingNote);
                             reviewList.add(rCeiling);
 
                             String floorPart = "Gulv";
                             String floorNote = request.getParameter("floorNote" + i);
-                            ReviewOf rFloor = new ReviewOf(bRoom, floorPart, floorNote);
+                            ReviewOf rFloor = new ReviewOf(bRoom, bFloor, floorPart, floorNote);
                             reviewList.add(rFloor);
 
                             String windowPart = "Vinduer";
                             String windowNote = request.getParameter("windowNote" + i);
-                            ReviewOf rWindow = new ReviewOf(bRoom, windowPart, windowNote);
+                            ReviewOf rWindow = new ReviewOf(bRoom, bFloor, windowPart, windowNote);
                             reviewList.add(rWindow);
 
                             String doorPart = "Døre";
                             String doorNote = request.getParameter("doorNote" + i);
-                            ReviewOf rDoor = new ReviewOf(bRoom, doorPart, doorNote);
+                            ReviewOf rDoor = new ReviewOf(bRoom, bFloor, doorPart, doorNote);
                             reviewList.add(rDoor);
 
                             String otherPart1 = request.getParameter("otherPart1" + i);
                             String otherNote1 = request.getParameter("otherNote1" + i);
-                            ReviewOf rOther1 = new ReviewOf(bRoom, otherPart1, otherNote1);
+                            ReviewOf rOther1 = new ReviewOf(bRoom, bFloor, otherPart1, otherNote1);
                             reviewList.add(rOther1);
 
                             String otherPart2 = request.getParameter("otherPart2" + i);
                             String otherNote2 = request.getParameter("otherNote2" + i);
-                            ReviewOf rOther2 = new ReviewOf(bRoom, otherPart2, otherNote2);
+                            ReviewOf rOther2 = new ReviewOf(bRoom, bFloor, otherPart2, otherNote2);
                             reviewList.add(rOther2);
 
                             // save in MoistScan table
                             String msComplete = request.getParameter("moistScanCompletet" + i);
                             String moistScan = request.getParameter("moistScan" + i);
                             String measurePoint = request.getParameter("measurePoint" + i);
-                            MoistScan ms = new MoistScan(bRoom, msComplete, moistScan, measurePoint);
+                            MoistScan ms = new MoistScan(bRoom, bFloor, msComplete, moistScan, measurePoint);
                             msList.add(ms);
-                            
+
                             // save in Conclusion table
-                            String recommendation = request.getParameter("recommendation" +i);
-                            System.out.println("recommendation: "+ recommendation);
-                            Conclusion conclusion = new Conclusion(bRoom, recommendation);
+                            String recommendation = request.getParameter("recommendation" + i);
+                            System.out.println("recommendation: " + recommendation);
+                            Conclusion conclusion = new Conclusion(bRoom, bFloor, recommendation);
                             conclusionList.add(conclusion);
 
                         }
-                        
+
                         con.createReport(rBuildingID, report, outerReviews, employee, roomList, damageList, reviewList, msList, conclusionList);
-                        
+
                         getServletContext().getRequestDispatcher("/index.html").forward(request, response);
 
-                    }catch (ReportErrorException ex)
+                    } catch (DatasourceLayerException ex)
                     {
                         request.setAttribute("ReportError", "Report: " + ex);
                         getServletContext().getRequestDispatcher("/ReportError.jsp").forward(request, response);
 
-                    }catch(NumberFormatException ex)
+                    } catch (NumberFormatException ex)
                     {
                         request.setAttribute("Number", "Number: " + ex);
                         getServletContext().getRequestDispatcher("/ReportError.jsp").forward(request, response);
                     }
                     break;
 
-                /*
-                 case "ViewReport":
-                 int repID = Integer.parseInt(request.getParameter("repID"));
-                 session.setAttribute("reportNumber", repID);
+                case "viewReport":
 
-                 String rBName
-                 = //Metodekald her
-                 session.setAttribute("rBName", rBName);
+                    try
+                    {
+                        System.out.println("servlet hej");
+                        int repID = Integer.parseInt(request.getParameter("repID"));
 
-                 int rDate
-                 = //Metodekald her 
-                 session.setAttribute("rDate", rDate);
+                        session.setAttribute("repID", repID);
+                        System.out.println("repID: " + repID);
 
-                 String rStreet
-                 = //Metodekald her 
-                 session.setAttribute("rStreet", rStreet);
+                        String rDate = con.viewReport(repID).getDate();
+                        session.setAttribute("rDate", rDate);
 
-                 String rStreetNumb
-                 = //Metodekald her
-                 session.setAttribute("rStreetNumb", rStreetNumb);
+                        //---------
+                        String rBName = con.viewReport(repID).getBuilding().getBuildingName();
+                        session.setAttribute("rBName", rBName);
 
-                 String rCity
-                 = //Metodekald her
-                 session.setAttribute("rCity", rCity);
+                        String rStreet = con.viewReport(repID).getBuilding().getStreetName();
+                        session.setAttribute("rStreet", rStreet);
 
-                 int rZip
-                 = //Metodekald her
-                 session.setAttribute("rZip", rZip);
+                        String rStreetNumb = con.viewReport(repID).getBuilding().getStreetNumb();
+                        session.setAttribute("rStreetNumb", rStreetNumb);
 
-                 int rBuildyear
-                 = //Metodekald her
-                 session.setAttribute("rBuildyear", rBuildyear);
+                        String rCity = con.viewReport(repID).getBuilding().getCity();
+                        session.setAttribute("rCity", rCity);
 
-                 int rSquareMeter
-                 = //Metodekald her
-                 session.setAttribute("rSquareMeter", rSquareMeter);
+                        int rZip = con.viewReport(repID).getBuilding().getZipcode();
+                        session.setAttribute("rZip", rZip);
 
-                 String rUse
-                 = //Metodekald her
-                 session.setAttribute("rUse", rUse);
+                        int rBuildyear = con.viewReport(repID).getBuilding().getYearOfConst();
+                        session.setAttribute("rBuildyear", rBuildyear);
 
-                 String rRoof
-                 = //Metodekald her
-                 session.setAttribute("rRoof", rRoof);
+                        double rSquareMeter = con.viewReport(repID).getBuilding().getSquareMeters();
+                        session.setAttribute("rSquareMeter", rSquareMeter);
 
-                 String rOuterwalls
-                 = //Metodekald her
-                 session.setAttribute("rOuterwalls", rOuterwalls);
+                        String rUse = con.viewReport(repID).getBuilding().getBuildingUse();
+                        session.setAttribute("rUse", rUse);
+
+                        ArrayList<ReviewOf> outerReviewList = con.viewReport(repID).getOuterReviews();
+                        session.setAttribute("outerReviewList", outerReviewList);
+                        System.out.println("or" + outerReviewList.size());
+
+                        ArrayList<Room> roomList = con.viewReport(repID).getRoomList();
+                        session.setAttribute("roomList", roomList);
+                        System.out.println("roomList: " + roomList.size());
+
+                        ArrayList<Damage> damageList = con.viewReport(repID).getDamageList();
+                        session.setAttribute("damageList", damageList);
+
+                        String rEmployeeFirst = con.viewReport(repID).getEmployee().getFirstName();
+                        session.setAttribute("rEmployeeFirst", rEmployeeFirst);
+
+                        String rEmployeeLast = con.viewReport(repID).getEmployee().getLastName();
+                        session.setAttribute("rEmployeeLast", rEmployeeLast);
+
+//                     String rCollaboration
+//                     = //Metodekald her
+//                     session.setAttribute("rCollaboration", rCollaboration);
+                        int condition = con.viewReport(repID).getCondition();
+                        session.setAttribute("condition", condition);
+
+                        forward(request, response, "/ViewReport.jsp");
+
+                    } catch (DatasourceLayerException ex)
+                    {
+                        Logger.getLogger(Servlet.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
+                    /*
                     
-                 String rReviewedBy
-                 = //Metodekald her
-                 session.setAttribute("rReviewedBy", rReviewedBy);
-                    
-                 String rCollaboration
-                 = //Metodekald her
-                 session.setAttribute("rCollaboration", rCollaboration);
-                    
-                 String rTilstandsgrad
-                 = //Metodekald her
-                 session.setAttribute("rTilstandsgrad", rTilstandsgrad);
 
-                 //Hvordan gør vi med flere lokaler?
-                 //Hvordan gør vi med konklusioner og anbefalinger?
-                 forward(request, response, "/ViewReport.jsp");
-                 break;
-                 */
+                     
+
+                     String rRoof
+                     = //Metodekald her
+                     session.setAttribute("rRoof", rRoof);
+
+                     String rOuterwalls
+                     = //Metodekald her
+                     session.setAttribute("rOuterwalls", rOuterwalls);
+
                     
+                     String rTilstandsgrad
+                     = //Metodekald her
+                     session.setAttribute("rTilstandsgrad", rTilstandsgrad);
+                     */
+                    //Hvordan gør vi med flere lokaler?
+                    //Hvordan gør vi med konklusioner og anbefalinger?
+                    break;
+
                 case "createContactPerson":
+                    try{
                     String cpFirstName = request.getParameter("cpFirstName");
                     String cpLastName = request.getParameter("cpLastName");
                     String cpEmail = request.getParameter("cpEmail");
@@ -373,6 +414,11 @@ public class Servlet extends HttpServlet
                     session.setAttribute("cpID", cpID);
                     con.createContactPersonInfo(cpFirstName, cpLastName, cpEmail, cpPhone);
                     forward(request, response, "/CreateBuilding.jsp");
+                    }catch(DatasourceLayerException ex)
+                    {
+                        //Gør noget her
+                        System.out.println("********* create cp FAILED ***********");
+                    }
                     break;
 
             }

@@ -33,6 +33,7 @@ public class Building
     /**
      * Cunstructor used when creating a Building
      */
+    
     public Building(String buildingName, String streetName, String streetNumb, String city, int zipcode, int YearOfConst, double squareMeters, String buildingUse, int custID, int CPID)
     {
         this.buildingName = buildingName;
