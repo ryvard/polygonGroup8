@@ -31,7 +31,7 @@
     </ul2>
         <h1>Liste over alle bygninger</h1>
 
-        <table align="center"">
+        <table align="center">
             <tbody>
                 <tr>
                     <td><b>BuildingID</b></td>
