@@ -100,7 +100,7 @@ public class DM_Report
             {
                 throw new DatasourceLayerException("create report - rollback");
             }
-            throw new DatasourceLayerException("create report");
+            throw new DatasourceLayerException("create report"+ex);
 
         } finally
         {
@@ -112,8 +112,9 @@ public class DM_Report
                 throw new DatasourceLayerException("create report - auto commit true");
             }
         }
+        
     }
-
+    
     private void insertDataInReportTable(Report r) throws DatasourceLayerException
     {
         try
@@ -170,8 +171,9 @@ public class DM_Report
         try
         {
             System.out.println("flor: " + r.getRoomList().get(i).getFloor() + "' AND Room = '" + r.getRoomList().get(i).getRoom() + "';");
-            System.out.println("get id in damage:" + getRoomID(r.getRoomList().get(i).getRoom(), r.getRoomList().get(i).getFloor()));
-
+            System.out.println("get id in damage (room):" + getRoomID(r.getRoomList().get(i).getRoom(),r.getRoomList().get(i).getFloor()));
+            System.out.println("get id in damage (damage):" + getRoomID(r.getDamageList().get(i).getbRoom(),r.getDamageList().get(i).getbFloorID()));
+            
             String query = "INSERT INTO Damage(RoomID, RepID, DamageInRoom, DWhen, DWhere, DWhat, Repaired, DamageType, OtherDamage)"
                     + "VALUES('" + getRoomID(r.getDamageList().get(i).getbRoom(), r.getDamageList().get(i).getbFloorID()) + "','"
                     + r.getRepID() + "','"
@@ -260,7 +262,7 @@ public class DM_Report
         }
     }
 
-    private int getRepID(Report r) throws DatasourceLayerException
+    protected int getRepID(Report r) throws DatasourceLayerException
     {
         try
         {
