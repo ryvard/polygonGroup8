@@ -40,7 +40,7 @@ import javax.servlet.http.Part;
  * @author emmablomsterberg
  */
 @MultipartConfig
-@WebServlet() //name = "Servlet", urlPatterns = {"/Servlet"}
+@WebServlet()//name = "Servlet", urlPatterns = {"/Servlet"})
 public class Servlet extends HttpServlet
 {
 
@@ -68,6 +68,14 @@ public class Servlet extends HttpServlet
 
             switch (do_this)
             {
+                case "uploadPicture":
+                    Part filePart = request.getPart("picture");
+                    long size = filePart.getSize();
+                    System.out.println("Test case");
+                    InputStream is = filePart.getInputStream();
+                    //Image img = ImageIO.read(fileContent);
+                    imageMapper.uploadPicture(is, size);
+                    break;
 
                 case "createBuilding":
                     try
@@ -88,12 +96,8 @@ public class Servlet extends HttpServlet
                         String buildingUse = request.getParameter("buildingUse");
                         int custID = Integer.parseInt(request.getParameter("custID"));
                         int CPID = Integer.parseInt(request.getParameter("CPID"));
-
-                        Part filePart = request.getPart("picture");
-                        long size = filePart.getSize();
-                        System.out.println("Har fået fat i billedet!");
-                        InputStream ins = filePart.getInputStream();
-                        imageMapper.uploadPicture(ins, size);
+                       
+                        
 
                         ArrayList<Floor> arrayFloor = new ArrayList();
                         System.out.println("før addfloor");
@@ -119,11 +123,17 @@ public class Servlet extends HttpServlet
                         Building b = new Building(buildingName, street, streetNo, city, zipcode, yearOfCon, squareMTotal, buildingUse, custID, CPID);
 
                         con.createBuilding(b, arrayFloor);
-
+                        System.out.println("Skal til at request.part");
+//                        Part filePart = request.getPart("picture");
+//                        long size = filePart.getSize();
+//                        System.out.println("Har fået fat i billedet!");
+//                        InputStream ins = filePart.getInputStream();
+//                        imageMapper.uploadPicture(ins, size);
                         //con.createFloor(arrayFloor, con.getBuildingIDFromDB(buildingName, street));
                         System.out.println("efter metodekald");
 
                         System.out.println("servlet");
+                        getServletContext().getRequestDispatcher("/UploadPicture.jsp").forward(request, response);
                     } catch (DatasourceLayerException ex)
                     {
                         //gør noget her
@@ -455,17 +465,17 @@ public class Servlet extends HttpServlet
 //                    imageMapper.uploadPicture(ins, size);
 //                    break;
 
-                case "Show Pictures":
-                    try
-                    {
-                        int buildingID = Integer.parseInt(request.getParameter("buildingID"));
-                        InputStream is = imageMapper.getImageAsStream(buildingID);
-
-                    } catch (Exception ex)
-                    {
-                        ex.printStackTrace();
-                    }
-                    break;
+//                case "Show Pictures":
+//                    try
+//                    {
+//                        int buildingID = Integer.parseInt(request.getParameter("buildingID"));
+//                        InputStream is = imageMapper.getImageAsStream(buildingID);
+//
+//                    } catch (Exception ex)
+//                    {
+//                        ex.printStackTrace();
+//                    }
+//                    break;
 
             }
         }
