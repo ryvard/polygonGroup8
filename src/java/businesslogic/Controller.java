@@ -28,21 +28,21 @@ public class Controller implements IController
     //Building building;
 //    Customer customer;
 
-    @Override
-    public void createBuilding(String buildingName, String streetName, String streetNumb, String city, int zipcode, int yearOfConst, double squareMeters, String buildingUse, int custID, int CPID)throws DatasourceLayerException
-    {
-        System.out.println("controller1  -   " + streetNumb);
-
-        Building building = new Building(buildingName, streetName, streetNumb,
-                city, zipcode, yearOfConst, squareMeters, buildingUse, custID, CPID);
-
-        System.out.println("hejhej ");
-
-        facade.createBuilding(building);
-
-        System.out.println("controller2");
-
-    }
+//    @Override
+//    public void createBuilding(String buildingName, String streetName, String streetNumb, String city, int zipcode, int yearOfConst, double squareMeters, String buildingUse, int custID, int CPID)throws DatasourceLayerException
+//    {
+//        System.out.println("controller1  -   " + streetNumb);
+//
+//        Building building = new Building(buildingName, streetName, streetNumb,
+//                city, zipcode, yearOfConst, squareMeters, buildingUse, custID, CPID);
+//
+//        System.out.println("hejhej ");
+//
+//        facade.createBuilding(building);
+//
+//        System.out.println("controller2");
+//
+//    }
 
     @Override
     public void createCustomer(String name, String type, String streetName, String streetNo, int zipcode, String contactName, String phone, String mail)throws DatasourceLayerException
@@ -51,12 +51,12 @@ public class Controller implements IController
         facade.createCustomer(customer);
     }
 
-    @Override
-    public ArrayList<Building> getBuildingList()throws DatasourceLayerException
-    {
-        System.out.println("controller");
-        return facade.getBuildingList();
-    }
+//    @Override
+//    public ArrayList<Building> getBuildingList()throws DatasourceLayerException
+//    {
+//        System.out.println("controller");
+//        return facade.getBuildingList();
+//    }
 
     @Override
     public int createContactPerson(String cpFirstName, String cpLastName, String email, String phone)throws DatasourceLayerException
@@ -65,11 +65,11 @@ public class Controller implements IController
         return facade.createContactPerson(cp);
     }
 
-    @Override
-    public ArrayList<ContactPerson> getContactPersonList()throws DatasourceLayerException
-    {
-        return facade.getContactPersonList();
-    }
+//    @Override
+//    public ArrayList<ContactPerson> getContactPersonList()throws DatasourceLayerException
+//    {
+//        return facade.getContactPersonList();
+//    }
 
 
     @Override
@@ -79,12 +79,12 @@ public class Controller implements IController
         facade.createContactPersonInfo(cp);
     }
 
-    // ikke brugt
-    @Override
-    public int getCPID(String firstName, String lastName)throws DatasourceLayerException
-    {
-        return facade.getCPID(firstName, lastName);
-    }
+//    // ikke brugt
+//    @Override
+//    public int getCPID(String firstName, String lastName)throws DatasourceLayerException
+//    {
+//        return facade.getCPID(firstName, lastName);
+//    }
 
     //--------------------------------------------------------------
     @Override
@@ -108,12 +108,12 @@ public class Controller implements IController
         facade.createReport(r);
     }
 
-//    //ikke brugt
-    @Override
-    public ArrayList<Condition> getConditions()throws DatasourceLayerException
-    {
-        return facade.getConditions();
-    }
+////    //ikke brugt
+//    @Override
+//    public ArrayList<Condition> getConditions()throws DatasourceLayerException
+//    {
+//        return facade.getConditions();
+//    }
 
     //create b from bid
     @Override
@@ -126,21 +126,19 @@ public class Controller implements IController
         return b;
     }
 
-    @Override
-    public ContactPerson getCPFromCPID(int CPID)throws DatasourceLayerException
-    {
-        return facade.getCPFromCPID(CPID);
-    }
+//    @Override
+//    public ContactPerson getCPFromCPID(int CPID)throws DatasourceLayerException
+//    {
+//        return facade.getCPFromCPID(CPID);
+//    }
 
     //--------------------------------------------------------------
-    @Override
-    public void createFloor(ArrayList<Floor> arrayFloor, int buildingID)throws DatasourceLayerException
-    {
-        facade.createFloor(arrayFloor, buildingID);
-    }
+//    @Override
+//    public void createFloor(ArrayList<Floor> arrayFloor, int buildingID)throws DatasourceLayerException
+//    {
+//        facade.createFloor(arrayFloor, buildingID);
+//    }
 
-    //Forsøg på fejlhåndtering 
-    //ikke brugt
     @Override
     public int getBuildingIDFromDB(String buildingName, String streetName)throws DatasourceLayerException
     {
