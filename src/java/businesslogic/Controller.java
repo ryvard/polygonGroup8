@@ -145,17 +145,20 @@ public class Controller implements IController
         return facade.getBuildingIDFromDB(buildingName, streetName);
     }
 
+    @Override
     public void createBuilding(Building b, ArrayList<Floor> arrayFloor)throws DatasourceLayerException
     {
         b.addArrayFloor(arrayFloor);
         facade.createBuilding(b);
     }
 
+    @Override
     public ArrayList<Floor> getFloors(int BuildingID) throws DatasourceLayerException
     {
         return facade.getFloors(BuildingID);
     }
 
+    @Override
     public int getNewRepID() throws DatasourceLayerException
     {
         return facade.getNewRepID();
