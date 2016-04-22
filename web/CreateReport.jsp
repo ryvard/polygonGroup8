@@ -123,8 +123,9 @@
                 <td><input type="file"/></td>
                 <td><input type="checkbox" name="outerwallsPicture" value="ON" /></td>
             </tr>
-           
+            
             <tr>
+                
         <td style="padding: 20px;" colspan="6"><h2>Gennemgang af bygning indvendig</h2></td>
         </tr>
         <%

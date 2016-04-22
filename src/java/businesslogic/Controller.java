@@ -178,4 +178,10 @@ public class Controller implements IController
         return r;
     }
 
+    @Override
+    public boolean login(String userName, String password) 
+    {
+         return facade.login(userName, password);
+    }
+
 }

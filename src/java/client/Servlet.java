@@ -57,7 +57,8 @@ public class Servlet extends HttpServlet
             /* TODO output your page here. You may use following sample code. */
             HttpSession session = request.getSession(true);
             Controller con = new Controller();
-
+            
+        
             String do_this = request.getParameter("do_this");
 
             switch (do_this)
@@ -428,6 +429,22 @@ public class Servlet extends HttpServlet
                     {
                         //Gør noget her
                         System.out.println("********* create cp FAILED ***********");
+                    }
+                    break;
+                    
+                case "login":
+                    String username = request.getParameter("username");
+                    String password = request.getParameter("password");
+                    boolean login = con.login(username, password);
+                    String fejlmeddelse = "Forkert brugernavn eller kode!!";
+                    
+                    if(login) {
+                        
+                        forward(request, response, "/CreateBuilding.jsp");
+                    }
+                    else {
+                        request.setAttribute("Login2", fejlmeddelse);
+                        forward(request, response, "/Login.jsp");
                     }
                     break;
 

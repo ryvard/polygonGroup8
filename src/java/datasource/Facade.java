@@ -34,6 +34,7 @@ public class Facade implements IFacade
     DM_ContactPerson dm_cp = new DM_ContactPerson();
     DM_Report dm_report = new DM_Report();
     DM_Employee dm_employee = new DM_Employee();
+    DM_User dm_user = new DM_User();
 
     @Override
     public void createBuilding(Building building)throws DatasourceLayerException
@@ -149,6 +150,13 @@ public class Facade implements IFacade
     public Report viewReport(int repID) throws DatasourceLayerException
     {
         return dm_report.viewReport(repID);
+    }
+
+    @Override
+    public boolean login(String userName, String password) 
+    {
+        return dm_user.login(userName, password);
+        
     }
 
 }
