@@ -5,6 +5,7 @@
  */
 package datasource;
 
+import businesslogic.Building;
 import java.io.InputStream;
 import java.sql.Blob;
 import java.sql.PreparedStatement;
@@ -20,7 +21,7 @@ import java.util.List;
 public class DM_Image
 {
 
-    public void uploadPicture(InputStream is, long size)
+    public void uploadPicture(InputStream is, long size, Building building)
     {
         try
         {
@@ -30,12 +31,13 @@ public class DM_Image
                     {
                         System.out.println("writing " + length + " bytes");
                     }
-            String query = "INSERT INTO picture(Picture) VALUES(?)";
+            String query = "INSERT INTO picture(BuildingID,Picture) VALUES(?,?)";
             System.out.println("Made the SQL statement");
 //            DatabaseConnector db_Connect = DatabaseConnector.getInstance();
 //            db_Connect.updateData(query);
             PreparedStatement pstmt = DatabaseConnector.getConnection().prepareStatement(query);
-            pstmt.setBinaryStream(1, is, size);
+            pstmt.setInt(1, building.getBuildingID());
+            pstmt.setBinaryStream(2, is, size);
             pstmt.executeUpdate();
         } catch (Exception ex)
         {
