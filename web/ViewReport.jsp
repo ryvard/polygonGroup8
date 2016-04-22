@@ -4,6 +4,7 @@
     Author     : emmablomsterberg
 --%>
 
+<%@page import="businesslogic.MoistScan"%>
 <%@page import="businesslogic.Condition"%>
 <%@page import="businesslogic.Controller"%>
 <%@page import="businesslogic.Damage"%>
@@ -78,8 +79,8 @@
                 <td><%=session.getAttribute("rCity")%></td>
             </tr>
         </table>
-            <h2>General information om bygningen</h2>
-            <table border="1">
+        <h2>General information om bygningen</h2>
+        <table border="1">
             <tr>
                 <td><b>Byggeår</b></td>
                 <td><%=session.getAttribute("rBuildYear")%></td>
@@ -91,7 +92,7 @@
             <tr>
                 <td><b>Hvad bruges bygningen til/ hvad har bygningen været brugt til?</b></td>
                 <td><%=session.getAttribute("rUse")%></td>
-                
+
             </tr>
         </table >
 
@@ -124,18 +125,19 @@
         <div>
             <p>Floor: <%=room.getFloor()%> Room: <%=room.getRoom()%></p>
             <br>
-
+            <h2>Skade og reperation</h2>
             <table border="1">
                 <%
                     ArrayList<Damage> damageList = (ArrayList<Damage>) session.getAttribute("damageList");
                     System.out.println("damge size: " + damageList.size());
-                    System.out.println("room.getroom :" + room.getRoom());
+                    System.out.println("room.getroom :" + room.getRoom() + "room.getroomid" + room.getRoomID());
                     for (Damage d : damageList)
                     {
 
                         System.out.println("d.getroom :" + d.getbRoom());
 
-
+                        if (room.getRoomID() == d.getbRoom())
+                        {
                 %>
 
                 <tr>
@@ -167,71 +169,70 @@
                     <td><%=d.getOtherDamage()%></td>
                 </tr>
                 <%
-
+                        }
                     }
                 %>
             </table>
             
+            <br>
+            <h2>Gennemgang af..</h2>
             <table border="1">
                 <%
-                    ArrayList<Damage> damageList = (ArrayList<Damage>) session.getAttribute("damageList");
-                    System.out.println("damge size: " + damageList.size());
-                    System.out.println("room.getroom :" + room.getRoom());
-                    for (Damage d : damageList)
+                    ArrayList<ReviewOf> reviewList = (ArrayList<ReviewOf>) session.getAttribute("reviewList");
+                    
+                    
+                    for (ReviewOf rev : reviewList)
                     {
-
-                        System.out.println("d.getroom :" + d.getbRoom());
-
-
+                        if (room.getRoomID() == rev.getRoomID())
+                        {
                 %>
-
                 <tr>
-                    <td>Skade i lokale:</td>
-                    <td><%=d.getDamageInRoom()%></td>
-                </tr>
-                <tr>
-                    <td>Hvornår:</td>
-                    <td><%=d.getWhen()%></td>
-                </tr>
-                <tr>
-                    <td>Hvor:</td>
-                    <td><%=d.getWhere()%></td>
-                </tr>
-                <tr>
-                    <td>Hvad:</td>
-                    <td><%=d.getWhat()%></td>
-                </tr>
-                <tr>
-                    <td>Hvad er repereret:</td>
-                    <td><%=d.getRepaired()%></td>
-                </tr>
-                <tr>
-                    <td>Skade type:</td>
-                    <td><%=d.getDamage()%></td>
-                </tr>
-                <tr>
-                    <td>Hvad:</td>
-                    <td><%=d.getOtherDamage()%></td>
+                    <td><b><%=rev.getPart()%></b></td>
+                    <td><%=rev.getNote()%></td>
                 </tr>
                 <%
-
+                        }
                     }
                 %>
             </table>
-
-
-
             <br>
-
-
-
+            <h2>Fugtscanning</h2>
+            <table border="1">
+                <%
+                    ArrayList<MoistScan> msList = (ArrayList<MoistScan>) session.getAttribute("msList");
+                    
+                    
+                    for (MoistScan ms : msList)
+                    {
+                        if (room.getRoomID() == ms.getbRoom())
+                        {
+                %>
+                <tr>
+                    <td><b>Er der foretaget fugtscanning</b></td>
+                    <td><%=ms.getMsComplete()%></td>
+                </tr>
+                <tr>
+                    <td><b>Fugtscanning</b></td>
+                    <td><%=ms.getMoistScan()%></td>
+                </tr>
+                <tr>
+                    <td><b>Målepunkt</b></td>
+                    <td><%=ms.getMeasurePoint()%></td>
+                </tr>
+                <%
+                        }
+                    }
+                %>
+            </table>
+            <br>
+            
         </div>
         <%
             }
         %>
         <br>
-        <p>Bygningsgennemgangen er foretaget af <%=session.getAttribute("rEmployeeFirst")%> <%=session.getAttribute("rEmployeeLast")%>, Polygon<br>
-            i samarbejde med <%=session.getAttribute("rCpFirstName")%> <%=session.getAttribute("rCpLastName")%>(bygningsansvarlig).</p>
+        <p>Bygningsgennemgangen er foretaget af <b><%=session.getAttribute("rEmployeeFirst")%> <%=session.getAttribute("rEmployeeLast")%></b>, Polygon<br>
+            i samarbejde med <b><%=session.getAttribute("rCpFirstName")%> <%=session.getAttribute("rCpLastName")%></b>(bygningsansvarlig).</p>
 
         <h2>Denne bygning er kategoriseret som tilstandsgrad: <%=session.getAttribute("condition")%></h2>
         <table style="border: 1px solid black; " padding="5">

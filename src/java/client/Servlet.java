@@ -363,9 +363,11 @@ public class Servlet extends HttpServlet
                         ArrayList<Damage> damageList = con.viewReport(repID).getDamageList();
                         session.setAttribute("damageList", damageList);
                         
-                        ArrayList<ReviewOf> reviewList;
-                        ArrayList<MoistScan> msList;
+                        ArrayList<ReviewOf> reviewList = con.viewReport(repID).getReviewList();
+                        session.setAttribute("reviewList", reviewList);
                         
+                        ArrayList<MoistScan> msList = con.viewReport(repID).getMsList();
+                        session.setAttribute("msList", msList);
                         
                         //------
                         String rEmployeeFirst = con.viewReport(repID).getEmployee().getFirstName();

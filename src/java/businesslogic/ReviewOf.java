@@ -24,6 +24,12 @@ public class ReviewOf
         this.note = note;
     }
     
+    public ReviewOf(int roomID, String part, String note)
+    {
+        this.roomID = roomID;
+        this.part = part;
+        this.note = note;
+    }
     
     public ReviewOf(int roomID, int floorID, String part, String note)
     {
@@ -43,14 +49,7 @@ public class ReviewOf
         this.floorID = floorID;
     }
 
-    public ReviewOf(int ReviewID, int roomID, int repID, String part, String note)
-    {
-        this.ReviewID = ReviewID;
-        this.roomID = roomID;
-        this.repID = repID;
-        this.part = part;
-        this.note = note;
-    }
+    
 
     public int getReviewID()
     {
