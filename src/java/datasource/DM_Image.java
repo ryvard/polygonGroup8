@@ -19,18 +19,19 @@ import java.util.List;
  */
 public class DM_Image
 {
-public void uploadPicture(InputStream is, long size)
+
+    public void uploadPicture(InputStream is, long size)
     {
         try
         {
-//            byte[] buffer = new byte[1024];
-//                    int length;
-//                    while ((length = is.read(buffer)) != -1)
-//                    {
-//                        System.out.println("writing " + length + " bytes");
-//                    }
-            String query = "INSERT INTO uploadpicture.pictures(Picture) VALUES(?)";
-//            System.out.println("Made the SQL statement");
+            byte[] buffer = new byte[1024];
+                    int length;
+                    while ((length = is.read(buffer)) != -1)
+                    {
+                        System.out.println("writing " + length + " bytes");
+                    }
+            String query = "INSERT INTO picture(Picture) VALUES(?)";
+            System.out.println("Made the SQL statement");
 //            DatabaseConnector db_Connect = DatabaseConnector.getInstance();
 //            db_Connect.updateData(query);
             PreparedStatement pstmt = DatabaseConnector.getConnection().prepareStatement(query);
@@ -42,20 +43,21 @@ public void uploadPicture(InputStream is, long size)
         }
     }
 
-    public List<Integer> getAllPictureId(int buildingID) throws SQLException
-    {
-        List<Integer> ids = new ArrayList();
-        String query = "SELECT PictureID FROM Picture WHERE BuildingID ='" + buildingID + "';";
+//    public List<Integer> getAllPictureId(int buildingID) throws SQLException
+//    {
+//        List<Integer> ids = new ArrayList();
+//        String query = "SELECT PictureID FROM Picture WHERE BuildingID ='" + buildingID + "';";
+//
+//        DatabaseConnector db_Connect = DatabaseConnector.getInstance();
+//        ResultSet res = db_Connect.getData(query);
+//        while (res.next())
+//        {
+//            int id = res.getInt("PictureID");
+//            ids.add(id);
+//        }
+//        return ids;
+//    }
 
-        DatabaseConnector db_Connect = DatabaseConnector.getInstance();
-        ResultSet res = db_Connect.getData(query);
-        while (res.next())
-        {
-            int id = res.getInt("PictureID");
-            ids.add(id);
-        }
-        return ids;
-    }
     public InputStream getImageAsStream(int buildingID)
     {
 

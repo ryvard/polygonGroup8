@@ -57,14 +57,14 @@ public class ImageServlet extends HttpServlet
                 try
                 {
                     byte[] buffer = new byte[1024];
-                    InputStream is = imageMapper.getDataPicture(pictureID);
+                    InputStream is = imageMapper.getImageAsStream(pictureID);
                     int length;
                     while ((length = is.read(buffer)) != -1)
                     {
                         System.out.println("writing " + length + " bytes");
                         out.write(buffer, 0, length);
                     }
-                } catch (SQLException ex)
+                } catch (Exception ex)
                 {
                     ex.printStackTrace();
                 } finally
@@ -89,7 +89,7 @@ public class ImageServlet extends HttpServlet
 //                out.close();
 //                break;
             
-        }
+        
         
     }
 

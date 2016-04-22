@@ -30,13 +30,16 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 
 /**
  *
  * @author emmablomsterberg
  */
+@MultipartConfig
 @WebServlet() //name = "Servlet", urlPatterns = {"/Servlet"}
 public class Servlet extends HttpServlet
 {
@@ -59,6 +62,7 @@ public class Servlet extends HttpServlet
             /* TODO output your page here. You may use following sample code. */
             HttpSession session = request.getSession(true);
             Controller con = new Controller();
+            DM_Image imageMapper = new DM_Image();
 
             String do_this = request.getParameter("do_this");
 
@@ -84,6 +88,12 @@ public class Servlet extends HttpServlet
                         String buildingUse = request.getParameter("buildingUse");
                         int custID = Integer.parseInt(request.getParameter("custID"));
                         int CPID = Integer.parseInt(request.getParameter("CPID"));
+
+                        Part filePart = request.getPart("picture");
+                        long size = filePart.getSize();
+                        System.out.println("Har fået fat i billedet!");
+                        InputStream ins = filePart.getInputStream();
+                        imageMapper.uploadPicture(ins, size);
 
                         ArrayList<Floor> arrayFloor = new ArrayList();
                         System.out.println("før addfloor");
@@ -366,13 +376,13 @@ public class Servlet extends HttpServlet
 
                         ArrayList<Damage> damageList = con.viewReport(repID).getDamageList();
                         session.setAttribute("damageList", damageList);
-                        
+
                         ArrayList<ReviewOf> reviewList = con.viewReport(repID).getReviewList();
                         session.setAttribute("reviewList", reviewList);
-                        
+
                         ArrayList<MoistScan> msList = con.viewReport(repID).getMsList();
                         session.setAttribute("msList", msList);
-                        
+
                         //------
                         String rEmployeeFirst = con.viewReport(repID).getEmployee().getFirstName();
                         session.setAttribute("rEmployeeFirst", rEmployeeFirst);
@@ -436,10 +446,25 @@ public class Servlet extends HttpServlet
                     }
                     break;
 
+//                case "Upload Picture":
+//                    Part filePart = request.getPart("picture");
+//                    long size = filePart.getSize();
+//                    System.out.println("Test case");
+//                    InputStream ins = filePart.getInputStream();
+//                    //Image img = ImageIO.read(fileContent);
+//                    imageMapper.uploadPicture(ins, size);
+//                    break;
+
                 case "Show Pictures":
-                    DM_Image imageMapper = new DM_Image();
-                    int buildingID = Integer.parseInt(request.getParameter("buildingID"));
-                    InputStream is = imageMapper.getImageAsStream(buildingID);
+                    try
+                    {
+                        int buildingID = Integer.parseInt(request.getParameter("buildingID"));
+                        InputStream is = imageMapper.getImageAsStream(buildingID);
+
+                    } catch (Exception ex)
+                    {
+                        ex.printStackTrace();
+                    }
                     break;
 
             }

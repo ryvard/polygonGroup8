@@ -133,7 +133,7 @@
                 </tr>
                 <tr>
                     <td>Billede:</td>
-                    <td><input type=image name="picture"></td>
+                    <td><input type="file" name="picture" accept="image/x-png, image/gif, image/jpeg"/></td>
                 </tr>
                 <tr>
                     <td colspan="2">Hvad bruges bygning til? / <br> Hvad har bygningen været brugt til?:</td>
