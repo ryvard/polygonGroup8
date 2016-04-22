@@ -22,7 +22,7 @@ public interface IController
     /*
      * Called when you submit your new building.
      */
-        public void createBuilding(String buildingName, String streetName, String streetNumb, String city, int zipcode, int yearOfConst, double squareMeters, String buildingUse, int custID, int CPID)throws DatasourceLayerException;
+        //public void createBuilding(String buildingName, String streetName, String streetNumb, String city, int zipcode, int yearOfConst, double squareMeters, String buildingUse, int custID, int CPID)throws DatasourceLayerException;
         
         
         public void createCustomer(String name, String type, String streetName, String streetNo, int zipcode, String contactName, String phone, String mail)throws DatasourceLayerException;
@@ -32,7 +32,7 @@ public interface IController
      * Called when entering the site BuildingList.jsp 
      * Arraylist containing all buildings.
      */
-        public ArrayList<Building> getBuildingList()throws DatasourceLayerException; 
+        //public ArrayList<Building> getBuildingList()throws DatasourceLayerException; 
         
         public Building getBuildingFromID(int buildingID) throws DatasourceLayerException;
         
@@ -40,12 +40,12 @@ public interface IController
         
         public void createContactPersonInfo(String firstName, String lastName, String mail, String phone)throws DatasourceLayerException;
         
-        public ArrayList<ContactPerson> getContactPersonList()throws DatasourceLayerException;
+        //public ArrayList<ContactPerson> getContactPersonList()throws DatasourceLayerException;
         
         
-        public ArrayList<Condition> getConditions()throws DatasourceLayerException;
+        //public ArrayList<Condition> getConditions()throws DatasourceLayerException;
         
-        public void createFloor(ArrayList<Floor> arrayFloor, int buildingID)throws DatasourceLayerException;
+        //public void createFloor(ArrayList<Floor> arrayFloor, int buildingID)throws DatasourceLayerException;
         
         public int getBuildingIDFromDB(String buildingName, String streetName)throws DatasourceLayerException;
         
@@ -53,16 +53,20 @@ public interface IController
         
         //MIA  Used when creating the report
         
-        public int getCPID(String firstName, String lastName)throws DatasourceLayerException;
+        //public int getCPID(String firstName, String lastName)throws DatasourceLayerException;
     
         public void createReport(int buildingID, Report r, ArrayList<ReviewOf> outerReviews, 
                 Employee employee, ArrayList<Room> roomList, ArrayList<Damage> damageList, ArrayList<ReviewOf> reviewList,
                 ArrayList<MoistScan> msList, ArrayList<Conclusion> conclusionList) throws DatasourceLayerException;
         
-        public ContactPerson getCPFromCPID(int CPID)throws DatasourceLayerException;
+        //public ContactPerson getCPFromCPID(int CPID)throws DatasourceLayerException;
         
         public Report viewReport(int repID) throws DatasourceLayerException;
         
         public boolean login(String userName, String password);
+        
+        public void createBuilding(Building b, ArrayList<Floor> arrayFloor)throws DatasourceLayerException;
+        public ArrayList<Floor> getFloors(int BuildingID) throws DatasourceLayerException;
+        public int getNewRepID() throws DatasourceLayerException;
 
 }
