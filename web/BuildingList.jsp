@@ -31,7 +31,7 @@
     </ul2>
         <h1>Liste over alle bygninger</h1>
 
-        <table align="center"">
+        <table align="center">
             <tbody>
                 <tr>
                     <td><b>BuildingID</b></td>
@@ -64,9 +64,9 @@
                     <td><%=b.getBuildingUse()%></td>
                     <td><%=b.getCustID()%></td>
                     <td><%=b.getCPID()%></td>
-            <td><form action="ImageServlet" method="POST">
+            <td><form action="Servlet" method="GET">
                 <input type="hidden" name="buildingID" value="<%=b.getBuildingID()%>"/>
-                <input type="submit" name="do_this" value="Show Picture">
+                <input type="submit" name="do_this" value="Show Pictures">
             </form></td>
         </tr>
         <%

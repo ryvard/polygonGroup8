@@ -61,4 +61,6 @@ public interface IFacade
     
     public Report viewReport(int repID) throws DatasourceLayerException;
     
+    public boolean login(String userName, String password);
+    
 }

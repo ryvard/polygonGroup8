@@ -17,88 +17,74 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Vis rapport</title>
-        <style>
-            h1 {
-
-                text-align: center;
-            }
-
-            div {
-
-                font-size: 75%;
-                font-weight: bold; 
-            }
-
-            body {
-
-                font-family: verdana;
-            }
-
-            table {
-                font-size: 75%;
-            }
-            td
-            {
-                width: 200px;
-            }
-            div {
-                width: 300px;
-                padding: 25px;
-                border: 10px solid navy;
-                margin: 25px;
-            }
-
-        </style>
+        <link rel="stylesheet" href="basicStyle.css">
+        <link rel="stylesheet" href="createReportStyle.css">
     </head>
     <body>
-        <h1>hejhej</h1>
-        <table border="1">
+        <ul1> 
+        <li><a href="http://www.polygon.dk/">Polygon</a></li>
+        <li><a href="Login.jsp"> Polygon login side</a></li>
+        <li><a href="BuildingList.jsp">Se bygninger</a></li>
+        <li><a href="CreateBuilding.jsp">Opret din bygning</a></li>
+        <li><a href="CreateReport1.jsp">Opret rapport</a></li>
+        <li><a href="ViewReport.jsp">Se rapport</a></li>
+    </ul1>
+
+    <ul2>
+        <li2 style="float:left;"> <img src="images.png" alt="Polygon" style="width: 200px; padding-left: 20px;"></li2>
+        <li2 style="float:right; padding-right: 30px;"> <img src="logo-sunde-bygninger-property.png" alt="SundeBygninger" style="width: 200px; padding-left: 20px;"></li2>
+    </ul2>
+        <h1>Rapport</h1>
+        <table style="margin-left: 20px;">
             <tr>
                 <td>Rapport ID: <%=session.getAttribute("repID")%></td>
                 <td>Dato: <%=session.getAttribute("rDate")%></td>
             </tr>
         </table>
         <h2>Bygnings gennemgang</h2>    
-        <table border="1">
+        <table>
             <tr>
                 <td>
-                    <b>navn på bygning</b>
+                    Navn på bygning
                 </td>
                 <td>
                     <%=session.getAttribute("rBName")%>
                 </td>
             </tr>
             <tr>
-                <td><b>Adresse</b></td>
+                <td>Adresse</td>
                 <td><%=session.getAttribute("rStreet")%></td>
+                <td>Husnr.</td>
                 <td><%=session.getAttribute("rStreetNumb")%></td>
             </tr>
             <tr>
-                <td><b>Postnr./By</b></td>
+                <td>Postnr.</td>
                 <td><%=session.getAttribute("rZip")%></td> 
+                <td>By</td>
                 <td><%=session.getAttribute("rCity")%></td>
             </tr>
-        </table>
-        <h2>General information om bygningen</h2>
-        <table border="1">
             <tr>
-                <td><b>Byggeår</b></td>
+                <td colspan="4" style="padding-top: 25px;"><h2>General information om bygningen</h2></td>
+        </tr>
+            <tr>
+                <td>Byggeår</td>
                 <td><%=session.getAttribute("rBuildYear")%></td>
             </tr>
             <tr>
-                <td><b>Bygningsareal i m2</b></td>
+                <td>Bygningsareal i m2</td>
                 <td><%=session.getAttribute("rSquareMeter")%></td>
             </tr>
             <tr>
-                <td><b>Hvad bruges bygningen til/ hvad har bygningen været brugt til?</b></td>
+                <td style="width:150px;">Hvad bruges bygningen til/ hvad har bygningen været brugt til?</td>
                 <td><%=session.getAttribute("rUse")%></td>
 
             </tr>
-        </table >
+        
 
-
-        <h2>Bygning udvendig</h2>
-        <table Border="1">
+            <tr>
+                <td colspan="4" style="padding-top: 25px;"><h2>Bygning udvendig</h2></td>
+        </tr>
+        
             <%
                 ArrayList<ReviewOf> outerReviewList = (ArrayList<ReviewOf>) session.getAttribute("outerReviewList");
                 for (ReviewOf review : outerReviewList)
@@ -111,26 +97,30 @@
             <%
                 }
             %>
-        </table>
-
-        <h2>Bygning indvendig</h2>
-
+        
+            <tr>
+            <td colspan="4" style="padding-top: 25px;"><h2>Bygning indvendig</h2></td>
+            </tr>
         <%
-            System.out.println("hejehjehej");
+            
             ArrayList<Room> roomList = (ArrayList<Room>) session.getAttribute("roomList");
-            System.out.println("JSP roomlist" + roomList.size() + "room:" + roomList.get(0).getRoom());
+            
             for (Room room : roomList)
             {
         %>
-        <div>
-            <p>Floor: <%=room.getFloor()%> Room: <%=room.getRoom()%></p>
-            <br>
-            <h2>Skade og reperation</h2>
-            <table border="1">
+        <tr>
+            <td>Etage: <%=room.getFloor()%> </td>
+            </tr>
+            <tr>
+                <td>Rum: <%=room.getRoom()%></td>
+            </tr>
+            
+            <tr>
+                <td colspan="4" style="padding-top: 25px;"><h2>Skade og reperation</h2></td>
+            </tr>
                 <%
                     ArrayList<Damage> damageList = (ArrayList<Damage>) session.getAttribute("damageList");
-                    System.out.println("damge size: " + damageList.size());
-                    System.out.println("room.getroom :" + room.getRoom() + "room.getroomid" + room.getRoomID());
+                    
                     for (Damage d : damageList)
                     {
 
@@ -172,11 +162,11 @@
                         }
                     }
                 %>
-            </table>
             
-            <br>
-            <h2>Gennemgang af..</h2>
-            <table border="1">
+            
+                <tr>
+                    <td colspan="4" style="padding-top: 25px;"><h2>Gennemgang af..</h2></td>
+            </tr>
                 <%
                     ArrayList<ReviewOf> reviewList = (ArrayList<ReviewOf>) session.getAttribute("reviewList");
                     
@@ -187,17 +177,17 @@
                         {
                 %>
                 <tr>
-                    <td><b><%=rev.getPart()%></b></td>
+                    <td><%=rev.getPart()%></td>
                     <td><%=rev.getNote()%></td>
                 </tr>
                 <%
                         }
                     }
                 %>
-            </table>
-            <br>
-            <h2>Fugtscanning</h2>
-            <table border="1">
+           
+                <tr>
+                    <td colspan="4" style="padding-top: 25px;"><h2>Fugtscanning</h2></td>
+            </tr>
                 <%
                     ArrayList<MoistScan> msList = (ArrayList<MoistScan>) session.getAttribute("msList");
                     
@@ -208,15 +198,15 @@
                         {
                 %>
                 <tr>
-                    <td><b>Er der foretaget fugtscanning</b></td>
+                    <td>Er der foretaget fugtscanning</td>
                     <td><%=ms.getMsComplete()%></td>
                 </tr>
                 <tr>
-                    <td><b>Fugtscanning</b></td>
+                    <td>Fugtscanning</td>
                     <td><%=ms.getMoistScan()%></td>
                 </tr>
                 <tr>
-                    <td><b>Målepunkt</b></td>
+                    <td>Målepunkt</td>
                     <td><%=ms.getMeasurePoint()%></td>
                 </tr>
                 <%
@@ -224,22 +214,22 @@
                     }
                 %>
             </table>
-            <br>
             
-        </div>
+            
+        
         <%
             }
         %>
-        <br>
-        <p>Bygningsgennemgangen er foretaget af <b><%=session.getAttribute("rEmployeeFirst")%> <%=session.getAttribute("rEmployeeLast")%></b>, Polygon<br>
-            i samarbejde med <b><%=session.getAttribute("rCpFirstName")%> <%=session.getAttribute("rCpLastName")%></b>(bygningsansvarlig).</p>
+        
+        <p align="center" style="padding-bottom: 25px;">Bygningsgennemgangen er foretaget af <b><%=session.getAttribute("rEmployeeFirst")%> <%=session.getAttribute("rEmployeeLast")%></b>, Polygon<br>
+            i samarbejde med <b><%=session.getAttribute("rCpFirstName")%> <%=session.getAttribute("rCpLastName")%></b> (bygningsansvarlig).</p>
 
-        <h2>Denne bygning er kategoriseret som tilstandsgrad: <%=session.getAttribute("condition")%></h2>
-        <table style="border: 1px solid black; " padding="5">
+        <h2 style="padding-bottom: 25px;">Denne bygning er kategoriseret som tilstandsgrad: <%=session.getAttribute("condition")%></h2>
+        <table padding="5">
             <tr>
-                <th style="text-align: center; border: 1px solid black; width:100px ;">Tilstand</th>
-                <th style="text-align: center; border: 1px solid black; width:250px ; ">Beskrivelse af bygningen</th>
-                <th style="text-align: center; border: 1px solid black; width:250px ;">Funktion af bygningen</th>
+                <th style="text-align: center; border: 1px solid #58585a; width: 150px;">Tilstand</th>
+                <th style="text-align: center; border: 1px solid #58585a; width: 200px;">Beskrivelse af bygningen</th>
+                <th style="text-align: center; border: 1px solid #58585a; width: 150px;">Funktion af bygningen</th>
             </tr> 
 
 
@@ -252,9 +242,9 @@
             %>
             <tr>
 
-                <td style="text-align: center;"><%="Tilstandsgrad " + c.getCondition()%></td>
-                <td><%=c.getDescription()%></td>
-                <td><%=c.getFunction()%></td>
+                <td style="text-align: center; border: 1px solid #58585a;"><%="Tilstandsgrad " + c.getCondition()%></td>
+                <td style="text-align: center; border: 1px solid #58585a;"><%=c.getDescription()%></td>
+                <td style="text-align: center; border: 1px solid #58585a;"><%=c.getFunction()%></td>
             </tr>
             <%
                     i++;
@@ -263,24 +253,22 @@
 
 
         </table>
-        <p style="font-size: 70%;">Denne rapport og bygningsgennegang er lavet for at klarlægge umiddelbare
-            visuelle problemstillinger. Vores formål er at sikre, at <br> bygningens anvendelse kan opretholdes. 
-            Vi udbedre ikke skader som en del af bygningesgennemgangen/rapporten. Gennemgangen <br> af bygningen
+        <p style="font-size: 70%; margin-left: 165px; margin-right: 165px; text-align: justify; margin-bottom: 25px;">Denne rapport og bygningsgennegang er lavet for at klarlægge umiddelbare
+            visuelle problemstillinger. Vores formål er at sikre, at bygningens anvendelse kan opretholdes. 
+            Vi udbedre ikke skader som en del af bygningesgennemgangen/rapporten. Gennemgangen af bygningen
             indeholder ikke fugtmålinger af hele bygningen, men vi kan foretage fugtscanninger enkelte steder i 
-            bygningen, hvis vi <br> finder det nødvendigt. Hvis vi finder kritiske områder i bygningen vil vi 
-            fremlægge anbefalinger angående yderligere tiltag så som <br> yderligere undersøgelser, reparationer
+            bygningen, hvis vi finder det nødvendigt. Hvis vi finder kritiske områder i bygningen vil vi 
+            fremlægge anbefalinger angående yderligere tiltag så som yderligere undersøgelser, reparationer
             eller bygningsopdateringer.
             <br>
             <br>
             Bemærk at vi skal have adgang til hele bygningen for at kunne udføre fuld gennemgang (dette inkluderer
-            adgang til tag, tagrum, <br> kælder, krybekælder eller andre aflukkede områder). Denne bygningesgennemgang
-            er ikke-destruktiv. Hvis der skal laves destruktive <br> indgreb, skal dette først godkendes af de 
-            bygningsansvarlige. Destruktive indgreb er ikke en del af denne rapport eller <br> bygningsgennemgang.
+            adgang til tag, tagrum, kælder, krybekælder eller andre aflukkede områder). Denne bygningesgennemgang
+            er ikke-destruktiv. Hvis der skal laves destruktive indgreb, skal dette først godkendes af de 
+            bygningsansvarlige. Destruktive indgreb er ikke en del af denne rapport eller bygningsgennemgang.
             <br>
             <br>
             Den bygningsansvarlige skal udlevere plantegning over bygningen inden bygningsgennemgangen kan foretages.</p>
-
-
 
     </body>
 </html>

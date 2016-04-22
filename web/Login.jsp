@@ -4,6 +4,7 @@
     Author     : emmablomsterberg
 --%>
 
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -42,6 +43,11 @@
                     <td><input type="hidden" name="do_this" value="login"</td>
                     <td><input type="submit" value="Login"</td>
                 </tr>
+                <% if(request.getAttribute("Login2") != null) { %>
+                <tr>
+                    <td colspan="2" style="color:red;"><%= request.getAttribute("Login2") %></td>
+                </tr>
+                <% }%>
             </table>
         </form>
     <div>Kontakt os</div>

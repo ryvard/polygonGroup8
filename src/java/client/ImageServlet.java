@@ -9,6 +9,10 @@ import businesslogic.Controller;
 import datasource.DM_Image;
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
@@ -41,31 +45,52 @@ public class ImageServlet extends HttpServlet
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
-        response.setContentType("image/png");
-        HttpSession session = request.getSession(true);
-        Controller con = new Controller();
-        String do_this = request.getParameter("do_this");
-
-        switch (do_this)
-        {
-
-            case "Show Picture":
-                
-                DM_Image imageMapper = new DM_Image();
+        
+            response.setContentType("image/png");
+            HttpSession session = request.getSession(true);
+            Controller con = new Controller();
+            DM_Image imageMapper = new DM_Image();
+            
                 ServletOutputStream out = response.getOutputStream();
-                int buildingID = Integer.parseInt(request.getParameter("buildingID"));
+                int pictureID = Integer.parseInt(request.getParameter("PictureID"));
                 
-                byte[] buffer = new byte[1024];
-                InputStream is = imageMapper.getImageAsStream(buildingID);
-                int length;
-                while ((length = is.read(buffer)) != -1)
+                try
                 {
-                    System.out.println("writing " + length + " bytes");
-                    out.write(buffer, 0, length);
+                    byte[] buffer = new byte[1024];
+                    InputStream is = imageMapper.getImageAsStream(pictureID);
+                    int length;
+                    while ((length = is.read(buffer)) != -1)
+                    {
+                        System.out.println("writing " + length + " bytes");
+                        out.write(buffer, 0, length);
+                    }
+                } catch (Exception ex)
+                {
+                    ex.printStackTrace();
+                } finally
+                {
+                    out.close();
                 }
-                out.close();
-                break;
-        }
+
+//            case "Show Picture":
+//                
+//                DM_Image imageMapper = new DM_Image();
+//                ServletOutputStream out = response.getOutputStream();
+//                int buildingID = Integer.parseInt(request.getParameter("buildingID"));
+//                
+//                byte[] buffer = new byte[1024];
+//                InputStream is = imageMapper.getImageAsStream(buildingID);
+//                int length;
+//                while ((length = is.read(buffer)) != -1)
+//                {
+//                    System.out.println("writing " + length + " bytes");
+//                    out.write(buffer, 0, length);
+//                }
+//                out.close();
+//                break;
+            
+        
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

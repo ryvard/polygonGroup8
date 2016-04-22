@@ -62,5 +62,7 @@ public interface IController
         public ContactPerson getCPFromCPID(int CPID)throws DatasourceLayerException;
         
         public Report viewReport(int repID) throws DatasourceLayerException;
+        
+        public boolean login(String userName, String password);
 
 }
