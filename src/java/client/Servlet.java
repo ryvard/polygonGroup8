@@ -124,7 +124,7 @@ public class Servlet extends HttpServlet
                         Building b = new Building(buildingName, street, streetNo, city, zipcode, yearOfCon, squareMTotal, buildingUse, custID, CPID);
 
                         con.createBuilding(b, arrayFloor);
-                        session.setAttribute("buildingDBID", con.getBuildingIDFromDB(buildingName, street));
+                        sfdsession.setAttribute("buildingDBID", con.getBuildingIDFromDB(buildingName, street));
                         System.out.println("Skal til at request.part");
 //                        Part filePart = request.getPart("picture");
 //                        long size = filePart.getSize();
