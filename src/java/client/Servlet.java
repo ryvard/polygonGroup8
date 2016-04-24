@@ -122,7 +122,7 @@ public class Servlet extends HttpServlet
 // int CPID = ????  First Name, lastname, phone og mail
                         //con.createBuilding(buildingName, street, streetNo, city, zipcode, yearOfCon, squareMTotal, buildingUse, custID, CPID);
                         Building b = new Building(buildingName, street, streetNo, city, zipcode, yearOfCon, squareMTotal, buildingUse, custID, CPID);
-
+                        // hejhej
                         con.createBuilding(b, arrayFloor);
                         session.setAttribute("buildingDBID", con.getBuildingIDFromDB(buildingName, street));
                         System.out.println("Skal til at request.part");
