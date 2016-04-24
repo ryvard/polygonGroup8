@@ -5,8 +5,10 @@
  */
 package datasource;
 
+import businesslogic.ContactPerson;
 import businesslogic.Customer;
 import businesslogic.DatasourceLayerException;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -32,5 +34,27 @@ public class DM_Customer
         {
             throw new DatasourceLayerException("create customer"+ex);
         }
+        
+    }
+    
+    public Customer getCustFromCustID(int custID) throws DatasourceLayerException
+    {
+        try
+        {
+            String query = "SELECT * FROM PolygonGroup8.Customers WHERE CustID ='" + custID + "';";
+
+            DatabaseConnector db_Connect = DatabaseConnector.getInstance();
+            ResultSet res = db_Connect.getData(query);
+
+            res.next();
+            Customer cust = new Customer(res.getInt(1), res.getString(2), res.getString(3), res.getString(4), res.getString(5), res.getInt(6));
+
+            return cust;
+
+        } catch (SQLException ex)
+        {
+            throw new DatasourceLayerException("get CP from cpid: " + ex);
+        }
+        
     }
 }

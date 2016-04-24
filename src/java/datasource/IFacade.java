@@ -63,4 +63,6 @@ public interface IFacade
     
     public boolean login(String userName, String password);
     
+    public Customer getCustFromCustID(int custID) throws DatasourceLayerException;
+    
 }

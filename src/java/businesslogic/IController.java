@@ -25,7 +25,7 @@ public interface IController
         //public void createBuilding(String buildingName, String streetName, String streetNumb, String city, int zipcode, int yearOfConst, double squareMeters, String buildingUse, int custID, int CPID)throws DatasourceLayerException;
         
         
-        public void createCustomer(String name, String type, String streetName, String streetNo, int zipcode, String contactName, String phone, String mail)throws DatasourceLayerException;
+        public void createCustomer(String name, String type, String streetName, String streetNo, int zipcode)throws DatasourceLayerException;
         
         //public void createReport(String reportNumber, String date, int squareMeter, String buildingUseability, String roof, String roofPicture, String outerwalls, String outerwallsPicture, Object conclusion, String reviewedBy, String collaboration, int condition);
     /*
@@ -59,14 +59,18 @@ public interface IController
                 Employee employee, ArrayList<Room> roomList, ArrayList<Damage> damageList, ArrayList<ReviewOf> reviewList,
                 ArrayList<MoistScan> msList, ArrayList<Conclusion> conclusionList) throws DatasourceLayerException;
         
-        //public ContactPerson getCPFromCPID(int CPID)throws DatasourceLayerException;
+        public ContactPerson getCPFromCPID(int CPID)throws DatasourceLayerException;
         
         public Report viewReport(int repID) throws DatasourceLayerException;
         
         public boolean login(String userName, String password);
         
-        public void createBuilding(Building b, ArrayList<Floor> arrayFloor)throws DatasourceLayerException;
+        public void createBuilding(Building b, ArrayList<Floor> arrayFloor, int custID, int cpID)throws DatasourceLayerException;
+        
         public ArrayList<Floor> getFloors(int BuildingID) throws DatasourceLayerException;
+        
+        public Customer getCustFromCustID(int custID) throws DatasourceLayerException;
+        
         public int getNewRepID() throws DatasourceLayerException;
 
 }

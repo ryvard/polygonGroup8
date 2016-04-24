@@ -45,9 +45,9 @@ public class Controller implements IController
 //    }
 
     @Override
-    public void createCustomer(String name, String type, String streetName, String streetNo, int zipcode, String contactName, String phone, String mail)throws DatasourceLayerException
+    public void createCustomer(String name, String type, String streetName, String streetNo, int zipcode)throws DatasourceLayerException
     {
-        Customer customer = new Customer(name, type, streetName, streetNo, zipcode, contactName, phone, mail);
+        Customer customer = new Customer(name, type, streetName, streetNo, zipcode);
         facade.createCustomer(customer);
     }
 
@@ -126,11 +126,11 @@ public class Controller implements IController
         return b;
     }
 
-//    @Override
-//    public ContactPerson getCPFromCPID(int CPID)throws DatasourceLayerException
-//    {
-//        return facade.getCPFromCPID(CPID);
-//    }
+    @Override
+    public ContactPerson getCPFromCPID(int CPID)throws DatasourceLayerException
+    {
+        return facade.getCPFromCPID(CPID);
+    }
 
     //--------------------------------------------------------------
 //    @Override
@@ -146,8 +146,10 @@ public class Controller implements IController
     }
 
     @Override
-    public void createBuilding(Building b, ArrayList<Floor> arrayFloor)throws DatasourceLayerException
+    public void createBuilding(Building b, ArrayList<Floor> arrayFloor, int custID, int cpID)throws DatasourceLayerException
     {
+        b.addCust(getCustFromCustID(custID));
+        b.addCP(getCPFromCPID(cpID));
         b.addArrayFloor(arrayFloor);
         facade.createBuilding(b);
     }
@@ -170,7 +172,7 @@ public class Controller implements IController
     {
         Report r = facade.viewReport(repID);
         Building b = facade.getBuildingFromID(r.getBuildingID());
-        ContactPerson c = facade.getCPFromCPID(b.getCPID());
+        ContactPerson c = facade.getCPFromCPID(b.getCP().getCPID());
         b.addCP(c);
         r.addBuilding(b);
         Employee e = facade.getEmployeeFromEID(r.geteID());
@@ -184,5 +186,13 @@ public class Controller implements IController
     {
          return facade.login(userName, password);
     }
+
+    @Override
+    public Customer getCustFromCustID(int custID) throws DatasourceLayerException {
+         return facade.getCustFromCustID(custID);
+    }
+
+
+    
 
 }

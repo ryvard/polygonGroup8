@@ -11,28 +11,48 @@ package businesslogic;
  */
 public class Customer {
     
-    String custName;
-    String type;
-    String streetName;
-    String streetNo;
-    int zipcode;
-    String contactName;
-    String phone;
-    String mail;
+    private int custID;
+    private String custName;
+    private String type;
+    private String streetName;
+    private String streetNo;
+    private int zipcode;
+    private String contactName;
+    private String phone;
+    private String mail;
     // heh ehhr
 
-    public Customer(String custName, String type, String streetName, String streetNo, int zipcode, String contactName, String phone, String mail)
+    public Customer(String custName, String type, String streetName, String streetNo, int zipcode)
     {
         this.custName = custName;
         this.type = type;
         this.streetName = streetName;
         this.streetNo = streetNo;
         this.zipcode = zipcode;
-        this.contactName = contactName;
-        this.phone = phone;
-        this.mail = mail;
+        
     }
-
+    
+    public Customer(int custID, String custName, String type, String streetName, String streetNo, int zipcode) {
+        this.custID = custID;
+        this.custName = custName;
+        this.type = type;
+        this.streetName = streetName;
+        this.streetNo = streetNo;
+        this.zipcode = zipcode;
+        
+    }
+    
+   
+    public int getCustID() 
+    {
+        return custID;
+    }
+    
+    public void setCustID(int custID) 
+    {
+        this.custID = custID;
+    }
+    
     public String getCustName()
     {
         return custName;
@@ -76,28 +96,6 @@ public class Customer {
         this.zipcode = zipcode;
     }
     
-    public String getContactName() {
-        return contactName;
-    }
-    
-    public void setContactName(String contactName) {
-        this.contactName = contactName;
-    }
-    
-    public String getPhone() {
-        return phone;
-    }
-    
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-    
-    public String getMail() {
-        return mail;
-    }
-    
-    public void setMail(String mail) {
-        this.mail = mail;
-    }
+   
     
 }

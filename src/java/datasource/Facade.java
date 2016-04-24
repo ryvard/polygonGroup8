@@ -115,6 +115,12 @@ public class Facade implements IFacade
     {
         return dm_cp.getCPFromCPID(CPID);
     }
+    
+    @Override
+    public Customer getCustFromCustID(int custID) throws DatasourceLayerException 
+    {
+        return dm_customer.getCustFromCustID(custID);
+    }
 
     @Override
     public void createFloor(ArrayList<Floor> arrayFloor, int buildingID)throws DatasourceLayerException
@@ -139,6 +145,8 @@ public class Facade implements IFacade
     {
         return dm_cp.getCPFromBuildingID(BuildingID);
     }
+    
+  
 
     @Override
     public int getNewRepID() throws DatasourceLayerException
