@@ -196,6 +196,8 @@
                 </tr>
                 <tr>
                     <td>Skade</td>
+                    
+                    
 
                     <td colspan="5"><input type="radio" name="<%="damage" + i%>" value="Fugt" />Fugt<br>
                         <input type="radio" name="<%="damage" + i%>" value="Raad og svamp" />Råd og svamp<br>
