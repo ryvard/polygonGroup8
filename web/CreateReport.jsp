@@ -140,7 +140,7 @@
                 <tr>
                     <td>Etage:</td>
                     <td>
-                        <select name="<%="floor" + i%>"
+                        <select name="<%="floor" + i%>" 
                                 value="<%=request.getParameter("floor" + i) == null ? "" : request.getParameter("floor" + i)%>">
                             <%
                                 ArrayList<Floor> floorList = (ArrayList<Floor>) session.getAttribute("floorList");
@@ -155,7 +155,7 @@
                 </tr>
                 <tr>
                     <td>Lokale nr.:</td>
-                    <td><input type="number" name="<%="room" + i%>" style="width: 50px;"
+                    <td><input type="number" min="0" name="<%="room" + i%>" style="width: 50px;"
                                value="<%=request.getParameter("room" + i) == null ? "" : request.getParameter("room" + i)%>" /></td>
                 </tr>
                 <tr>

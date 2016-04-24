@@ -216,66 +216,66 @@ public class Servlet extends HttpServlet
                 case "Gem rapport":
                     try
                     {
-                        // save in report table 
-                        int rBuildingID = Integer.parseInt(request.getParameter("buildingID"));
-
+                        String fail = "";
                         // Report data
+                        int rBuildingID = Integer.parseInt(request.getParameter("buildingID"));
                         String rDate = request.getParameter("date");
-                        if (rDate == null || rDate.isEmpty())
+
+                        if (rDate.isEmpty())
                         {
-                            throw new DatasourceLayerException("Dato er tom");
+                            fail += "* Dato er tom<br>";
                         }
 
-                        //******************* FEJLHÅNDTERING HER '''
                         int rCondition = Integer.parseInt(request.getParameter("condition"));
-
                         Report report = new Report(rDate, rCondition);
 
                         //Review of building outside
                         ArrayList<ReviewOf> outerReviews = new ArrayList();
-
                         String rRoof = request.getParameter("roof");
                         String rOuterWall = request.getParameter("outerwalls");
-                        
-                        if(rRoof==null||rRoof.isEmpty()||rOuterWall==null||rOuterWall.isEmpty())
-                        {
-                            throw new DatasourceLayerException("Udvendig gennemgang er ikke udfyldt");
-                        }
-                        
-                        ReviewOf roof = new ReviewOf("Tag", rRoof);
-                        outerReviews.add(roof);
 
+                        if (rRoof.isEmpty() || rOuterWall.isEmpty())
+                        {
+                            fail += "* Udvendig gennemgang er ikke udfyldt korrekt<br>";
+                        }
+
+                        ReviewOf roof = new ReviewOf("Tag", rRoof);
                         ReviewOf outerWalls = new ReviewOf("Yder vægge", rOuterWall);
+                        outerReviews.add(roof);
                         outerReviews.add(outerWalls);
 
-                        
                         //Employee 
                         String eFirstName = request.getParameter("eFirstName");
                         String eLastName = request.getParameter("eLastName");
-                        
-                        if(eFirstName==null||eFirstName.isEmpty()||eLastName==null||eLastName.isEmpty())
+
+                        if (eFirstName.isEmpty() || eLastName.isEmpty())
                         {
-                            throw new DatasourceLayerException("Hvem har foretaget bygningsgennemgangen? udfyld venligst felterne");
+                            fail += "* Udfyld venligst hvem der har foretaget bygningsgennemgangen<br>";
                         }
 
                         Employee employee = new Employee(eFirstName, eLastName);
 
+                        //Room pages
                         ArrayList<Room> roomList = new ArrayList();
                         ArrayList<Damage> damageList = new ArrayList();
                         ArrayList<ReviewOf> reviewList = new ArrayList();
                         ArrayList<MoistScan> msList = new ArrayList();
                         ArrayList<Conclusion> conclusionList = new ArrayList();
 
-                        //--------Pages-----------
                         int roomPages = Integer.parseInt(request.getParameter("addRoom")) - 1;
-                        System.out.println("roomPages" + roomPages);
 
                         for (int i = 0; i < roomPages; i++)
                         {
-                            // room number
                             int bFloor = Integer.parseInt(request.getParameter("floor" + i));
+
+                            if (request.getParameter("room" + i).isEmpty())
+                            {
+                                fail += "* Lokalets nummer er ikke angivet på lokale-side: " + (i + 1) + "<br>";
+                                request.setAttribute("fail", fail);
+                                getServletContext().getRequestDispatcher("/ReportError.jsp").forward(request, response);
+                            }
+
                             int bRoom = Integer.parseInt(request.getParameter("room" + i));
-                            
                             Room room = new Room(bFloor, bRoom);
                             roomList.add(room);
 
@@ -287,17 +287,21 @@ public class Servlet extends HttpServlet
                             String repaired = request.getParameter("repaired" + i);
                             String damage = request.getParameter("damage" + i);
                             String otherDamage = request.getParameter("otherDamage" + i);
-                            
-                            if(when.isEmpty()||where.isEmpty()||what.isEmpty()||repaired.isEmpty())
+
+                            if (when.isEmpty() || where.isEmpty() || what.isEmpty() || repaired.isEmpty())
                             {
-                                throw new DatasourceLayerException("Felterne under skade og reperation er ikke udfylt korrekt");
+                                fail += "* Felter under skade og reperationer er ikke udfylt korrekt (<i>udfyld venligts alle felterne</i>)";
                             }
-                            if(damage.isEmpty()||damage==null)
+                            Damage rDamage;
+
+                            if (otherDamage.isEmpty())
                             {
-                                throw new DatasourceLayerException("Der er ikke valgt skade type i rum"+bRoom);
+                                rDamage = new Damage(bRoom, bFloor, damageInRoom, when, where, what, repaired, damage);
+                            } else
+                            {
+                                rDamage = new Damage(bRoom, bFloor, damageInRoom, when, where, what, repaired, damage, otherDamage);
                             }
-                            
-                            Damage rDamage = new Damage(bRoom, bFloor, damageInRoom, when, where, what, repaired, damage, otherDamage);
+
                             damageList.add(rDamage);
 
                             // save in ReviewOf table
@@ -326,43 +330,78 @@ public class Servlet extends HttpServlet
                             ReviewOf rDoor = new ReviewOf(bRoom, bFloor, doorPart, doorNote);
                             reviewList.add(rDoor);
 
+                            if (wallNote.isEmpty() || ceilingNote.isEmpty() || floorNote.isEmpty() || windowNote.isEmpty() || doorNote.isEmpty())
+                            {
+                                fail = "Felterne under 'Gennemgang af...' er ikke udfyldt korrekt<br>";
+                            }
+
                             String otherPart1 = request.getParameter("otherPart1" + i);
                             String otherNote1 = request.getParameter("otherNote1" + i);
-                            ReviewOf rOther1 = new ReviewOf(bRoom, bFloor, otherPart1, otherNote1);
-                            reviewList.add(rOther1);
+                            if (!otherPart1.isEmpty() || !otherNote1.isEmpty())
+                            {
+                                if(otherPart1.isEmpty() || otherNote1.isEmpty())
+                                    fail = "Du skal både angive en bygningsdel og bemærkning under gennemgang af lokale-side "+(i+1)+"<br>";
+                                else
+                                {
+                                ReviewOf rOther1 = new ReviewOf(bRoom, bFloor, otherPart1, otherNote1);
+                                reviewList.add(rOther1);
+                                }
+                            }
 
                             String otherPart2 = request.getParameter("otherPart2" + i);
                             String otherNote2 = request.getParameter("otherNote2" + i);
-                            ReviewOf rOther2 = new ReviewOf(bRoom, bFloor, otherPart2, otherNote2);
-                            reviewList.add(rOther2);
+                            if (!otherPart2.isEmpty() || !otherNote2.isEmpty())
+                            {
+                                if(otherPart2.isEmpty() || otherNote2.isEmpty())
+                                fail = "\"Du skal både angive en bygningsdel og bemærkning under gennemgang af lokale-side \"+(i+1)+\"<br>\";";   
+                                else
+                                {
+                                ReviewOf rOther2 = new ReviewOf(bRoom, bFloor, otherPart2, otherNote2);
+                                reviewList.add(rOther2);}
+                            }
 
                             // save in MoistScan table
                             String msComplete = request.getParameter("moistScanCompletet" + i);
                             String moistScan = request.getParameter("moistScan" + i);
                             String measurePoint = request.getParameter("measurePoint" + i);
+                            
+                            if(msComplete == "Ja" && moistScan.isEmpty() || measurePoint.isEmpty())
+                                fail = "Fugt scanning er udført, udfyld venligst en note og målepunkt";
+                            
                             MoistScan ms = new MoistScan(bRoom, bFloor, msComplete, moistScan, measurePoint);
                             msList.add(ms);
 
                             // save in Conclusion table
                             String recommendation = request.getParameter("recommendation" + i);
-                            System.out.println("recommendation: " + recommendation);
+                            if(recommendation.isEmpty())
+                                fail = "Tilføj venligst en anbefaling til lokale-side: "+(i+1)+"<br>";
                             Conclusion conclusion = new Conclusion(bRoom, bFloor, recommendation);
                             conclusionList.add(conclusion);
 
                         }
 
+                        if (!fail.isEmpty())
+                        {
+                            request.setAttribute("fail", fail);
+                            getServletContext().getRequestDispatcher("/ReportError.jsp").forward(request, response);
+
+                        }
                         con.createReport(rBuildingID, report, outerReviews, employee, roomList, damageList, reviewList, msList, conclusionList);
 
                         getServletContext().getRequestDispatcher("/index.html").forward(request, response);
 
-                    }catch (DatasourceLayerException ex)
+                    } catch (NullPointerException ex)
+                    {
+                        request.setAttribute("Number", "Ups du har glemt at krydse af i en af check-boksene");
+                        getServletContext().getRequestDispatcher("/ReportError.jsp").forward(request, response);
+                    } catch (DatasourceLayerException ex)
                     {
                         request.setAttribute("ReportError", "Report: " + ex);
                         getServletContext().getRequestDispatcher("/ReportError.jsp").forward(request, response);
 
-                    }catch (NumberFormatException ex)
+                    } catch (NumberFormatException ex)
                     {
-                        request.setAttribute("Number", "Number: " + ex);
+                        request.setAttribute("Number", "Ups du har glemt at krydse af i en af check-boksene" + ex);
                         getServletContext().getRequestDispatcher("/ReportError.jsp").forward(request, response);
                     }
                     break;
