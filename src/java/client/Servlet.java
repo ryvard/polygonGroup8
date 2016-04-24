@@ -132,7 +132,7 @@ public class Servlet extends HttpServlet
 //                        imageMapper.uploadPicture(ins, size);
                         //con.createFloor(arrayFloor, con.getBuildingIDFromDB(buildingName, street));
                         System.out.println("efter metodekald");
-
+                        session.setAttribute("BuildingDBID", con.getBuildingIDFromDB(buildingName, street));
                         System.out.println("servlet");
                         getServletContext().getRequestDispatcher("/UploadPicture.jsp").forward(request, response);
                     } catch (DatasourceLayerException ex)
