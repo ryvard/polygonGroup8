@@ -46,18 +46,18 @@ public class ImageServlet extends HttpServlet
             throws ServletException, IOException
     {
         
-            response.setContentType("image/png");
+            response.setContentType("image/jpeg");
             HttpSession session = request.getSession(true);
             Controller con = new Controller();
             DM_Image imageMapper = new DM_Image();
             
                 ServletOutputStream out = response.getOutputStream();
-                int pictureID = Integer.parseInt(request.getParameter("PictureID"));
+                int buildingID = Integer.parseInt(request.getParameter("buildingID"));
                 
                 try
                 {
                     byte[] buffer = new byte[1024];
-                    InputStream is = imageMapper.getImageAsStream(pictureID);
+                    InputStream is = imageMapper.getImageAsStream(buildingID);
                     int length;
                     while ((length = is.read(buffer)) != -1)
                     {

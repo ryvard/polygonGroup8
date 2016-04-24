@@ -51,12 +51,12 @@ public class Controller implements IController
         facade.createCustomer(customer);
     }
 
-//    @Override
-//    public ArrayList<Building> getBuildingList()throws DatasourceLayerException
-//    {
-//        System.out.println("controller");
-//        return facade.getBuildingList();
-//    }
+    @Override
+    public ArrayList<Building> getBuildingList()throws DatasourceLayerException
+    {
+        System.out.println("controller");
+       return facade.getBuildingList();
+    }
 
     @Override
     public int createContactPerson(String cpFirstName, String cpLastName, String email, String phone)throws DatasourceLayerException

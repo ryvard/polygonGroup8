@@ -62,9 +62,9 @@
                     <td><%=b.getCity()%></td>
                     <td><%=b.getYearOfConst()%></td>
                     <td><%=b.getBuildingUse()%></td>
-                    <td><%=b.getCustID()%></td>
-                    <td><%=b.getCPID()%></td>
-            <td><form action="Servlet" method="GET">
+                    <td><%=b.getCust().getCustID() %></td>
+                    <td><%=b.getCp().getCPID() %></td>
+            <td><form action="ImageServlet" method="GET">
                 <input type="hidden" name="buildingID" value="<%=b.getBuildingID()%>"/>
                 <input type="submit" name="do_this" value="Show Pictures">
             </form></td>

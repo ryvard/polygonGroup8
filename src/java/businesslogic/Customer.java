@@ -41,6 +41,10 @@ public class Customer {
         this.zipcode = zipcode;
         
     }
+
+    public Customer(int custID) {
+        this.custID = custID;
+    }
     
    
     public int getCustID() 

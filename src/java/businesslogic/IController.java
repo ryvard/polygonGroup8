@@ -32,7 +32,7 @@ public interface IController
      * Called when entering the site BuildingList.jsp 
      * Arraylist containing all buildings.
      */
-        //public ArrayList<Building> getBuildingList()throws DatasourceLayerException; 
+        public ArrayList<Building> getBuildingList()throws DatasourceLayerException; 
         
         public Building getBuildingFromID(int buildingID) throws DatasourceLayerException;
         

@@ -26,6 +26,10 @@ public class ContactPerson {
         this.email = email;
         this.phone = phone;
     }
+
+    public ContactPerson(int CPID) {
+        this.cpID = CPID;
+    }
     
     
     public String getCPFirstName() {
