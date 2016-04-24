@@ -17,7 +17,7 @@
             <table>
                 <tr>
                     <td align="right">Vælg en plantegning</td>
-                    <td><input type="file" name="picture" accept="image/x-png, image/gif, image/jpeg"/></td>
+                    <td><input type="file" name="picture" accept="image/png, image/x-png, image/gif, image/jpeg, image/jpg"/></td>
                     <input type="hidden" name="do_this" value="uploadPicture">
                     <td><input type="submit" value="Gem plantegning"></td>
                 </tr>

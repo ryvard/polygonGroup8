@@ -1,8 +1,8 @@
-/*
+ /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
- */
+ */ 
 package client;
 
 import businesslogic.Building;
@@ -71,12 +71,14 @@ public class Servlet extends HttpServlet
             {
                 case "uploadPicture":
                     Part filePart = request.getPart("picture");
+                    
                     long size = filePart.getSize();
                     System.out.println("Test case");
                     InputStream is = filePart.getInputStream();
                     try {
                     //Image img = ImageIO.read(fileContent);
                     imageMapper.uploadPicture(is, size, con.getBuildingFromID(Integer.parseInt(session.getAttribute("buildingDBID").toString())));
+                    //imageMapper.uploadPicture(is, size);
                     } catch(DatasourceLayerException ex) {
                         System.out.println("Upload picture " + ex);
                     }

@@ -51,6 +51,8 @@ public class ImageServlet extends HttpServlet
             Controller con = new Controller();
             DM_Image imageMapper = new DM_Image();
             
+            
+            
                 ServletOutputStream out = response.getOutputStream();
                 int buildingID = Integer.parseInt(request.getParameter("buildingID"));
                 
