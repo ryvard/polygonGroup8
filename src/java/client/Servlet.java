@@ -140,7 +140,7 @@ public class Servlet extends HttpServlet
 //                        imageMapper.uploadPicture(ins, size);
                         //con.createFloor(arrayFloor, con.getBuildingIDFromDB(buildingName, street));
                         System.out.println("efter metodekald");
-
+                        session.setAttribute("BuildingDBID", con.getBuildingIDFromDB(buildingName, street));
                         System.out.println("servlet");
                         getServletContext().getRequestDispatcher("/UploadPicture.jsp").forward(request, response);
                     } catch (DatasourceLayerException ex)
@@ -229,10 +229,12 @@ public class Servlet extends HttpServlet
 
                         // Report data
                         String rDate = request.getParameter("date");
-                        if(rDate == null||rDate.isEmpty())
+                        if (rDate == null || rDate.isEmpty())
                         {
                             throw new DatasourceLayerException("Dato er tom");
                         }
+
+                        //******************* FEJLHÅNDTERING HER '''
                         int rCondition = Integer.parseInt(request.getParameter("condition"));
 
                         Report report = new Report(rDate, rCondition);
@@ -240,15 +242,29 @@ public class Servlet extends HttpServlet
                         //Review of building outside
                         ArrayList<ReviewOf> outerReviews = new ArrayList();
 
-                        ReviewOf roof = new ReviewOf("Tag", request.getParameter("roof"));
+                        String rRoof = request.getParameter("roof");
+                        String rOuterWall = request.getParameter("outerwalls");
+                        
+                        if(rRoof==null||rRoof.isEmpty()||rOuterWall==null||rOuterWall.isEmpty())
+                        {
+                            throw new DatasourceLayerException("Udvendig gennemgang er ikke udfyldt");
+                        }
+                        
+                        ReviewOf roof = new ReviewOf("Tag", rRoof);
                         outerReviews.add(roof);
 
-                        ReviewOf outerWalls = new ReviewOf("Yder vægge", request.getParameter("outerwalls"));
+                        ReviewOf outerWalls = new ReviewOf("Yder vægge", rOuterWall);
                         outerReviews.add(outerWalls);
 
+                        
                         //Employee 
                         String eFirstName = request.getParameter("eFirstName");
                         String eLastName = request.getParameter("eLastName");
+                        
+                        if(eFirstName==null||eFirstName.isEmpty()||eLastName==null||eLastName.isEmpty())
+                        {
+                            throw new DatasourceLayerException("Hvem har foretaget bygningsgennemgangen? udfyld venligst felterne");
+                        }
 
                         Employee employee = new Employee(eFirstName, eLastName);
 
@@ -267,6 +283,7 @@ public class Servlet extends HttpServlet
                             // room number
                             int bFloor = Integer.parseInt(request.getParameter("floor" + i));
                             int bRoom = Integer.parseInt(request.getParameter("room" + i));
+                            
                             Room room = new Room(bFloor, bRoom);
                             roomList.add(room);
 
@@ -278,7 +295,16 @@ public class Servlet extends HttpServlet
                             String repaired = request.getParameter("repaired" + i);
                             String damage = request.getParameter("damage" + i);
                             String otherDamage = request.getParameter("otherDamage" + i);
-
+                            
+                            if(when.isEmpty()||where.isEmpty()||what.isEmpty()||repaired.isEmpty())
+                            {
+                                throw new DatasourceLayerException("Felterne under skade og reperation er ikke udfylt korrekt");
+                            }
+                            if(damage.isEmpty()||damage==null)
+                            {
+                                throw new DatasourceLayerException("Der er ikke valgt skade type i rum"+bRoom);
+                            }
+                            
                             Damage rDamage = new Damage(bRoom, bFloor, damageInRoom, when, where, what, repaired, damage, otherDamage);
                             damageList.add(rDamage);
 
@@ -337,12 +363,12 @@ public class Servlet extends HttpServlet
 
                         getServletContext().getRequestDispatcher("/index.html").forward(request, response);
 
-                    } catch (DatasourceLayerException ex)
+                    }catch (DatasourceLayerException ex)
                     {
                         request.setAttribute("ReportError", "Report: " + ex);
                         getServletContext().getRequestDispatcher("/ReportError.jsp").forward(request, response);
 
-                    } catch (NumberFormatException ex)
+                    }catch (NumberFormatException ex)
                     {
                         request.setAttribute("Number", "Number: " + ex);
                         getServletContext().getRequestDispatcher("/ReportError.jsp").forward(request, response);
@@ -466,18 +492,19 @@ public class Servlet extends HttpServlet
                         System.out.println("********* create cp FAILED ***********");
                     }
                     break;
-                    
+
                 case "login":
                     String username = request.getParameter("username");
                     String password = request.getParameter("password");
                     boolean login = con.login(username, password);
                     String fejlmeddelse = "Forkert brugernavn eller kode!!";
-                    
-                    if(login) {
-                        
+
+                    if (login)
+                    {
+
                         forward(request, response, "/CreateBuilding.jsp");
-                    }
-                    else {
+                    } else
+                    {
                         request.setAttribute("Login2", fejlmeddelse);
                         forward(request, response, "/Login.jsp");
                     }
@@ -491,7 +518,6 @@ public class Servlet extends HttpServlet
 //                    //Image img = ImageIO.read(fileContent);
 //                    imageMapper.uploadPicture(ins, size);
 //                    break;
-
 //                case "Show Pictures":
 //                    try
 //                    {
@@ -503,7 +529,6 @@ public class Servlet extends HttpServlet
 //                        ex.printStackTrace();
 //                    }
 //                    break;
-
             }
         }
     }

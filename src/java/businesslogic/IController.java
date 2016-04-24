@@ -43,7 +43,7 @@ public interface IController
         //public ArrayList<ContactPerson> getContactPersonList()throws DatasourceLayerException;
         
         
-        //public ArrayList<Condition> getConditions()throws DatasourceLayerException;
+        public ArrayList<Condition> getConditions()throws DatasourceLayerException;
         
         //public void createFloor(ArrayList<Floor> arrayFloor, int buildingID)throws DatasourceLayerException;
         

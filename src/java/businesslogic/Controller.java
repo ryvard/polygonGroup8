@@ -109,11 +109,11 @@ public class Controller implements IController
     }
 
 ////    //ikke brugt
-//    @Override
-//    public ArrayList<Condition> getConditions()throws DatasourceLayerException
-//    {
-//        return facade.getConditions();
-//    }
+    @Override
+    public ArrayList<Condition> getConditions()throws DatasourceLayerException
+    {
+        return facade.getConditions();
+    }
 
     //create b from bid
     @Override
