@@ -74,7 +74,7 @@ public class Servlet extends HttpServlet
                     System.out.println("Test case");
                     InputStream is = filePart.getInputStream();
                     //Image img = ImageIO.read(fileContent);
-                    imageMapper.uploadPicture(is, size, session.getAttribute("buildingDBID"));
+                    imageMapper.uploadPicture(is, size, (Building) session.getAttribute("buildingDBID"));
                     break;
 
                 case "createBuilding":
