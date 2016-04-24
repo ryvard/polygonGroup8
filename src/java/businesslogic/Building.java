@@ -23,8 +23,8 @@ public class Building
     private int YearOfConst;
     private double squareMeters;
     private String buildingUse;
-    private int custID;
-    private int CPID;
+    private Customer cust;
+   
     private ArrayList<Floor> floors;
     private ContactPerson cp;
 
@@ -34,7 +34,7 @@ public class Building
      * Cunstructor used when creating a Building
      */
     
-    public Building(String buildingName, String streetName, String streetNumb, String city, int zipcode, int YearOfConst, double squareMeters, String buildingUse, int custID, int CPID)
+    public Building(String buildingName, String streetName, String streetNumb, String city, int zipcode, int YearOfConst, double squareMeters, String buildingUse, Customer cust, ContactPerson cp)
     {
         this.buildingName = buildingName;
         this.streetName = streetName;
@@ -44,13 +44,13 @@ public class Building
         this.YearOfConst = YearOfConst;
         this.squareMeters = squareMeters;
         this.buildingUse = buildingUse;
-        this.custID = custID;
-        this.CPID = CPID;
+        this.cust = cust;
+        this.cp = cp;
     }
     /**
      * Cunstructor used for list of buildings
      */
-    public Building(int buildingID, String buildingName, String streetName, String streetNumb, String city, int zipcode, int YearOfConst, double squareMeters, String buildingUse, int custID, int CPID)
+    public Building(int buildingID, String buildingName, String streetName, String streetNumb, String city, int zipcode, int YearOfConst, double squareMeters, String buildingUse, Customer cust, ContactPerson cp)
     {
         this.buildingID = buildingID;
         this.buildingName = buildingName;
@@ -61,18 +61,41 @@ public class Building
         this.YearOfConst = YearOfConst;
         this.squareMeters = squareMeters;
         this.buildingUse = buildingUse;
-        this.custID = custID;
-        this.CPID = CPID;
+        this.cust = cust;
+        this.cp = cp;
+    }
+    
+    public Building(String buildingName, String streetName, String streetNumb, String city, int zipcode, int YearOfConst, double squareMeters, String buildingUse) {
+        this.buildingName = buildingName;
+        this.streetName = streetName;
+        this.streetNumb = streetNumb;
+        this.city = city;
+        this.zipcode = zipcode;
+        this.YearOfConst = YearOfConst;
+        this.squareMeters = squareMeters;
+        this.buildingUse = buildingUse;
     }
 
-     public int getCPID()
-    {
-        return CPID;
+    public Building(int buildingID, String buildingName, String streetName, String streetNumb, String city, int zipcode, int yearOfConst, double squareMeters, String buildingUse) {
+        this.buildingID = buildingID;
+        this.buildingName = buildingName;
+        this.streetName = streetName;
+        this.streetNumb = streetNumb;
+        this.city = city;
+        this.zipcode = zipcode;
+        this.YearOfConst = yearOfConst;
+        this.squareMeters = squareMeters;
+        this.buildingUse = buildingUse;
     }
 
-    public void setCPID(int CPID)
+     public ContactPerson getCP()
     {
-        this.CPID = CPID;
+        return cp;
+    }
+
+    public void setCP(ContactPerson cp)
+    {
+        this.cp = cp;
     }
     
     public String getBuildingUse()
@@ -165,14 +188,9 @@ public class Building
         this.squareMeters = squareMeters;
     }
 
-    public int getCustID()
+    public void setCustID(Customer cust)
     {
-        return custID;
-    }
-
-    public void setCustID(int custID)
-    {
-        this.custID = custID;
+        this.cust = cust;
     }
 
     public void addArrayFloor(ArrayList<Floor> arrayFloor)
@@ -185,7 +203,15 @@ public class Building
         return floors;
     }
     
+    public void addCust(Customer cust) 
+    {
+        this.cust = cust;
+    }
     
+    public Customer getCust()
+    {
+        return cust;
+    }
     
     
     public void addCP(ContactPerson cp)

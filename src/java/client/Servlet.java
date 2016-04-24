@@ -1,8 +1,8 @@
-/*
+ /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
- */
+ */ 
 package client;
 
 import businesslogic.Building;
@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import businesslogic.Controller;
+import businesslogic.Customer;
 import businesslogic.Damage;
 import businesslogic.Employee;
 import businesslogic.MoistScan;
@@ -70,11 +71,17 @@ public class Servlet extends HttpServlet
             {
                 case "uploadPicture":
                     Part filePart = request.getPart("picture");
+                    
                     long size = filePart.getSize();
                     System.out.println("Test case");
                     InputStream is = filePart.getInputStream();
+                    try {
                     //Image img = ImageIO.read(fileContent);
-                    imageMapper.uploadPicture(is, size, (Building) session.getAttribute("buildingDBID"));
+                    imageMapper.uploadPicture(is, size, con.getBuildingFromID(Integer.parseInt(session.getAttribute("buildingDBID").toString())));
+                    //imageMapper.uploadPicture(is, size);
+                    } catch(DatasourceLayerException ex) {
+                        System.out.println("Upload picture " + ex);
+                    }
                     break;
 
                 case "createBuilding":
@@ -96,6 +103,9 @@ public class Servlet extends HttpServlet
                         String buildingUse = request.getParameter("buildingUse");
                         int custID = Integer.parseInt(request.getParameter("custID"));
                         int CPID = Integer.parseInt(request.getParameter("CPID"));
+                       
+                        
+                        
 
                         ArrayList<Floor> arrayFloor = new ArrayList();
                         System.out.println("før addfloor");
@@ -118,10 +128,12 @@ public class Servlet extends HttpServlet
 
 // int CPID = ????  First Name, lastname, phone og mail
                         //con.createBuilding(buildingName, street, streetNo, city, zipcode, yearOfCon, squareMTotal, buildingUse, custID, CPID);
-                        Building b = new Building(buildingName, street, streetNo, city, zipcode, yearOfCon, squareMTotal, buildingUse, custID, CPID);
+                        Building b = new Building(buildingName, street, streetNo, city, zipcode, yearOfCon, squareMTotal, buildingUse);
                         // hejhej
-                        con.createBuilding(b, arrayFloor);
-
+                        con.createBuilding(b, arrayFloor, custID, CPID);
+                        
+                        
+                        session.setAttribute("buildingDBID", con.getBuildingIDFromDB(buildingName, street));
                         System.out.println("Skal til at request.part");
 //                        Part filePart = request.getPart("picture");
 //                        long size = filePart.getSize();
@@ -148,11 +160,9 @@ public class Servlet extends HttpServlet
                         String streetNameCust = request.getParameter("streetName");
                         String streetNoCust = request.getParameter("streetNo");
                         int zipcodeCust = Integer.parseInt(request.getParameter("zipcode"));
-                        String contactName = request.getParameter("contactName");
-                        String phone = request.getParameter("phone");
-                        String mail = request.getParameter("mail");
+                        
 
-                        con.createCustomer(name, type, streetNameCust, streetNoCust, zipcodeCust, contactName, phone, mail);
+                        con.createCustomer(name, type, streetNameCust, streetNoCust, zipcodeCust);
 
                         System.out.println("%%%%%%€##€##€€€€€ dsf servlet");
                     } catch (DatasourceLayerException ex)

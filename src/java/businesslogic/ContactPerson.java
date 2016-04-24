@@ -11,11 +11,11 @@ package businesslogic;
  */
 public class ContactPerson {
     
-    int cpID;
-    String firstName;
-    String lastName;
-    String email;
-    String phone;
+    private int cpID;
+    private String firstName;
+    private String lastName;
+    private String email;
+    private String phone;
     
     /* Contructor for creating contactperson */
     
@@ -25,6 +25,10 @@ public class ContactPerson {
         this.lastName = cpLastName;
         this.email = email;
         this.phone = phone;
+    }
+
+    public ContactPerson(int CPID) {
+        this.cpID = CPID;
     }
     
     

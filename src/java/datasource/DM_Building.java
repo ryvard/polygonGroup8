@@ -7,6 +7,8 @@ package datasource;
 
 import businesslogic.Floor;
 import businesslogic.Building;
+import businesslogic.ContactPerson;
+import businesslogic.Customer;
 import businesslogic.DatasourceLayerException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -25,7 +27,7 @@ public class DM_Building
         {
             String query = "INSERT INTO buildings(CustID,CPID,BuildingName,StreetName,"
                     + "StreetNumb,Zipcode,YearOfConst,SquareMeters,BuildingUse) "
-                    + "VALUES('" + b.getCustID() + "','" + b.getCPID() + "','" + b.getBuildingName() + "','" + b.getStreetName()
+                    + "VALUES('" + b.getCust().getCustID() + "','" + b.getCP().getCPID() + "','" + b.getBuildingName() + "','" + b.getStreetName()
                     + "','" + b.getStreetNumb() + "','" + b.getZipcode() + "','"
                     + b.getYearOfConst() + "','" + b.getSquareMeters() + "','" + b.getBuildingUse() + "');";
 
@@ -57,8 +59,13 @@ public class DM_Building
                 Building building = new Building(res.getInt(1), res.getString(4),
                         res.getString(5), res.getString(6), getCity(res.getInt(7)),
                         res.getInt(7), res.getInt(8), res.getDouble(9),
-                        res.getString(10), res.getInt(2), res.getInt(3));
+                        res.getString(10));
+                Customer cust = new Customer(res.getInt(2));
+                ContactPerson cp = new ContactPerson(res.getInt(3));
+                building.addCust(cust);
+                building.addCP(cp);
                 buildings.add(building);
+                
             }
             return buildings;
         } catch (SQLException ex)
@@ -96,7 +103,7 @@ public class DM_Building
             ResultSet res = db_Connect.getData(query);
 
             res.next();
-            Building building = new Building(res.getInt(1), res.getString(4), res.getString(5), res.getString(6), getCity(res.getInt(7)), res.getInt(7), res.getInt(8), res.getDouble(9), res.getString(10), res.getInt(2), res.getInt(3));
+            Building building = new Building(res.getInt(1), res.getString(4), res.getString(5), res.getString(6), getCity(res.getInt(7)), res.getInt(7), res.getInt(8), res.getDouble(9), res.getString(10));
             return building;
         } catch (SQLException ex)
         {
@@ -159,6 +166,21 @@ public class DM_Building
             res.next();
             int buildingID = res.getInt(1);
             return buildingID;
+        } catch (SQLException ex)
+        {
+            throw new DatasourceLayerException("get building id: " + ex);
+        }
+    }
+    
+    public Building getBulding(String buildingName, String streetName) throws DatasourceLayerException {
+        try {
+       String query = "SELECT * FROM PolygonGroup8.Buildings WHERE BuildingName ='" + buildingName + "' AND StreetName='" + streetName + "';";
+            DatabaseConnector db_Connect = DatabaseConnector.getInstance();
+            ResultSet res = db_Connect.getData(query);
+
+            res.next();
+            Building building = new Building(res.getInt(1), res.getString(4), res.getString(5), res.getString(6), res.getString(7), res.getInt(8), res.getInt(9), res.getDouble(10), res.getString(11), (Customer) res.getObject(2), (ContactPerson) res.getObject(3));
+            return building;
         } catch (SQLException ex)
         {
             throw new DatasourceLayerException("get building id: " + ex);
