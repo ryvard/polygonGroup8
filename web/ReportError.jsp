@@ -12,11 +12,30 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Ups prøv igen!!</h1>
-        <h2>report: <%=request.getAttribute("ReportError")%></h2>
-        <h2>number: <%=request.getAttribute("Number")%></h2>
-        <h2>fail: <%=request.getAttribute("fail")%></h2>
-        
-        <FORM><INPUT Type="button" VALUE="Tilbage" onClick="history.go(-1);return true;"></FORM>
+        <h1>UPS! Der skete en fejl</h1>
+
+        <%
+            if (request.getAttribute("dataError") != null)
+            {
+        %>
+        <h2><%=request.getAttribute("ReportError")%></h2>
+        <%
+            }
+            if (request.getAttribute("numberFormat") != null)
+            {
+        %>
+        <h2><%=request.getAttribute("numberFormat")%></h2>
+        <%
+            }
+            if (request.getAttribute("fail") != null)
+            {
+        %>
+        <h2><%=request.getAttribute("fail")%></h2>
+        <%
+            }
+        %>
+
+        <FORM><INPUT Type="button" VALUE="Tilbage" onClick="history.go(-1);
+                return true;"></FORM>
     </body>
 </html>
