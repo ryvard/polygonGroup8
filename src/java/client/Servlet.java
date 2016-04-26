@@ -295,7 +295,16 @@ public class Servlet extends HttpServlet
                             String where = request.getParameter("where" + i);
                             String what = request.getParameter("what" + i);
                             String repaired = request.getParameter("repaired" + i);
-                            String damage = request.getParameter("damage" + i);
+                            String damage = null;
+                            if(request.getParameter("damage" + i) != null)
+                                damage = request.getParameter("damage" + i);
+                            else if(request.getParameter("damage" + i) == null && damageInRoom == "Ja")
+                            {
+                                fail += "Damage";
+                                request.setAttribute("fail", fail);
+                                getServletContext().getRequestDispatcher("/ReportError.jsp").forward(request, response);
+                            }
+                            
                             String otherDamage = request.getParameter("otherDamage" + i);
 
                             if (when.isEmpty() || where.isEmpty() || what.isEmpty() || repaired.isEmpty())
@@ -375,7 +384,7 @@ public class Servlet extends HttpServlet
                             String moistScan = request.getParameter("moistScan" + i);
                             String measurePoint = request.getParameter("measurePoint" + i);
                             
-                            if(msComplete == "Ja" && moistScan.isEmpty() || measurePoint.isEmpty())
+                            if(msComplete == "Ja" && moistScan.isEmpty() || msComplete == "Ja" && measurePoint.isEmpty())
                                 fail = "Fugt scanning er udført, udfyld venligst en note og målepunkt";
                             
                             MoistScan ms = new MoistScan(bRoom, bFloor, msComplete, moistScan, measurePoint);
@@ -402,16 +411,16 @@ public class Servlet extends HttpServlet
 
                     } catch (NullPointerException ex)
                     {
-                        request.setAttribute("Number", "Ups du har glemt at krydse af i en af check-boksene");
+                        request.setAttribute("Number", "Tjek om du har glemt at krydse af i en af check-boksene");
                         getServletContext().getRequestDispatcher("/ReportError.jsp").forward(request, response);
                     } catch (DatasourceLayerException ex)
                     {
-                        request.setAttribute("ReportError", "Report: " + ex);
+                        request.setAttribute("dataError", "Der skete en fejl, da vi forsøgte at gemme rapporten - <i>"+ex+"</i>");
                         getServletContext().getRequestDispatcher("/ReportError.jsp").forward(request, response);
 
                     } catch (NumberFormatException ex)
                     {
-                        request.setAttribute("Number", "Ups du har glemt at krydse af i en af check-boksene" + ex);
+                        request.setAttribute("numberFormat", "Tjek om du har udfyldt alle felter korrekt");
                         getServletContext().getRequestDispatcher("/ReportError.jsp").forward(request, response);
                     }
                     break;
