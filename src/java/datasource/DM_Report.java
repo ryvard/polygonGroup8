@@ -16,8 +16,6 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -37,7 +35,7 @@ public class DM_Report
         {
             throw new DatasourceLayerException("create report - db connection");
         }
-        
+
         try
         {
 
@@ -98,10 +96,9 @@ public class DM_Report
                 conn.rollback();
             } catch (SQLException ex1)
             {
-                throw new DatasourceLayerException("create report - rollback");
+                throw new DatasourceLayerException("create report - rollback - " + ex1);
             }
-            throw new DatasourceLayerException("create report"+ex);
-
+            throw new DatasourceLayerException("create report" + ex);
         } finally
         {
             try
@@ -112,9 +109,8 @@ public class DM_Report
                 throw new DatasourceLayerException("create report - auto commit true");
             }
         }
-        
     }
-    
+
     private void insertDataInReportTable(Report r) throws DatasourceLayerException
     {
         try
@@ -128,7 +124,7 @@ public class DM_Report
             db_Connect.updateData(query);
         } catch (SQLException ex)
         {
-            throw new DatasourceLayerException("insertInReportTable" + ex);
+            throw new DatasourceLayerException("insert in report table - " + ex);
         }
     }
 
@@ -144,7 +140,7 @@ public class DM_Report
             db_Connect.updateData(query);
         } catch (SQLException ex)
         {
-            throw new DatasourceLayerException("insertOuterReview " + ex);
+            throw new DatasourceLayerException("insert outer review - " + ex);
         }
     }
 
@@ -161,7 +157,7 @@ public class DM_Report
 
         } catch (SQLException ex)
         {
-            throw new DatasourceLayerException("insertRooms: " + ex);
+            throw new DatasourceLayerException("insert rooms - " + ex);
         }
     }
 
@@ -171,9 +167,9 @@ public class DM_Report
         try
         {
             System.out.println("flor: " + r.getRoomList().get(i).getFloor() + "' AND Room = '" + r.getRoomList().get(i).getRoom() + "';");
-            System.out.println("get id in damage (room):" + getRoomID(r.getRoomList().get(i).getRoom(),r.getRoomList().get(i).getFloor()));
-            System.out.println("get id in damage (damage):" + getRoomID(r.getDamageList().get(i).getbRoom(),r.getDamageList().get(i).getbFloorID()));
-            
+            System.out.println("get id in damage (room):" + getRoomID(r.getRoomList().get(i).getRoom(), r.getRoomList().get(i).getFloor()));
+            System.out.println("get id in damage (damage):" + getRoomID(r.getDamageList().get(i).getbRoom(), r.getDamageList().get(i).getbFloorID()));
+
             String query = "INSERT INTO Damage(RoomID, RepID, DamageInRoom, DWhen, DWhere, DWhat, Repaired, DamageType, OtherDamage)"
                     + "VALUES('" + getRoomID(r.getDamageList().get(i).getbRoom(), r.getDamageList().get(i).getbFloorID()) + "','"
                     + r.getRepID() + "','"
@@ -186,7 +182,7 @@ public class DM_Report
             db_Connect.updateData(query);
         } catch (SQLException ex)
         {
-            throw new DatasourceLayerException("Insert Damage" + ex);
+            throw new DatasourceLayerException("Insert Damage - " + ex);
         }
     }
 
@@ -262,7 +258,7 @@ public class DM_Report
         }
     }
 
-    protected int getRepID(Report r) throws DatasourceLayerException
+    private int getRepID(Report r) throws DatasourceLayerException
     {
         try
         {
@@ -322,7 +318,7 @@ public class DM_Report
         }
 
     }
-
+    
     public Report viewReport(int repID) throws DatasourceLayerException
     {
         try
@@ -366,7 +362,7 @@ public class DM_Report
             return r;
         } catch (SQLException ex)
         {
-            throw new DatasourceLayerException("get report" + ex);
+            throw new DatasourceLayerException("get data from report table - " + ex);
         }
     }
 
@@ -389,7 +385,7 @@ public class DM_Report
             return outerReviews;
         } catch (SQLException ex)
         {
-            throw new DatasourceLayerException("get outer review" + ex);
+            throw new DatasourceLayerException("get outer review - " + ex);
         }
 
     }
@@ -414,7 +410,7 @@ public class DM_Report
             return rooms;
         } catch (SQLException ex)
         {
-            throw new DatasourceLayerException("get rooms" + ex);
+            throw new DatasourceLayerException("get rooms - " + ex);
         }
 
     }
@@ -431,14 +427,14 @@ public class DM_Report
             while (res.next())
             {
                 Damage damage = new Damage(res.getInt(1), res.getString(2), res.getString(3), res.getString(4), res.getString(5), res.getString(6), res.getString(7), res.getString(8));
-
+                
                 damageList.add(damage);
             }
 
             return damageList;
         } catch (SQLException ex)
         {
-            throw new DatasourceLayerException("get damage" + ex);
+            throw new DatasourceLayerException("get damage - " + ex);
         }
     }
 
@@ -449,21 +445,18 @@ public class DM_Report
             String query = "SELECT RoomID,Part,Note FROM ReviewOf WHERE RepID='" + repID + "';";
             DatabaseConnector db_Connect = DatabaseConnector.getInstance();
             ResultSet res = db_Connect.getData(query);
-
             ArrayList<ReviewOf> reviewList = new ArrayList();
-
             while (res.next())
             {
 
                 ReviewOf review = new ReviewOf(res.getInt(1), res.getString(2), res.getString(3));
-                System.out.println("hej get review #€#€#€#€#€#€#€ " + review.getNote());
                 reviewList.add(review);
             }
 
             return reviewList;
         } catch (SQLException ex)
         {
-            throw new DatasourceLayerException("get review" + ex);
+            throw new DatasourceLayerException("get review - " + ex);
         }
     }
 
@@ -485,7 +478,7 @@ public class DM_Report
             return msList;
         } catch (SQLException ex)
         {
-            throw new DatasourceLayerException("get ms list" + ex);
+            throw new DatasourceLayerException("get moistScan list - " + ex);
         }
     }
 

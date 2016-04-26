@@ -21,18 +21,18 @@ public class DM_Employee
     {
         try
         {
-        String query = "SELECT EID FROM Employees WHERE EFirstName ='" + firstName + "' AND ELastName='" + lastName + "';";
+            String query = "SELECT EID FROM Employees WHERE EFirstName ='" + firstName + "' AND ELastName='" + lastName + "';";
 
-        DatabaseConnector db_Connect = DatabaseConnector.getInstance();
-        ResultSet res = db_Connect.getData(query);
-        
+            DatabaseConnector db_Connect = DatabaseConnector.getInstance();
+            ResultSet res = db_Connect.getData(query);
+
             res.next();
             int eID = res.getInt(1);
 
             return eID;
         } catch (SQLException ex)
         {
-            throw new DatasourceLayerException("1FEJL getEmployeeFromEID" + ex);
+            throw new DatasourceLayerException("get employee's EID - " + ex);
         }
     }
 
@@ -40,18 +40,18 @@ public class DM_Employee
     {
         try
         {
-        String query = "SELECT * FROM PolygonGroup8.Employees WHERE EID ='" + eID + "';";
-        
-        DatabaseConnector db_Connect = DatabaseConnector.getInstance();
-        ResultSet res = db_Connect.getData(query);
-        
+            String query = "SELECT * FROM PolygonGroup8.Employees WHERE EID ='" + eID + "';";
+
+            DatabaseConnector db_Connect = DatabaseConnector.getInstance();
+            ResultSet res = db_Connect.getData(query);
+
             res.next();
             Employee employee = new Employee(res.getInt(1), res.getString(2), res.getString(3));
-            
+
             return employee;
         } catch (SQLException ex)
         {
-            throw new DatasourceLayerException("2FEJL getEmployeeFromEID" + ex);
+            throw new DatasourceLayerException("get employee from EID - " + ex);
         }
     }
 

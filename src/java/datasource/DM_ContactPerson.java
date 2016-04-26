@@ -35,7 +35,7 @@ public class DM_ContactPerson
             return cpID;
         } catch (SQLException ex)
         {
-            throw new DatasourceLayerException("create CP" + ex);
+            throw new DatasourceLayerException("create contact person - " + ex);
         }
     }
 
@@ -56,7 +56,7 @@ public class DM_ContactPerson
 
         } catch (SQLException ex)
         {
-            throw new DatasourceLayerException("create CP info" + ex);
+            throw new DatasourceLayerException("create CP info - " + ex);
         }
     }
 
@@ -82,7 +82,7 @@ public class DM_ContactPerson
 
         } catch (SQLException ex)
         {
-            throw new DatasourceLayerException("get CP list: " + ex);
+            throw new DatasourceLayerException("get list of contact persons - " + ex);
         }
     }
 
@@ -90,7 +90,8 @@ public class DM_ContactPerson
     {
         try
         {
-            String query = "SELECT CPID FROM PolygonGroup8.ContactPerson WHERE CPFirstName ='" + firstName + "' AND CPLastName='" + lastName + "';";
+            String query = "SELECT CPID FROM PolygonGroup8.ContactPerson WHERE CPFirstName ='" 
+                    + firstName + "' AND CPLastName='" + lastName + "';";
 
             DatabaseConnector db_Connect = DatabaseConnector.getInstance();
             ResultSet res = db_Connect.getData(query);
@@ -102,7 +103,7 @@ public class DM_ContactPerson
 
         } catch (SQLException ex)
         {
-            throw new DatasourceLayerException("get CPID: " + ex);
+            throw new DatasourceLayerException("get contact person ID (CPID) - " + ex);
         }
 
     }
@@ -123,20 +124,21 @@ public class DM_ContactPerson
 
         } catch (SQLException ex)
         {
-            throw new DatasourceLayerException("get CP from cpid: " + ex);
+            throw new DatasourceLayerException("get CP from cpid - " + ex);
         }
-        
+
     }
 
     public ContactPerson getCPFromBuildingID(int BuildingID) throws DatasourceLayerException
     {
-        try{
-        String query = "SELECT CPID,CPFirstName, CPLastName "
-                + "FROM ContactPerson NATURAL JOIN Buildings "
-                + "WHERE BuildingID ='" + BuildingID + "';";
-        DatabaseConnector db_Connect = DatabaseConnector.getInstance();
-        ResultSet res = db_Connect.getData(query);
-        
+        try
+        {
+            String query = "SELECT CPID,CPFirstName, CPLastName "
+                    + "FROM ContactPerson NATURAL JOIN Buildings "
+                    + "WHERE BuildingID ='" + BuildingID + "';";
+            DatabaseConnector db_Connect = DatabaseConnector.getInstance();
+            ResultSet res = db_Connect.getData(query);
+
             res.next();
             ContactPerson cp = new ContactPerson(res.getInt(1), res.getString(2), res.getString(3));
 

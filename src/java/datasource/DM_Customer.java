@@ -32,7 +32,7 @@ public class DM_Customer
             db_Connect.updateData(query);
         } catch (SQLException ex)
         {
-            throw new DatasourceLayerException("create customer"+ex);
+            throw new DatasourceLayerException("create customer - "+ex);
         }
         
     }
@@ -53,7 +53,7 @@ public class DM_Customer
 
         } catch (SQLException ex)
         {
-            throw new DatasourceLayerException("get CP from cpid: " + ex);
+            throw new DatasourceLayerException("get CP from cpid - " + ex);
         }
         
     }

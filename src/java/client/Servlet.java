@@ -180,7 +180,7 @@ public class Servlet extends HttpServlet
 
                         int ID = Integer.parseInt(request.getParameter("buildingID"));
                         session.setAttribute("ID", ID);
-
+                        
                         String bName = con.getBuildingFromID(ID).getBuildingName();
                         session.setAttribute("bName", bName);
 
@@ -217,8 +217,8 @@ public class Servlet extends HttpServlet
 
                     } catch (DatasourceLayerException ex)
                     {
-                        request.setAttribute("ReportError", "Report: " + ex);
-                        getServletContext().getRequestDispatcher("/ReportError.jsp").forward(request, response);
+                        request.setAttribute("dataError", "Forkert bygnings-ID");
+                        getServletContext().getRequestDispatcher("/CreateReport1.jsp").forward(request, response);
                     }
 
                     break;

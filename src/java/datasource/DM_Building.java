@@ -39,7 +39,7 @@ public class DM_Building
 
         } catch (SQLException ex)
         {
-            throw new DatasourceLayerException("create building: " + ex);
+            throw new DatasourceLayerException("create building - " + ex);
         }
     }
 
@@ -70,7 +70,7 @@ public class DM_Building
             return buildings;
         } catch (SQLException ex)
         {
-            throw new DatasourceLayerException("get building list: " + ex);
+            throw new DatasourceLayerException("get building list - " + ex);
         }
 
     }
@@ -89,7 +89,7 @@ public class DM_Building
             return city;
         } catch (SQLException ex)
         {
-            throw new DatasourceLayerException("get city " + ex);
+            throw new DatasourceLayerException("get city - " + ex);
         }
 
     }
@@ -107,16 +107,13 @@ public class DM_Building
             return building;
         } catch (SQLException ex)
         {
-            throw new DatasourceLayerException("FEJL getBuildingFromID" + ex);
+            throw new DatasourceLayerException("Get Building From ID - " + ex);
         }
 
     }
 
     public void createFloor(ArrayList<Floor> arrayFloor, int buildingID) throws DatasourceLayerException
     {
-
-//       ArrayList<Building> building = getBuildingList();
-//        int index = building.size()-1;
         try
         {
             for (int i = 0; i < arrayFloor.size(); i++)
@@ -129,9 +126,8 @@ public class DM_Building
 
         } catch (SQLException ex)
         {
-            throw new DatasourceLayerException("create floor: " + ex);
+            throw new DatasourceLayerException("create floor - " + ex);
         }
-
     }
 
     public ArrayList<Floor> getFloorListFromBuildingID(int buildingID) throws DatasourceLayerException
@@ -151,7 +147,7 @@ public class DM_Building
             return floorList;
         } catch (SQLException ex)
         {
-            throw new DatasourceLayerException("get floorList: " + ex);
+            throw new DatasourceLayerException("get floorList - " + ex);
         }
     }
 
@@ -168,7 +164,7 @@ public class DM_Building
             return buildingID;
         } catch (SQLException ex)
         {
-            throw new DatasourceLayerException("get building id: " + ex);
+            throw new DatasourceLayerException("get building id - " + ex);
         }
     }
     
@@ -183,7 +179,7 @@ public class DM_Building
             return building;
         } catch (SQLException ex)
         {
-            throw new DatasourceLayerException("get building id: " + ex);
+            throw new DatasourceLayerException("get building id - " + ex);
         }
     }
 

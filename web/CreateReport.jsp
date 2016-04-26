@@ -364,5 +364,12 @@
         </p>
         
     </form>
+        <div style="font-weight: normal">
+        Rypevang 5, DK-3450 Allerød, Danmark 
+        <br>
+        48140555
+        <br>
+        info@polygon.dk www.polygon.dk
+    </div>
 </body>
 </html>

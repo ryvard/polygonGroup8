@@ -6,8 +6,6 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class DatabaseConnector
 {
@@ -39,7 +37,7 @@ public class DatabaseConnector
         return dbCon_Instance;
     }
 
-    public static Connection getConnection() throws SQLException, DatasourceLayerException 
+    public static Connection getConnection() throws SQLException, DatasourceLayerException
     {
         if (con == null)
         {
@@ -49,7 +47,7 @@ public class DatabaseConnector
             } catch (ClassNotFoundException ex)
             {
                 ex.printStackTrace();
-                throw new DatasourceLayerException("PROGRAMMET VIRKER IKKE: "+ex);
+                throw new DatasourceLayerException("PROGRAMMET VIRKER IKKE: " + ex);
             }
             con = DriverManager.getConnection(DB_URL, USER, PASS);
         }
