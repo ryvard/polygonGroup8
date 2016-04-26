@@ -64,6 +64,7 @@ public class ImageServlet extends HttpServlet
                     while ((length = is.read(buffer)) != -1)
                     {
                         System.out.println("writing " + length + " bytes");
+                        
                         out.write(buffer, 0, length);
                     }
                 } catch (Exception ex)
