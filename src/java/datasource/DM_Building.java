@@ -53,7 +53,7 @@ public class DM_Building
             DatabaseConnector db_Connect = DatabaseConnector.getInstance();
             ResultSet res = db_Connect.getData(query);
 
-            System.out.println("res er forskellig fra null: " + (res != null));
+            
             while (res.next())
             {
                 Building building = new Building(res.getInt(1), res.getString(4),
@@ -74,6 +74,7 @@ public class DM_Building
         }
 
     }
+    
 
     public String getCity(int zip) throws DatasourceLayerException
     {

@@ -25,8 +25,8 @@ public class DM_Customer
         try
         {
             String query = "INSERT INTO Customers(CustName, CustType,StreetName,StreetNumb,Zipcode)"
-                    + "VALUES('" + cus.getCustName() + "','" + cus.getType() + "','" + cus.getStreetName() + "','"
-                    + cus.getStreetNo() + "','" + cus.getZipcode() + "');";
+                    + "VALUES('" + cus.getCustName() + "','" + cus.getType() + "','" + cus.getStreetName() 
+                    + "','" + cus.getStreetNo() + "','" + cus.getZipcode() + "');";
             
             DatabaseConnector db_Connect = DatabaseConnector.getInstance();
             db_Connect.updateData(query);
