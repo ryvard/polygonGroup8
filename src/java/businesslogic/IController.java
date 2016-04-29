@@ -28,58 +28,7 @@ public interface IController
      * @param zipcode
      * @throws DatasourceLayerException
      */
-    public void createCustomer(String name, String type, String streetName, String streetNo, int zipcode) throws DatasourceLayerException;
-        //public void createBuilding(String buildingName, String streetName, String streetNumb, String city, int zipcode, int yearOfConst, double squareMeters, String buildingUse, int custID, int CPID)throws DatasourceLayerException;
-        
-        
-        public void createCustomer(String name, String type, String streetName, String streetNo, int zipcode)throws DatasourceLayerException;
-        
-        //public void createReport(String reportNumber, String date, int squareMeter, String buildingUseability, String roof, String roofPicture, String outerwalls, String outerwallsPicture, Object conclusion, String reviewedBy, String collaboration, int condition);
-    /*
-     * Called when entering the site BuildingList.jsp 
-     * Arraylist containing all buildings.
-     */
-        public ArrayList<Building> getBuildingList()throws DatasourceLayerException; 
-        
-        public Building getBuildingFromID(int buildingID) throws DatasourceLayerException;
-        
-        public int createContactPerson(String cpFirstName, String cpLastName, String mail, String phone)throws DatasourceLayerException;
-        
-        public void createContactPersonInfo(String firstName, String lastName, String mail, String phone)throws DatasourceLayerException;
-        
-        //public ArrayList<ContactPerson> getContactPersonList()throws DatasourceLayerException;
-        
-        
-        public ArrayList<Condition> getConditions()throws DatasourceLayerException;
-        
-        //public void createFloor(ArrayList<Floor> arrayFloor, int buildingID)throws DatasourceLayerException;
-        
-        public int getBuildingIDFromDB(String buildingName, String streetName)throws DatasourceLayerException;
-        
-        
-        
-        //MIA  Used when creating the report
-        
-        //public int getCPID(String firstName, String lastName)throws DatasourceLayerException;
-    
-        public void createReport(int buildingID, Report r, ArrayList<ReviewOf> outerReviews, 
-                Employee employee, ArrayList<Room> roomList, ArrayList<Damage> damageList, ArrayList<ReviewOf> reviewList,
-                ArrayList<MoistScan> msList, ArrayList<Conclusion> conclusionList) throws DatasourceLayerException;
-        
-        //public ContactPerson getCPFromCPID(int CPID)throws DatasourceLayerException;
-        
-        public Report viewReport(int repID) throws DatasourceLayerException;
-        
-        public boolean login(String userName, String password);
-        
-        public void createBuilding(Building b, ArrayList<Floor> arrayFloor, int custID, int cpID)throws DatasourceLayerException;
-        
-        public ArrayList<Floor> getFloors(int BuildingID) throws DatasourceLayerException;
-        
-        //public Customer getCustFromCustID(int custID) throws DatasourceLayerException;
-        
-        public int getNewRepID() throws DatasourceLayerException;
-
+    public void createCustomer(String name, String type, String streetName, String streetNo, int zipcode) throws DatasourceLayerException;    
     
     /**
      * This method is used to get a list of all the buildings stored inside the database.
@@ -152,7 +101,7 @@ public interface IController
             Employee employee, ArrayList<Room> roomList, ArrayList<Damage> damageList, ArrayList<ReviewOf> reviewList,
             ArrayList<MoistScan> msList, ArrayList<Conclusion> conclusionList) throws DatasourceLayerException;
 
-    public ContactPerson getCPFromCPID(int CPID) throws DatasourceLayerException;
+    //public ContactPerson getCPFromCPID(int CPID) throws DatasourceLayerException;
 
     public Report viewReport(int repID) throws DatasourceLayerException;
 
@@ -162,7 +111,7 @@ public interface IController
 
     public ArrayList<Floor> getFloors(int BuildingID) throws DatasourceLayerException;
 
-    public Customer getCustFromCustID(int custID) throws DatasourceLayerException;
+    //public Customer getCustFromCustID(int custID) throws DatasourceLayerException;
 
     public int getNewRepID() throws DatasourceLayerException;
 
