@@ -59,7 +59,7 @@ public interface IController
                 Employee employee, ArrayList<Room> roomList, ArrayList<Damage> damageList, ArrayList<ReviewOf> reviewList,
                 ArrayList<MoistScan> msList, ArrayList<Conclusion> conclusionList) throws DatasourceLayerException;
         
-        public ContactPerson getCPFromCPID(int CPID)throws DatasourceLayerException;
+        //public ContactPerson getCPFromCPID(int CPID)throws DatasourceLayerException;
         
         public Report viewReport(int repID) throws DatasourceLayerException;
         
@@ -69,7 +69,7 @@ public interface IController
         
         public ArrayList<Floor> getFloors(int BuildingID) throws DatasourceLayerException;
         
-        public Customer getCustFromCustID(int custID) throws DatasourceLayerException;
+        //public Customer getCustFromCustID(int custID) throws DatasourceLayerException;
         
         public int getNewRepID() throws DatasourceLayerException;
 

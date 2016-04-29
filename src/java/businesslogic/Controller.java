@@ -54,7 +54,7 @@ public class Controller implements IController
     @Override
     public ArrayList<Building> getBuildingList()throws DatasourceLayerException
     {
-        System.out.println("controller");
+       
        return facade.getBuildingList();
     }
 
@@ -126,11 +126,11 @@ public class Controller implements IController
         return b;
     }
 
-    @Override
-    public ContactPerson getCPFromCPID(int CPID)throws DatasourceLayerException
-    {
-        return facade.getCPFromCPID(CPID);
-    }
+//    @Override
+//    public ContactPerson getCPFromCPID(int CPID)throws DatasourceLayerException
+//    {
+//        return facade.getCPFromCPID(CPID);
+//    }
 
     //--------------------------------------------------------------
 //    @Override
@@ -148,8 +148,8 @@ public class Controller implements IController
     @Override
     public void createBuilding(Building b, ArrayList<Floor> arrayFloor, int custID, int cpID)throws DatasourceLayerException
     {
-        b.addCust(getCustFromCustID(custID));
-        b.addCP(getCPFromCPID(cpID));
+        b.addCust(facade.getCustFromCustID(custID));
+        b.addCP(facade.getCPFromCPID(cpID));
         b.addArrayFloor(arrayFloor);
         facade.createBuilding(b);
     }
@@ -187,10 +187,10 @@ public class Controller implements IController
          return facade.login(userName, password);
     }
 
-    @Override
-    public Customer getCustFromCustID(int custID) throws DatasourceLayerException {
-         return facade.getCustFromCustID(custID);
-    }
+//    @Override
+//    public Customer getCustFromCustID(int custID) throws DatasourceLayerException {
+//         return facade.getCustFromCustID(custID);
+//    }
 
 
     
