@@ -16,7 +16,7 @@ import java.sql.SQLException;
 public class DM_User
 {
 
-    public boolean login(String username, String password) throws DatasourceLayerException
+    public boolean login(String username, String password) //throws DatasourceLayerException
     {
         try
         {

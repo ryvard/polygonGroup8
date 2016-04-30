@@ -28,8 +28,7 @@ public interface IController
      * @param zipcode
      * @throws DatasourceLayerException
      */
-    public void createCustomer(String name, String type, String streetName, String streetNo, int zipcode) throws DatasourceLayerException;
-
+    public void createCustomer(String name, String type, String streetName, String streetNo, int zipcode) throws DatasourceLayerException;    
     
     /**
      * This method is used to get a list of all the buildings stored inside the database.
@@ -102,7 +101,7 @@ public interface IController
             Employee employee, ArrayList<Room> roomList, ArrayList<Damage> damageList, ArrayList<ReviewOf> reviewList,
             ArrayList<MoistScan> msList, ArrayList<Conclusion> conclusionList) throws DatasourceLayerException;
 
-    public ContactPerson getCPFromCPID(int CPID) throws DatasourceLayerException;
+    //public ContactPerson getCPFromCPID(int CPID) throws DatasourceLayerException;
 
     public Report viewReport(int repID) throws DatasourceLayerException;
 
@@ -112,7 +111,7 @@ public interface IController
 
     public ArrayList<Floor> getFloors(int BuildingID) throws DatasourceLayerException;
 
-    public Customer getCustFromCustID(int custID) throws DatasourceLayerException;
+    //public Customer getCustFromCustID(int custID) throws DatasourceLayerException;
 
     public int getNewRepID() throws DatasourceLayerException;
 
