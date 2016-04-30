@@ -6,6 +6,7 @@
 package datasource;
 
 import businesslogic.ContactPerson;
+import businesslogic.Customer;
 import businesslogic.DatasourceLayerException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -26,9 +27,12 @@ public class DM_ContactPerson
 
             String query = "INSERT INTO ContactPerson(CPFirstName,CPLastName) VALUES('" + cp.getCPFirstName()
                     + "','" + cp.getCPLastName() + "');";
+            
+           
 
             DatabaseConnector db_Connect = DatabaseConnector.getInstance();
             db_Connect.updateData(query);
+           
 
             int cpID = getCPID(cp.getCPFirstName(), cp.getCPLastName());
 

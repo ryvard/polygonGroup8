@@ -182,7 +182,7 @@ public class Controller implements IController
     }
 
     @Override
-    public boolean login(String userName, String password) 
+    public boolean login(String userName, String password) throws DatasourceLayerException
     {
          return facade.login(userName, password);
     }

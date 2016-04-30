@@ -161,7 +161,7 @@ public class Facade implements IFacade
     }
 
     @Override
-    public boolean login(String userName, String password) 
+    public boolean login(String userName, String password) throws DatasourceLayerException
     {
         return dm_user.login(userName, password);
         

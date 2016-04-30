@@ -31,8 +31,8 @@ public class DM_User
         } catch (SQLException ex)
         {
             System.out.println("hejhej");
-            //throw new DatasourceLayerException("Login failed - " + ex);
+            throw new DatasourceLayerException("Login failed - " + ex);
         }
-        return false;
+        
     }
 }
