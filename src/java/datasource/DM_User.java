@@ -8,6 +8,8 @@ package datasource;
 import businesslogic.DatasourceLayerException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -31,8 +33,12 @@ public class DM_User
         } catch (SQLException ex)
         {
             System.out.println("hejhej");
-            throw new DatasourceLayerException("Login failed - " + ex);
+            try {
+                throw new DatasourceLayerException("Login failed - " + ex);
+            } catch (DatasourceLayerException ex1) {
+                Logger.getLogger(DM_User.class.getName()).log(Level.SEVERE, null, ex1);
+            }
         }
-        
+        return false;
     }
 }

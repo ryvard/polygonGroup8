@@ -548,21 +548,53 @@ public class Servlet extends HttpServlet
                     String username = request.getParameter("username");
                     String password = request.getParameter("password");
                     boolean login;
-                    try {
                     login = con.login(username, password);
                     if (login)
                     {
 
                         forward(request, response, "/CreateBuilding.jsp");
-                    } 
-                    } catch (DatasourceLayerException ex) {
-                        String fejlmeddelse = "Forkert brugernavn eller kode!!";
-                        request.setAttribute("Login2", fejlmeddelse);
-                        forward(request, response, "/Login.jsp");
                     }
                     
                     break;
 
+//                case "Upload Picture":
+//                    Part filePart = request.getPart("picture");
+//                    long size = filePart.getSize();
+//                    System.out.println("Test case");
+//                    InputStream ins = filePart.getInputStream();
+//                    //Image img = ImageIO.read(fileContent);
+//                    imageMapper.uploadPicture(ins, size);
+//                    break;
+//                case "Show Pictures":
+//                    try
+//                    {
+//                        int buildingID = Integer.parseInt(request.getParameter("buildingID"));
+//                        InputStream is = imageMapper.getImageAsStream(buildingID);
+//
+//                    } catch (Exception ex)
+//                    {
+//                        ex.printStackTrace();
+//                    }
+//                    break;
+//                case "Upload Picture":
+//                    Part filePart = request.getPart("picture");
+//                    long size = filePart.getSize();
+//                    System.out.println("Test case");
+//                    InputStream ins = filePart.getInputStream();
+//                    //Image img = ImageIO.read(fileContent);
+//                    imageMapper.uploadPicture(ins, size);
+//                    break;
+//                case "Show Pictures":
+//                    try
+//                    {
+//                        int buildingID = Integer.parseInt(request.getParameter("buildingID"));
+//                        InputStream is = imageMapper.getImageAsStream(buildingID);
+//
+//                    } catch (Exception ex)
+//                    {
+//                        ex.printStackTrace();
+//                    }
+//                    break;
 //                case "Upload Picture":
 //                    Part filePart = request.getPart("picture");
 //                    long size = filePart.getSize();
