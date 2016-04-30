@@ -457,6 +457,7 @@ public class Servlet extends HttpServlet
 
                         int rBuildyear = con.viewReport(repID).getBuilding().getYearOfConst();
                         session.setAttribute("rBuildyear", rBuildyear);
+                        System.out.println("rBuildyear"+rBuildyear);
 
                         double rSquareMeter = con.viewReport(repID).getBuilding().getSquareMeters();
                         session.setAttribute("rSquareMeter", rSquareMeter);

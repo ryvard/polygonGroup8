@@ -68,7 +68,7 @@
         </tr>
         <tr>
             <td>Byggeår</td>
-            <td><%=session.getAttribute("rBuildYear")%></td>
+            <td><%=session.getAttribute("rBuildyear")%></td>
         </tr>
         <tr>
             <td>Bygningsareal i m2</td>
@@ -101,13 +101,17 @@
         <tr>
             <td colspan="4" style="padding-top: 25px;"><h2>Bygning indvendig</h2></td>
         </tr>
+        </table>
         <%
             ArrayList<Room> roomList = (ArrayList<Room>) session.getAttribute("roomList");
 
             for (Room room : roomList)
             {
+            System.out.println("room.getFloor()   " + room.getFloor());
         %>
+        <table
         <tr>
+            
             <td>Etage: <%=room.getFloor()%> </td>
         </tr>
         <tr>
@@ -206,12 +210,13 @@
             <td>Målepunkt</td>
             <td><%=ms.getMeasurePoint()%></td>
         </tr>
+        
         <%
                 }
             }
         %>
-    </table>
-
+    
+ </table>
 
 
     <%
