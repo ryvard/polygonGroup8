@@ -1,27 +1,28 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package businesslogic;
 
 /**
  *
  * @author emmablomsterberg
  */
-public class Customer {
-    
+public class Customer
+{
+
     private int custID;
     private String custName;
     private String type;
     private String streetName;
     private String streetNo;
     private int zipcode;
-    private String contactName;
-    private String phone;
-    private String mail;
-    // heh ehhr
 
+    /**
+     * Used when creating a new customer
+     *
+     * @param custName
+     * @param type
+     * @param streetName
+     * @param streetNo
+     * @param zipcode
+     */
     public Customer(String custName, String type, String streetName, String streetNo, int zipcode)
     {
         this.custName = custName;
@@ -29,77 +30,60 @@ public class Customer {
         this.streetName = streetName;
         this.streetNo = streetNo;
         this.zipcode = zipcode;
-        
     }
-    
-    public Customer(int custID, String custName, String type, String streetName, String streetNo, int zipcode) {
+
+    /**
+     * Used when creating a customer that already exist in the database
+     *
+     * @param custID
+     * @param custName
+     * @param type
+     * @param streetName
+     * @param streetNo
+     * @param zipcode
+     */
+    public Customer(int custID, String custName, String type, String streetName, String streetNo, int zipcode)
+    {
         this.custID = custID;
         this.custName = custName;
         this.type = type;
         this.streetName = streetName;
         this.streetNo = streetNo;
         this.zipcode = zipcode;
-        
     }
 
-    public Customer(int custID) {
+    public Customer(int custID)
+    {
         this.custID = custID;
     }
-    
-   
-    public int getCustID() 
+
+    public int getCustID()
     {
         return custID;
     }
-    
-    public void setCustID(int custID) 
-    {
-        this.custID = custID;
-    }
-    
+
     public String getCustName()
     {
         return custName;
     }
 
-    public void setCustName(String custName)
+    public String getType()
     {
-        this.custName = custName;
-    }
-     
-    
-    public String getType() {
         return type;
     }
-    
-    public void setType(String type) {
-        this.type = type;
-    }
-    
-    public String getStreetName() {
+
+    public String getStreetName()
+    {
         return streetName;
     }
-    
-    public void setStreetName(String streetName) {
-        this.streetName = streetName;
-    }
-    
-    public String getStreetNo() {
+
+    public String getStreetNo()
+    {
         return streetNo;
     }
-    
-    public void setStreetNo(String streetNo) {
-        this.streetNo = streetNo;
-    }
-    
-    public int getZipcode() {
+
+    public int getZipcode()
+    {
         return zipcode;
     }
-    
-    public void setZipcode(int zipcode) {
-        this.zipcode = zipcode;
-    }
-    
-   
-    
 }

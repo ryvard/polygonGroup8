@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package businesslogic;
 
 /**
@@ -11,6 +6,10 @@ package businesslogic;
  */
 public class DatasourceLayerException extends Exception 
 {
+    /**
+     * Thrown when an exeption is cought in the data source layer
+     * @param message 
+     */
     public DatasourceLayerException(String message)
     {
         super(message);

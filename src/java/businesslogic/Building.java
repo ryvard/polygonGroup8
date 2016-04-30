@@ -21,40 +21,18 @@ public class Building
     private ArrayList<Floor> floors;
     private ContactPerson cp;
 
+ 
     /**
-     * Cunstructor used when creating a Building
+     * Constructer for creating a building
+     * @param buildingName
+     * @param streetName
+     * @param streetNumb
+     * @param city
+     * @param zipcode
+     * @param YearOfConst
+     * @param squareMeters
+     * @param buildingUse 
      */
-//    public Building(String buildingName, String streetName, String streetNumb, String city, int zipcode, int YearOfConst, double squareMeters, String buildingUse, Customer cust, ContactPerson cp)
-//    {
-//        this.buildingName = buildingName;
-//        this.streetName = streetName;
-//        this.streetNumb = streetNumb;
-//        this.city = city;
-//        this.zipcode = zipcode;
-//        this.YearOfConst = YearOfConst;
-//        this.squareMeters = squareMeters;
-//        this.buildingUse = buildingUse;
-//        this.cust = cust;
-//        this.cp = cp;
-//    }
-    /**
-     * Cunstructor used for list of buildings
-     */
-//    public Building(int buildingID, String buildingName, String streetName, String streetNumb, String city, int zipcode, int YearOfConst, double squareMeters, String buildingUse, Customer cust, ContactPerson cp)
-//    {
-//        this.buildingID = buildingID;
-//        this.buildingName = buildingName;
-//        this.streetName = streetName;
-//        this.streetNumb = streetNumb;
-//        this.city = city;
-//        this.zipcode = zipcode;
-//        this.YearOfConst = YearOfConst;
-//        this.squareMeters = squareMeters;
-//        this.buildingUse = buildingUse;
-//        this.cust = cust;
-//        this.cp = cp;
-//    }
-    
     public Building(String buildingName, String streetName, String streetNumb, String city, int zipcode, int YearOfConst, double squareMeters, String buildingUse) {
         this.buildingName = buildingName;
         this.streetName = streetName;
@@ -65,7 +43,18 @@ public class Building
         this.squareMeters = squareMeters;
         this.buildingUse = buildingUse;
     }
-
+    /**
+     * Constructor used to view a building
+     * @param buildingID
+     * @param buildingName
+     * @param streetName
+     * @param streetNumb
+     * @param city
+     * @param zipcode
+     * @param yearOfConst
+     * @param squareMeters
+     * @param buildingUse 
+     */
     public Building(int buildingID, String buildingName, String streetName, String streetNumb, String city, int zipcode, int yearOfConst, double squareMeters, String buildingUse) {
         this.buildingID = buildingID;
         this.buildingName = buildingName;
@@ -147,7 +136,6 @@ public class Building
     {
         return cust;
     }
-    
     
     public void addCP(ContactPerson cp)
     {

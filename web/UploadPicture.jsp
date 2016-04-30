@@ -19,7 +19,7 @@
         <li><a href="BuildingList.jsp">Se bygninger</a></li>
         <li><a href="CreateBuilding.jsp">Opret din bygning</a></li>
         <li><a href="CreateReport1.jsp">Opret rapport</a></li>
-        <li><a href="ViewReport.jsp">Se rapport</a></li>
+        <li><a href="ViewReport1.jsp">Se rapport</a></li>
     </ul1>
 
     <ul2>

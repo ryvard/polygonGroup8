@@ -10,6 +10,12 @@ public class Conclusion
     private int bFloor;
     private String recommendation;
 
+    /**
+     * Constructor for conclusion of room condition, used for both create and view report 
+     * @param bRoom
+     * @param bFloor
+     * @param recommendation 
+     */
     public Conclusion(int bRoom, int bFloor, String recommendation)
     {
         this.bRoom = bRoom;

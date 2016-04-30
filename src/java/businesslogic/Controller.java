@@ -106,6 +106,8 @@ public class Controller implements IController
     {
         Report r = facade.viewReport(repID);
         Building b = facade.getBuildingFromID(r.getBuildingID());
+        System.out.println("hej"+ r.getBuildingID());
+        System.out.println("hej : "+ facade.getCPFromCPID(b.getCP().getCPID()));
         ContactPerson c = facade.getCPFromCPID(b.getCP().getCPID());
         b.addCP(c);
         r.addBuilding(b);

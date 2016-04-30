@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package businesslogic;
 
 /**
@@ -17,6 +12,14 @@ public class MoistScan
     private String moistScan;
     private String measurePoint; 
 
+    /**
+     * Used when creating a new moistScan in the report
+     * @param bRoom
+     * @param bFloor
+     * @param msComplete
+     * @param moistScan
+     * @param measurePoint 
+     */
     public MoistScan(int bRoom, int bFloor, String msComplete, String moistScan, String measurePoint)
     {
         this.bRoom = bRoom;
@@ -25,7 +28,13 @@ public class MoistScan
         this.moistScan = moistScan;
         this.measurePoint = measurePoint;
     }
-
+    /**
+     * Used when creating a moistScan that already exixt in the database(view report)
+     * @param bRoom
+     * @param msComplete
+     * @param moistScan
+     * @param measurePoint 
+     */
     public MoistScan(int bRoom, String msComplete, String moistScan, String measurePoint)
     {
         this.bRoom = bRoom;
@@ -34,15 +43,9 @@ public class MoistScan
         this.measurePoint = measurePoint;
     }
     
-
     public int getbFloor()
     {
         return bFloor;
-    }
-
-    public void setbFloor(int bFloor)
-    {
-        this.bFloor = bFloor;
     }
 
     public int getbRoom()
@@ -50,19 +53,9 @@ public class MoistScan
         return bRoom;
     }
 
-    public void setbRoom(int bRoom)
-    {
-        this.bRoom = bRoom;
-    }
-
     public String getMsComplete()
     {
         return msComplete;
-    }
-
-    public void setMsComplete(String msComplete)
-    {
-        this.msComplete = msComplete;
     }
 
     public String getMoistScan()
@@ -70,19 +63,8 @@ public class MoistScan
         return moistScan;
     }
 
-    public void setMoistScan(String moistScan)
-    {
-        this.moistScan = moistScan;
-    }
-
     public String getMeasurePoint()
     {
         return measurePoint;
     }
-
-    public void setMeasurePoint(String measurePoint)
-    {
-        this.measurePoint = measurePoint;
-    }
-    
 }
