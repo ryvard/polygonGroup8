@@ -501,7 +501,8 @@ public class Servlet extends HttpServlet
 
                     } catch (DatasourceLayerException ex)
                     {
-                        Logger.getLogger(Servlet.class.getName()).log(Level.SEVERE, null, ex);
+                        request.setAttribute("dataError", "Der skete en fejl");
+                        forward(request, response, "/ViewReport1.jsp");
                     }
 
                     /*

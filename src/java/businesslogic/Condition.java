@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package businesslogic;
 
 /**
@@ -14,7 +9,12 @@ public class Condition
     int condition;
     String description;
     String function;
-
+    /**
+     * Constructor for conditions
+     * @param condition
+     * @param description
+     * @param function 
+     */
     public Condition(int condition, String description, String function)
     {
         this.condition = condition;
@@ -27,31 +27,13 @@ public class Condition
         return condition;
     }
 
-    public void setCondition(int condition)
-    {
-        this.condition = condition;
-    }
-
     public String getDescription()
     {
         return description;
-    }
-
-    public void setDescription(String description)
-    {
-        this.description = description;
     }
 
     public String getFunction()
     {
         return function;
     }
-
-    public void setFunction(String function)
-    {
-        this.function = function;
-    }
-    
-    
-    
 }

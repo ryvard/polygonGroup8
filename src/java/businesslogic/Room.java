@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package businesslogic;
 
 /**
@@ -11,14 +6,9 @@ package businesslogic;
  */
 public class Room
 {
-    int floor;
-    int room;
-    int roomID;
-
-    public int getRoomID()
-    {
-        return roomID;
-    }
+    private int floor;
+    private int room;
+    private int roomID;
 
     public Room(int floor, int room, int roomID)
     {
@@ -26,7 +16,6 @@ public class Room
         this.room = room;
         this.roomID = roomID;
     }
-    
 
     public Room(int floor, int room)
     {
@@ -34,24 +23,18 @@ public class Room
         this.room = room;
     }
 
+    public int getRoomID()
+    {
+        return roomID;
+    }
+
     public int getFloor()
     {
         return floor;
-    }
-
-    public void setFloor(int floor)
-    {
-        this.floor = floor;
     }
 
     public int getRoom()
     {
         return room;
     }
-
-    public void setRoom(int room)
-    {
-        this.room = room;
-    }
-    
 }

@@ -105,7 +105,10 @@ public class DM_Building
 
             res.next();
             Building building = new Building(res.getInt(1), res.getString(4), res.getString(5), res.getString(6), getCity(res.getInt(7)), res.getInt(7), res.getInt(8), res.getDouble(9), res.getString(10));
+            ContactPerson cp = new ContactPerson(res.getInt(3));
+            building.addCP(cp);
             return building;
+            
         } catch (SQLException ex)
         {
             throw new DatasourceLayerException("Get Building From ID - " + ex);

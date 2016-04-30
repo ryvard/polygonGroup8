@@ -1,12 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package businesslogic;
-
-import businesslogic.Building;
-import businesslogic.ContactPerson;
 
 import java.util.ArrayList;
 
@@ -31,26 +23,8 @@ public class Report
     private ArrayList<ReviewOf> reviewList;
     private ArrayList<MoistScan> msList;
     private ArrayList<Conclusion> conclusionList;
-
-    public int geteID()
-    {
-        return eID;
-    }
     
     
-    
-
-    public int getBuildingID()
-    {
-        return BuildingID;
-    }
-
-    //private ContactPerson contactPerson;
-    public void setBuildingID(int BuildingID)
-    {
-        this.BuildingID = BuildingID;
-    }
-
     public Report(int BuildingID, int eID, String date, int condition)
     {
         this.BuildingID = BuildingID;
@@ -81,6 +55,18 @@ public class Report
 //        this.condition = condition;
 //    }
     
+
+    public int geteID()
+    {
+        return eID;
+    }
+    
+    public int getBuildingID()
+    {
+        return BuildingID;
+    }
+
+    
     public int getRepID()
     {
         return repID;
@@ -95,24 +81,12 @@ public class Report
     {
         return date;
     }
-
-    public void setDate(String date)
-    {
-        this.date = date;
-    }
-
     
      public int getCondition()
     {
         return condition;
     }
 
-    public void setCondition(int condition)
-    {
-        this.condition = condition;
-    }
-    
-    //-------
     public void addBuilding(Building building)
     {
         this.building = building;
@@ -189,8 +163,4 @@ public class Report
     {
         return roomList;
     }
-    
-    
-    
-    
 }

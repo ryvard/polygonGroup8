@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package businesslogic;
 
 /**
@@ -11,19 +6,27 @@ package businesslogic;
  */
 public class ReviewOf
 {
-    int ReviewID;
-    int roomID;
-    int floorID;
-    int repID;
-    String part;
-    String note;
+    private int roomID;
+    private int floorID;
+    private String part;
+    private String note;
 
+    /**
+     * Constructor used for outer reviews
+     * @param part
+     * @param note 
+     */
     public ReviewOf(String part, String note)
     {
         this.part = part;
         this.note = note;
     }
-    
+    /**
+     * Constructor used for view report
+     * @param roomID
+     * @param part
+     * @param note 
+     */
     public ReviewOf(int roomID, String part, String note)
     {
         this.roomID = roomID;
@@ -31,6 +34,13 @@ public class ReviewOf
         this.note = note;
     }
     
+    /**
+     * Constructor used when creating a review for a room
+     * @param roomID
+     * @param floorID
+     * @param part
+     * @param note 
+     */
     public ReviewOf(int roomID, int floorID, String part, String note)
     {
         this.roomID = roomID;
@@ -44,41 +54,9 @@ public class ReviewOf
         return floorID;
     }
 
-    public void setFloorID(int floorID)
-    {
-        this.floorID = floorID;
-    }
-
-    
-
-    public int getReviewID()
-    {
-        return ReviewID;
-    }
-
-    public void setReviewID(int ReviewID)
-    {
-        this.ReviewID = ReviewID;
-    }
-
     public int getRoomID()
     {
         return roomID;
-    }
-
-    public void setRoomID(int roomID)
-    {
-        this.roomID = roomID;
-    }
-
-    public int getRepID()
-    {
-        return repID;
-    }
-
-    public void setRepID(int repID)
-    {
-        this.repID = repID;
     }
 
     public String getPart()
@@ -86,21 +64,8 @@ public class ReviewOf
         return part;
     }
 
-    public void setPart(String part)
-    {
-        this.part = part;
-    }
-
     public String getNote()
     {
         return note;
     }
-
-    public void setNote(String note)
-    {
-        this.note = note;
-    }
-    
-    
-    
 }
