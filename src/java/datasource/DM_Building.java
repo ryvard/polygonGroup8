@@ -169,19 +169,19 @@ public class DM_Building
         }
     }
     
-    public Building getBulding(String buildingName, String streetName) throws DatasourceLayerException {
-        try {
-       String query = "SELECT * FROM PolygonGroup8.Buildings WHERE BuildingName ='" + buildingName + "' AND StreetName='" + streetName + "';";
-            DatabaseConnector db_Connect = DatabaseConnector.getInstance();
-            ResultSet res = db_Connect.getData(query);
-
-            res.next();
-            Building building = new Building(res.getInt(1), res.getString(4), res.getString(5), res.getString(6), res.getString(7), res.getInt(8), res.getInt(9), res.getDouble(10), res.getString(11), (Customer) res.getObject(2), (ContactPerson) res.getObject(3));
-            return building;
-        } catch (SQLException ex)
-        {
-            throw new DatasourceLayerException("get building id - " + ex);
-        }
-    }
+//    public Building getBulding(String buildingName, String streetName) throws DatasourceLayerException {
+//        try {
+//       String query = "SELECT * FROM PolygonGroup8.Buildings WHERE BuildingName ='" + buildingName + "' AND StreetName='" + streetName + "';";
+//            DatabaseConnector db_Connect = DatabaseConnector.getInstance();
+//            ResultSet res = db_Connect.getData(query);
+//
+//            res.next();
+//            Building building = new Building(res.getInt(1), res.getString(4), res.getString(5), res.getString(6), res.getString(7), res.getInt(8), res.getInt(9), res.getDouble(10), res.getString(11), (Customer) res.getObject(2), (ContactPerson) res.getObject(3));
+//            return building;
+//        } catch (SQLException ex)
+//        {
+//            throw new DatasourceLayerException("get building id - " + ex);
+//        }
+//    }
 
 }
