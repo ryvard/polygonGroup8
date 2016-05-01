@@ -400,7 +400,7 @@ public class Servlet extends HttpServlet
 
                         }
 
-                        if (!fail.isEmpty())
+                        if (!fail.isEmpty()|| fail != null)
                         {
                             request.setAttribute("fail", fail);
                             getServletContext().getRequestDispatcher("/ReportError.jsp").forward(request, response);
