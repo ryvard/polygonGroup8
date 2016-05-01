@@ -9,6 +9,7 @@ import businesslogic.Condition;
 import businesslogic.Floor;
 import businesslogic.DatasourceLayerException;
 import businesslogic.User;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 /**
@@ -24,6 +25,7 @@ public class Facade implements IFacade
     DM_Report dm_report = new DM_Report();
     DM_Employee dm_employee = new DM_Employee();
     DM_User dm_user = new DM_User();
+    DM_Image dm_image = new DM_Image();
 
     @Override
     public void createBuilding(Building building) throws DatasourceLayerException
@@ -134,6 +136,11 @@ public class Facade implements IFacade
 
     }
 
+    @Override
+    public void uploadPicture(InputStream is, long size, Building building) 
+    {
+        dm_image.uploadPicture(is, size, building);
+    }
 //    @Override
 //    public ArrayList<ContactPerson> getContactPersonList()throws DatasourceLayerException
 //    {
@@ -149,4 +156,5 @@ public class Facade implements IFacade
 //    {
 //        dm_building.createFloor(arrayFloor, buildingID);
 //    }
+
 }

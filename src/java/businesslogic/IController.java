@@ -11,6 +11,7 @@ import businesslogic.ContactPerson;
 import businesslogic.Customer;
 import businesslogic.Employee;
 import businesslogic.Report;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 /**
@@ -102,6 +103,9 @@ public interface IController
             ArrayList<MoistScan> msList, ArrayList<Conclusion> conclusionList) throws DatasourceLayerException;
 
     //public ContactPerson getCPFromCPID(int CPID) throws DatasourceLayerException;
+    
+    public void uploadPicture(InputStream is, long size, Building building);
+    
 
     public Report viewReport(int repID) throws DatasourceLayerException;
 

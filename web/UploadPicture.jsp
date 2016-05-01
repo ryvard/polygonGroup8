@@ -33,9 +33,7 @@
                     <td><input type="file" name="picture" accept="image/png, image/x-png, image/gif, image/jpeg, image/jpg"/></td>
                     <input type="hidden" name="do_this" value="uploadPicture">
                     <td><input type="submit" value="Gem plantegning"></td>
-                </tr>
-                
-                    
+                </tr>                             
         </form>
     </body>
 </html>

@@ -65,23 +65,25 @@ public class Servlet extends HttpServlet
             /* TODO output your page here. You may use following sample code. */
             HttpSession session = request.getSession(true);
             Controller con = new Controller();
-            DM_Image imageMapper = new DM_Image();
+            
 
             String do_this = request.getParameter("do_this");
 
             switch (do_this)
             {
                 case "uploadPicture":
-                    Part filePart = request.getPart("picture");
                     
+                    Part filePart = request.getPart("picture");
                     long size = filePart.getSize();
                     System.out.println("Test case");
                     InputStream is = filePart.getInputStream();
-                    try {
-                    //Image img = ImageIO.read(fileContent);
-                    imageMapper.uploadPicture(is, size, con.getBuildingFromID(Integer.parseInt(session.getAttribute("buildingDBID").toString())));
-                    //imageMapper.uploadPicture(is, size);
-                    } catch(DatasourceLayerException ex) {
+                    
+                    try 
+                    {
+                    con.uploadPicture(is, size, con.getBuildingFromID(Integer.parseInt(session.getAttribute("buildingDBID").toString())));
+                    } 
+                    catch(DatasourceLayerException ex) 
+                    {
                         System.out.println("Upload picture " + ex);
                     }
                     break;
@@ -284,7 +286,7 @@ public class Servlet extends HttpServlet
                             {
                                 fail += "* Lokalets nummer er ikke angivet på lokale-side: " + (i + 1) + "<br>";
                                 request.setAttribute("fail", fail);
-                                getServletContext().getRequestDispatcher("/ReportError.jsp").forward(request, response);
+                                //getServletContext().getRequestDispatcher("/ReportError.jsp").forward(request, response);
                             }
 
                             int bRoom = Integer.parseInt(request.getParameter("room" + i));
@@ -304,7 +306,7 @@ public class Servlet extends HttpServlet
                             {
                                 fail += "Damage";
                                 request.setAttribute("fail", fail);
-                                getServletContext().getRequestDispatcher("/ReportError.jsp").forward(request, response);
+                                //getServletContext().getRequestDispatcher("/ReportError.jsp").forward(request, response);
                             }
                             
                             String otherDamage = request.getParameter("otherDamage" + i);
@@ -403,25 +405,33 @@ public class Servlet extends HttpServlet
 
                         if (!fail.isEmpty())
                         {
+                            System.out.println("fail");
                             request.setAttribute("fail", fail);
                             getServletContext().getRequestDispatcher("/ReportError.jsp").forward(request, response);
 
                         }
+                        else
+                        {
                         con.createReport(rBuildingID, report, outerReviews, employee, roomList, damageList, reviewList, msList, conclusionList);
-
                         getServletContext().getRequestDispatcher("/index.html").forward(request, response);
-
+                        }
                     } catch (NullPointerException ex)
                     {
+                        System.out.println("nullpointer");
                         request.setAttribute("Number", "Tjek om du har glemt at krydse af i en af check-boksene");
                         getServletContext().getRequestDispatcher("/ReportError.jsp").forward(request, response);
                     } catch (DatasourceLayerException ex)
                     {
-                        request.setAttribute("dataError", "Der skete en fejl, da vi forsøgte at gemme rapporten - <i>"+ex+"</i>");
+                        System.out.println("data "+ex);
+                        request.setAttribute("dataError", "Der skete en fejl, da vi forsøgte at gemme rapporten");
+                        
+                        System.out.println("data 2");
                         getServletContext().getRequestDispatcher("/ReportError.jsp").forward(request, response);
-
+                        
+                        
                     } catch (NumberFormatException ex)
                     {
+                        System.out.println("numberformat");
                         request.setAttribute("numberFormat", "Tjek om du har udfyldt alle felter korrekt");
                         getServletContext().getRequestDispatcher("/ReportError.jsp").forward(request, response);
                     }

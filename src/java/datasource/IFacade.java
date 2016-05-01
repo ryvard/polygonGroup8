@@ -9,6 +9,7 @@ import businesslogic.Condition;
 import businesslogic.Floor;
 import businesslogic.DatasourceLayerException;
 import businesslogic.User;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 /**
@@ -18,6 +19,8 @@ import java.util.ArrayList;
 public interface IFacade
 {
     public void createBuilding(Building building) throws DatasourceLayerException;
+    
+    public void uploadPicture(InputStream is, long size, Building building);
 
     public ArrayList<Building> getBuildingList() throws DatasourceLayerException;
 

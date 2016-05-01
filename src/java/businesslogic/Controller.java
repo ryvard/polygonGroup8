@@ -1,6 +1,7 @@
 package businesslogic;
 
 import datasource.Facade;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 /**
@@ -123,6 +124,11 @@ public class Controller implements IController
          facade.login(u);
     }
 
+    @Override
+    public void uploadPicture(InputStream is, long size, Building building) 
+    {
+        facade.uploadPicture(is, size, building);
+    }
 //    @Override
 //    public Customer getCustFromCustID(int custID) throws DatasourceLayerException {
 //         return facade.getCustFromCustID(custID);
@@ -165,4 +171,5 @@ public class Controller implements IController
 //    {
 //        return facade.getContactPersonList();
 //    }
+
 }

@@ -77,9 +77,9 @@
                 <td> <input type="text" name="zip" readonly="readonly"
                             value="<%=request.getParameter("zip") == null ? session.getAttribute("bZip") : request.getParameter("zip")%>"/></td>
             </tr>
-            <td style="padding-top: 20px;" align="right">Indsæt billede af bygning udefra</td>
+<!--            <td style="padding-top: 20px;" align="right">Indsæt billede af bygning udefra</td>
                 <td style="padding-top: 20px;"><input type="file"/></td>
-                <td style="padding-top: 20px;"><input type="checkbox" name="roofPicture" value="ON" /></td>
+                <td style="padding-top: 20px;"><input type="checkbox" name="roofPicture" value="ON" /></td>-->
             
                 </table>      
             <table>
@@ -111,17 +111,17 @@
                 <td>Tag</td>
                 <td><input type="text" name="roof" style="width: 300px;"
                            value="<%=request.getParameter("roof") == null ? "" : request.getParameter("roof")%>"/></td>
-                <td align="right">Billede</td>
+<!--                <td align="right">Billede</td>
                 <td><input type="file"/></td>
-                <td><input type="checkbox" name="roofPicture" value="ON" /></td>
+                <td><input type="checkbox" name="roofPicture" value="ON" /></td>-->
             </tr>
             <tr>
                 <td>Ydervægge</td>
                 <td><input type="text" name="outerwalls" style="width: 300px;"
                            value="<%=request.getParameter("outerwalls") == null ? "" : request.getParameter("outerwalls")%>"/></td>
-                <td align="right">Billede</td>
+<!--                <td align="right">Billede</td>
                 <td><input type="file"/></td>
-                <td><input type="checkbox" name="outerwallsPicture" value="ON" /></td>
+                <td><input type="checkbox" name="outerwallsPicture" value="ON" /></td>-->
             </tr>
             
             <tr>
