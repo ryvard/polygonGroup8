@@ -402,6 +402,7 @@ public class Servlet extends HttpServlet
 
                         if (!fail.isEmpty()|| fail != null)
                         {
+                            System.out.println("fail");
                             request.setAttribute("fail", fail);
                             getServletContext().getRequestDispatcher("/ReportError.jsp").forward(request, response);
 
@@ -412,15 +413,18 @@ public class Servlet extends HttpServlet
 
                     } catch (NullPointerException ex)
                     {
+                        System.out.println("nullpointer");
                         request.setAttribute("Number", "Tjek om du har glemt at krydse af i en af check-boksene");
                         getServletContext().getRequestDispatcher("/ReportError.jsp").forward(request, response);
                     } catch (DatasourceLayerException ex)
                     {
+                        System.out.println("data "+ex);
                         request.setAttribute("dataError", "Der skete en fejl, da vi forsøgte at gemme rapporten - <i>"+ex+"</i>");
                         getServletContext().getRequestDispatcher("/ReportError.jsp").forward(request, response);
 
                     } catch (NumberFormatException ex)
                     {
+                        System.out.println("numberformat");
                         request.setAttribute("numberFormat", "Tjek om du har udfyldt alle felter korrekt");
                         getServletContext().getRequestDispatcher("/ReportError.jsp").forward(request, response);
                     }
