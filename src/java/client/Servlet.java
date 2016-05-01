@@ -76,6 +76,7 @@ public class Servlet extends HttpServlet
                     long size = filePart.getSize();
                     System.out.println("Test case");
                     InputStream is = filePart.getInputStream();
+                    
                     try {
                     //Image img = ImageIO.read(fileContent);
                     con.uploadPicture(is, size, con.getBuildingFromID(Integer.parseInt(session.getAttribute("buildingDBID").toString())));
