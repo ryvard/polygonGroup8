@@ -36,7 +36,7 @@
                     if (request.getAttribute("dataError") != null)
                     {
                 %>
-                <%=request.getAttribute("ReportError")%>
+                <%=request.getAttribute("dataError")%>
                 <%
                     }
                     if (request.getAttribute("numberFormat") != null)
