@@ -71,17 +71,18 @@ public class Servlet extends HttpServlet
             switch (do_this)
             {
                 case "uploadPicture":
-                    Part filePart = request.getPart("picture");
                     
+                    Part filePart = request.getPart("picture");
                     long size = filePart.getSize();
                     System.out.println("Test case");
                     InputStream is = filePart.getInputStream();
                     
-                    try {
-                    //Image img = ImageIO.read(fileContent);
+                    try 
+                    {
                     con.uploadPicture(is, size, con.getBuildingFromID(Integer.parseInt(session.getAttribute("buildingDBID").toString())));
-                    //imageMapper.uploadPicture(is, size);
-                    } catch(DatasourceLayerException ex) {
+                    } 
+                    catch(DatasourceLayerException ex) 
+                    {
                         System.out.println("Upload picture " + ex);
                     }
                     break;
