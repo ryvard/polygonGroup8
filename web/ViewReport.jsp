@@ -109,7 +109,7 @@
             {
             System.out.println("room.getFloor()   " + room.getFloor());
         %>
-        <table
+        <table>
         <tr>
             
             <td>Etage: <%=room.getFloor()%> </td>
