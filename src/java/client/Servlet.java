@@ -64,7 +64,7 @@ public class Servlet extends HttpServlet
             /* TODO output your page here. You may use following sample code. */
             HttpSession session = request.getSession(true);
             Controller con = new Controller();
-            DM_Image imageMapper = new DM_Image();
+            
 
             String do_this = request.getParameter("do_this");
 
@@ -78,7 +78,7 @@ public class Servlet extends HttpServlet
                     InputStream is = filePart.getInputStream();
                     try {
                     //Image img = ImageIO.read(fileContent);
-                    imageMapper.uploadPicture(is, size, con.getBuildingFromID(Integer.parseInt(session.getAttribute("buildingDBID").toString())));
+                    con.uploadPicture(is, size, con.getBuildingFromID(Integer.parseInt(session.getAttribute("buildingDBID").toString())));
                     //imageMapper.uploadPicture(is, size);
                     } catch(DatasourceLayerException ex) {
                         System.out.println("Upload picture " + ex);
