@@ -105,7 +105,7 @@ public interface IController
 
     public Report viewReport(int repID) throws DatasourceLayerException;
 
-    public boolean login(String userName, String password) throws DatasourceLayerException;
+    public void login(User u) throws DatasourceLayerException;
 
     public void createBuilding(Building b, ArrayList<Floor> arrayFloor, int custID, int cpID) throws DatasourceLayerException;
 

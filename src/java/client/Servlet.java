@@ -24,6 +24,7 @@ import businesslogic.MoistScan;
 import businesslogic.DatasourceLayerException;
 import businesslogic.ReviewOf;
 import businesslogic.Room;
+import businesslogic.User;
 import datasource.DM_Image;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -547,15 +548,20 @@ public class Servlet extends HttpServlet
                     break;
 
                 case "login":
+                    try 
+                    {
                     String username = request.getParameter("username");
                     String password = request.getParameter("password");
-                    boolean login;
-                    login = con.login(username, password);
-                    if (login)
+                    User user = new User(username, password);
+                    con.login(user);
+                    
+      
+                    } catch(DatasourceLayerException ex) 
                     {
-
-                        forward(request, response, "/CreateBuilding.jsp");
+                        request.setAttribute("LoginError", "Forkert brugernavn og/eller kode! Prøv igen");
+                        forward(request, response, "/Login.jsp");
                     }
+                    forward(request, response, "/Welcome.jsp");
                     
                     break;
 

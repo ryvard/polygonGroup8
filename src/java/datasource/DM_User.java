@@ -6,6 +6,7 @@
 package datasource;
 
 import businesslogic.DatasourceLayerException;
+import businesslogic.User;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -18,27 +19,25 @@ import java.util.logging.Logger;
 public class DM_User
 {
 
-    public boolean login(String username, String password) //throws DatasourceLayerException
+    public void login(User u) throws DatasourceLayerException 
     {
         try
         {
-
-            String query = "SELECT * FROM login WHERE User = '" + username + "' AND Passw = '" + password + "';";
-
+            System.out.println("login user " + u.getUserName());
+            String query = "SELECT * FROM Login WHERE User = '" + u.getUserName() + "' AND Passw = '" + u.getPassword()+ "';";
+            
             DatabaseConnector db_Connect = DatabaseConnector.getInstance();
             ResultSet res = db_Connect.getData(query);
-
-                return res.next();
-                
-        } catch (SQLException ex)
+            System.out.println("res.next() " + res.next());
+            
+               
+        } catch (Exception ex)
         {
-            System.out.println("hejhej");
-            try {
+            System.out.println("catch");
+
                 throw new DatasourceLayerException("Login failed - " + ex);
-            } catch (DatasourceLayerException ex1) {
-                Logger.getLogger(DM_User.class.getName()).log(Level.SEVERE, null, ex1);
-            }
+            
         }
-        return false;
+        
     }
 }

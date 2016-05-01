@@ -8,6 +8,7 @@ import businesslogic.ContactPerson;
 import businesslogic.Condition;
 import businesslogic.Floor;
 import businesslogic.DatasourceLayerException;
+import businesslogic.User;
 import java.util.ArrayList;
 
 /**
@@ -127,9 +128,9 @@ public class Facade implements IFacade
     }
 
     @Override
-    public boolean login(String userName, String password)
+    public void login(User u) throws DatasourceLayerException
     {
-        return dm_user.login(userName, password);
+        dm_user.login(u);
 
     }
 
