@@ -32,34 +32,42 @@
         <tr/>
         <tr>
             <td>
-            <%
-                if (request.getAttribute("dataError") != null)
-                {
-            %>
-            <%=request.getAttribute("ReportError")%>
-        <%
-            }
-            if (request.getAttribute("numberFormat") != null)
-            {
-        %>
-        <%=request.getAttribute("numberFormat")%>
-        <%
-            }
-            if (request.getAttribute("fail") != null)
-            {
-        %>
-        <%=request.getAttribute("fail")%>
-        <%
-            }
-        %>
+                <%
+                    if (request.getAttribute("dataError") != null)
+                    {
+                %>
+                <%=request.getAttribute("ReportError")%>
+                <%
+                    }
+                    if (request.getAttribute("numberFormat") != null)
+                    {
+                %>
+                <%=request.getAttribute("numberFormat")%>
+                <%
+                    }
+                    if (request.getAttribute("fail") != null)
+                    {
+                %>
+                <%=request.getAttribute("fail")%>
+                <%
+                    }
+                %>
+                <%
+                    if (request.getAttribute("Number") != null)
+                    {
+                %>
+                <%=request.getAttribute("Number")%>
+                <%
+                    }
+                %>
             </td>
-    </tr>
-    <tr>
-        <td style="text-align: center"><FORM><INPUT Type="button" VALUE="Tilbage" onClick="history.go(-1);
-            return true;"></FORM></td>
-</tr>
-</table>
-            <div style="font-weight: normal">
+        </tr>
+        <tr>
+            <td style="text-align: center"><FORM><INPUT Type="button" VALUE="Tilbage" onClick="history.go(-1);
+                return true;"></FORM></td>
+        </tr>
+    </table>
+    <div style="font-weight: normal">
         Rypevang 5, DK-3450 Allerød, Danmark 
         <br>
         48140555
