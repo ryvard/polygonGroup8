@@ -130,9 +130,9 @@ public class Facade implements IFacade
     }
 
     @Override
-    public void login(User u) throws DatasourceLayerException
+    public boolean login(User u) 
     {
-        dm_user.login(u);
+        return dm_user.login(u);
 
     }
 

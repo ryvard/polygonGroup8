@@ -81,6 +81,8 @@ public class Servlet extends HttpServlet
                     try 
                     {
                     con.uploadPicture(is, size, con.getBuildingFromID(Integer.parseInt(session.getAttribute("buildingDBID").toString())));
+                    request.setAttribute("Result", "Det lykkedes at oprette bygningen og gemme plantegningen");
+                        forward(request, response, "/Status.jsp");
                     } 
                     catch(DatasourceLayerException ex) 
                     {
@@ -149,6 +151,7 @@ public class Servlet extends HttpServlet
                         session.setAttribute("BuildingDBID", con.getBuildingIDFromDB(buildingName, street));
                         System.out.println("servlet");
                         getServletContext().getRequestDispatcher("/UploadPicture.jsp").forward(request, response);
+                       
                     } catch (DatasourceLayerException ex)
                     {
                         //gør noget her
@@ -167,8 +170,10 @@ public class Servlet extends HttpServlet
                         
 
                         con.createCustomer(name, type, streetNameCust, streetNoCust, zipcodeCust);
+                        request.setAttribute("Result", "Det lykkedes at oprette kunden");
+                        forward(request, response, "/Status.jsp");
 
-                        System.out.println("%%%%%%€##€##€€€€€ dsf servlet");
+                        
                     } catch (DatasourceLayerException ex)
                     {
                         //Gør noget her
@@ -413,7 +418,8 @@ public class Servlet extends HttpServlet
                         else
                         {
                         con.createReport(rBuildingID, report, outerReviews, employee, roomList, damageList, reviewList, msList, conclusionList);
-                        getServletContext().getRequestDispatcher("/index.html").forward(request, response);
+                        request.setAttribute("Result", "Det lykkedes at oprette rapporten");
+                        getServletContext().getRequestDispatcher("/Status.jsp").forward(request, response);
                         }
                     } catch (NullPointerException ex)
                     {
@@ -558,21 +564,22 @@ public class Servlet extends HttpServlet
                     break;
 
                 case "login":
-                    try 
-                    {
+                   
                     String username = request.getParameter("username");
                     String password = request.getParameter("password");
                     User user = new User(username, password);
-                    con.login(user);
+                    boolean login;
+                    login  = con.login(user);
                     
-      
-                    } catch(DatasourceLayerException ex) 
+                    if(login) 
+                    {
+                        forward(request, response, "/Welcome.jsp");
+                    }else 
                     {
                         request.setAttribute("LoginError", "Forkert brugernavn og/eller kode! Prøv igen");
                         forward(request, response, "/Login.jsp");
                     }
-                    forward(request, response, "/Welcome.jsp");
-                    
+
                     break;
 
 //                case "Upload Picture":

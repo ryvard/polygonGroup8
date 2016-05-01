@@ -119,9 +119,9 @@ public class Controller implements IController
     }
 
     @Override
-    public void login(User u) throws DatasourceLayerException
+    public boolean login(User u)
     {
-         facade.login(u);
+         return facade.login(u);
     }
 
     @Override

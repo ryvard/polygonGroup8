@@ -54,7 +54,7 @@ public interface IFacade
 
     public ArrayList<Condition> getConditions() throws DatasourceLayerException;
 
-    public void login(User u) throws DatasourceLayerException;
+    public boolean login(User u);
     
     //public ArrayList<ContactPerson> getContactPersonList()throws DatasourceLayerException;
     //public void createFloor(ArrayList<Floor> arrayFloor, int buildingID)throws DatasourceLayerException;

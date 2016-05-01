@@ -19,6 +19,7 @@
         <li><a href="Login.jsp"> Polygon login side</a></li>
         <li><a href="BuildingList.jsp">Se bygninger</a></li>
         <li><a href="CreateBuilding.jsp">Opret din bygning</a></li>
+        <li><a href="CreateCustomer.jsp">Opret kunde</a></li>
         <li><a href="CreateReport1.jsp">Opret rapport</a></li>
         <li><a href="ViewReport1.jsp">Se rapport</a></li>
     </ul1>

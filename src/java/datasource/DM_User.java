@@ -19,25 +19,21 @@ import java.util.logging.Logger;
 public class DM_User
 {
 
-    public void login(User u) throws DatasourceLayerException 
+    public boolean login(User u) 
     {
-        try
-        {
+        try {
             System.out.println("login user " + u.getUserName());
             String query = "SELECT * FROM Login WHERE User = '" + u.getUserName() + "' AND Passw = '" + u.getPassword()+ "';";
-            
+           
             DatabaseConnector db_Connect = DatabaseConnector.getInstance();
-            ResultSet res = db_Connect.getData(query);
-            System.out.println("res.next() " + res.next());
+            ResultSet res = db_Connect.getData(query);         
+        
+            return res.next();
+        } catch (SQLException ex) {
             
-               
-        } catch (Exception ex)
-        {
-            System.out.println("catch");
-
-                throw new DatasourceLayerException("Login failed - " + ex);
-            
+           
         }
         
+        return false;
     }
 }

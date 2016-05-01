@@ -37,7 +37,7 @@
                 </tr>
                 <tr>
                     <td>Kode</td>
-                    <td><input type="text" name="password"></td>
+                    <td><input type="password" name="password"></td>
                 </tr>
                 <tr>
                     <td><input type="hidden" name="do_this" value="login"</td>
