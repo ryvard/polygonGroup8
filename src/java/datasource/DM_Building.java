@@ -30,9 +30,13 @@ public class DM_Building
                     + "VALUES('" + b.getCust().getCustID() + "','" + b.getCP().getCPID() + "','" + b.getBuildingName() + "','" + b.getStreetName()
                     + "','" + b.getStreetNumb() + "','" + b.getZipcode() + "','"
                     + b.getYearOfConst() + "','" + b.getSquareMeters() + "','" + b.getBuildingUse() + "');";
+            
+             String query2 = "INSERT INTO CustomerCP(CPID,CustID) VALUES('"+ b.getCP().getCPID() +"','" + b.getCust().getCustID() + "');";
 
             DatabaseConnector db_Connect = DatabaseConnector.getInstance();
             db_Connect.updateData(query);
+            
+            db_Connect.updateData(query2);
 
             int ID = getBuildingIDFromDB(b.getBuildingName(), b.getStreetName());
             createFloor(b.getFloors(), ID);

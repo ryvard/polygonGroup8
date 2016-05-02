@@ -24,6 +24,7 @@ import businesslogic.MoistScan;
 import businesslogic.DatasourceLayerException;
 import businesslogic.ReviewOf;
 import businesslogic.Room;
+import businesslogic.User;
 import datasource.DM_Image;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -80,6 +81,8 @@ public class Servlet extends HttpServlet
                     try 
                     {
                     con.uploadPicture(is, size, con.getBuildingFromID(Integer.parseInt(session.getAttribute("buildingDBID").toString())));
+                    request.setAttribute("Result", "Det lykkedes at oprette bygningen og gemme plantegningen");
+                        forward(request, response, "/Status.jsp");
                     } 
                     catch(DatasourceLayerException ex) 
                     {
@@ -148,6 +151,7 @@ public class Servlet extends HttpServlet
                         session.setAttribute("BuildingDBID", con.getBuildingIDFromDB(buildingName, street));
                         System.out.println("servlet");
                         getServletContext().getRequestDispatcher("/UploadPicture.jsp").forward(request, response);
+                       
                     } catch (DatasourceLayerException ex)
                     {
                         //gør noget her
@@ -166,8 +170,10 @@ public class Servlet extends HttpServlet
                         
 
                         con.createCustomer(name, type, streetNameCust, streetNoCust, zipcodeCust);
+                        request.setAttribute("Result", "Det lykkedes at oprette kunden");
+                        forward(request, response, "/Status.jsp");
 
-                        System.out.println("%%%%%%€##€##€€€€€ dsf servlet");
+                        
                     } catch (DatasourceLayerException ex)
                     {
                         //Gør noget her
@@ -412,7 +418,8 @@ public class Servlet extends HttpServlet
                         else
                         {
                         con.createReport(rBuildingID, report, outerReviews, employee, roomList, damageList, reviewList, msList, conclusionList);
-                        getServletContext().getRequestDispatcher("/index.html").forward(request, response);
+                        request.setAttribute("Result", "Det lykkedes at oprette rapporten");
+                        getServletContext().getRequestDispatcher("/Status.jsp").forward(request, response);
                         }
                     } catch (NullPointerException ex)
                     {
@@ -557,22 +564,81 @@ public class Servlet extends HttpServlet
                     break;
 
                 case "login":
+                   
                     String username = request.getParameter("username");
                     String password = request.getParameter("password");
-                    boolean login = con.login(username, password);
-                    String fejlmeddelse = "Forkert brugernavn eller kode!!";
-
-                    if (login)
+                    User user = new User(username, password);
+                    boolean login;
+                    login  = con.login(user);
+                    
+                    if(login) 
                     {
-
-                        forward(request, response, "/CreateBuilding.jsp");
-                    } else
+                        forward(request, response, "/Welcome.jsp");
+                    }else 
                     {
-                        request.setAttribute("Login2", fejlmeddelse);
+                        request.setAttribute("LoginError", "Forkert brugernavn og/eller kode! Prøv igen");
                         forward(request, response, "/Login.jsp");
                     }
+
                     break;
 
+//                case "Upload Picture":
+//                    Part filePart = request.getPart("picture");
+//                    long size = filePart.getSize();
+//                    System.out.println("Test case");
+//                    InputStream ins = filePart.getInputStream();
+//                    //Image img = ImageIO.read(fileContent);
+//                    imageMapper.uploadPicture(ins, size);
+//                    break;
+//                case "Show Pictures":
+//                    try
+//                    {
+//                        int buildingID = Integer.parseInt(request.getParameter("buildingID"));
+//                        InputStream is = imageMapper.getImageAsStream(buildingID);
+//
+//                    } catch (Exception ex)
+//                    {
+//                        ex.printStackTrace();
+//                    }
+//                    break;
+//                case "Upload Picture":
+//                    Part filePart = request.getPart("picture");
+//                    long size = filePart.getSize();
+//                    System.out.println("Test case");
+//                    InputStream ins = filePart.getInputStream();
+//                    //Image img = ImageIO.read(fileContent);
+//                    imageMapper.uploadPicture(ins, size);
+//                    break;
+//                case "Show Pictures":
+//                    try
+//                    {
+//                        int buildingID = Integer.parseInt(request.getParameter("buildingID"));
+//                        InputStream is = imageMapper.getImageAsStream(buildingID);
+//
+//                    } catch (Exception ex)
+//                    {
+//                        ex.printStackTrace();
+//                    }
+//                    break;
+//                case "Upload Picture":
+//                    Part filePart = request.getPart("picture");
+//                    long size = filePart.getSize();
+//                    System.out.println("Test case");
+//                    InputStream ins = filePart.getInputStream();
+//                    //Image img = ImageIO.read(fileContent);
+//                    imageMapper.uploadPicture(ins, size);
+//                    break;
+//                case "Show Pictures":
+//                    try
+//                    {
+//                        int buildingID = Integer.parseInt(request.getParameter("buildingID"));
+//                        InputStream is = imageMapper.getImageAsStream(buildingID);
+//
+//                    } catch (Exception ex)
+//                    {
+//                        ex.printStackTrace();
+//                    }
+//                    break;
 //                case "Upload Picture":
 //                    Part filePart = request.getPart("picture");
 //                    long size = filePart.getSize();

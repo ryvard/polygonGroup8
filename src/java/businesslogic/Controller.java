@@ -119,9 +119,9 @@ public class Controller implements IController
     }
 
     @Override
-    public boolean login(String userName, String password)
+    public boolean login(User u)
     {
-        return facade.login(userName, password);
+         return facade.login(u);
     }
 
     @Override

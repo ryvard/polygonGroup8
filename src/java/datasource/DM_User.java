@@ -6,8 +6,11 @@
 package datasource;
 
 import businesslogic.DatasourceLayerException;
+import businesslogic.User;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -16,23 +19,21 @@ import java.sql.SQLException;
 public class DM_User
 {
 
-    public boolean login(String username, String password) //throws DatasourceLayerException
+    public boolean login(User u) 
     {
-        try
-        {
-
-            String query = "SELECT * FROM login WHERE User = '" + username + "' AND Passw = '" + password + "';";
-
+        try {
+            System.out.println("login user " + u.getUserName());
+            String query = "SELECT * FROM Login WHERE User = '" + u.getUserName() + "' AND Passw = '" + u.getPassword()+ "';";
+           
             DatabaseConnector db_Connect = DatabaseConnector.getInstance();
-            ResultSet res = db_Connect.getData(query);
-
-                return res.next();
-                
-        } catch (SQLException ex)
-        {
-            System.out.println("hejhej");
-            //throw new DatasourceLayerException("Login failed - " + ex);
+            ResultSet res = db_Connect.getData(query);         
+        
+            return res.next();
+        } catch (SQLException ex) {
+            
+           
         }
+        
         return false;
     }
 }

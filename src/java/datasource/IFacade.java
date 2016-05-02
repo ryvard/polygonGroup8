@@ -8,6 +8,7 @@ import businesslogic.ContactPerson;
 import businesslogic.Condition;
 import businesslogic.Floor;
 import businesslogic.DatasourceLayerException;
+import businesslogic.User;
 import java.io.InputStream;
 import java.util.ArrayList;
 
@@ -53,7 +54,7 @@ public interface IFacade
 
     public ArrayList<Condition> getConditions() throws DatasourceLayerException;
 
-    public boolean login(String userName, String password);
+    public boolean login(User u);
     
     //public ArrayList<ContactPerson> getContactPersonList()throws DatasourceLayerException;
     //public void createFloor(ArrayList<Floor> arrayFloor, int buildingID)throws DatasourceLayerException;

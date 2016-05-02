@@ -37,15 +37,15 @@
                 </tr>
                 <tr>
                     <td>Kode</td>
-                    <td><input type="text" name="password"></td>
+                    <td><input type="password" name="password"></td>
                 </tr>
                 <tr>
                     <td><input type="hidden" name="do_this" value="login"</td>
                     <td><input type="submit" value="Login"</td>
                 </tr>
-                <% if(request.getAttribute("Login2") != null) { %>
+                <% if(request.getAttribute("LoginError") != null) { %>
                 <tr>
-                    <td colspan="2" style="color:red;"><%= request.getAttribute("Login2") %></td>
+                    <td colspan="2" style="color:red;"><%= request.getAttribute("LoginError") %></td>
                 </tr>
                 <% }%>
             </table>
