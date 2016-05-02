@@ -25,16 +25,7 @@ public class DM_Image
     {
         try
         {
-//            byte[] buffer = new byte[1024];
-//                    int length;
-//                    while ((length = is.read(buffer)) != -1)
-//                    {
-//                        System.out.println("writing " + length + " bytes");
-//                    }
             String query = "INSERT INTO picture(BuildingID,Picture) VALUES(?,?)";
-            System.out.println("Made the SQL statement");
-//            DatabaseConnector db_Connect = DatabaseConnector.getInstance();
-//            db_Connect.updateData(query);
             PreparedStatement pstmt = DatabaseConnector.getConnection().prepareStatement(query);
             pstmt.setInt(1, building.getBuildingID());
             pstmt.setBinaryStream(2, is, size);
