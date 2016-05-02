@@ -141,6 +141,8 @@ public class Facade implements IFacade
     {
         dm_image.uploadPicture(is, size, building);
     }
+    
+    
 //    @Override
 //    public ArrayList<ContactPerson> getContactPersonList()throws DatasourceLayerException
 //    {
@@ -156,5 +158,10 @@ public class Facade implements IFacade
 //    {
 //        dm_building.createFloor(arrayFloor, buildingID);
 //    }
+
+    @Override
+    public Customer getCustomer(Customer cust) throws DatasourceLayerException {
+        return dm_customer.getCustomer(cust);
+    }
 
 }

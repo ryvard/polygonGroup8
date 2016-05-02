@@ -30,6 +30,13 @@
         <tr>
             <td> <%= request.getAttribute("Result") %> </td>
         </tr>
+        <%  if(request.getAttribute("DisplayCustID") != null) 
+            {
+        %>
+        <tr>
+            <td> <%= request.getAttribute("DisplayCustID") %></td>
+        </tr>
+        <% } %>
     <div style="font-weight: normal">
     Rypevang 5, DK-3450 Allerød, Danmark 
     <br>

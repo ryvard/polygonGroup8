@@ -129,6 +129,11 @@ public class Controller implements IController
     {
         facade.uploadPicture(is, size, building);
     }
+    
+    @Override
+    public Customer getCustomer(Customer cust) throws DatasourceLayerException {
+        return facade.getCustomer(cust);
+    }
 //    @Override
 //    public Customer getCustFromCustID(int custID) throws DatasourceLayerException {
 //         return facade.getCustFromCustID(custID);
@@ -171,5 +176,7 @@ public class Controller implements IController
 //    {
 //        return facade.getContactPersonList();
 //    }
+
+    
 
 }

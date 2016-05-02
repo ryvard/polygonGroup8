@@ -150,12 +150,13 @@ public class Servlet extends HttpServlet
                         System.out.println("efter metodekald");
                         session.setAttribute("BuildingDBID", con.getBuildingIDFromDB(buildingName, street));
                         System.out.println("servlet");
+                        
                         getServletContext().getRequestDispatcher("/UploadPicture.jsp").forward(request, response);
                        
                     } catch (DatasourceLayerException ex)
                     {
                         //gør noget her
-                        System.out.println("********** create building failed *************");
+                        System.out.println("********** create building failed *************" + ex);
                     }
                     break;
 
@@ -168,9 +169,11 @@ public class Servlet extends HttpServlet
                         String streetNoCust = request.getParameter("streetNo");
                         int zipcodeCust = Integer.parseInt(request.getParameter("zipcode"));
                         
+                        Customer cust = new Customer(name, type, streetNameCust, streetNoCust, zipcodeCust);
 
                         con.createCustomer(name, type, streetNameCust, streetNoCust, zipcodeCust);
                         request.setAttribute("Result", "Det lykkedes at oprette kunden");
+                        request.setAttribute("DisplayCustID", "Dit kundenr er " + con.getCustomer(cust).getCustID());
                         forward(request, response, "/Status.jsp");
 
                         
@@ -579,7 +582,7 @@ public class Servlet extends HttpServlet
                         request.setAttribute("LoginError", "Forkert brugernavn og/eller kode! Prøv igen");
                         forward(request, response, "/Login.jsp");
                     }
-
+ 
                     break;
 
 //                case "Upload Picture":

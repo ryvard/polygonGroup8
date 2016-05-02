@@ -118,6 +118,8 @@ public interface IController
     //public Customer getCustFromCustID(int custID) throws DatasourceLayerException;
 
     public int getNewRepID() throws DatasourceLayerException;
+    
+    public Customer getCustomer(Customer cust) throws DatasourceLayerException;
 
     //Udkommenteret metoder
     //public void createBuilding(String buildingName, String streetName, String streetNumb, String city, int zipcode, int yearOfConst, double squareMeters, String buildingUse, int custID, int CPID)throws DatasourceLayerException;

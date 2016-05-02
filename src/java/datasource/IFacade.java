@@ -56,6 +56,8 @@ public interface IFacade
 
     public boolean login(User u);
     
+    public Customer getCustomer(Customer cust) throws DatasourceLayerException;
+    
     //public ArrayList<ContactPerson> getContactPersonList()throws DatasourceLayerException;
     //public void createFloor(ArrayList<Floor> arrayFloor, int buildingID)throws DatasourceLayerException;
     //public int getCPID(String firstName, String lastName)throws DatasourceLayerException;
